@@ -48,8 +48,8 @@ namespace Inventory_Mangement_System.Middleware
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 int UserId = int.Parse(jwtToken.Claims.First(x => x.Type == ClaimTypes.Sid).Value);
                 context.Items["UserId"] = UserId;
-                int RoleId = int.Parse(jwtToken.Claims.First(x => x.Type == ClaimTypes.Role).Value);
-                context.Items["RoleId"] = RoleId;
+                string  RName = jwtToken.Claims.First(x => x.Type == ClaimTypes.Role).Value;
+                context.Items["Rolename"] = RName;
 
             }
             catch (Exception)

@@ -6,7 +6,7 @@ namespace Inventory_Mangement_System.Repository
 {
     public interface IProductRepository
     {
-        Task<string> AddProduct(ProductModel productModel);
+        Result  AddProduct(ProductModel productModel);
         Task<IEnumerable> GetUnit();
     }
 }

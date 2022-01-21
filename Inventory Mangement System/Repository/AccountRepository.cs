@@ -1,5 +1,6 @@
 ﻿using Inventory_Mangement_System.Model;
 using Inventory_Mangement_System.serevices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using ProductInventoryContext;
@@ -24,6 +25,7 @@ namespace Inventory_Mangement_System.Repository
             _tokenService = tokenService;
         }
 
+        
         //To add new role
         public async Task<string> AddRole(RoleModel roleModel )
         {
@@ -48,7 +50,7 @@ namespace Inventory_Mangement_System.Repository
                 }
             }
         }
-
+       
         //To register user details
         public async Task<IEnumerable> RegisterUser(UserModel userModel)
         {
@@ -90,25 +92,24 @@ namespace Inventory_Mangement_System.Repository
             User user = new User();
             Role role = new Role();
             var res = (from u1 in context.Users
-                       where u1.EmailAddress  == loginModel.EmailAddress  && u1.Password == loginModel.Password
+                       where u1.EmailAddress == loginModel.EmailAddress && u1.Password == loginModel.Password
                        select new
                        {
-                         UserID = u1.UserID,
-                         RoleID = u1.RoleID 
+                           UserID = u1.UserID,
+                           RoleID = u1.RoleID,
+                         RoleName = u1.Role.RoleName
                        }).FirstOrDefault();
             if(res != null)
             {
                 var authclaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name,loginModel.EmailAddress),
-                    new Claim (ClaimTypes.Role,res.RoleID.ToString() ),
-                    new Claim (ClaimTypes .Sid , res.UserID .ToString()),
+                    new Claim (ClaimTypes.Role,res.RoleName),
+                    new Claim (ClaimTypes .Sid ,res.UserID .ToString()),
                     new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid ().ToString ()),
                 };
                 var jwtToken = _tokenService.GenerateAccessToken(authclaims);
                 var refreshToken = _tokenService.GenerateRefreshToken();
-
-                //var userid = context.Users.SingleOrDefault(x => x.EmailAddress == loginModel.EmailAddress);
                 RefreshToken refreshToken1 = new RefreshToken();
                 refreshToken1.RToken  = refreshToken;
                 context.RefreshTokens.InsertOnSubmit(refreshToken1);
@@ -121,7 +122,7 @@ namespace Inventory_Mangement_System.Repository
                 context.SubmitChanges();
 
                 var token = jwtToken;
-                return $"Login Successfully";
+                return $"{jwtToken}";
 
                 //return new ObjectResult(new
                 //{

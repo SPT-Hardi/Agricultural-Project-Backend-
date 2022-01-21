@@ -1,6 +1,7 @@
 ﻿using Inventory_Mangement_System.Model;
 using Inventory_Mangement_System.Repository;
 using Inventory_Mangement_System.serevices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -33,10 +34,16 @@ namespace Inventory_Mangement_System.Controllers
         }
 
         [HttpPost("SignUp")]
-        public async Task<IActionResult> SignUp([FromBody]UserModel userModel)
+        //[Authorize(Roles = "SuperAdmin")]
+        public async Task<IActionResult> AddUser([FromBody]UserModel userModel)
         {
-            var result = await _accountRepository.RegisterUser(userModel);
-            return Ok(result);
+            string rname = (string)HttpContext.Items["Rolename"];
+            if (rname == "SuperAdmin")
+            {
+                var result = await _accountRepository.RegisterUser(userModel);
+                return Ok(result);
+            }
+            return Unauthorized();
         }
 
         [HttpPost("Login")]
@@ -53,20 +60,16 @@ namespace Inventory_Mangement_System.Controllers
         [HttpGet("gettoken")]
         public ActionResult<string> GetToken()
         {
+            string rname = (string)HttpContext.Items["Rolename"];//context.Items["Rolename"] = RName;
             int uid = (int)HttpContext.Items["UserId"];
-            return Ok(uid);
-            //return (new
-            //{
-            //    ""=,
-            //    ""
-            //});
-            //var isClaim = User.Claims.FirstOrDefault(x => x.Type.ToString().Equals(ClaimTypes.Name, StringComparison.InvariantCultureIgnoreCase));
+            return Ok(rname);
+            //var isClaim = User.Claims.FirstOrDefault(x => x.Type.ToString().Equals(Claimstype.StringComparison.InvariantCultureIgnoreCase));
             //if (isClaim != null)
             //{
             //    var id = isClaim.Value;
-            //    var name1 = User.Identity.Name;
+            //   // var name1 = User.Identity.Name;
 
-            //    return Ok(name1);
+            //    return Ok(id);
             //}
             //else
             //{

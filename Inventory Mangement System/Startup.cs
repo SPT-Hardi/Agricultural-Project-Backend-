@@ -38,14 +38,14 @@ namespace Inventory_Mangement_System
             services.AddTransient<IIssueRepository, IssueRepository>();
             services.AddTransient<IProductionRepository, ProductionRepository>();
 
-            services.AddControllers().AddNewtonsoftJson(); ;
             services.AddCors(option =>
             {
                 option.AddDefaultPolicy(builder => builder.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
             });
+            services.AddControllers().AddNewtonsoftJson(); ;
+            
             services.AddAuthentication(option =>
             {
-
                 option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -86,8 +86,9 @@ namespace Inventory_Mangement_System
             app.UseRouting();
             
             app.UseAuthentication();
-            app.UseAuthorization();
             app.UseMiddleware<JwtHandler>();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

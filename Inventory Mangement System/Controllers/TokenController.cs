@@ -31,10 +31,10 @@ namespace Inventory_Mangement_System.Controllers
             var emailid = principal.Identity.Name;
 
             var user = _context.Users.SingleOrDefault(x => x.EmailAddress == emailid);
-            var userrefreshtoken = _context .UserRefreshTokens .SingleOrDefault (x => x.UserID == user .UserID );
+            var userrefreshtoken = _context .UserRefreshTokens .SingleOrDefault (x => x.UserID == user.UserID );
             var r1 = _context.RefreshTokens.SingleOrDefault(x => x.RefreshID == userrefreshtoken.RefreshID);
             
-            if (user == null  || r1.RToken  != refreshToken )//r1.RefreshToken != refreshToken)
+            if (user == null  || r1.RToken  != refreshToken )
                 return BadRequest();
 
             var newJwtToken = _tokenService.GenerateAccessToken(principal.Claims);
@@ -59,9 +59,9 @@ namespace Inventory_Mangement_System.Controllers
             var user = _context.Users.SingleOrDefault(u => u.EmailAddress  == emailaddress );
             if (user == null)
               return BadRequest();
-
-           // user.RefreshToken = null;
-
+            var rt = _context.UserRefreshTokens.SingleOrDefault(id => id.UserID == user.UserID);
+            var r1 = _context.RefreshTokens.SingleOrDefault(id => id.RefreshID == rt.RefreshID);
+            r1.RToken = null;
              _context.SubmitChanges();
 
             return NoContent();

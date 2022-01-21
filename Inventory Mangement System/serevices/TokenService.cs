@@ -22,25 +22,14 @@ namespace Inventory_Mangement_System.serevices
 
         public string GenerateAccessToken(IEnumerable<Claim> claims)
         {
-            //var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Thisismysecretkey"));
-
-            //var jwtToken = new JwtSecurityToken(issuer = false,
-            //    audience: "Anyone",
-            //    claims: claims,
-            //    notBefore: DateTime.UtcNow,
-            //    expires: DateTime.UtcNow.AddMinutes(int.Parse(_configuration["accessTokenDurationInMinutes"])),
-            //    signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
-            //);
-
-            //return new JwtSecurityTokenHandler().WriteToken(jwtToken);
-            var authSignKey = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(_configuration["JWT:Secret"]));
+             var authSignKey = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(_configuration["JWT:Secret"]));
             var jwttoken = new JwtSecurityToken(
                 issuer: _configuration["JWT:ValidIssuer"],
                 audience: _configuration["Jwt:ValidIssuer"],
                 notBefore: DateTime.Now,
-                expires: DateTime.Now.AddMinutes (10),
+                expires: DateTime.Now.AddMinutes (15),
                 claims: claims,
-                signingCredentials: new SigningCredentials(authSignKey, SecurityAlgorithms.HmacSha256Signature)
+                signingCredentials: new SigningCredentials(authSignKey, SecurityAlgorithms.HmacSha256)
             );
             return new JwtSecurityTokenHandler().WriteToken(jwttoken);
         }

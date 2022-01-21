@@ -21,9 +21,10 @@ namespace Inventory_Mangement_System.Controllers
         }
 
         [HttpPost ("addproduct")]
-        public async Task<IActionResult> ProductAdded(ProductModel productModel)
+        public IActionResult ProductAdded(ProductModel productModel)
         {
-            var result = await _productRepository.AddProduct(productModel);
+           
+            var  result =  _productRepository.AddProduct(productModel);
             return Ok(result);
         }
 
