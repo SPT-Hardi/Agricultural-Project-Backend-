@@ -8,8 +8,8 @@ namespace Inventory_Mangement_System.Model
     public class ProductionModel
     {
         public string vegetablenm { get; set; }
-        public Model.IntegerNullString mainAreaDetails { get; set; } = new Model.IntegerNullString();
-        public Model.IntegerNullString subAreaDetails { get; set; } = new Model.IntegerNullString();
+        public Model.Common.IntegerNullString mainAreaDetails { get; set; } = new Model.Common.IntegerNullString();
+        public Model.Common.IntegerNullString subAreaDetails { get; set; } = new Model.Common.IntegerNullString();
         //public Model.IntegerNullString vegetableDetails { get; set; } = new Model.IntegerNullString();
 
     }

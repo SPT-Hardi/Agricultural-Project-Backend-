@@ -13,6 +13,6 @@ namespace Inventory_Mangement_System.Model
         public string unit { get; set; }
         public string remarks { get; set; }
         public string vendorname { get; set; }
-        public Model.IntegerNullString productname { get; set; } = new Model.IntegerNullString();
+        public Model.Common.IntegerNullString productname { get; set; } = new Model.Common.IntegerNullString();
     }
 }

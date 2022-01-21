@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\KOKILA\\source\\repos\\Inventory Mangement System\\Inventory Mangement System\\Inventory Mangement System.csproj": {}
+    "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\Inventory Mangement System.csproj": {}
   },
   "projects": {
-    "C:\\Users\\KOKILA\\source\\repos\\Inventory Mangement System\\Inventory Mangement System\\Inventory Mangement System.csproj": {
+    "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\Inventory Mangement System.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\KOKILA\\source\\repos\\Inventory Mangement System\\Inventory Mangement System\\Inventory Mangement System.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\Inventory Mangement System.csproj",
         "projectName": "Inventory Mangement System",
-        "projectPath": "C:\\Users\\KOKILA\\source\\repos\\Inventory Mangement System\\Inventory Mangement System\\Inventory Mangement System.csproj",
-        "packagesPath": "C:\\Users\\KOKILA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\KOKILA\\source\\repos\\Inventory Mangement System\\Inventory Mangement System\\obj\\",
+        "projectPath": "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\Inventory Mangement System.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "E:\\Visual Studio\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\KOKILA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

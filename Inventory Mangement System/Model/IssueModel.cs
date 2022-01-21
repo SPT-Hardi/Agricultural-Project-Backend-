@@ -9,9 +9,9 @@ namespace Inventory_Mangement_System.Model
     {
         public float PurchaseQuantity { get; set; }
         public DateTime Date { get; set; }
-        public Model.IntegerNullString Product { get; set; } = new Model.IntegerNullString();
-        public Model.IntegerNullString MainArea { get; set; } = new Model.IntegerNullString();
-        public Model.IntegerNullString SubArea { get; set; } = new Model.IntegerNullString();
+        public Model.Common.IntegerNullString Product { get; set; } = new Model.Common.IntegerNullString();
+        public Model.Common.IntegerNullString MainArea { get; set; } = new Model.Common.IntegerNullString();
+        public Model.Common.IntegerNullString SubArea { get; set; } = new Model.Common.IntegerNullString();
 
     }
 }

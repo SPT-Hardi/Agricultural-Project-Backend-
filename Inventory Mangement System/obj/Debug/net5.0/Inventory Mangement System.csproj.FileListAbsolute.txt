@@ -142,3 +142,75 @@ C:\Users\SMARTY\source\repos\Inventory-Management\Inventory Mangement System\obj
 C:\Users\SMARTY\source\repos\Inventory-Management\Inventory Mangement System\obj\Debug\net5.0\ref\Inventory Mangement System.dll
 C:\Users\SMARTY\source\repos\Inventory-Management\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.pdb
 C:\Users\SMARTY\source\repos\Inventory-Management\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.genruntimeconfig.cache
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\appsettings.json
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Inventory Mangement System.exe
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Inventory Mangement System.deps.json
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Inventory Mangement System.runtimeconfig.json
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Inventory Mangement System.runtimeconfig.dev.json
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Inventory Mangement System.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\ref\Inventory Mangement System.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Inventory Mangement System.pdb
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Devart.Data.Linq.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Devart.Data.SqlServer.Linq.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Humanizer.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\System.Data.SqlClient.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\System.Runtime.Caching.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\unix\lib\netstandard2.0\System.Data.SqlClient.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Data.SqlClient.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.csproj.AssemblyReference.cache
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.AssemblyInfoInputs.cache
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.AssemblyInfo.cs
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.csproj.CoreCompileInputs.cache
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\staticwebassets\Inventory Mangement System.StaticWebAssets.Manifest.cache
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\staticwebassets\Inventory Mangement System.StaticWebAssets.xml
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\scopedcss\bundle\Inventory Mangement System.styles.css
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.RazorTargetAssemblyInfo.cache
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.csproj.CopyComplete
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\ref\Inventory Mangement System.dll
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.pdb
+C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.genruntimeconfig.cache
