@@ -27,8 +27,7 @@ namespace Inventory_Mangement_System.Controllers
             var result = _productRepository.AddProduct(productModel);
 
             return Ok(result);
-
-
+            
             //return new ObjectResult(new
             //{
             //    Message = string.Format($"{productModel.ProductName} Added successfully!"),
@@ -40,7 +39,7 @@ namespace Inventory_Mangement_System.Controllers
         [HttpGet("getunit")]
         public async Task<IActionResult> ProductGet()
         {
-            var result = await _productRepository.GetUnit();
+            var result = _productRepository.GetUnit();
             return Ok(result);
         }
     }

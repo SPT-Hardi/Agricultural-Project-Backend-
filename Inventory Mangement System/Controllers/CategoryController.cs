@@ -23,7 +23,7 @@ namespace Inventory_Mangement_System.Controllers
         {
             int uid = (int)HttpContext.Items["UserId"];
             
-                var result = await _categoryRepository.AddCategory(categoryModel,uid);
+                var result = _categoryRepository.AddCategory(categoryModel,uid);
                 return Ok(result);
         }
 

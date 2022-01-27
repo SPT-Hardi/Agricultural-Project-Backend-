@@ -37,12 +37,14 @@ namespace Inventory_Mangement_System
             services.AddTransient<IPurchaseRepository, PurchaseRepository>();
             services.AddTransient<IIssueRepository, IssueRepository>();
             services.AddTransient<IProductionRepository, ProductionRepository>();
-
+            services.AddTransient<IInventoryViewRepository, InventoryViewRepository>();
+            
             services.AddControllers().AddNewtonsoftJson(); ;
             services.AddCors(option =>
             {
                 option.AddDefaultPolicy(builder => builder.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
             });
+
             services.AddAuthentication(option =>
             {
 
@@ -87,6 +89,11 @@ namespace Inventory_Mangement_System
             
             app.UseAuthentication();
             app.UseAuthorization();
+
+            // global error handler
+            app.UseMiddleware<ErrorHandlerMiddleware>();
+
+            // custom jwt auth middleware
             app.UseMiddleware<JwtHandler>();
             app.UseEndpoints(endpoints =>
             {

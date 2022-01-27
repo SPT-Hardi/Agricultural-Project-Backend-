@@ -44,7 +44,7 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPost("IssueProduct")]
         public async Task<IActionResult> IssueProductDetails(IssueModel issueModel)
         {
-            var result = await _isueRepository.IssueProduct(issueModel);
+            var result = _isueRepository.IssueProduct(issueModel);
             return Ok(result);
         }
 

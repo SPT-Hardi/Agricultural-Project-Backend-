@@ -53,44 +53,57 @@ namespace Inventory_Mangement_System.Repository
         }
 
         //Issue Details
-        public async Task <string> IssueProduct(IssueModel issueModel)
+        public Result IssueProduct(IssueModel issueModel)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 Issue issue = new Issue();
-                issue.PurchaseQuantity = issueModel.PurchaseQuantity;
-                var qua = context.PurchaseDetails
-                    .Where(x => x.ProductID == issueModel.Product.Id).Select(x => x.TotalQuantity).SingleOrDefault();
-                if(qua < issueModel.PurchaseQuantity)
+                var query = (from r in context.PurchaseDetails
+                             where r.ProductID == issueModel.Product.Id
+                             select r.TotalQuantity).ToList();
+                double sum = 0;
+                foreach (var item in query)
                 {
-                    throw new ArgumentException("Out Of Stock");
+                    sum = sum + item;
                 }
-                issue.Date = issueModel.Date.ToLocalTime();
-                var CheckMA = context.MainAreas.Where(ma => ma.MainAreaID == issueModel.MainArea.Id
-                               && ma.MainAreaName == issueModel.MainArea.Text).SingleOrDefault();
-                if(CheckMA == null)
+
+                var query2 = (from r in context.Issues
+                              where r.ProductID == issueModel.Product.Id
+                              select r.PurchaseQuantity).ToList();
+                double p = 0;
+                foreach (var item in query2)
                 {
-                    throw new Exception("Invalid or not allow");
+                    p = p + item;
                 }
-                issue.MainAreaID = issueModel.MainArea.Id;
-                var CheckSA = context.SubAreas.Where(sa => sa.MainAreaID == issueModel.MainArea.Id
-                              && sa.SubAreaID == issueModel.SubArea.Id 
-                              && sa.SubAreaName == issueModel.SubArea.Text).SingleOrDefault();
-                if (CheckSA == null)
+
+                var diff = sum - p;
+                if (diff > issueModel.PurchaseQuantity)
                 {
-                    throw new Exception("Invalid or not allow");
+                    issue.PurchaseQuantity = issueModel.PurchaseQuantity;
+                    issue.Date = issueModel.Date.ToLocalTime();
+                    issue.MainAreaID = issueModel.MainArea.Id;
+                    issue.SubAreaID = issueModel.SubArea.Id;
+                    issue.ProductID = issueModel.Product.Id;
+                    context.Issues.InsertOnSubmit(issue);
+                    context.SubmitChanges();
+                    return new Result()
+                    {
+                        Message = string.Format($"{issueModel.Product.Text} Added successfully!"),
+                        Status = Result.ResultStatus.success,
+                        Data = issueModel.Product.Text,
+                    };
                 }
-                issue.SubAreaID = issueModel.SubArea.Id;
-                var CheckPro = context.Products.Where(pro => pro.ProductID == issueModel.Product.Id
-                            && pro.ProductName == issueModel.Product.Text).SingleOrDefault();
-                if (CheckPro == null)
+                else
                 {
-                    throw new Exception("Invalid or not allow");
+                    return new Result()
+                    {
+                        Message = string.Format($"Product Out Of Stock.Total Quantity is {diff}"),
+                        Status = Result.ResultStatus.none,
+                        Data = diff,
+                    };
                 }
-                issue.ProductID = issueModel.Product.Id;
-                context.Issues.InsertOnSubmit(issue);
-                context.SubmitChanges();
-                return $"{issueModel.Product.Text } Add Successfully";
+                
+                //return $"{issueModel.Product.Text } Add Successfully";
             }
         }
 

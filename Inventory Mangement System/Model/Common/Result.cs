@@ -15,6 +15,7 @@ namespace Inventory_Mangement_System.Model.Common
             danger,
             warning,
             info
+
         }
        // public Guid? LogId { get; set; }
 

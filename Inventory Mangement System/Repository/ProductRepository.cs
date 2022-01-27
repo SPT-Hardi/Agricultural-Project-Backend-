@@ -35,21 +35,27 @@ namespace Inventory_Mangement_System.Repository
             return new Result()
             {
                 Message = string.Format($"{productModel.ProductName} Added successfully!"),
-                Status = Result.ResultStatus.warning,
+                Status = Result.ResultStatus.info,
                 Data= productModel.ProductName,
             };
         }
 
-        public async Task<IEnumerable> GetUnit()
+        public Result GetUnit()
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
-                return (from x in context.ProductUnits 
+                var unit=(from x in context.ProductUnits 
                         select new IntegerNullString()
                         {
                             Text = x.Type ,
                             Id = x.UnitID 
                         }).ToList();
+                return new Result()
+                {
+                    Message = string.Format("fully!"),
+                    Status = Result.ResultStatus.success,
+                    Data = unit,
+                };
             }
         }
     }

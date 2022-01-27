@@ -28,25 +28,21 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPost ("addRole")]
         public async Task<IActionResult> RoleAdded(RoleModel roleModel)
         {
-            var result = await _accountRepository.AddRole(roleModel);
+            var result =  _accountRepository.AddRole(roleModel);
             return Ok(result);
         }
 
         [HttpPost("SignUp")]
         public async Task<IActionResult> SignUp([FromBody]UserModel userModel)
         {
-            var result = await _accountRepository.RegisterUser(userModel);
+            var result =  _accountRepository.RegisterUser(userModel);
             return Ok(result);
         }
 
         [HttpPost("Login")]
         public async Task<IActionResult> SignIn([FromBody]LoginModel loginModel)
         {
-            var result = await _accountRepository.LoginUser(loginModel);
-            if(string .IsNullOrEmpty (result))
-            {
-                return Unauthorized();
-            }
+            var result =  _accountRepository.LoginUser(loginModel);
             return Ok(result);
         }
 

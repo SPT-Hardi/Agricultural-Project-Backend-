@@ -22,7 +22,7 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPost("addproduction")]
         public async Task<IActionResult> ProductionDetailAdded([FromBody] ProductionModel productionModel)
         {
-            var result = await _productionRepository.AddProductionDetails(productionModel);
+            var result = _productionRepository.AddProductionDetails(productionModel);
             return Ok(result);
 
         }

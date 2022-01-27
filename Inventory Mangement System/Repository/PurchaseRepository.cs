@@ -1,4 +1,5 @@
 ﻿using Inventory_Mangement_System.Model;
+using Inventory_Mangement_System.Model.Common;
 using ProductInventoryContext;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace Inventory_Mangement_System.Repository
 {
     public class PurchaseRepository : IPurchaseRepository
     {
-        public async Task<string> AddPurchaseDetails(PurchaseModel purchaseModel)
+        public Result AddPurchaseDetails(PurchaseModel purchaseModel)
         {
             using(ProductInventoryDataContext context = new ProductInventoryDataContext ())
             {
@@ -24,9 +25,16 @@ namespace Inventory_Mangement_System.Repository
                 purchaseDetail.TotalCost  = purchaseModel.totalcost;
                 purchaseDetail.Remark  = purchaseModel.remarks;
                 purchaseDetail.VendorName = purchaseModel.vendorname;
+
                 context.PurchaseDetails.InsertOnSubmit(purchaseDetail);
                 context.SubmitChanges();
-                return "Product Purchase Successfully";
+                //return "Product Purchase Successfully";
+                return new Result()
+                {
+                    Message = string.Format($"{purchaseModel.productname.Text} Purchase successfully!"),
+                    Status = Result.ResultStatus.warning,
+                    Data = purchaseModel.productname.Text,
+                };
             }
         }
     }
