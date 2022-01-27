@@ -27,7 +27,7 @@ namespace Inventory_Mangement_System.Repository
 
         
         //To add new role
-        public async Task<string> AddRole(RoleModel roleModel )
+        public Result AddRole(RoleModel roleModel )
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
@@ -36,23 +36,35 @@ namespace Inventory_Mangement_System.Repository
                 var check = context.Roles.FirstOrDefault(x => x.RoleName == roleModel.RoleName);
                 if(string .IsNullOrEmpty (role.RoleName))
                 {
-                    return "Enter Role Name";
+                    return new Result()
+                    {
+                        Message = string.Format($"Enter Role Name"),
+                        Status = Result.ResultStatus.success,
+                    };
                 }
                 if(check != null)
                 {
-                    return "Role already exist";
+                    return new Result()
+                    {
+                        Message = string.Format($"Role already exist"),
+                        Status = Result.ResultStatus.success,
+                    };
                 }
                 else
                 {
                     context.Roles.InsertOnSubmit(role);
                     context.SubmitChanges();
-                    return "New Role Added Successfully";
+                    return new Result()
+                    {
+                        Message = string.Format($"New Role Added Successfully"),
+                        Status = Result.ResultStatus.success,
+                    };
                 }
             }
         }
        
         //To register user details
-        public async Task<IEnumerable> RegisterUser(UserModel userModel)
+        public Result RegisterUser(UserModel userModel)
         {
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             User user = new User();
@@ -67,7 +79,7 @@ namespace Inventory_Mangement_System.Repository
                          }).Count();
             if (query != 0)
             {
-                return "User Already exist";
+                throw new ArgumentException("User Already Exist");
             }
             else
             {
@@ -82,11 +94,16 @@ namespace Inventory_Mangement_System.Repository
                 user.EmailAddress = userModel.EmailAddress;
                 context.Users.InsertOnSubmit(user);
                 context.SubmitChanges();
-                return $"{userModel.UserName}  Register as User Successfully";
+                return new Result()
+                {
+                    Message = string.Format($"Register as User Successfully"),
+                    Status = Result.ResultStatus.success,
+                    Data = userModel.UserName,
+                };
             }
         }
 
-        public async Task<string> LoginUser(LoginModel loginModel )
+        public Result LoginUser(LoginModel loginModel )
         {
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             User user = new User();
@@ -120,20 +137,25 @@ namespace Inventory_Mangement_System.Repository
                 userRefreshToken.RefreshID = refreshToken1.RefreshID;
                 context.UserRefreshTokens.InsertOnSubmit(userRefreshToken);
                 context.SubmitChanges();
-
-                var token = jwtToken;
-                return $"{jwtToken}";
-
+                return new Result()
+                {
+                    Status = Result.ResultStatus.success,
+                    Message = "Login Successfully",
+                    Data= jwtToken,
+                };
                 //return new ObjectResult(new
                 //{
                 //    token = jwtToken,
                 //    refreshToken = refreshToken
                 //});
-
             }
             else
             {
-                return "Please Enter valid login details";
+                return new Result()
+                {
+                    Message = string.Format($"Please Enter valid login details"),
+                    Status = Result.ResultStatus.success,
+                };
             }
         }
     }

@@ -5,6 +5,6 @@ namespace Inventory_Mangement_System.Repository
 {
     public interface IProductionRepository
     {
-        Task<string> AddProductionDetails(ProductionModel value);
+        Result AddProductionDetails(ProductionModel value);
     }
 }

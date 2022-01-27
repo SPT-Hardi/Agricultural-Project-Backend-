@@ -16,7 +16,6 @@ namespace Inventory_Mangement_System.Model
     public class SubAreaModel
     {
        public string sname { get; set; }
-
     }
 
    

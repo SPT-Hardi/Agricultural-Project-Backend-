@@ -5,6 +5,6 @@ namespace Inventory_Mangement_System.Repository
 {
     public interface IPurchaseRepository
     {
-        Task<string> AddPurchaseDetails(PurchaseModel purchaseModel);
+        Result AddPurchaseDetails(PurchaseModel purchaseModel);
     }
 }

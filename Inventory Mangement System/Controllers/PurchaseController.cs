@@ -23,7 +23,7 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPost("purchaseproduct")]
         public async Task<IActionResult> PurchaseDetailsAdded(PurchaseModel purchaseModel)
         {
-            var result = await _purchaseRepository.AddPurchaseDetails(purchaseModel);
+            var result = _purchaseRepository.AddPurchaseDetails(purchaseModel);
 
             return Ok(result);
         }

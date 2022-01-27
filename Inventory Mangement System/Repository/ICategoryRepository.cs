@@ -6,7 +6,7 @@ namespace Inventory_Mangement_System.Repository
 {
     public interface ICategoryRepository
     {
-        Task<string> AddCategory(CategoryModel categoryModel, int Uid);
+        Result AddCategory(CategoryModel categoryModel, int Uid);
         Task<IEnumerable> GetCategory();
 
     }

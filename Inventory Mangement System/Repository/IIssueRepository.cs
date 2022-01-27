@@ -9,7 +9,7 @@ namespace Inventory_Mangement_System.Repository
         Task<IEnumerable> GetMainArea();
         Task<IEnumerable> GetSubArea(int id);
         Task<IEnumerable> GetProduct();
-        Task<string> IssueProduct(IssueModel issueModel);
-        Task<string> total(IssueModel issueModel);
+        Result IssueProduct(IssueModel issueModel);
+        Result total(IssueModel issueModel);
     }
 }

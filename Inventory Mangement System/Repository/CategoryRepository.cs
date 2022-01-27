@@ -10,18 +10,14 @@ namespace Inventory_Mangement_System.Repository
 {
     public class CategoryRepository : ICategoryRepository
     {
-        public async Task<string> AddCategory(CategoryModel categoryModel, int Uid)
+        public Result AddCategory(CategoryModel categoryModel, int Uid)
         {
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             Category category = new Category();
             var res = context.Categories.FirstOrDefault(x => x.CategoryName == categoryModel.CategoryName);
-            if(string.IsNullOrEmpty(categoryModel.CategoryName))
+            if(res != null )
             {
-                return "Enter Category Name";
-            }
-            else if(res != null )
-            {
-                return "Category Already Exist";
+                throw new ArgumentException("Category Already Exist");
             }
             else
             {
@@ -29,7 +25,11 @@ namespace Inventory_Mangement_System.Repository
                 category.Description = categoryModel.Descritption;
                 context.Categories.InsertOnSubmit(category);
                 context.SubmitChanges();
-                return $"Category {categoryModel.CategoryName } Added Successfully";
+                return new Result()
+                {
+                    Message = string.Format($"Category {categoryModel.CategoryName } Added Successfully"),
+                    Status = Result.ResultStatus.success,
+                };
             }
         }
 

@@ -9,7 +9,7 @@ namespace Inventory_Mangement_System.Repository
 {
     public class PurchaseRepository : IPurchaseRepository
     {
-        public async Task<string> AddPurchaseDetails(PurchaseModel purchaseModel)
+        public Result  AddPurchaseDetails(PurchaseModel purchaseModel)
         {
             using(ProductInventoryDataContext context = new ProductInventoryDataContext ())
             {
@@ -26,7 +26,11 @@ namespace Inventory_Mangement_System.Repository
                 purchaseDetail.VendorName = purchaseModel.vendorname;
                 context.PurchaseDetails.InsertOnSubmit(purchaseDetail);
                 context.SubmitChanges();
-                return "Product Purchase Successfully";
+                return new Result()
+                {
+                    Message = string.Format($"Product Purchase Successfully"),
+                    Status = Result.ResultStatus.warning,
+                };
             }
         }
     }

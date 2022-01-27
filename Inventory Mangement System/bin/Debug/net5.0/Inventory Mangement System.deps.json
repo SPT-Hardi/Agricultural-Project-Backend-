@@ -43,6 +43,7 @@
           "Microsoft.EntityFrameworkCore.Relational": "5.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.0",
+          "Ngrok.AspNetCore": "1.0.6",
           "Swashbuckle.AspNetCore": "5.6.3",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions.Reference": "5.0.0.0",
@@ -146,7 +147,7 @@
           "Microsoft.Extensions.FileSystemGlobbing": "5.0.0.0",
           "Microsoft.Extensions.Hosting.Abstractions.Reference": "5.0.0.0",
           "Microsoft.Extensions.Hosting": "5.0.0.0",
-          "Microsoft.Extensions.Http": "5.0.0.0",
+          "Microsoft.Extensions.Http.Reference": "5.0.0.0",
           "Microsoft.Extensions.Identity.Core.Reference": "5.0.0.0",
           "Microsoft.Extensions.Identity.Stores.Reference": "5.0.0.0",
           "Microsoft.Extensions.Localization.Abstractions": "5.0.0.0",
@@ -743,6 +744,13 @@
           "Microsoft.Extensions.Logging.Abstractions": "5.0.0"
         }
       },
+      "Microsoft.Extensions.Http/2.1.1": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
+          "Microsoft.Extensions.Logging": "5.0.0",
+          "Microsoft.Extensions.Options": "5.0.0"
+        }
+      },
       "Microsoft.Extensions.Identity.Core/5.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "5.0.0",
@@ -924,6 +932,23 @@
         },
         "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
+        }
+      },
+      "Ngrok.AspNetCore/1.0.6": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
+          "Microsoft.Extensions.Http": "2.1.1",
+          "Newtonsoft.Json": "12.0.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/NgrokAspNetCore.Lib.dll": {
+            "assemblyVersion": "1.0.6.0",
+            "fileVersion": "1.0.6.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/NgrokAspNetCore.Lib.dll": {}
         }
       },
       "runtime.native.System/4.3.0": {
@@ -2231,7 +2256,7 @@
         },
         "compileOnly": true
       },
-      "Microsoft.Extensions.Http/5.0.0.0": {
+      "Microsoft.Extensions.Http.Reference/5.0.0.0": {
         "compile": {
           "Microsoft.Extensions.Http.dll": {}
         },
@@ -3612,6 +3637,13 @@
       "path": "microsoft.extensions.hosting.abstractions/2.2.0",
       "hashPath": "microsoft.extensions.hosting.abstractions.2.2.0.nupkg.sha512"
     },
+    "Microsoft.Extensions.Http/2.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GOly249seL3HL2+lgfLWHirsggRwK4EmSa6zUb+sPbgXHN+f9w/y/6XV3DPjYjtyt3v38FkPTD6odPcJJKtvlg==",
+      "path": "microsoft.extensions.http/2.1.1",
+      "hashPath": "microsoft.extensions.http.2.1.1.nupkg.sha512"
+    },
     "Microsoft.Extensions.Identity.Core/5.0.0": {
       "type": "package",
       "serviceable": true,
@@ -3765,6 +3797,13 @@
       "sha512": "sha512-QYFyxhaABwmq3p/21VrZNYvCg3DaEoN/wUuw5nmfAf0X3HLjgupwhkEWdgfb9nvGAUIv3osmZoD3kKl4jxEmYQ==",
       "path": "newtonsoft.json.bson/1.0.2",
       "hashPath": "newtonsoft.json.bson.1.0.2.nupkg.sha512"
+    },
+    "Ngrok.AspNetCore/1.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-i3TF0C2rnSQP0HO/2oN3dHykFPDO7a1W7z9B0pDS5OQ/vZsICElwEv5mo0nP4JDuVZeciVMArTMMtlAouh8Zgg==",
+      "path": "ngrok.aspnetcore/1.0.6",
+      "hashPath": "ngrok.aspnetcore.1.0.6.nupkg.sha512"
     },
     "runtime.native.System/4.3.0": {
       "type": "package",
@@ -4801,7 +4840,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Extensions.Http/5.0.0.0": {
+    "Microsoft.Extensions.Http.Reference/5.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

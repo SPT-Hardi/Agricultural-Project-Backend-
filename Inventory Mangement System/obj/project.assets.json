@@ -585,6 +585,20 @@
           "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.dll": {}
         }
       },
+      "Microsoft.Extensions.Http/2.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.1",
+          "Microsoft.Extensions.Logging": "2.1.1",
+          "Microsoft.Extensions.Options": "2.1.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Http.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Http.dll": {}
+        }
+      },
       "Microsoft.Extensions.Identity.Core/5.0.0": {
         "type": "package",
         "dependencies": {
@@ -863,6 +877,21 @@
         },
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
+        }
+      },
+      "Ngrok.AspNetCore/1.0.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.1.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.1",
+          "Microsoft.Extensions.Http": "2.1.1",
+          "Newtonsoft.Json": "12.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/NgrokAspNetCore.Lib.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/NgrokAspNetCore.Lib.dll": {}
         }
       },
       "runtime.native.System/4.3.0": {
@@ -2744,6 +2773,19 @@
         "microsoft.extensions.hosting.abstractions.nuspec"
       ]
     },
+    "Microsoft.Extensions.Http/2.1.1": {
+      "sha512": "GOly249seL3HL2+lgfLWHirsggRwK4EmSa6zUb+sPbgXHN+f9w/y/6XV3DPjYjtyt3v38FkPTD6odPcJJKtvlg==",
+      "type": "package",
+      "path": "microsoft.extensions.http/2.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Http.xml",
+        "microsoft.extensions.http.2.1.1.nupkg.sha512",
+        "microsoft.extensions.http.nuspec"
+      ]
+    },
     "Microsoft.Extensions.Identity.Core/5.0.0": {
       "sha512": "LR8gFg/snKoHJ1J3/Z5A93rD+p4EFhMSTci188wPTlHUqeaYIBG/3RkR9TXSPzLUYAkZjaghqy+9pjQOehRv1g==",
       "type": "package",
@@ -3206,6 +3248,18 @@
         "lib/netstandard2.0/Newtonsoft.Json.Bson.xml",
         "newtonsoft.json.bson.1.0.2.nupkg.sha512",
         "newtonsoft.json.bson.nuspec"
+      ]
+    },
+    "Ngrok.AspNetCore/1.0.6": {
+      "sha512": "i3TF0C2rnSQP0HO/2oN3dHykFPDO7a1W7z9B0pDS5OQ/vZsICElwEv5mo0nP4JDuVZeciVMArTMMtlAouh8Zgg==",
+      "type": "package",
+      "path": "ngrok.aspnetcore/1.0.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/NgrokAspNetCore.Lib.dll",
+        "ngrok.aspnetcore.1.0.6.nupkg.sha512",
+        "ngrok.aspnetcore.nuspec"
       ]
     },
     "runtime.native.System/4.3.0": {
@@ -6708,6 +6762,7 @@
       "Microsoft.EntityFrameworkCore.Relational >= 5.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.0",
+      "Ngrok.AspNetCore >= 1.0.6",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
@@ -6800,6 +6855,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[5.0.0, )"
+          },
+          "Ngrok.AspNetCore": {
+            "target": "Package",
+            "version": "[1.0.6, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

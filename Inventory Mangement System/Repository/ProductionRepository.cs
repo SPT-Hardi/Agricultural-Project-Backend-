@@ -9,7 +9,7 @@ namespace Inventory_Mangement_System.Repository
 {
     public class ProductionRepository : IProductionRepository
     {
-        public async Task<string> AddProductionDetails(ProductionModel productionModel)
+        public Result AddProductionDetails(ProductionModel productionModel)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
@@ -36,7 +36,11 @@ namespace Inventory_Mangement_System.Repository
                 productionDetail.VegetableID = vg;
                 context.ProductionDetails.InsertOnSubmit(productionDetail);
                 context.SubmitChanges();
-                return "Product details added succesfully ";
+                return new Result()
+                {
+                    Message = string.Format($"Product details added succesfully"),
+                    Status = Result.ResultStatus.success ,
+                };
             }
         }
     }

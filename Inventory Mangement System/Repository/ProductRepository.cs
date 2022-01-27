@@ -36,9 +36,9 @@ namespace Inventory_Mangement_System.Repository
                 Status = Result.ResultStatus.danger,
                 Data = productModel.ProductName,
             };
-            // return $"{productModel.ProductName} Added Successfully";
         }
 
+        //async Task<IEnumerable>
         public async Task<IEnumerable> GetUnit()
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
@@ -46,7 +46,7 @@ namespace Inventory_Mangement_System.Repository
                 return (from x in context.ProductUnits 
                         select new IntegerNullString()
                         {
-                            Text = x.Type ,
+                            Text = x.Type,
                             Id = x.UnitID 
                         }).ToList();
             }

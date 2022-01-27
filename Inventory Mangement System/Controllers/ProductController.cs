@@ -23,7 +23,6 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPost ("addproduct")]
         public IActionResult ProductAdded(ProductModel productModel)
         {
-           
             var  result =  _productRepository.AddProduct(productModel);
             return Ok(result);
         }

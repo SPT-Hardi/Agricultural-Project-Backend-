@@ -44,14 +44,14 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPost("IssueProduct")]
         public async Task<IActionResult> IssueProductDetails(IssueModel issueModel)
         {
-            var result = await _isueRepository.IssueProduct(issueModel);
+            var result =  _isueRepository.IssueProduct(issueModel);
             return Ok(result);
         }
 
         [HttpPost("total")]
         public async Task<IActionResult> totalcount(IssueModel issueModel)
         {
-            var result = await _isueRepository.total(issueModel);
+            var result = _isueRepository.total(issueModel);
             return Ok(result);
         }
     }

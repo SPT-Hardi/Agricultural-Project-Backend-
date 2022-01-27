@@ -142,3 +142,4 @@ C:\Users\SMARTY\source\repos\Inventory-Management\Inventory Mangement System\obj
 C:\Users\SMARTY\source\repos\Inventory-Management\Inventory Mangement System\obj\Debug\net5.0\ref\Inventory Mangement System.dll
 C:\Users\SMARTY\source\repos\Inventory-Management\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.pdb
 C:\Users\SMARTY\source\repos\Inventory-Management\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.genruntimeconfig.cache
+C:\Users\KOKILA\source\repos\Inventory Mangement System\Inventory Mangement System\bin\Debug\net5.0\NgrokAspNetCore.Lib.dll

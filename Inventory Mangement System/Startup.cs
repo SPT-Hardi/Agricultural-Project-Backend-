@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using NgrokAspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +70,8 @@ namespace Inventory_Mangement_System
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Inventory_Mangement_System", Version = "v1" });
             });
+
+            services.AddNgrok();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,16 +79,17 @@ namespace Inventory_Mangement_System
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Inventory_Mangement_System v1"));
             }
-
+            app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseHttpsRedirection();
 
             app.UseRouting();
             
             app.UseAuthentication();
+            
             app.UseMiddleware<JwtHandler>();
             app.UseAuthorization();
 
