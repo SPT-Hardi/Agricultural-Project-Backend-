@@ -1,4 +1,5 @@
 ﻿using Inventory_Mangement_System.Model;
+using Inventory_Mangement_System.Model.Common;
 using ProductInventoryContext;
 using System;
 using System.Collections.Generic;
@@ -24,12 +25,14 @@ namespace Inventory_Mangement_System.Repository
                 purchaseDetail.TotalCost  = purchaseModel.totalcost;
                 purchaseDetail.Remark  = purchaseModel.remarks;
                 purchaseDetail.VendorName = purchaseModel.vendorname;
+
                 context.PurchaseDetails.InsertOnSubmit(purchaseDetail);
                 context.SubmitChanges();
                 return new Result()
                 {
                     Message = string.Format($"Product Purchase Successfully"),
-                    Status = Result.ResultStatus.warning,
+                    Status = Result.ResultStatus.success,
+                    Data = purchaseModel.productname.Text,
                 };
             }
         }

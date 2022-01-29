@@ -1,4 +1,5 @@
 ﻿using Inventory_Mangement_System.Model;
+using Inventory_Mangement_System.Model.Common;
 using ProductInventoryContext;
 using System;
 using System.Collections;
@@ -76,7 +77,7 @@ namespace Inventory_Mangement_System.Repository
                 }
 
                 var diff = sum - p;
-                if(diff > issueModel .PurchaseQuantity )
+                if (diff >= issueModel.PurchaseQuantity)
                 {
                     issue.PurchaseQuantity = issueModel.PurchaseQuantity;
                     issue.Date = issueModel.Date.ToLocalTime();
@@ -87,15 +88,22 @@ namespace Inventory_Mangement_System.Repository
                     context.SubmitChanges();
                     return new Result()
                     {
-                        Message = string.Format($"{issueModel.Product.Text } Add Successfully"),
-                        Status = Result.ResultStatus.success, 
+                        Message = string.Format($"{issueModel.Product.Text} Issue successfully!"),
+                        Status = Result.ResultStatus.success,
                         Data = issueModel.Product.Text,
                     };
                 }
                 else
                 {
-                    throw new ArgumentException("Product out of stock");
+                    return new Result()
+                    {
+                        Message = string.Format($"Product Out Of Stock.Total Quantity is {diff}"),
+                        Status = Result.ResultStatus.none,
+                        Data = diff,
+                    };
                 }
+                
+                //return $"{issueModel.Product.Text } Add Successfully";
             }
         }
 

@@ -11,7 +11,7 @@ namespace Inventory_Mangement_System.Model
         [Required(ErrorMessage = "UserName required")]
         public string EmailAddress { get; set; }
 
-        [Required(ErrorMessage = "UserName required")]
+        [Required(ErrorMessage = "Password required")]
         public string Password { get; set; }
         public string RefreshToken { get; set; }
     }

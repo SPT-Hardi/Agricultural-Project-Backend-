@@ -1,4 +1,4 @@
-﻿namespace Inventory_Mangement_System.Model
+﻿namespace Inventory_Mangement_System.Model.Common
 {
     public class IntegerNullString
     {

@@ -1,4 +1,5 @@
 ﻿using Inventory_Mangement_System.Model;
+using Inventory_Mangement_System.Model.Common;
 using ProductInventoryContext;
 using System;
 using System.Collections;
@@ -19,7 +20,7 @@ namespace Inventory_Mangement_System.Repository
                 //SubArea subArea = new SubArea();
                 var MA = context.MainAreas.SingleOrDefault(x => x.MainAreaName == mainAreaModel.mname);
                 if(MA != null)
-                {
+                {  
                     var SA = (from m in context.MainAreas
                               join s in context.SubAreas
                               on m.MainAreaID equals s.MainAreaID
@@ -35,25 +36,25 @@ namespace Inventory_Mangement_System.Repository
                                  {
                                    MainAreaID = MA.MainAreaID,
                                    SubAreaName = m.sname
-                                 }).ToList().Except (SA);
-                    
+                                 }).ToList().Except(SA);
+                   
                     var _sd = (from m in sd
                                select new SubArea()
                                {
                                    MainAreaID = MA.MainAreaID,
                                    SubAreaName = m.SubAreaName
                                }).ToList(); 
+
                     if (_sd.Count() == 0)
                     {
-                        throw new ArgumentException("Already Exist");
+                        throw new ArgumentException("SubArea Already Exists");
                     }
                     context.SubAreas.InsertAllOnSubmit(_sd);
-                     context.SubmitChanges();
+                    context.SubmitChanges();
                     return new Result()
                     {
-                        Message = string.Format($"{mainAreaModel.mname} Already Added succesfully"),
+                        Message = string.Format($"SubArea Added Successfully."),
                         Status = Result.ResultStatus.success,
-                        Data = mainAreaModel.mname,
                     };
                 }
                 else
@@ -72,7 +73,7 @@ namespace Inventory_Mangement_System.Repository
                     context.SubmitChanges();
                     return new Result()
                     {
-                        Message = string.Format($"{mainAreaModel.mname} Already Added succesfully"),
+                        Message = string.Format($"{mainAreaModel.mname} Area Added Successfully."),
                         Status = Result.ResultStatus.success,
                         Data = mainAreaModel.mname,
                     };

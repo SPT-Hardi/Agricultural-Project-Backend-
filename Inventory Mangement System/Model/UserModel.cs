@@ -8,15 +8,14 @@ namespace Inventory_Mangement_System.Model
 {
     public class UserModel
     {
-        [Required(ErrorMessage = "UserName required")]
+        [RegularExpression(@"^[a-zA-Z0-9]+$", ErrorMessage = "UserName required")]
         public string  UserName { get; set; }
 
-        [Required(ErrorMessage = "EmailAddress required")]
+        [RegularExpression(@"[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}$", ErrorMessage = "Please enter proper EmailAddress")]
         public string EmailAddress { get; set; }
 
         [RegularExpression(@"[A-Za-z][a-z0-9@#_]{6,}[a-z0-9]$", ErrorMessage = "Minimum 8 character," +
-            "Start first letter uppercase,atleast one lower case,one number and one special symbol")]
-        [Required(ErrorMessage = "Password required")]
+            "Start first letter with uppercase or lower case,one number and one special symbol")]
         public string  Password { get; set; }
     }
 }

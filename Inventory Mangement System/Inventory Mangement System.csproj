@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>Inventory_Mangement_System</RootNamespace>
+    <UserSecretsId>c1aba205-d423-45eb-9aa4-4bec6102e613</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -46,6 +47,10 @@
     <None Update="DataContext.lqml">
       <Generator>DevartLinqToSqlGenerator</Generator>
       <LastGenOutput>DataContext.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="DataContext1.edps">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DataContext1.lqml</DependentUpon>
     </None>
   </ItemGroup>
 

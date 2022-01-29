@@ -33,7 +33,7 @@ namespace Inventory_Mangement_System.Middleware
                 Result result = new Result()
                 {
                     Message = e.Message,
-                    Status = Result.ResultStatus.success,
+                    Status = Result.ResultStatus.warning,
                 };
                 await context.Response.WriteAsJsonAsync(result);
             }
@@ -45,7 +45,7 @@ namespace Inventory_Mangement_System.Middleware
                 Result result = new Result()
                 {
                     Message = e.Message,
-                    Status = Result.ResultStatus.success,
+                    Status = Result.ResultStatus.warning,
                 };
                 await context.Response.WriteAsJsonAsync(result);
             }
@@ -55,9 +55,9 @@ namespace Inventory_Mangement_System.Middleware
                 response.ContentType = "application/json";
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
                 Result result = new Result()
-                {
+                { 
                     Message = e.Message,
-                    Status = Result.ResultStatus.success,
+                    Status = Result.ResultStatus.warning,
                 };
                 await context.Response.WriteAsJsonAsync(result);
             }
@@ -69,7 +69,7 @@ namespace Inventory_Mangement_System.Middleware
                 Result result = new Result()
                 {
                     Message = e.Message,
-                    Status = Result.ResultStatus.success,
+                    Status = Result.ResultStatus.warning,
                 };
                 await context.Response.WriteAsJsonAsync(result);
             }

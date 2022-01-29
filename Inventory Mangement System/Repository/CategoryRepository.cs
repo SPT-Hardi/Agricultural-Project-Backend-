@@ -1,4 +1,5 @@
 ﻿using Inventory_Mangement_System.Model;
+using Inventory_Mangement_System.Model.Common;
 using ProductInventoryContext;
 using System;
 using System.Collections;
@@ -10,7 +11,7 @@ namespace Inventory_Mangement_System.Repository
 {
     public class CategoryRepository : ICategoryRepository
     {
-        public Result AddCategory(CategoryModel categoryModel, int Uid)
+        public Result AddCategory(CategoryModel categoryModel)
         {
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             Category category = new Category();
@@ -22,13 +23,14 @@ namespace Inventory_Mangement_System.Repository
             else
             {
                 category.CategoryName = categoryModel.CategoryName;
-                category.Description = categoryModel.Descritption;
+                category.Description = categoryModel.Description;
                 context.Categories.InsertOnSubmit(category);
                 context.SubmitChanges();
                 return new Result()
                 {
-                    Message = string.Format($"Category {categoryModel.CategoryName } Added Successfully"),
+                    Message = string.Format($"Category {categoryModel.CategoryName} Added Successfully"),
                     Status = Result.ResultStatus.success,
+                    Data = categoryModel.CategoryName,
                 };
             }
         }

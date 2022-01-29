@@ -1,4 +1,5 @@
 ﻿using Inventory_Mangement_System.Model;
+using Inventory_Mangement_System.Model.Common;
 using ProductInventoryContext;
 using System;
 using System.Collections.Generic;
@@ -26,11 +27,10 @@ namespace Inventory_Mangement_System.Repository
                     context.Vegetables.InsertOnSubmit(v);
                     context.SubmitChanges();
                 }
-
                 int vg = (from obj in context.Vegetables
                           where obj.VegetableName == productionModel.vegetablenm
                           select obj.VegetableID).SingleOrDefault();
-
+                
                 productionDetail.MainAreaID = productionModel.mainAreaDetails.Id;
                 productionDetail.SubAreaID = productionModel.subAreaDetails.Id;
                 productionDetail.VegetableID = vg;
@@ -38,8 +38,9 @@ namespace Inventory_Mangement_System.Repository
                 context.SubmitChanges();
                 return new Result()
                 {
-                    Message = string.Format($"Product details added succesfully"),
-                    Status = Result.ResultStatus.success ,
+                    Message = string.Format($"{productionModel.vegetablenm} Production details Added Successfully."),
+                    Status = Result.ResultStatus.success,
+                    Data = productionModel.vegetablenm,
                 };
             }
         }

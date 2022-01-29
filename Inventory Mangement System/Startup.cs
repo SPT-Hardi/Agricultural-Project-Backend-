@@ -38,13 +38,14 @@ namespace Inventory_Mangement_System
             services.AddTransient<IPurchaseRepository, PurchaseRepository>();
             services.AddTransient<IIssueRepository, IssueRepository>();
             services.AddTransient<IProductionRepository, ProductionRepository>();
-
+            services.AddTransient<IInventoryViewRepository, InventoryViewRepository>();
+            
+            services.AddControllers().AddNewtonsoftJson();
             services.AddCors(option =>
             {
                 option.AddDefaultPolicy(builder => builder.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
             });
-            services.AddControllers().AddNewtonsoftJson(); ;
-            
+
             services.AddAuthentication(option =>
             {
                 option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -77,21 +78,33 @@ namespace Inventory_Mangement_System
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            app.UseCors(builder => builder
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .SetIsOriginAllowed((host) => true)
+               .AllowCredentials()
+           );
+
             if (env.IsDevelopment())
             {
-                //app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Inventory_Mangement_System v1"));
             }
-            app.UseMiddleware<ErrorHandlerMiddleware>();
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
             
             app.UseAuthentication();
-            
-            app.UseMiddleware<JwtHandler>();
             app.UseAuthorization();
+
+            // global error handler
+            app.UseMiddleware<ErrorHandlerMiddleware>();
+
+            // custom jwt auth middleware
+            app.UseMiddleware<JwtHandler>();
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,4 +1,5 @@
 ﻿using Inventory_Mangement_System.Model;
+using Inventory_Mangement_System.Model.Common;
 using Inventory_Mangement_System.serevices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
@@ -34,20 +35,13 @@ namespace Inventory_Mangement_System.Repository
                 Role role = new Role();
                 role.RoleName = roleModel.RoleName;
                 var check = context.Roles.FirstOrDefault(x => x.RoleName == roleModel.RoleName);
-                if(string .IsNullOrEmpty (role.RoleName))
-                {
-                    return new Result()
-                    {
-                        Message = string.Format($"Enter Role Name"),
-                        Status = Result.ResultStatus.success,
-                    };
-                }
+
                 if(check != null)
                 {
                     return new Result()
                     {
                         Message = string.Format($"Role already exist"),
-                        Status = Result.ResultStatus.success,
+                        Status = Result.ResultStatus.none,
                     };
                 }
                 else
@@ -58,6 +52,7 @@ namespace Inventory_Mangement_System.Repository
                     {
                         Message = string.Format($"New Role Added Successfully"),
                         Status = Result.ResultStatus.success,
+                        Data = roleModel.RoleName,
                     };
                 }
             }
@@ -72,23 +67,18 @@ namespace Inventory_Mangement_System.Repository
             var query = (from user1 in context.Users
                          join r1 in context.Roles
                          on user1.RoleID equals r1.RoleID
-                         where user1.EmailAddress  == userModel.EmailAddress  && user1.Password == userModel.Password 
+                         where user1.EmailAddress  == userModel.EmailAddress  && user1.UserName  == userModel.UserName 
                          select new
                          {
                              r1.RoleName
                          }).Count();
             if (query != 0)
             {
-                throw new ArgumentException("User Already Exist");
+                throw new ArgumentException("User Already Exists");
             }
             else
             {
                 user.UserName = userModel.UserName;
-                var pcheck = context.Users.SingleOrDefault(x => x.Password == userModel.Password);
-                if(pcheck != null)
-                {
-                    throw new MethodAccessException("Write Another Password");
-                }
                 user.Password = userModel.Password;
                 user.RoleID = 2;
                 user.EmailAddress = userModel.EmailAddress;
@@ -96,7 +86,7 @@ namespace Inventory_Mangement_System.Repository
                 context.SubmitChanges();
                 return new Result()
                 {
-                    Message = string.Format($"Register as User Successfully"),
+                    Message = string.Format($"{userModel.UserName}  Register as User Successfully"),
                     Status = Result.ResultStatus.success,
                     Data = userModel.UserName,
                 };
@@ -114,7 +104,7 @@ namespace Inventory_Mangement_System.Repository
                        {
                            UserID = u1.UserID,
                            RoleID = u1.RoleID,
-                         RoleName = u1.Role.RoleName
+                           RoleName = u1.Role.RoleName
                        }).FirstOrDefault();
             if(res != null)
             {
@@ -137,11 +127,12 @@ namespace Inventory_Mangement_System.Repository
                 userRefreshToken.RefreshID = refreshToken1.RefreshID;
                 context.UserRefreshTokens.InsertOnSubmit(userRefreshToken);
                 context.SubmitChanges();
+
                 return new Result()
                 {
+                    Message = string.Format($"Login Successfully"),
                     Status = Result.ResultStatus.success,
-                    Message = "Login Successfully",
-                    Data= jwtToken,
+                    Data = jwtToken,
                 };
                 //return new ObjectResult(new
                 //{
@@ -151,11 +142,7 @@ namespace Inventory_Mangement_System.Repository
             }
             else
             {
-                return new Result()
-                {
-                    Message = string.Format($"Please Enter valid login details"),
-                    Status = Result.ResultStatus.success,
-                };
+                throw new ArgumentException("Please Enter valid login details");
             }
         }
     }

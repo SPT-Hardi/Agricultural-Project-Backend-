@@ -17,14 +17,11 @@ namespace Inventory_Mangement_System.Controllers
             _categoryRepository = categoryRepository;
         }
 
-        [Authorize(Roles = "1")]
         [HttpPost("addCategory")]
         public async Task<IActionResult> CategoryAdded(CategoryModel categoryModel)
         {
-            int uid = (int)HttpContext.Items["UserId"];
-            
-                var result = _categoryRepository.AddCategory(categoryModel,uid);
-                return Ok(result);
+             var result = _categoryRepository.AddCategory(categoryModel);
+             return Ok(result);
         }
 
 

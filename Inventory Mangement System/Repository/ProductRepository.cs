@@ -1,4 +1,5 @@
 ﻿using Inventory_Mangement_System.Model;
+using Inventory_Mangement_System.Model.Common;
 using ProductInventoryContext;
 using System;
 using System.Collections;
@@ -30,11 +31,12 @@ namespace Inventory_Mangement_System.Repository
             product.CategoryID = (int)productModel.categorytype.Id;
             context.Products.InsertOnSubmit(product);
             context.SubmitChanges();
+            //return $"{productModel.ProductName} Added Successfully";
             return new Result()
             {
-                Message = string.Format("Product Added Successfully!"),
-                Status = Result.ResultStatus.danger,
-                Data = productModel.ProductName,
+                Message = string.Format($"{productModel.ProductName} Added successfully!"),
+                Status = Result.ResultStatus.success,
+                Data= productModel.ProductName,
             };
         }
 
@@ -43,7 +45,7 @@ namespace Inventory_Mangement_System.Repository
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
-                return (from x in context.ProductUnits 
+                return(from x in context.ProductUnits 
                         select new IntegerNullString()
                         {
                             Text = x.Type,

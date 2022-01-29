@@ -1,4 +1,5 @@
 ﻿using Inventory_Mangement_System.Model;
+using Inventory_Mangement_System.Model.Common;
 using Inventory_Mangement_System.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,15 +24,15 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPost ("addproduct")]
         public IActionResult ProductAdded(ProductModel productModel)
         {
-            var  result =  _productRepository.AddProduct(productModel);
+            var result = _productRepository.AddProduct(productModel);
             return Ok(result);
         }
 
         [HttpGet("getunit")]
         public async Task<IActionResult> ProductGet()
         {
-            var result = await _productRepository.GetUnit();
-            return Ok(result);
+            var result = _productRepository.GetUnit();
+            return Ok(result.Result);
         }
     }
 }

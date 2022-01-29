@@ -29,7 +29,7 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPost ("addRole")]
         public async Task<IActionResult> RoleAdded(RoleModel roleModel)
         {
-            var result = _accountRepository.AddRole(roleModel);
+            var result =  _accountRepository.AddRole(roleModel);
             return Ok(result);
         }
 
@@ -37,19 +37,21 @@ namespace Inventory_Mangement_System.Controllers
         //[Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> AddUser([FromBody]UserModel userModel)
         {
-            string rname = (string)HttpContext.Items["Rolename"];
-            if (rname == "SuperAdmin")
-            {
-                var result =  _accountRepository.RegisterUser(userModel);
-                return Ok(result);
-            }
-            return Unauthorized();
+            //string rname = (string)HttpContext.Items["Rolename"];
+            //if (rname == "SuperAdmin")
+            //{
+            //    var result =  _accountRepository.RegisterUser(userModel);
+            //    return Ok(result);
+            //}
+            //return Unauthorized();
+            var result = _accountRepository.RegisterUser(userModel);
+            return Ok(result);
         } 
 
         [HttpPost("Login")]
         public async Task<IActionResult> SignIn([FromBody]LoginModel loginModel)
         {
-            var result = _accountRepository.LoginUser(loginModel);
+            var result =  _accountRepository.LoginUser(loginModel);
             return Ok(result);
         }
 
