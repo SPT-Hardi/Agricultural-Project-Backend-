@@ -22,7 +22,7 @@ namespace Inventory_Mangement_System.Controllers
         }
 
         [HttpPost("addMainArea")]
-        public async Task<IActionResult> AddMainArea(MainAreaModel mainAreaModel)
+        public async Task<IActionResult> AddMainArea(AreaModel mainAreaModel)
         {
             var result = _mainAreaRepository.AddMainAreaAsync(mainAreaModel);
             return Ok(result);

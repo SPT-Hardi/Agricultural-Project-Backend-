@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace Inventory_Mangement_System.Model
 {
+    public class AreaModel
+    {
+        public List<MainAreaModel> arealist { get; set; } = new List<MainAreaModel>();
+    }
+
     public class MainAreaModel
     {
         public string mname { get; set; }
-
         public List<SubAreaModel> subarea { get; set; } = new List<SubAreaModel>();
     }
 
@@ -18,5 +22,4 @@ namespace Inventory_Mangement_System.Model
        public string sname { get; set; }
     }
 
-   
 }

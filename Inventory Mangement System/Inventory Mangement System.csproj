@@ -48,10 +48,6 @@
       <Generator>DevartLinqToSqlGenerator</Generator>
       <LastGenOutput>DataContext.Designer.cs</LastGenOutput>
     </None>
-    <None Update="DataContext1.edps">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>DataContext1.lqml</DependentUpon>
-    </None>
   </ItemGroup>
 
 </Project>

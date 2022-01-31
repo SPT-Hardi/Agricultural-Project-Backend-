@@ -34,6 +34,7 @@ namespace Inventory_Mangement_System.Repository
                 productionDetail.MainAreaID = productionModel.mainAreaDetails.Id;
                 productionDetail.SubAreaID = productionModel.subAreaDetails.Id;
                 productionDetail.VegetableID = vg;
+                productionDetail.Quantity = productionModel.Quantity;
                 context.ProductionDetails.InsertOnSubmit(productionDetail);
                 context.SubmitChanges();
                 return new Result()

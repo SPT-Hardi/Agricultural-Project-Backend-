@@ -7,7 +7,7 @@ namespace Inventory_Mangement_System.Model
 {
     public class IssueModel
     {
-        public float PurchaseQuantity { get; set; }
+        public float IssueQuantity { get; set; }
         public DateTime Date { get; set; }
         public Model.Common.IntegerNullString Product { get; set; } = new Model.Common.IntegerNullString();
         public Model.Common.IntegerNullString MainArea { get; set; } = new Model.Common.IntegerNullString();

@@ -77,9 +77,9 @@ namespace Inventory_Mangement_System.Repository
                 }
 
                 var diff = sum - p;
-                if (diff >= issueModel.PurchaseQuantity)
+                if (diff >= issueModel.IssueQuantity)
                 {
-                    issue.PurchaseQuantity = issueModel.PurchaseQuantity;
+                    issue.PurchaseQuantity = issueModel.IssueQuantity;
                     issue.Date = issueModel.Date.ToLocalTime();
                     issue.MainAreaID = issueModel.MainArea.Id;
                     issue.SubAreaID = issueModel.SubArea.Id;
@@ -95,15 +95,8 @@ namespace Inventory_Mangement_System.Repository
                 }
                 else
                 {
-                    return new Result()
-                    {
-                        Message = string.Format($"Product Out Of Stock.Total Quantity is {diff}"),
-                        Status = Result.ResultStatus.none,
-                        Data = diff,
-                    };
+                    throw new ArgumentException($"Product Out Of Stock.Total Quantity is {diff}");
                 }
-                
-                //return $"{issueModel.Product.Text } Add Successfully";
             }
         }
 
