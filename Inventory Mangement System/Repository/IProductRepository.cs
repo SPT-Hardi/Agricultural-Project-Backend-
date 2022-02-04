@@ -8,8 +8,21 @@ namespace Inventory_Mangement_System.Repository
 { 
     public interface IProductRepository
     {
+        //View All Product
+        Task<IEnumerable> ViewAllProduct();
+
+        //Add Product
         Result AddProduct(ProductModel productModel);
-        public Result UpdateProduct(JsonPatchDocument productModel, int productID);
+
+        //View Product By Id
+        Task<IEnumerable> ViewProductById(int productID);
+
+        //Edit Product Using Put Method
+        Result EditProduct(ProductDetail productDetail, int productID);
+        
+        //Get Unit
         Task<IEnumerable> GetUnit();
+
+        Result UpdateProduct(JsonPatchDocument productModel, int productID);
     }
 }

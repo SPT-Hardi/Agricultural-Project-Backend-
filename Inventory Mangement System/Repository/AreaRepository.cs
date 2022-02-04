@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management;
 using System.Threading.Tasks;
 
 namespace Inventory_Mangement_System.Repository
@@ -17,9 +18,56 @@ namespace Inventory_Mangement_System.Repository
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 MainArea mainArea = new MainArea();
+                var mn1 = (from m in areaModel.arealist
+                           join y in context.MainAreas
+                           on m.mname  equals y.MainAreaName
+                           //from y in context.MainAreas
+                           where m.mname == y.MainAreaName
+                           select new
+                           {
+                               MainAreaID = y.MainAreaID,
+                               MainAreaname = y.MainAreaName
+                           }).ToList();
 
+                foreach (var item in mn1)
+                {
+                    if (mn1.Count() > 0)
+                    {
+                        throw new ArgumentException($"MainAreaName {item.MainAreaname} already Exist");
+                    }
+                }
+                var mainarea = (from m in areaModel.arealist
+                                select new MainArea()
+                                {
+                                    MainAreaName = m.mname
+                                }).ToList();
+                context.MainAreas.InsertAllOnSubmit(mainarea);
+                context.SubmitChanges();
 
-
+                var mainarea2 = (from m in mainarea
+                                 select new
+                                 {
+                                     MainAreaID = m.MainAreaID,
+                                     MainAreaname = m.MainAreaName
+                                 }).ToList();
+                foreach (var item in mainarea2)
+                {
+                    var SD1 = (from m in areaModel.arealist
+                               from y in m.subarea
+                               where m.mname == item.MainAreaname
+                               select new SubArea()
+                               {
+                                   MainAreaID = item.MainAreaID,
+                                   SubAreaName = y.sname
+                               }).ToList();
+                    context.SubAreas.InsertAllOnSubmit(SD1);
+                    context.SubmitChanges();
+                }
+                return new Result()
+                {
+                    Message = string.Format($"Area Added Successfully."),
+                    Status = Result.ResultStatus.success,
+                };
 
                 //foreach (var item in mn1)
                 //{
@@ -69,63 +117,34 @@ namespace Inventory_Mangement_System.Repository
                 // Message = string.Format($"SubArea Added Successfully."),
                 // Status = Result.ResultStatus.success,
                 //};
-                var mn1 = (from m in areaModel.arealist
-                           from y in context.MainAreas
-                           where m.mname == y.MainAreaName
-                           select new
-                           {
-                               MainAreaID = y.MainAreaID,
-                               MainAreaname = y.MainAreaName
-                           }).ToList();
 
-                foreach (var item in mn1)
+            }
+        }
+        public Result GetMacAddress()
+        {
+            ManagementClass mc = new ManagementClass("Win32_NetworkAdapterConfiguration");
+            ManagementObjectCollection moc = mc.GetInstances();
+            String macAddress = string.Empty;
+            foreach (ManagementObject mo in moc)
+            {
+                if(macAddress == string.Empty)
                 {
-                    if (mn1.Count() > 0)
+                    if((bool)mo["IPEnabled"]==true)
                     {
-                        throw new ArgumentException($"MainAreaName {item.MainAreaname} already Exist");
+                        macAddress = mo["MacAddress"].ToString();
                     }
                 }
-                   var mainarea = (from m in areaModel.arealist
-                                    select new MainArea()
-                                    {
-                                        MainAreaName = m.mname
-                                    }).ToList();
-                    context.MainAreas.InsertAllOnSubmit(mainarea);
-                    context.SubmitChanges();
-
-
-
-                var mainarea2 = (from m in mainarea
-                                     select new
-                                     {
-                                         MainAreaID = m.MainAreaID,
-                                         MainAreaname = m.MainAreaName
-                                     }).ToList();
-
-
-                foreach (var item in mainarea2)
-                { 
-                    var SD1 = (from m in areaModel.arealist
-                                from y in m.subarea
-                               where m.mname == item.MainAreaname
-                               select new SubArea()
-                               {
-                                   MainAreaID = item.MainAreaID,
-                                   SubAreaName = y.sname
-                              }).ToList();
-                    context.SubAreas.InsertAllOnSubmit(SD1);
-                    context.SubmitChanges();
-                }
-                return new Result()
-                {
-                    Message = string.Format($"Area Added Successfully."),
-                    Status = Result.ResultStatus.success,
-                };
-                
+                mo.Dispose();
             }
-        
-    
+            macAddress = macAddress.Replace(":", "-");
+            return new Result()
+            {
+                Message = string.Format("Received Mac Address Successfully."),
+                Status = Result.ResultStatus.success,
+                Data = macAddress,
+            };
         }
+
        /* public Result AddMainAreaAsync(MainAreaModel mainAreaModel)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())

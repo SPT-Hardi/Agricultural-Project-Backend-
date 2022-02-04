@@ -1,6 +1,7 @@
 ﻿using Inventory_Mangement_System.Model;
 using Inventory_Mangement_System.Model.Common;
 using Inventory_Mangement_System.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,17 @@ namespace Inventory_Mangement_System.Controllers
             _productRepository = productRepository;
         }
 
+        //View All Product
+        [HttpGet("ViewAllProduct")]
+        public async Task<IActionResult> ViewAllProductAsync()
+        {
+            var result = await _productRepository.ViewAllProduct();
+            return Ok(result);
+        }
+
+        //Add Product
         [HttpPost ("addproduct")]
+       // [Authorize(Roles = "Super Admin,Admin")]
         public async Task<IActionResult> ProductAdded(ProductModel productModel)
         {
             var result = _productRepository.AddProduct(productModel);
@@ -30,18 +41,35 @@ namespace Inventory_Mangement_System.Controllers
            
         }
 
-        [HttpPatch("UpdateProduct/{productID}")]
-        public async Task<IActionResult> Update([FromBody] JsonPatchDocument productModel,int productID)
+        //View Product By Id
+        [HttpGet("ViewProductById/{productID}")]
+        public async Task<IActionResult> ViewProductByIDAsync([FromRoute] int productID)
         {
-            var result = _productRepository.UpdateProduct(productModel, productID);
+            var result = await _productRepository.ViewProductById(productID);
             return Ok(result);
         }
 
+        //Edit Product Using Put Method
+        [HttpPut("EditProduct/{productID}")]
+        public async Task<IActionResult> EditProductAsync([FromBody] ProductDetail productDetail, [FromRoute] int productID)
+        {
+            var result = _productRepository.EditProduct(productDetail, productID);
+            return Ok(result);
+        }
+      
+        //Get Unit
         [HttpGet("getunit")]
         public async Task<IActionResult> ProductGet()
         {
-            var result = _productRepository.GetUnit();
-            return Ok(result.Result);
+            var result = await _productRepository.GetUnit();
+            return Ok(result);
+        }
+
+        [HttpPatch("UpdateProduct/{productID}")]
+        public async Task<IActionResult> Update([FromBody] JsonPatchDocument productModel, [FromRoute] int productID)
+        {
+            var result = _productRepository.UpdateProduct(productModel, productID);
+            return Ok(result);
         }
     }
 }

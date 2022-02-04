@@ -55,6 +55,24 @@ namespace Inventory_Mangement_System.Repository
                 }
             }
         }
+        
+        //View All User
+        public async Task<IEnumerable> ViewAllUser()
+        {
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                return (from u in context.Users
+                        join r in context.Roles
+                        on u.RoleID equals r.RoleID
+                        select new
+                        {
+                            UserID = u.UserID,
+                            UserName = u.UserName,
+                            EmailAddress = u.EmailAddress,
+                            RoleName = r.RoleName
+                        }).ToList();
+            }
+        }
 
         //To register user details
         public Result RegisterUser(UserModel userModel)
@@ -89,6 +107,31 @@ namespace Inventory_Mangement_System.Repository
                     Data = userModel.UserName,
                 };
              }
+        }
+
+        //View User By Id
+        public async Task<IEnumerable> ViewUserById(int userID)
+        {
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                User user = new User();
+                user = context.Users.SingleOrDefault(id => id.UserID == userID);
+                if (user == null)
+                {
+                    throw new ArgumentException("User Does Not Exist.");
+                }
+                return (from u in context.Users
+                        join r in context.Roles
+                        on u.RoleID equals r.RoleID
+                        where u.UserID == userID
+                        select new
+                        {
+                            UserName=u.UserName,
+                            EmailAddress = u.EmailAddress,
+                            //Password=u.Password,
+                            RoleName=r.RoleName
+                        }).ToList();
+            }
         }
 
         public Result LoginUser(LoginModel loginModel )
@@ -132,7 +175,10 @@ namespace Inventory_Mangement_System.Repository
                 {
                     Message = string.Format($"Login Successfully"),
                     Status = Result.ResultStatus.success,
-                    Data = jwtToken,
+                    Data = new {
+                        token = jwtToken,
+                        refreshToken = refreshToken,
+                    },
                 };
                 //return new ObjectResult(new
                 //{

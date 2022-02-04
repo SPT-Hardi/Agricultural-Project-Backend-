@@ -20,13 +20,18 @@ namespace Inventory_Mangement_System.Controllers
         {
             _mainAreaRepository = mainAreaRepository;
         }
-
+        
         [HttpPost("addMainArea")]
         public async Task<IActionResult> AddMainArea(AreaModel mainAreaModel)
         {
             var result = _mainAreaRepository.AddMainAreaAsync(mainAreaModel);
             return Ok(result);
         }
-        
+        [HttpGet("MacAddress")]
+        public async Task<IActionResult> ActionResultAsync()
+        {
+            var result = _mainAreaRepository.GetMacAddress();
+            return Ok(result);
+        }
     }
 }

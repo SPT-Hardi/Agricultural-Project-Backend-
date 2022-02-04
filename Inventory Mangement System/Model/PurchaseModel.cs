@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,8 +8,15 @@ namespace Inventory_Mangement_System.Model
 {
     public class PurchaseModel
     {
+        [Required(ErrorMessage = "Date Is Required.")]
         public DateTime  Purchasedate { get; set; }
+
+        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Please Enter Only Letter.")]
+        [Required(ErrorMessage = "Total Quantity Required.")]
         public float totalquantity { get; set; }
+
+        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Please Enter Only Letter.")]
+        [Required(ErrorMessage = "Cost Required.")]
         public float totalcost { get; set; }
         public string remarks { get; set; }
         public string vendorname { get; set; }

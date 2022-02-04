@@ -1,6 +1,7 @@
 ﻿using Inventory_Mangement_System.Model;
 using Inventory_Mangement_System.Repository;
 using Inventory_Mangement_System.serevices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -32,16 +33,34 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
+        //View User By Id
+        [HttpGet("ViewAllUser")]
+        public async Task<IActionResult> ViewAllUserAsync()
+        {
+            var result = await _accountRepository.ViewAllUser();
+            return Ok(result);
+        }
+
         [HttpPost("SignUp")]
+       // [Authorize(Roles="Super Admin")]
+        //[Authorize]
         public async Task<IActionResult> SignUp([FromBody]UserModel userModel)
         {
             //string rname = (string)HttpContext.Items["Rolename"];
-            //if (rname == "SuperAdmin")
+            //if (rname == "Super Admin")
             //{
                 var result = _accountRepository.RegisterUser(userModel);
                 return Ok(result);
             //}
             //return Unauthorized();
+        }
+        
+        //View User By Id
+        [HttpGet("ViewUserById/{userID}")]
+        public async Task<IActionResult> ViewUserByIDAsync([FromRoute] int userID)
+        {
+            var result = await _accountRepository.ViewUserById(userID);
+            return Ok(result);
         }
 
         [HttpPost("Login")]
