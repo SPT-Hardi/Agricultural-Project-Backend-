@@ -8,11 +8,11 @@ namespace Inventory_Mangement_System.Model
 {
     public class LoginModel
     {
-        [Required(ErrorMessage = "UserName required")]
+        [Required(ErrorMessage = "EmailAddress Required")]
         public string EmailAddress { get; set; }
 
-        [Required(ErrorMessage = "Password required")]
+        [Required(ErrorMessage = "Password Required")]
         public string Password { get; set; }
-        public string RefreshToken { get; set; }
+        //public string RefreshToken { get; set; }
     }
 }

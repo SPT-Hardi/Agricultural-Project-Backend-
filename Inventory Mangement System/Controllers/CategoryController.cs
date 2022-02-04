@@ -24,11 +24,31 @@ namespace Inventory_Mangement_System.Controllers
              return Ok(result);
         }
 
-
         [HttpGet("getCategory")]
         public async Task<IActionResult> CategoryGet()
         {
             var result = await _categoryRepository.GetCategory();
+            return Ok(result);
+        }
+
+        [HttpGet("viewCategory")]
+        public async Task<IActionResult> CategoryView()
+        {
+            var result = await _categoryRepository.ViewCategory();
+            return Ok(result);
+        }
+
+        [HttpGet("viewCategoryById/{id}")]
+        public async Task<IActionResult> CategoryViewById(int id)
+        {
+            var result = await _categoryRepository.ViewCategoryById(id);
+            return Ok(result);
+        }
+
+        [HttpPut("editCategory/{id}")]
+        public async Task<IActionResult> CategoryEdit(CategoryModel categoryModel,int id)
+        {
+            var result = _categoryRepository.EditCategory(categoryModel,id);
             return Ok(result);
         }
 

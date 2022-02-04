@@ -102,6 +102,7 @@ namespace Inventory_Mangement_System.Repository
                        where u1.EmailAddress == loginModel.EmailAddress && u1.Password == loginModel.Password
                        select new
                        {
+                           UserName = u1.UserName ,
                            UserID = u1.UserID,
                            RoleID = u1.RoleID,
                            RoleName = u1.Role.RoleName
@@ -132,13 +133,14 @@ namespace Inventory_Mangement_System.Repository
                 {
                     Message = string.Format($"Login Successfully"),
                     Status = Result.ResultStatus.success,
-                    Data = jwtToken,
+                    Data = new {
+                    token = jwtToken,
+                    refreshToken = refreshToken,
+                    UserName = res.UserName,
+                    EmailAddress = loginModel .EmailAddress ,
+                    RoleName = res.RoleName,
+                    },
                 };
-                //return new ObjectResult(new
-                //{
-                //    token = jwtToken,
-                //    refreshToken = refreshToken
-                //});
             }
             else
             {

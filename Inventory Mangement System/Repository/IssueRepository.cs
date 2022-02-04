@@ -52,51 +52,93 @@ namespace Inventory_Mangement_System.Repository
             }
         }
 
+        float diff;
+        private readonly float df;
+
+        public Result GetProductwithquantity()
+        {
+
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                Product product = new Product();
+
+                var q2 = (from m in context.Products
+                          join p in context.PurchaseDetails
+                          on m.ProductID equals p.ProductID
+                          group  p  by new { m.ProductName, m.ProductID }  into g
+                          select new
+                          {
+                              Productname = g.Key.ProductName,
+                              PurchaseQuantity = (float)g.Sum(x => x.TotalQuantity)
+                          }).Select (s => s).ToList();
+
+                var q3 = (from m in context.Products
+                          join i in context.Issues
+                          on m.ProductID equals i.ProductID
+                          group i  by new { m.ProductName, m.ProductID} into g
+                          select new
+                          {
+                              Productname = g.Key.ProductName,
+                              IssueQuantity = (float)g.Sum(x => x.PurchaseQuantity) 
+                          }).ToList();
+                
+                
+
+                return new Result()
+                {
+                    Status = Result.ResultStatus.success,
+
+                };
+            }
+        }
+
         //Issue Details
         public Result IssueProduct(IssueModel issueModel)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 Issue issue = new Issue();
-                var query = (from r in context.PurchaseDetails
-                             where r.ProductID == issueModel.Product.Id
-                             select r.TotalQuantity).ToList();
-                double sum = 0;
-                foreach (var item in query)
-                {
-                    sum = sum + item;
-                }
+                //var query = (from r in context.PurchaseDetails
+                //             where r.ProductID == issueModel.Product.Id
+                //             select r.TotalQuantity).ToList();
+                //double sum = 0;
+                //foreach (var item in query)
+                //{
+                //    sum = sum + item;
+                //}
 
-                var query2 = (from r in context.Issues
-                              where r.ProductID == issueModel.Product.Id
-                              select r.PurchaseQuantity).ToList();
-                double p = 0;
-                foreach (var item in query2)
+                //var query2 = (from r in context.Issues
+                //              where r.ProductID == issueModel.Product.Id
+                //              select r.PurchaseQuantity).ToList();
+                //double p = 0;
+                //foreach (var item in query2)
+                //{
+                //    p = p + item;
+                //}
+                //var diff = sum - p;
+                //if (diff >= issueModel.IssueQuantity)
+                //{
+                //}
+                //    else
+                //{
+                //    throw new ArgumentException($"Product Out Of Stock.Total Quantity is {diff}");
+                //}
+                var query = (from i in issueModel.issueDetails
+                             select new Issue
+                             {
+                                 PurchaseQuantity = i.IssueQuantity,
+                                 Date = i.Date.ToLocalTime(),
+                                 MainAreaID = i.MainArea.Id,
+                                 SubAreaID = i.SubArea.Id,
+                                 ProductID = i.Product.Id
+                             }).ToList();
+                context.Issues.InsertAllOnSubmit(query);
+                context.SubmitChanges();
+                return new Result()
                 {
-                    p = p + item;
-                }
-
-                var diff = sum - p;
-                if (diff >= issueModel.IssueQuantity)
-                {
-                    issue.PurchaseQuantity = issueModel.IssueQuantity;
-                    issue.Date = issueModel.Date.ToLocalTime();
-                    issue.MainAreaID = issueModel.MainArea.Id;
-                    issue.SubAreaID = issueModel.SubArea.Id;
-                    issue.ProductID = issueModel.Product.Id;
-                    context.Issues.InsertOnSubmit(issue);
-                    context.SubmitChanges();
-                    return new Result()
-                    {
-                        Message = string.Format($"{issueModel.Product.Text} Issue successfully!"),
-                        Status = Result.ResultStatus.success,
-                        Data = issueModel.Product.Text,
-                    };
-                }
-                else
-                {
-                    throw new ArgumentException($"Product Out Of Stock.Total Quantity is {diff}");
-                }
+                   Message = string.Format($"Product Issue successfully!"),
+                   Status = Result.ResultStatus.success,
+                };
             }
         }
 
@@ -105,30 +147,49 @@ namespace Inventory_Mangement_System.Repository
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 Issue issue = new Issue();
-                var query = (from r in context.PurchaseDetails
-                             where r.ProductID == issueModel.Product.Id
-                             select r.TotalQuantity).ToList();
-                double sum = 0;
+                var query = (from p in context.PurchaseDetails
+                             join i in context.Issues
+                             on p.ProductID equals i.ProductID
+                             select new
+                             {
+                                 ProductID = p.ProductID,
+                                 PurchaseQuantity = p.TotalQuantity,
+                                 IssueQuantity = i.PurchaseQuantity
+                             }).ToList();
                 foreach (var item in query)
                 {
-                    sum = sum + item;
+                    double sum = 0;
+                    sum = sum + item.PurchaseQuantity;
+                    double p = 0;
+                    p = p + item.IssueQuantity;
+                    double diff = sum - p;
                 }
 
-                var query2 = (from r in context.Issues
-                              where r.ProductID == issueModel.Product.Id
-                              select r.PurchaseQuantity).ToList();
-                double p = 0;
-                foreach (var item in query2)
-                {
-                    p = p + item;
-                }
 
-                var diff = sum - p;
+                //var query = (from r in context.PurchaseDetails
+                //             where r.ProductID == issueModel.Product.Id
+                //             select r.TotalQuantity).ToList();
+                //double sum = 0;
+                //foreach (var item in query)
+                //{
+                //    sum = sum + item;
+                //}
+
+                //var query2 = (from r in context.Issues
+                //              where r.ProductID == issueModel.Product.Id
+                //              select r.PurchaseQuantity).ToList();
+                //double p = 0;
+                //foreach (var item in query2)
+                //{
+                //    p = p + item;
+                //}
+
+               // var diff = sum - p;
                 return new Result()
                 {
-                    Status = Result.ResultStatus.success ,
+                    Status = Result.ResultStatus.success,
                     Message = "Total Quantity Purchase",
-                    Data = sum,
+                   // Data = sum,
                 };
             }
         }

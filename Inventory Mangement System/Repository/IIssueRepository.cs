@@ -12,5 +12,6 @@ namespace Inventory_Mangement_System.Repository
         Task<IEnumerable> GetProduct();
         Result IssueProduct(IssueModel issueModel);
         Result total(IssueModel issueModel);
+        Result GetProductwithquantity();
     }
 }

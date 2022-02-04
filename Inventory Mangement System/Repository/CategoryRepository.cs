@@ -47,5 +47,64 @@ namespace Inventory_Mangement_System.Repository
                         }).ToList();
             } 
         }
+
+        public async Task<IEnumerable> ViewCategory()
+        {
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                return (from x in context.Categories
+                        select new 
+                        {
+                            CategoryID = x.CategoryID ,
+                            CategoryName = x.CategoryName ,
+                            Description = x.Description 
+                        }).ToList();
+            }
+        }
+
+        public async Task<IEnumerable> ViewCategoryById(int cid)
+        {
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                return (from x in context.Categories
+                        where x.CategoryID == cid
+                        select new
+                        {
+                            CategoryName = x.CategoryName,
+                            Description = x.Description
+                        }).ToList();
+            }
+        }   
+
+        public Result EditCategory(CategoryModel categoryModel,int id)
+        {
+            using(ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                var ck = context.Categories.SingleOrDefault(x => x.CategoryID == id);
+                if(ck == null)
+                {
+                    throw new ArgumentException("Category doesn't Exist");
+                }
+                if (ck.CategoryName != categoryModel.CategoryName)
+                {
+                    var _c = context.Categories.SingleOrDefault(x => x.CategoryName == categoryModel.CategoryName);
+                    if(_c != null)
+                    {
+                        throw new ArgumentException("Category already Exist");
+
+                    }
+                }
+                
+                ck.CategoryName = categoryModel.CategoryName;
+                ck.Description = categoryModel.Description;
+                context.SubmitChanges();
+                return new Result()
+                {
+                    Message = string.Format($"Category {categoryModel.CategoryName} Update Successfully"),
+                    Status = Result.ResultStatus.success,
+                    Data = categoryModel.CategoryName,
+                };
+            }
+        }
     }
 }

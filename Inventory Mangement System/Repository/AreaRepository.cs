@@ -17,7 +17,55 @@ namespace Inventory_Mangement_System.Repository
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 MainArea mainArea = new MainArea();
+                var mn1 = (from m in areaModel.arealist
+                           from y in context.MainAreas
+                           where m.mname == y.MainAreaName
+                           select new
+                           {
+                               MainAreaID = y.MainAreaID,
+                               MainAreaname = y.MainAreaName
+                           }).ToList();
+                foreach (var item in mn1)
+                {
+                    if (mn1.Count() > 0)
+                    {
+                        throw new ArgumentException($"MainAreaName {item.MainAreaname} already Exist");
+                    }
+                };
 
+                var mainarea = (from m in areaModel.arealist
+                                select new MainArea()
+                                {
+                                    MainAreaName = m.mname
+                                }).ToList();
+                context.MainAreas.InsertAllOnSubmit(mainarea);
+                context.SubmitChanges();
+
+                var mainarea2 = (from m in mainarea
+                                 select new
+                                 {
+                                     MainAreaID = m.MainAreaID,
+                                     MainAreaname = m.MainAreaName
+                                 }).ToList();
+
+                foreach (var item in mainarea2)
+                {
+                    var SD1 = (from m in areaModel.arealist
+                               from y in m.subarea
+                               where m.mname == item.MainAreaname
+                               select new SubArea()
+                               {
+                                   MainAreaID = item.MainAreaID,
+                                   SubAreaName = y.sname
+                               }).ToList();
+                    context.SubAreas.InsertAllOnSubmit(SD1);
+                    context.SubmitChanges();
+                }
+                return new Result()
+                {
+                    Message = string.Format($"Area Added Successfully."),
+                    Status = Result.ResultStatus.success,
+                };
 
                 //foreach (var item in mn1)
                 //{
@@ -61,55 +109,6 @@ namespace Inventory_Mangement_System.Repository
                 //    Message = string.Format($"SubArea Added Successfully."),
                 //    Status = Result.ResultStatus.success,
                 //}; 
-                var mn1 = (from m in areaModel.arealist
-                           from y in context.MainAreas
-                           where m.mname == y.MainAreaName
-                           select new
-                           {
-                               MainAreaID = y.MainAreaID,
-                               MainAreaname = y.MainAreaName
-                           }).ToList();
-                foreach (var item in mn1)
-                {
-                    if (mn1.Count() > 0)
-                    {
-                        throw new ArgumentException($"MainAreaName {item.MainAreaname} already Exist");
-                    }
-                };
-                    var mainarea = (from m in areaModel.arealist
-                                    select new MainArea()
-                                    {
-                                        MainAreaName = m.mname
-                                    }).ToList();
-                    context.MainAreas.InsertAllOnSubmit(mainarea);
-                    context.SubmitChanges();
-
-                    var mainarea2 = (from m in mainarea
-                                     select new
-                                     {
-                                         MainAreaID = m.MainAreaID,
-                                         MainAreaname = m.MainAreaName
-                                     }).ToList();
-
-                    foreach (var item in mainarea2)
-                    {
-                        var SD1 = (from m in areaModel.arealist
-                                   from y in m.subarea
-                                   where m.mname == item.MainAreaname
-                                   select new SubArea()
-                                   {
-                                       MainAreaID = item.MainAreaID,
-                                       SubAreaName = y.sname
-                                   }).ToList();
-                        context.SubAreas.InsertAllOnSubmit(SD1);
-                        context.SubmitChanges();
-                    }
-                    return new Result()
-                    {
-                        Message = string.Format($"Area Added Successfully."),
-                        Status = Result.ResultStatus.success,
-                    };
-                
             }
         }
     }

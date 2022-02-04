@@ -25,9 +25,9 @@ namespace Inventory_Mangement_System.serevices
              var authSignKey = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(_configuration["JWT:Secret"]));
             var jwttoken = new JwtSecurityToken(
                 issuer: _configuration["JWT:ValidIssuer"],
-                audience: _configuration["Jwt:ValidIssuer"],
+                audience: _configuration["Jwt:ValidAudience"],
                 notBefore: DateTime.Now,
-                expires: DateTime.Now.AddMinutes (15),
+                expires: DateTime.Now.AddMinutes(15),
                 claims: claims,
                 signingCredentials: new SigningCredentials(authSignKey, SecurityAlgorithms.HmacSha256)
             );
