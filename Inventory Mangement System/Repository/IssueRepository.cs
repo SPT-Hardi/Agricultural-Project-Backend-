@@ -228,13 +228,14 @@ namespace Inventory_Mangement_System.Repository
                 var result = (from p in context.Products
                           join pur in context.PurchaseDetails
                           on p.ProductID equals pur.ProductID
-                           //join i in context.Issues
-                           //on p.ProductID equals i.ProductID
-                           group pur by new { p.ProductID, p.ProductName } into newg
-                          select new IntegerNullString
+                              join i in context.Issues
+                              on p.ProductID equals i.ProductID
+                              group new { pur, i } by new { p.ProductID, p.ProductName,i.PurchaseQuantity } into newg
+                          select new// IntegerNullString
                           {
                               Text = newg.Key.ProductName,
-                              //Total = (float)newg.Sum(g => g.TotalQuantity),
+                              Total = (float)newg.Sum(g => g.pur.TotalQuantity),
+                              Issuet= (float)newg.Sum(g => g.i.PurchaseQuantity),
                           }).ToList();
                 
                 return result;
