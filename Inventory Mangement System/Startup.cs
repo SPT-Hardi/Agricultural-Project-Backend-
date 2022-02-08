@@ -30,7 +30,7 @@ namespace Inventory_Mangement_System
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient <IAccountRepository,AccountRepository >();
+            services.AddTransient<IAccountRepository,AccountRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ITokenService, TokenService>();
@@ -106,6 +106,7 @@ namespace Inventory_Mangement_System
             // custom jwt auth middleware
             app.UseMiddleware<JwtHandler>();
 
+            //app.UseMiddleware<UserLoginDetails>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -218,3 +218,6 @@ C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement Syste
 C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.pdb
 C:\Users\HP\source\repos\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\Inventory Mangement System.genruntimeconfig.cache
 >>>>>>> f409eb06c629d1c0e3c810c1c1338e71c898b4ab
+C:\Users\KOKILA\source\repos\Inventory Mangement System\Inventory Mangement System\bin\Debug\net5.0\System.CodeDom.dll
+C:\Users\KOKILA\source\repos\Inventory Mangement System\Inventory Mangement System\bin\Debug\net5.0\System.Management.dll
+C:\Users\KOKILA\source\repos\Inventory Mangement System\Inventory Mangement System\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Management.dll

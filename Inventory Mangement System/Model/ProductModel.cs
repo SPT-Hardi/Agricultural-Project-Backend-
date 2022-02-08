@@ -8,9 +8,14 @@ namespace Inventory_Mangement_System.Model
 {
     public class ProductModel
     {
+        public List<ProductDetail> ProductDetails { get; set; } = new List<ProductDetail>();
+    }
+
+    public class ProductDetail
+    {
         [RegularExpression(@"^[a-z A-Z 0-9]+$", ErrorMessage = "Please Enter Character or Letter.")]
         [Required(ErrorMessage = "Product Name is Required")]
-        public string  ProductName { get; set; }
+        public string ProductName { get; set; }
         public string Variety { get; set; }
 
         [RegularExpression(@"^[a-z A-Z]+$", ErrorMessage = "Please Enter Only Character.")]

@@ -8,6 +8,9 @@ namespace Inventory_Mangement_System.Model
 {
     public class IssueModel
     {
+        public Model.Common.IntegerNullString MainArea { get; set; } = new Model.Common.IntegerNullString();
+        public Model.Common.IntegerNullString SubArea { get; set; } = new Model.Common.IntegerNullString();
+        public DateTime Date { get; set; }
         public List<IssueDetail> issueDetails { get; set; } = new List<IssueDetail>();
         
     }
@@ -19,10 +22,10 @@ namespace Inventory_Mangement_System.Model
         public float IssueQuantity { get; set; }
 
         [Required(ErrorMessage = "Date Is Required.")]
-        public DateTime Date { get; set; }
+       
+        public string Remark { get; set; }
         public Model.Common.IntegerNullString Product { get; set; } = new Model.Common.IntegerNullString();
-        public Model.Common.IntegerNullString MainArea { get; set; } = new Model.Common.IntegerNullString();
-        public Model.Common.IntegerNullString SubArea { get; set; } = new Model.Common.IntegerNullString();
+       
     }
 
 }

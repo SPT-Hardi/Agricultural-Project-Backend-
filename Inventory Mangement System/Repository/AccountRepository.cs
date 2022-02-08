@@ -1,4 +1,5 @@
-﻿using Inventory_Mangement_System.Model;
+﻿using Inventory_Mangement_System.Middleware;
+using Inventory_Mangement_System.Model;
 using Inventory_Mangement_System.Model.Common;
 using Inventory_Mangement_System.serevices;
 using Microsoft.AspNetCore.Authorization;
@@ -64,6 +65,8 @@ namespace Inventory_Mangement_System.Repository
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             User user = new User();
             Role role = new Role();
+            UserLoginDetails login = new UserLoginDetails();
+            var UserMacAddress = login.GetMacAddress().Result;
             var query = (from user1 in context.Users
                          join r1 in context.Roles
                          on user1.RoleID equals r1.RoleID
@@ -82,6 +85,8 @@ namespace Inventory_Mangement_System.Repository
                 user.Password = userModel.Password;
                 user.RoleID = 2;
                 user.EmailAddress = userModel.EmailAddress;
+                user.SystemMAC = UserMacAddress;
+                user.DateTime = DateTime.Now;
                 context.Users.InsertOnSubmit(user);
                 context.SubmitChanges();
                 return new Result()
@@ -93,21 +98,78 @@ namespace Inventory_Mangement_System.Repository
             }
         }
 
-        public Result LoginUser(LoginModel loginModel )
+        //public Result LoginUser(LoginModel loginModel )
+        //{
+        //    ProductInventoryDataContext context = new ProductInventoryDataContext();
+        //    User user = new User();
+        //    Role role = new Role();
+        //    var res = (from u1 in context.Users
+        //               where u1.EmailAddress == loginModel.EmailAddress && u1.Password == loginModel.Password
+        //               select new
+        //               {
+        //                   UserName = u1.UserName ,
+        //                   UserID = u1.UserID,
+        //                   RoleID = u1.RoleID,
+        //                   RoleName = u1.Role.RoleName
+        //               }).FirstOrDefault();
+        //    if(res != null)
+        //    {
+        //        var authclaims = new List<Claim>
+        //        {
+        //            new Claim(ClaimTypes.Name,loginModel.EmailAddress),
+        //            new Claim (ClaimTypes.Role,res.RoleName),
+        //            new Claim (ClaimTypes .Sid ,res.UserID .ToString()),
+        //            new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid ().ToString ()),
+        //        };
+        //        var jwtToken = _tokenService.GenerateAccessToken(authclaims);
+        //        var refreshToken = _tokenService.GenerateRefreshToken();
+        //        RefreshToken refreshToken1 = new RefreshToken();
+        //        refreshToken1.RToken  = refreshToken;
+        //        context.RefreshTokens.InsertOnSubmit(refreshToken1);
+        //        context.SubmitChanges();
+
+        //        UserRefreshToken userRefreshToken = new UserRefreshToken();
+        //        userRefreshToken.UserID = res.UserID;
+        //        userRefreshToken.RefreshID = refreshToken1.RefreshID;
+        //        context.UserRefreshTokens.InsertOnSubmit(userRefreshToken);
+        //        context.SubmitChanges();
+
+        //        return new Result()
+        //        {
+        //            Message = string.Format($"Login Successfully"),
+        //            Status = Result.ResultStatus.success,
+        //            Data = new {
+        //            token = jwtToken,
+        //            refreshToken = refreshToken,
+        //            UserName = res.UserName,
+        //            EmailAddress = loginModel .EmailAddress ,
+        //            RoleName = res.RoleName,
+        //            },
+        //        };
+        //    }
+        //    else
+        //    {
+        //        throw new ArgumentException("Please Enter valid login details");
+        //    }
+        //}
+
+        public Result LoginUser(LoginModel loginModel)
         {
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             User user = new User();
             Role role = new Role();
+            UserLoginDetails login = new UserLoginDetails();
+            var UserMacAddress = login.GetMacAddress().Result;
             var res = (from u1 in context.Users
                        where u1.EmailAddress == loginModel.EmailAddress && u1.Password == loginModel.Password
                        select new
                        {
-                           UserName = u1.UserName ,
+                           UserName = u1.UserName,
                            UserID = u1.UserID,
                            RoleID = u1.RoleID,
                            RoleName = u1.Role.RoleName
                        }).FirstOrDefault();
-            if(res != null)
+            if (res != null)
             {
                 var authclaims = new List<Claim>
                 {
@@ -119,7 +181,7 @@ namespace Inventory_Mangement_System.Repository
                 var jwtToken = _tokenService.GenerateAccessToken(authclaims);
                 var refreshToken = _tokenService.GenerateRefreshToken();
                 RefreshToken refreshToken1 = new RefreshToken();
-                refreshToken1.RToken  = refreshToken;
+                refreshToken1.RToken = refreshToken;
                 context.RefreshTokens.InsertOnSubmit(refreshToken1);
                 context.SubmitChanges();
 
@@ -129,16 +191,41 @@ namespace Inventory_Mangement_System.Repository
                 context.UserRefreshTokens.InsertOnSubmit(userRefreshToken);
                 context.SubmitChanges();
 
+                var qs = (from obj in context.Users
+                          where obj.EmailAddress == loginModel.EmailAddress
+                          select obj.UserName).FirstOrDefault();
+
+                LoginDetail l = new LoginDetail();
+
+                var mac = (from obj in context.LoginDetails
+                           where obj.SystemMac == UserMacAddress
+                           select obj).ToList();
+                if (mac.Count() > 0)
+                {
+                    var Lid = context.LoginDetails.FirstOrDefault(c => c.SystemMac == UserMacAddress);
+                    Lid.DateTime = DateTime.Now;
+                    context.SubmitChanges();
+                }
+                else
+                {
+                    l.UserName = qs;
+                    l.SystemMac = UserMacAddress;
+                    l.DateTime = DateTime.Now;
+                    context.LoginDetails.InsertOnSubmit(l);
+                    context.SubmitChanges();
+                }
+
                 return new Result()
                 {
                     Message = string.Format($"Login Successfully"),
                     Status = Result.ResultStatus.success,
-                    Data = new {
-                    token = jwtToken,
-                    refreshToken = refreshToken,
-                    UserName = res.UserName,
-                    EmailAddress = loginModel .EmailAddress ,
-                    RoleName = res.RoleName,
+                    Data = new
+                    {
+                        token = jwtToken,
+                        refreshToken = refreshToken,
+                        UserName = res.UserName,
+                        EmailAddress = loginModel.EmailAddress,
+                        RoleName = res.RoleName,
                     },
                 };
             }

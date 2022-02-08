@@ -18,26 +18,55 @@ namespace Inventory_Mangement_System.Repository
             Category category = new Category();
             Product product = new Product();
 
-            var pname = context.Products.Where(name => name.ProductName == productModel.ProductName).SingleOrDefault();
-            if (pname != null)
+            var pro = (from p in productModel.ProductDetails
+                       select new Product()
+                       {
+                           ProductName = p.ProductName,
+                           Variety = p.Variety,
+                           Company = p.Company,
+                           Description = p.Description,
+                           CategoryID = (int)p.categorytype.Id,
+                           Unit = (string)p.type.Text,
+                           TotalProductQuantity = 0
+                       }).ToList();
+            foreach (var item in pro)
             {
-                throw new ArgumentException("Alredy Exits");
+                var pname = context.Products.Where(name => name.ProductName == item.ProductName).SingleOrDefault();
+                if (pname != null)
+                {
+                    throw new ArgumentException($"{item.ProductName} product Alredy Exits.");
+                }
             }
-            product.ProductName = productModel.ProductName;
-            product.Variety = productModel.Variety;
-            product.Company = productModel.Company;
-            product.Description = productModel.Description;
-            product.Unit = (string)productModel.type.Text;
-            product.CategoryID = (int)productModel.categorytype.Id;
-            context.Products.InsertOnSubmit(product);
+
+            context.Products.InsertAllOnSubmit(pro);
             context.SubmitChanges();
-            //return $"{productModel.ProductName} Added Successfully";
             return new Result()
             {
-                Message = string.Format($"{productModel.ProductName} Added successfully!"),
+                Message = string.Format($"{product.ProductName} Added Successfully."),
                 Status = Result.ResultStatus.success,
-                Data= productModel.ProductName,
+                Data = product.ProductName,
             };
+
+            //var pname = context.Products.Where(name => name.ProductName == productModel.ProductName).SingleOrDefault();
+            //if (pname != null)
+            //{
+            //    throw new ArgumentException("Alredy Exits");
+            //}
+            //product.ProductName = productModel.ProductName;
+            //product.Variety = productModel.Variety;
+            //product.Company = productModel.Company;
+            //product.Description = productModel.Description;
+            //product.Unit = (string)productModel.type.Text;
+            //product.CategoryID = (int)productModel.categorytype.Id;
+            //context.Products.InsertOnSubmit(product);
+            //context.SubmitChanges();
+            //return $"{productModel.ProductName} Added Successfully";
+            //return new Result()
+            //{
+            //    //Message = string.Format($"{productModel.ProductName} Added successfully!"),
+            //    Status = Result.ResultStatus.success,
+            //    //Data= productModel.ProductName,
+            //};
         }
 
         //async Task<IEnumerable>
