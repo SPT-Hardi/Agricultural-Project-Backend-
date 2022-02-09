@@ -200,20 +200,20 @@ namespace Inventory_Mangement_System.Repository
                 var mac = (from obj in context.LoginDetails
                            where obj.SystemMac == UserMacAddress
                            select obj).ToList();
-                if (mac.Count() > 0)
-                {
-                    var Lid = context.LoginDetails.FirstOrDefault(c => c.SystemMac == UserMacAddress);
-                    Lid.DateTime = DateTime.Now;
-                    context.SubmitChanges();
-                }
-                else
-                {
+                //if (mac.Count() > 0)
+                //{
+                //    var Lid = context.LoginDetails.FirstOrDefault(c => c.SystemMac == UserMacAddress);
+                //    Lid.DateTime = DateTime.Now;
+                //    context.SubmitChanges();
+                //}
+                //else
+                //{
                     l.UserName = qs;
                     l.SystemMac = UserMacAddress;
                     l.DateTime = DateTime.Now;
                     context.LoginDetails.InsertOnSubmit(l);
                     context.SubmitChanges();
-                }
+                //}
 
                 return new Result()
                 {

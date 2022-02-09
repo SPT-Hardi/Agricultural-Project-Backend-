@@ -44,7 +44,7 @@ namespace Inventory_Mangement_System.Controllers
         [HttpGet("getproductquantity")]
         public async Task<IActionResult> ProductGetQuantity()
         {
-            var result = _isueRepository.GetProductwithquantity();
+            var result =await _isueRepository.GetProductwithquantity();
             return Ok(result);
         }
 

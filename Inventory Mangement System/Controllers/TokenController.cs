@@ -1,4 +1,5 @@
 ﻿
+using Inventory_Mangement_System.Model.Common;
 using Inventory_Mangement_System.serevices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -22,11 +23,48 @@ namespace Inventory_Mangement_System.Controllers
             _tokenService = tokenService;
         }
 
+        //[HttpPost("Refresh")]
+        //public async Task<IActionResult> Refresh(string token, string refreshToken)
+        //{
+        //    using (ProductInventoryDataContext _context = new ProductInventoryDataContext())
+        //    {
+        //        var principal = _tokenService.GetPrincipalFromExpiredToken(token);
+        //        var emailid = principal.Identity.Name;
+        //        var user = _context.Users.SingleOrDefault(x => x.EmailAddress == emailid);
+
+        //        var u1 = (from ur in _context.UserRefreshTokens
+        //                  join r in _context.RefreshTokens
+        //                  on ur.RefreshID equals r.RefreshID
+        //                  where r.RToken == refreshToken && ur.UserID == user.UserID
+        //                  select new 
+        //                  { 
+        //                      Id = ur.RefreshID,
+        //                      T1 = r.RToken 
+        //                  }).FirstOrDefault ();
+
+        //        if (user == null || u1.T1 != refreshToken)
+        //                return BadRequest();
+
+        //        var newJwtToken = _tokenService.GenerateAccessToken(principal.Claims);
+        //        var newRefreshToken = _tokenService.GenerateRefreshToken();
+
+        //        var r1 = _context.RefreshTokens.SingleOrDefault(x => x.RefreshID == u1.Id && x.RToken == refreshToken);
+        //        r1.RToken = newRefreshToken;
+        //        _context.SubmitChanges();
+        //        return new ObjectResult(new
+        //        {
+        //            token = newJwtToken,
+        //            refreshToken = newRefreshToken
+        //        });
+        //    }
+        //}
         [HttpPost("Refresh")]
-        public async Task<IActionResult> Refresh(string token, string refreshToken)
+        public async Task<IActionResult> Refresh(TokenModel tokenModel )
         {
             using (ProductInventoryDataContext _context = new ProductInventoryDataContext())
             {
+                var token = tokenModel.token;
+                var refreshToken = tokenModel.refreshToken;
                 var principal = _tokenService.GetPrincipalFromExpiredToken(token);
                 var emailid = principal.Identity.Name;
                 var user = _context.Users.SingleOrDefault(x => x.EmailAddress == emailid);
@@ -35,14 +73,14 @@ namespace Inventory_Mangement_System.Controllers
                           join r in _context.RefreshTokens
                           on ur.RefreshID equals r.RefreshID
                           where r.RToken == refreshToken && ur.UserID == user.UserID
-                          select new 
-                          { 
+                          select new
+                          {
                               Id = ur.RefreshID,
-                              T1 = r.RToken 
-                          }).FirstOrDefault ();
+                              T1 = r.RToken
+                          }).FirstOrDefault();
 
                 if (user == null || u1.T1 != refreshToken)
-                        return BadRequest();
+                    return BadRequest();
 
                 var newJwtToken = _tokenService.GenerateAccessToken(principal.Claims);
                 var newRefreshToken = _tokenService.GenerateRefreshToken();
@@ -57,34 +95,9 @@ namespace Inventory_Mangement_System.Controllers
                 });
             }
         }
-        //[HttpPost("Refresh")]
-        //public async Task<IActionResult> Refresh(string token, string refreshToken)
-        //{
-        //    using (ProductInventoryDataContext _context = new ProductInventoryDataContext())
-        //    {
-        //        var principal = _tokenService.GetPrincipalFromExpiredToken(token);
-        //        var emailid = principal.Identity.Name;
-        //        var user = _context.Users.SingleOrDefault(x => x.EmailAddress == emailid);
-        //        var userrefreshtoken = _context.UserRefreshTokens.SingleOrDefault(x => x.UserID == user.UserID);
-        //        var r1 = _context.RefreshTokens.SingleOrDefault(x => x.RefreshID == userrefreshtoken.RefreshID);
 
-        //        if (user == null || r1.RToken != refreshToken)
-        //            return BadRequest();
-
-        //        var newJwtToken = _tokenService.GenerateAccessToken(principal.Claims);
-        //        var newRefreshToken = _tokenService.GenerateRefreshToken();
-
-        //        r1.RToken = newRefreshToken;
-        //        _context.SubmitChanges();
-        //        return new ObjectResult(new
-        //        {
-        //            token = newJwtToken,
-        //            refreshToken = newRefreshToken
-        //        });
-        //    }
-        //}
-
-        [Authorize]
+        /**//* [Authorize]
+ */
         [HttpPost("Revoke")]
         public async Task<IActionResult> Revoke()
         {

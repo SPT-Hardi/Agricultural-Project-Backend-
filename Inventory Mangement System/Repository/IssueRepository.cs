@@ -53,6 +53,8 @@ namespace Inventory_Mangement_System.Repository
             }
         }
 
+        
+
         public async Task<IEnumerable> GetProductwithquantity()
         {
 
@@ -186,8 +188,9 @@ namespace Inventory_Mangement_System.Repository
                               MainAreaID = issueModel.MainArea.Id,
                               SubAreaID = issueModel.SubArea.Id,
                               Remark = obj.Remark,
+                              IssueDate = issueModel.Date .ToLocalTime(),
                               LoginID = 1,
-                              Date = DateTime.Now,
+                              DateTime = DateTime.Now,
                               PurchaseQuantity = obj.IssueQuantity
                           }).ToList();
                 foreach (var item in qs)
