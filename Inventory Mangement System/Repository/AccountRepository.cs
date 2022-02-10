@@ -143,25 +143,25 @@ namespace Inventory_Mangement_System.Repository
                        where u1.EmailAddress  == loginModel.EmailAddress  && u1.Password == loginModel.Password
                        select new
                        {
-                         UserID = u1.UserID,
-                         RoleID = u1.RoleID,
-                         RoleName=u1.Role.RoleName
+                           UserName = u1.UserName,
+                           UserID = u1.UserID,
+                           RoleID = u1.RoleID,
+                           RoleName = u1.Role.RoleName
                        }).FirstOrDefault();
-            if(res != null)
+            if (res != null)
             {
                 var authclaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name,loginModel.EmailAddress),
                     new Claim (ClaimTypes.Role,res.RoleName),
-                    new Claim (ClaimTypes .Sid , res.UserID .ToString()),
+                    new Claim (ClaimTypes .Sid ,res.UserID .ToString()),
                     new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid ().ToString ()),
                 };
+
                 var jwtToken = _tokenService.GenerateAccessToken(authclaims);
                 var refreshToken = _tokenService.GenerateRefreshToken();
-
-                //var userid = context.Users.SingleOrDefault(x => x.EmailAddress == loginModel.EmailAddress);
                 RefreshToken refreshToken1 = new RefreshToken();
-                refreshToken1.RToken  = refreshToken;
+                refreshToken1.RToken = refreshToken;
                 context.RefreshTokens.InsertOnSubmit(refreshToken1);
                 context.SubmitChanges();
 
@@ -175,16 +175,15 @@ namespace Inventory_Mangement_System.Repository
                 {
                     Message = string.Format($"Login Successfully"),
                     Status = Result.ResultStatus.success,
-                    Data = new {
+                    Data = new
+                    {
                         token = jwtToken,
                         refreshToken = refreshToken,
+                        UserName = res.UserName,
+                        EmailAddress = loginModel.EmailAddress,
+                        RoleName = res.RoleName,
                     },
                 };
-                //return new ObjectResult(new
-                //{
-                //    token = jwtToken,
-                //    refreshToken = refreshToken
-                //});
             }
             else
             {

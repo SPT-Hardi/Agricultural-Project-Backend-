@@ -20,6 +20,13 @@ namespace Inventory_Mangement_System.Controllers
             _purchaseRepository = purchaseRepository;
         }
 
+        [HttpGet("GetunitByid/{id}")]
+        public async Task<IActionResult> UnitById(int id)
+        {
+            var result = await _purchaseRepository.GetunitByid(id);
+
+            return Ok(result);
+        }
         [HttpPost("purchaseproduct")]
         public async Task<IActionResult> PurchaseDetailsAdded(PurchaseModel purchaseModel)
         {

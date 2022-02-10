@@ -104,6 +104,10 @@ namespace Inventory_Mangement_System
             // custom jwt auth middleware
             app.UseMiddleware<JwtHandler>();
 
+            // System Mac
+            //app.UseMiddleware<UserLoginDetails>();
+
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

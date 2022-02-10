@@ -2,6 +2,7 @@
 using Inventory_Mangement_System.Model.Common;
 using ProductInventoryContext;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +11,18 @@ namespace Inventory_Mangement_System.Repository
 {
     public class PurchaseRepository : IPurchaseRepository
     {
+        public async Task<IEnumerable> GetunitByid(int id)
+        {
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                return (from x in context.Products
+                        where x.ProductID == id
+                        select new
+                        {
+                            Unit = x.Unit,
+                        }).ToList();
+            }
+        }
         public Result AddPurchaseDetails(PurchaseModel purchaseModel)
         {
             using(ProductInventoryDataContext context = new ProductInventoryDataContext ())

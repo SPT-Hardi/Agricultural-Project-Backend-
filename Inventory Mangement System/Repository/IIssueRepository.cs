@@ -20,7 +20,7 @@ namespace Inventory_Mangement_System.Repository
         Task<IEnumerable> GetSubArea(int id);
         Task<IEnumerable> GetProduct();
 
-        Task<IEnumerable> GetProductTotalQuantity();
+       // Task<IEnumerable> GetProductTotalQuantity();
       //  Result total(IssueModel issueModel);
     }
 }

@@ -65,12 +65,12 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
-        [HttpGet("GetProductTotalQuantity")]
+        /*[HttpGet("GetProductTotalQuantity")]
         public async Task<IActionResult> GetProductTotalQuantityAsync()
         {
             var result = await _isueRepository.GetProductTotalQuantity();
             return Ok(result);
-        }
+        }*/
     /*   //to view total quantity
         [HttpPost("total")]
         public async Task<IActionResult> totalcount(IssueModel issueModel)

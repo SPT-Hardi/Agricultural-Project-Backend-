@@ -46,13 +46,13 @@ namespace Inventory_Mangement_System.Controllers
         //[Authorize]
         public async Task<IActionResult> SignUp([FromBody]UserModel userModel)
         {
-            //string rname = (string)HttpContext.Items["Rolename"];
-            //if (rname == "Super Admin")
-            //{
+            string rname = (string)HttpContext.Items["Rolename"];
+            if (rname == "Super Admin")
+            {
                 var result = _accountRepository.RegisterUser(userModel);
                 return Ok(result);
-            //}
-            //return Unauthorized();
+            }
+            return Unauthorized();
         }
         
         //View User By Id

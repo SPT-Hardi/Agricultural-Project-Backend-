@@ -67,7 +67,7 @@ namespace Inventory_Mangement_System.Middleware
                 var response = context.Response;
                 response.ContentType = "application/json";
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
-                 result= new Result()
+                result= new Result()
                 {
                     Message = e.Message,
                     Status = Result.ResultStatus.warning,

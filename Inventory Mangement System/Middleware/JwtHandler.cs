@@ -24,9 +24,9 @@ namespace Inventory_Mangement_System.Middleware
         public async Task Invoke(HttpContext context)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-            if(token != null)
+            if (token != null)
             {
-                getUserDataFromToken(context,token);
+                getUserDataFromToken(context, token);
             }
             await _next(context);
         }
@@ -44,7 +44,7 @@ namespace Inventory_Mangement_System.Middleware
                     ValidateAudience = false,
                     ValidateIssuer = false,
                 }, out SecurityToken validatedToken
-                   );
+                );
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 int UserId = int.Parse(jwtToken.Claims.First(x => x.Type == ClaimTypes.Sid).Value);
                 context.Items["UserId"] = UserId;
