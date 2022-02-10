@@ -21,6 +21,7 @@ namespace Inventory_Mangement_System.Controllers
             _productRepository = productRepository;
         }
 
+        //Add Product Details
         [HttpPost ("addproduct")]
         public IActionResult ProductAdded(ProductModel productModel)
         {
@@ -28,11 +29,36 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
+        //Get Unit
         [HttpGet("getunit")]
         public async Task<IActionResult> ProductGet()
         {
             var result = _productRepository.GetUnit();
             return Ok(result.Result);
+        }
+
+        //Get Product Detail
+        [HttpGet("ViewAllProduct")]
+        public async Task<IActionResult> ViewAllProductAsync()
+        {
+            var result = await _productRepository.ViewAllProduct();
+            return Ok(result);
+        }
+
+        //Get Product By ID
+        [HttpGet("ViewProductById/{id}")]
+        public async Task<IActionResult> ViewProductByIDAsync([FromRoute]int id)
+        {
+            var result = await _productRepository.ViewProductById(id);
+            return Ok(result);
+        }
+
+        //Edit Product
+        [HttpPut("EditProduct/{id}")]
+        public async Task<IActionResult> EditProductAsync([FromBody]ProductDetail productDetail, [FromRoute] int id)
+        {
+            var result = _productRepository.EditProduct(productDetail,id);
+            return Ok(result);
         }
     }
 }

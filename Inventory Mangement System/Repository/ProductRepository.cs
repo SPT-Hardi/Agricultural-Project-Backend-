@@ -82,5 +82,88 @@ namespace Inventory_Mangement_System.Repository
                         }).ToList();
             }
         }
+
+        public async Task<IEnumerable> ViewAllProduct()
+        {
+            using(ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                return (from x in context.Products
+                        join catid in context.Categories
+                        on x.CategoryID equals catid.CategoryID
+                        select new
+                        {
+                            ProductID = x.ProductID,
+                            ProductName = x.ProductName,
+                            Varitey = x.Variety,
+                            Company = x.Company,
+                            Description = x.Description,
+                            Unit = x.Unit,
+                            CategoryName = catid.CategoryName
+                        }).ToList();
+            }
+        }
+
+        public async Task<IEnumerable> ViewProductById(int productID)
+        {
+            using(ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                Product product = new Product();
+                product = context.Products.SingleOrDefault(x => x.ProductID == productID);
+                if(product == null)
+                {
+                    throw new ArgumentException("Product Does Not Exist");
+                }
+                return (from x in context.Products
+                        join catid in context.Categories
+                        on x.CategoryID equals catid.CategoryID
+                        select new
+                        {
+                            ProductID = x.ProductID,
+                            ProductName = x.ProductName,
+                            Varitey = x.Variety,
+                            Company = x.Company,
+                            Description = x.Description,
+                            Unit = x.Unit,
+                            CategoryName = catid.CategoryName
+                        }).ToList();
+            }
+        }
+
+        public Result EditProduct(ProductDetail productDetail,int id)
+        {
+            using(ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                Product product = new Product();
+                product = context.Products.SingleOrDefault(x => x.ProductID == id);
+                if(product == null)
+                {
+                    throw new ArgumentException("Product doesn't exist");
+                }
+
+                if (product.ProductName != productDetail.ProductName)
+                {
+                    var _product = context.Products.SingleOrDefault(name => name.ProductName == productDetail.ProductName);
+                    if (_product != null)
+                    {
+                        throw new Exception("Product Alredy Exits.");
+                    }
+                }
+
+                product.ProductName = productDetail.ProductName;
+                product.Variety = productDetail.Variety;
+                product.Company = productDetail.Company;
+                product.CategoryID = productDetail.categorytype.Id;
+                product.Unit = productDetail.type.Text;
+                product.Description = productDetail.Description;
+                context.Products.InsertOnSubmit(product);
+                context.SubmitChanges();
+                return new Result()
+                {
+                    Message = "Updated Successfully",
+                    Data = product.ProductName,
+                    Status =  Result.ResultStatus.success,
+                };
+            }
+        }
     }
 }

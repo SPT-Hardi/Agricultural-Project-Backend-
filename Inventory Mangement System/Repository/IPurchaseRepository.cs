@@ -7,7 +7,7 @@ namespace Inventory_Mangement_System.Repository
 {
     public interface IPurchaseRepository
     {
-        Task<IEnumerable> GetunitByid(int id);
+        //Task<IEnumerable> GetunitByid(int id);
         Result AddPurchaseDetails(PurchaseModel purchaseModel);
     }
 }

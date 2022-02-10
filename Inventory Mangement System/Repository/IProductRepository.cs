@@ -9,5 +9,8 @@ namespace Inventory_Mangement_System.Repository
     {
         Result AddProduct(ProductModel productModel);
         Task<IEnumerable> GetUnit();
+        Task<IEnumerable> ViewAllProduct();
+        Task<IEnumerable> ViewProductById(int productID);
+        Result EditProduct(ProductDetail productDetail, int id);
     }
 }

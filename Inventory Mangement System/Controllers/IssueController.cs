@@ -41,12 +41,12 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
-        [HttpGet("getproductquantity")]
-        public async Task<IActionResult> ProductGetQuantity()
-        {
-            var result =await _isueRepository.GetProductwithquantity();
-            return Ok(result);
-        }
+        //[HttpGet("getproductquantity")]
+        //public async Task<IActionResult> ProductGetQuantity()
+        //{
+        //    var result =await _isueRepository.GetProductwithquantity();
+        //    return Ok(result);
+        //}
 
         [HttpPost("IssueProduct")]
         public async Task<IActionResult> IssueProductDetails(IssueModel issueModel)

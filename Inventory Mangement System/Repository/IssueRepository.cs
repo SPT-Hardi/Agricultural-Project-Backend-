@@ -45,72 +45,72 @@ namespace Inventory_Mangement_System.Repository
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 return (from x in context.Products
-                        select new IntegerNullString()
+                        select new 
                         {
+                            Unit = x.Unit,
+                            Quantity = (float)x.TotalProductQuantity,
                             Text = x.ProductName,
                             Id = x.ProductID
                         }).ToList();
             }
         }
 
-        
+        //public async Task<IEnumerable> GetProductwithquantity()
+        //{
 
-        public async Task<IEnumerable> GetProductwithquantity()
-        {
+        //    using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+        //    {
+        //        Product product = new Product();
+        //        return (from x in context.Products
+        //                select new 
+        //                {
+        //                    Text = x.ProductName,
+        //                    Id = x.ProductID,
+        //                    Total = (float)x.TotalProductQuantity,
+        //                }).ToList();
 
-            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
-            {
-                Product product = new Product();
-                return (from x in context.Products
-                        select new IntegerNullString()
-                        {
-                            Text = x.ProductName,
-                            Id = x.ProductID,
-                            Total = (float)x.TotalProductQuantity,
-                        }).ToList();
+        //        //var q = context.Products.Select(x => x.ProductName);
 
-                //var q = context.Products.Select(x => x.ProductName);
+        //        //    var q2 = (from m in context.Products
+        //        //              join p in context.PurchaseDetails
+        //        //              on m.ProductID equals p.ProductID
+        //        //              group p by new { m.ProductName, m.ProductID } into g
+        //        //              select new
+        //        //              {
+        //        //                  Productname = g.Key.ProductName,
+        //        //                  PurchaseQuantity = (float)g.Sum(x => x.TotalQuantity)
+        //        //              }).ToList();
 
-                //    var q2 = (from m in context.Products
-                //              join p in context.PurchaseDetails
-                //              on m.ProductID equals p.ProductID
-                //              group p by new { m.ProductName, m.ProductID } into g
-                //              select new
-                //              {
-                //                  Productname = g.Key.ProductName,
-                //                  PurchaseQuantity = (float)g.Sum(x => x.TotalQuantity)
-                //              }).ToList();
+        //        //    var q3 = (from m in context.Products
+        //        //              join i in context.Issues
+        //        //              on m.ProductID equals i.ProductID
+        //        //              group i by new { m.ProductName, m.ProductID } into g
+        //        //              select new
+        //        //              {
+        //        //                  Productname = g.Key.ProductName,
+        //        //                  IssueQuantity = (float)g.Sum(x => x.PurchaseQuantity)
+        //        //              }).ToList();
 
-                //    var q3 = (from m in context.Products
-                //              join i in context.Issues
-                //              on m.ProductID equals i.ProductID
-                //              group i by new { m.ProductName, m.ProductID } into g
-                //              select new
-                //              {
-                //                  Productname = g.Key.ProductName,
-                //                  IssueQuantity = (float)g.Sum(x => x.PurchaseQuantity)
-                //              }).ToList();
+        //        //var result = (from p in context.Products
+        //        //              join pur in context.PurchaseDetails
+        //        //              on p.ProductID equals pur.ProductID
+        //        //              join i in context.Issues
+        //        //              on p.ProductID equals i.ProductID
+        //        //              group new { pur, i } by new { p.ProductID, p.ProductName, i.PurchaseQuantity } into newg
+        //        //              select new
+        //        //              {
+        //        //                  Text = newg.Key.ProductName,
+        //        //                  Total = (float)newg.Sum(g => g.pur.TotalQuantity) - (float)newg.Sum(g => g.i.PurchaseQuantity),
+        //        //                  //Issuet = (float)newg.Sum(g => g.i.PurchaseQuantity),
+        //        //              }).ToList();
 
-                //var result = (from p in context.Products
-                //              join pur in context.PurchaseDetails
-                //              on p.ProductID equals pur.ProductID
-                //              join i in context.Issues
-                //              on p.ProductID equals i.ProductID
-                //              group new { pur, i } by new { p.ProductID, p.ProductName, i.PurchaseQuantity } into newg
-                //              select new
-                //              {
-                //                  Text = newg.Key.ProductName,
-                //                  Total = (float)newg.Sum(g => g.pur.TotalQuantity) - (float)newg.Sum(g => g.i.PurchaseQuantity),
-                //                  //Issuet = (float)newg.Sum(g => g.i.PurchaseQuantity),
-                //              }).ToList();
+        //        //return new Result()
+        //        //{
+        //        //    Status = Result.ResultStatus.success,
 
-                //return new Result()
-                //{
-                //    Status = Result.ResultStatus.success,
-
-                //};
-            }
-        }
+        //        //};
+        //    }
+        //}
 
 
         //public Result IssueProduct(IssueModel issueModel)
