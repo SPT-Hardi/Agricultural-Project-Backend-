@@ -26,5 +26,25 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
 
         }
+        [HttpGet("viewproductiondetail")]
+        public async Task<IActionResult> ViewProductionDetail()
+        {
+            var result = _productionRepository.ViewAllProductionDetails();
+            return Ok(result);
+        }
+
+        [HttpGet("viewproductionbyId/{id}")]
+        public async Task<IActionResult> ViewProductionById(int id)
+        {
+            var result = _productionRepository.ViewProductionById(id);
+            return Ok(result);
+        }
+
+        [HttpPut("Editproduction/{id}")]
+        public async Task<IActionResult> EditProduction(ProductionModel productionModel, int id)
+        {
+            var result = _productionRepository.EditProduction(productionModel, id);
+            return Ok(result);
+        }
     }
 }

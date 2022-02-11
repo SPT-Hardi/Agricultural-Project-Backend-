@@ -157,6 +157,47 @@ namespace Inventory_Mangement_System.Repository
             }
         }
 
+        public Result EditIssue(IssueModel issueModel,int id)
+        {
+            using(ProductInventoryDataContext context=new ProductInventoryDataContext())
+            {
+                var _p = (from obj in issueModel.issueDetails
+                          select new Issue()
+                          {
+                              ProductID = obj.Product.Id,
+                              MainAreaID = issueModel.MainArea.Id,
+                              SubAreaID = issueModel.SubArea.Id,
+                              Remark = obj.Remark,
+                              IssueDate = issueModel.Date.ToLocalTime(),
+                              //LoginID = LoginID.LoginID,
+                              DateTime = DateTime.Now,
+                              PurchaseQuantity = obj.IssueQuantity
+                          });
+                var product = (from p in context.Products
+                               select new { 
+                                   p.ProductName,
+                                   p.TotalProductQuantity
+                               }).FirstOrDefault();
+
+                var _product = (from obj in issueModel.issueDetails
+                                select obj).FirstOrDefault();
+
+                if (product ==null)
+                {
+                    throw new ArgumentException("Product Is Not Exist.");
+                }
+                if (product.TotalProductQuantity<_product.IssueQuantity)
+                {
+                    throw new ArgumentException($"{product.ProductName} Enter quantity {_product.IssueQuantity} more than existing quantity {product.TotalProductQuantity}");
+                }
+                context.SubmitChanges();
+                return new Result()
+                {
+                    Message = string.Format($" Issue successfully!"),
+                    Status = Result.ResultStatus.success,
+                };
+            }
+        }
         //Issue Detail By Id
         public async Task<IEnumerable> ViewIssueById(int issueID)
         {
