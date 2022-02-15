@@ -8,7 +8,7 @@ namespace Inventory_Mangement_System.Repository
     public interface IIssueRepository
     {
         //All Issue Details
-        Task<IEnumerable> ViewAllIssue();
+        Result ViewAllIssue();
         
         //Issue Products
         Result IssueProduct(IssueModel issueModel);

@@ -21,18 +21,18 @@ namespace Inventory_Mangement_System.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-            Result result = new Result();
+            Result result = null;
+            context.Response.ContentType = "application/json";
+            var hasError = false;
 
             try
             {
                 await _next(context);
             }
-            
             catch (ArgumentException e)
             {
-               
+                hasError = true;
                 var response = context.Response;
-                response.ContentType = "application/json";
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
                 result = new Result()
                 {
@@ -42,8 +42,9 @@ namespace Inventory_Mangement_System.Middleware
             }
             catch (MethodAccessException e)
             {
+                hasError = true;
+
                 var response = context.Response;
-                response.ContentType = "application/json";
                 response.StatusCode = (int)HttpStatusCode.NotModified;
                 result = new Result()
                 {
@@ -53,8 +54,9 @@ namespace Inventory_Mangement_System.Middleware
             }
             catch (UnauthorizedAccessException e)
             {
+                hasError = true;
+
                 var response = context.Response;
-                response.ContentType = "application/json";
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
                 result = new Result()
                 {
@@ -64,10 +66,12 @@ namespace Inventory_Mangement_System.Middleware
             }
             catch (Exception e)
             {
+                hasError = true;
+
                 var response = context.Response;
-                response.ContentType = "application/json";
+                //response.ContentType = "application/json";
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
-                result= new Result()
+                result = new Result()
                 {
                     Message = e.Message,
                     Status = Result.ResultStatus.warning,
@@ -75,8 +79,11 @@ namespace Inventory_Mangement_System.Middleware
             }
             finally
             {
-                var errorJson = JsonConvert.SerializeObject(result);
-                await context.Response.WriteAsync(errorJson);
+                if (hasError)
+                {
+                    var errorJson = JsonConvert.SerializeObject(result);
+                    await context.Response.WriteAsync(errorJson);
+                }
             }
         }
     }

@@ -14,23 +14,30 @@ namespace Inventory_Mangement_System.Controllers
     [ApiController]
     public class AreaController : ControllerBase
     {
-        private readonly IAreaRepository _mainAreaRepository;
+        private readonly IAreaRepository _areaRepository;
 
-        public AreaController(IAreaRepository mainAreaRepository)
+        public AreaController(IAreaRepository areaRepository)
         {
-            _mainAreaRepository = mainAreaRepository;
+            _areaRepository = areaRepository;
         }
-        
+
+        [HttpGet("ViewAllArea")]
+        public async Task<IActionResult> ViewAllAreaAsync()
+        {
+            var result = _areaRepository.ViewAllArea();
+            return Ok(result);
+        }
+
         [HttpPost("addMainArea")]
         public async Task<IActionResult> AddMainArea(AreaModel mainAreaModel)
         {
-            var result = _mainAreaRepository.AddMainAreaAsync(mainAreaModel);
+            var result = _areaRepository.AddMainAreaAsync(mainAreaModel);
             return Ok(result);
         }
         [HttpGet("MacAddress")]
         public async Task<IActionResult> ActionResultAsync()
         {
-            var result = _mainAreaRepository.GetMacAddress();
+            var result = _areaRepository.GetMacAddress();
             return Ok(result);
         }
     }

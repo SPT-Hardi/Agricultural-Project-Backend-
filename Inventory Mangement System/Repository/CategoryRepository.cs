@@ -17,7 +17,7 @@ namespace Inventory_Mangement_System.Repository
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             Category category = new Category();
             var res = context.Categories.FirstOrDefault(x => x.CategoryName == categoryModel.CategoryName);
-            if(res != null )
+            if (res != null)
             {
                 throw new ArgumentException("Category Already Exist");
             }
@@ -25,6 +25,8 @@ namespace Inventory_Mangement_System.Repository
             {
                 category.CategoryName = categoryModel.CategoryName;
                 category.Description = categoryModel.Description;
+                category.LoginID = 1;
+                category.DateTime = DateTime.Now;
                 context.Categories.InsertOnSubmit(category);
                 context.SubmitChanges();
                 return new Result()
@@ -32,7 +34,7 @@ namespace Inventory_Mangement_System.Repository
                     Message = string.Format($"Category {categoryModel.CategoryName } Added Successfully"),
                     Status = Result.ResultStatus.success,
                     Data = categoryModel.CategoryName,
-                }; 
+                };
             }
         }
 
@@ -40,13 +42,82 @@ namespace Inventory_Mangement_System.Repository
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
-                return (from x in context.Categories
+                 var res= (from x in context.Categories
                         select new IntegerNullString()
                         {
                             Text = x.CategoryName,
                             Id = x.CategoryID
                         }).ToList();
-            } 
+                return res;
+            }
+        }
+
+        public Result ViewCategory()
+        {
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                return new Result()
+                {
+                    Status = Result.ResultStatus.success,
+                    Data = (from x in context.Categories
+                            select new
+                            {
+                                CategoryID = x.CategoryID,
+                                CategoryName = x.CategoryName,
+                                Description = x.Description,
+                                UserName = (from n in context.LoginDetails
+                                            where n.LoginID == x.LoginID
+                                            select n.UserName).FirstOrDefault(),
+                                DateTime = String.Format("{0:dd-mm-yyyy hh:mm tt}", x.DateTime),
+                            }).ToList(),
+                };  
+            }
+        }
+
+        public async Task<IEnumerable> ViewCategoryById(int cid)
+        {
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                return (from x in context.Categories
+                        where x.CategoryID == cid
+                        select new
+                        {
+                            CategoryName = x.CategoryName,
+                            Description = x.Description
+                        }).ToList();
+            }
+        }
+
+        public Result EditCategory(CategoryModel categoryModel, int id)
+        {
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                var ck = context.Categories.SingleOrDefault(x => x.CategoryID == id);
+                if (ck == null)
+                {
+                    throw new ArgumentException("Category doesn't Exist");
+                }
+                if (ck.CategoryName != categoryModel.CategoryName)
+                {
+                    var _c = context.Categories.SingleOrDefault(x => x.CategoryName == categoryModel.CategoryName);
+                    if (_c != null)
+                    {
+                        throw new ArgumentException("Category already Exist");
+
+                    }
+                }
+
+                ck.CategoryName = categoryModel.CategoryName;
+                ck.Description = categoryModel.Description;
+                ck.DateTime = DateTime.Now;
+                context.SubmitChanges();
+                return new Result()
+                {
+                    Message = string.Format($"Category {categoryModel.CategoryName} Update Successfully"),
+                    Status = Result.ResultStatus.success,
+                    Data = categoryModel.CategoryName,
+                };
+            }
         }
     }
 }

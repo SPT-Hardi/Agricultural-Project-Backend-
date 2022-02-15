@@ -11,5 +11,9 @@ namespace Inventory_Mangement_System.Repository
         Result AddCategory(CategoryModel categoryModel);
         Task<IEnumerable> GetCategory();
 
+        Result ViewCategory();
+        Task<IEnumerable> ViewCategoryById(int cid);
+        Result EditCategory(CategoryModel categoryModel, int id);
+
     }
 }

@@ -12,6 +12,29 @@ namespace Inventory_Mangement_System.Repository
 {
     public class AreaRepository : IAreaRepository
     {
+        public Result ViewAllArea()
+        {
+            using(ProductInventoryDataContext context=new ProductInventoryDataContext())
+            {
+                return new Result()
+                {
+                    Status=Result.ResultStatus.success,
+                    Data=(from s in context.SubAreas
+                          join m in context.MainAreas
+                          on s.MainAreaID equals m.MainAreaID
+                          select new
+                          {
+                              MainAreaName=m.MainAreaName,
+                              SubAreaName=s.SubAreaName,
+                              UserName=(from u in context.LoginDetails
+                                        where u.LoginID==s.LoginID
+                                        select u.UserName).FirstOrDefault(),
+                              DateTime=string.Format("{0:dd-mm-yyyy hh:mm tt}",s.DateTime),
+                          }).ToList(),
+                };
+            }
+        }
+
         //New Main Area Add 
         public Result AddMainAreaAsync(AreaModel areaModel)
         {

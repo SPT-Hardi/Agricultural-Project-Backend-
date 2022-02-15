@@ -1,4 +1,5 @@
-﻿using Inventory_Mangement_System.Model;
+﻿using Inventory_Mangement_System.Middleware;
+using Inventory_Mangement_System.Model;
 using Inventory_Mangement_System.Model.Common;
 using Inventory_Mangement_System.serevices;
 using Microsoft.Extensions.Configuration;
@@ -98,6 +99,8 @@ namespace Inventory_Mangement_System.Repository
                 user.Password = userModel.Password;
                 user.RoleID = 2;
                 user.EmailAddress = userModel.EmailAddress;
+                user.SystemMAC= "18:C0:4D:D4:D4:A7";
+                user.DateTime = DateTime.Now;
                 context.Users.InsertOnSubmit(user);
                 context.SubmitChanges();
                 return new Result()
@@ -139,6 +142,11 @@ namespace Inventory_Mangement_System.Repository
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             User user = new User();
             Role role = new Role();
+
+
+            UserLoginDetails login = new UserLoginDetails();
+            var UserMacAddress = login.GetMacAddress().Result;
+
             var res = (from u1 in context.Users
                        where u1.EmailAddress  == loginModel.EmailAddress  && u1.Password == loginModel.Password
                        select new
@@ -171,6 +179,21 @@ namespace Inventory_Mangement_System.Repository
                 context.UserRefreshTokens.InsertOnSubmit(userRefreshToken);
                 context.SubmitChanges();
 
+                var qs = (from obj in context.Users
+                          where obj.EmailAddress == loginModel.EmailAddress
+                          select obj.UserName).FirstOrDefault();
+
+                LoginDetail l = new LoginDetail();
+
+                var mac = (from obj in context.LoginDetails
+                           where obj.SystemMAC == UserMacAddress
+                           select obj).ToList();
+                l.UserName = qs;
+                l.SystemMAC = UserMacAddress;
+                l.DateTime = DateTime.Now;
+                context.LoginDetails.InsertOnSubmit(l);
+                context.SubmitChanges();
+
                 return new Result()
                 {
                     Message = string.Format($"Login Successfully"),
@@ -187,7 +210,7 @@ namespace Inventory_Mangement_System.Repository
             }
             else
             {
-                throw new ArgumentException("Please Enter Valid Login Details");
+                throw new ArgumentException("Please Enter Valid Login Details..");
             }
         }
     }

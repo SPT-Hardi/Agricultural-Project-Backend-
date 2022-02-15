@@ -20,7 +20,7 @@ namespace Inventory_Mangement_System.Model
         //[Required(ErrorMessage = "Company Name is Required")]
         //public string Company { get; set; }
         //public string Description { get; set; }
-        //public Model.Common.IntegerNullString categorytype { get; set; } = new Model.Common.IntegerNullString();
+        //public Model.Common.IntegerNullString categoryType { get; set; } = new Model.Common.IntegerNullString();
         //public Model.Common.IntegerNullString type { get; set; } = new Model.Common.IntegerNullString();
     }
 
@@ -35,7 +35,7 @@ namespace Inventory_Mangement_System.Model
         [Required(ErrorMessage = "Company Name is Required")]
         public string Company { get; set; }
         public string Description { get; set; }
-        public Model.Common.IntegerNullString categorytype { get; set; } = new Model.Common.IntegerNullString();
+        public Model.Common.IntegerNullString categoryType { get; set; } = new Model.Common.IntegerNullString();
         public Model.Common.IntegerNullString type { get; set; } = new Model.Common.IntegerNullString();
     }
 }

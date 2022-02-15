@@ -30,6 +30,14 @@ namespace Inventory_Mangement_System
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(option =>
+            {
+                option.AddDefaultPolicy(builder => builder.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
+            });
+
+            ProductInventoryContext.ProductInventoryDataContext db 
+                = new ProductInventoryContext.ProductInventoryDataContext("Data Source=DESKTOP-ED3OOSD;Initial Catalog=Product Inventory;Integrated Security=False;Persist Security Info=True;User ID=SuperAdmin;Password=SuperAdmin;License Key=qHnH5wx/L422kFN4WQussVkqbelF0xGMaZi+DGL6lhFu+VTasW/ZRA22+dVoDbuQ64trDZsBMziLDE9kumHeTDKlcRSCvsotqn7rHn9VHFXS3Jmh/rFBVSxav6UlKmT4POdU+hnX8ACaigXhFdBiZ4NeHNVRNTqJ4fUTou0czKt8ATWxOB2MjUrprbYTV2ECFJOo2uLgwGzqeEpv1gGPLKR3p5DOKdeMu61FRAak23fmjt8PPQpz50o1E0r0FFdoQrJIYKkMxqRiD2IhVxlcVCvpIqR31rWwKJ1sNquGBMU=;");
+
             services.AddTransient <IAccountRepository,AccountRepository >();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
@@ -42,11 +50,7 @@ namespace Inventory_Mangement_System
 
             services.AddNgrok();
             services.AddControllers().AddNewtonsoftJson(); ;
-            services.AddCors(option =>
-            {
-                option.AddDefaultPolicy(builder => builder.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
-            });
-
+            
             services.AddAuthentication(option =>
             {
 

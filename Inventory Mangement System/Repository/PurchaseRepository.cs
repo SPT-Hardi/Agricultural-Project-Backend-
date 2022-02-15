@@ -19,7 +19,7 @@ namespace Inventory_Mangement_System.Repository
                         where x.ProductID == id
                         select new
                         {
-                            Unit = x.Unit,
+                            Unit = x.ProductUnit.Type,
                         }).ToList();
             }
         }
@@ -31,7 +31,7 @@ namespace Inventory_Mangement_System.Repository
                 purchaseDetail.ProductID = purchaseModel.productname.Id;
                 var funit = (from u in context.Products
                              where u.ProductID == purchaseModel.productname.Id
-                             select u.Unit).SingleOrDefault ();
+                             select u.ProductUnit.Type).SingleOrDefault ();
                 purchaseDetail.Unit = funit;
                 purchaseDetail.PurchaseDate = purchaseModel.Purchasedate.ToLocalTime();
                 purchaseDetail.TotalQuantity = purchaseModel.totalquantity;
@@ -41,7 +41,6 @@ namespace Inventory_Mangement_System.Repository
 
                 context.PurchaseDetails.InsertOnSubmit(purchaseDetail);
                 context.SubmitChanges();
-                //return "Product Purchase Successfully";
                 return new Result()
                 {
                     Message = string.Format($"{purchaseModel.productname.Text} Purchase successfully!"),
@@ -49,6 +48,39 @@ namespace Inventory_Mangement_System.Repository
                     Data = purchaseModel.productname.Text,
                 };
             }
+        }
+
+        public Result GetPurchaseDetails()
+        {
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                PurchaseDetail purchaseDetail = new PurchaseDetail();
+
+                return new Result()
+                {
+                    Status = Result.ResultStatus.success,
+                    Data = (from obj in context.PurchaseDetails
+                            join obj2 in context.Products
+                            on obj.ProductID equals obj2.ProductID into JoinTablePN
+                            from PN in JoinTablePN.DefaultIfEmpty()
+                            select new
+                            {
+                                PurchaseID = obj.PurchaseID,
+                                ProductName = PN.ProductName,
+                                TotalQuantiry = obj.TotalQuantity,
+                                TotalCost = obj.TotalCost,
+                                Unit = obj.Unit,
+                                Remark = obj.Remark,
+                                VendorName = obj.VendorName,
+                                PurchaseDate = obj.PurchaseDate,
+                                UserName = (from n in context.LoginDetails
+                                            where n.LoginID == obj.LoginID
+                                            select n.UserName).FirstOrDefault(),
+                                DateTime = String.Format("{0:dd-mm-yyyy hh:mm tt}", obj.DateTime),
+                            }).ToList(),
+                };
+            }
+
         }
     }
 }

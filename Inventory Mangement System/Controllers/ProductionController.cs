@@ -40,11 +40,11 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
-        [HttpPut("Editproduction/{id}")]
+        /*[HttpPut("Editproduction/{id}")]
         public async Task<IActionResult> EditProduction(ProductionModel productionModel, int id)
         {
             var result = _productionRepository.EditProduction(productionModel, id);
             return Ok(result);
-        }
+        }*/
     }
 }

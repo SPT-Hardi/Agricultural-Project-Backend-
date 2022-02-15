@@ -24,7 +24,7 @@ namespace Inventory_Mangement_System.Controllers
         [HttpGet("ViewAllIssue")]
         public async Task<IActionResult> ViewAllIssueAsync()
         {
-            var result = await _isueRepository.ViewAllIssue();
+            var result = _isueRepository.ViewAllIssue();
             return Ok(result);
         }
 

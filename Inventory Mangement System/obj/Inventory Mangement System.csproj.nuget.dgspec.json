@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\Inventory Mangement System.csproj": {}
+    "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\Inventory Mangement System.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\Inventory Mangement System.csproj": {
+    "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\Inventory Mangement System.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\Inventory Mangement System.csproj",
+        "projectUniqueName": "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\Inventory Mangement System.csproj",
         "projectName": "Inventory Mangement System",
-        "projectPath": "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\Inventory Mangement System.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\obj\\",
+        "projectPath": "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\Inventory Mangement System.csproj",
+        "packagesPath": "C:\\Users\\SMARTY\\.nuget\\packages\\",
+        "outputPath": "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "E:\\Visual Studio\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\SMARTY\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -46,7 +42,7 @@
           "dependencies": {
             "Devart.Data.SqlServer.Linq": {
               "target": "Package",
-              "version": "[4.9.2379, )"
+              "version": "[4.9.2403, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -119,7 +115,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

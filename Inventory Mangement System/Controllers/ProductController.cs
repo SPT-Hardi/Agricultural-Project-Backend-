@@ -27,7 +27,7 @@ namespace Inventory_Mangement_System.Controllers
         [HttpGet("ViewAllProduct")]
         public async Task<IActionResult> ViewAllProductAsync()
         {
-            var result = await _productRepository.ViewAllProduct();
+            var result =  _productRepository.ViewAllProduct();
             return Ok(result);
         }
 
@@ -45,7 +45,7 @@ namespace Inventory_Mangement_System.Controllers
         [HttpGet("ViewProductById/{productID}")]
         public async Task<IActionResult> ViewProductByIDAsync([FromRoute] int productID)
         {
-            var result = await _productRepository.ViewProductById(productID);
+            var result = _productRepository.ViewProductById(productID);
             return Ok(result);
         }
 

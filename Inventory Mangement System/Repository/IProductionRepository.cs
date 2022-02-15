@@ -8,8 +8,8 @@ namespace Inventory_Mangement_System.Repository
     public interface IProductionRepository
     {
         Result AddProductionDetails(ProductionModel value);
-        Task<IEnumerable> ViewAllProductionDetails();
+        Result ViewAllProductionDetails();
         Task<IEnumerable> ViewProductionById(int id);
-        Result EditProduction(ProductionModel productionModel, int id);
+        //Result EditProduction(ProductionModel productionModel, int id);
     }
 }

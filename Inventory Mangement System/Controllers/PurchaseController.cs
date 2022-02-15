@@ -35,5 +35,13 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
+        [HttpGet("getpurchaseproduct")]
+        public async Task<IActionResult> PurchaseDetailsGeted()
+        {
+            var result = _purchaseRepository.GetPurchaseDetails();
+
+            return Ok(result);
+        }
+
     }
 }

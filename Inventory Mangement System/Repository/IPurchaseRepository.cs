@@ -9,5 +9,7 @@ namespace Inventory_Mangement_System.Repository
     {
         Task<IEnumerable> GetunitByid(int id);
         Result AddPurchaseDetails(PurchaseModel purchaseModel);
+
+        Result GetPurchaseDetails();
     }
 }

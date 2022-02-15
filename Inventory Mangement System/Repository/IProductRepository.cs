@@ -9,13 +9,13 @@ namespace Inventory_Mangement_System.Repository
     public interface IProductRepository
     {
         //View All Product
-        Task<IEnumerable> ViewAllProduct();
+        Result ViewAllProduct();
 
         //Add Product
         Result AddProduct(ProductModel productModel);
 
         //View Product By Id
-        Task<IEnumerable> ViewProductById(int productID);
+        Result ViewProductById(int productID);
 
         //Edit Product Using Put Method
         Result EditProduct(ProductDetail productDetail, int productID);

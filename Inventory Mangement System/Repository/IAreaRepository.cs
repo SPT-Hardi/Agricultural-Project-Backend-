@@ -7,6 +7,7 @@ namespace Inventory_Mangement_System.Repository
 {
     public interface IAreaRepository
     {
+        Result ViewAllArea();
         //New Main Area Add
         Result AddMainAreaAsync(AreaModel AreaModel);
         Result GetMacAddress();

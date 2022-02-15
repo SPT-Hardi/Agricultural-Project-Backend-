@@ -33,7 +33,7 @@
     ".NETCoreApp,Version=v5.0": {
       "Inventory Mangement System/1.0.0": {
         "dependencies": {
-          "Devart.Data.SqlServer.Linq": "4.9.2379",
+          "Devart.Data.SqlServer.Linq": "4.9.2403",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.0",
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.0",
@@ -337,7 +337,7 @@
           "Inventory Mangement System.dll": {}
         }
       },
-      "Devart.Data.Linq/4.9.2379": {
+      "Devart.Data.Linq/4.9.2403": {
         "dependencies": {
           "Microsoft.Win32.Registry": "5.0.0",
           "System.Reflection.Emit": "4.3.0",
@@ -347,23 +347,23 @@
         },
         "runtime": {
           "lib/netstandard2.0/Devart.Data.Linq.dll": {
-            "assemblyVersion": "4.9.2379.0",
-            "fileVersion": "4.9.2379.0"
+            "assemblyVersion": "4.9.2403.0",
+            "fileVersion": "4.9.2403.0"
           }
         },
         "compile": {
           "lib/netstandard2.0/Devart.Data.Linq.dll": {}
         }
       },
-      "Devart.Data.SqlServer.Linq/4.9.2379": {
+      "Devart.Data.SqlServer.Linq/4.9.2403": {
         "dependencies": {
-          "Devart.Data.Linq": "4.9.2379",
+          "Devart.Data.Linq": "4.9.2403",
           "System.Data.SqlClient": "4.4.0"
         },
         "runtime": {
           "lib/netstandard2.0/Devart.Data.SqlServer.Linq.dll": {
-            "assemblyVersion": "4.9.2379.0",
-            "fileVersion": "4.9.2379.0"
+            "assemblyVersion": "4.9.2403.0",
+            "fileVersion": "4.9.2403.0"
           }
         },
         "compile": {
@@ -3386,19 +3386,19 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Devart.Data.Linq/4.9.2379": {
+    "Devart.Data.Linq/4.9.2403": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Wvw/DzHu8/elG62oScwBn16vPE7W7D4aYFzm1W82EbC+O8Pk94Uefi22WiXF5jfi/8aJRVf5ZxzPilV711J1Tw==",
-      "path": "devart.data.linq/4.9.2379",
-      "hashPath": "devart.data.linq.4.9.2379.nupkg.sha512"
+      "sha512": "sha512-lO5OmXnDpFdLDB6MPfhIL8tDb958ica3zv5BjpWXJKBJb2SNVAZ0c47yaLWToUbNvtBPoHGmIRu9Lk4M46clyA==",
+      "path": "devart.data.linq/4.9.2403",
+      "hashPath": "devart.data.linq.4.9.2403.nupkg.sha512"
     },
-    "Devart.Data.SqlServer.Linq/4.9.2379": {
+    "Devart.Data.SqlServer.Linq/4.9.2403": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-AQFDarifJF1mAJb+XdvPXnk/oXwc9zQSupQUs+UF8MzcW826QiHAbWp3UpDOiXye4CHGsgjd2tIJuK4kK46vnQ==",
-      "path": "devart.data.sqlserver.linq/4.9.2379",
-      "hashPath": "devart.data.sqlserver.linq.4.9.2379.nupkg.sha512"
+      "sha512": "sha512-fq+Kyn/C9OVnTKU2LdCTbR8cJrILgv71vgpSYKnzU42GyZrc5zwO/CTPX4S0LxmLSdC0LGCP6h8dyBCrcseePw==",
+      "path": "devart.data.sqlserver.linq/4.9.2403",
+      "hashPath": "devart.data.sqlserver.linq.4.9.2403.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",

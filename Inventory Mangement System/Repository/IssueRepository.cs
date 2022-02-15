@@ -21,26 +21,34 @@ namespace Inventory_Mangement_System.Repository
         //}
 
         //All Issue Details
-        public async Task<IEnumerable> ViewAllIssue()
+        public Result ViewAllIssue()
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
-                return (from i in context.Issues
-                        join p in context.Products
-                        on i.ProductID equals p.ProductID
-                        join m in context.MainAreas
-                        on i.MainAreaID equals m.MainAreaID
-                        join s in context.SubAreas
-                        on i.SubAreaID equals s.SubAreaID
-                        select new
-                        {
-                            IssueID = i.IssueID,
-                            Date = i.IssueDate,
-                            ProductName = p.ProductName,
-                            MainAreaName = m.MainAreaName,
-                            SubAreaName = s.SubAreaName,
-                            PurchaseQuantity = i.PurchaseQuantity
-                        }).ToList();
+                return new Result()
+                {
+                    Status = Result.ResultStatus.success,
+                    Data = (from i in context.Issues
+                            join p in context.Products
+                            on i.ProductID equals p.ProductID
+                            join m in context.MainAreas
+                            on i.MainAreaID equals m.MainAreaID
+                            join s in context.SubAreas
+                            on i.SubAreaID equals s.SubAreaID
+                            select new
+                            {
+                                IssueID = i.IssueID,
+                                Date = i.IssueDate,
+                                ProductName = p.ProductName,
+                                MainAreaName = m.MainAreaName,
+                                SubAreaName = s.SubAreaName,
+                                PurchaseQuantity = i.PurchaseQuantity,
+                                UserName = (from n in context.LoginDetails
+                                            where n.LoginID == i.LoginID
+                                            select n.UserName).FirstOrDefault(),
+                                DateTime = String.Format("{0:dd-mm-yyyy hh:mm tt}", i.DateTime),
+                            }).ToList(),
+                };
             }
         }
        /* //Issue Products
@@ -107,7 +115,7 @@ namespace Inventory_Mangement_System.Repository
                 Issue i = new Issue();
                 UserLoginDetails userLoginDetails = new UserLoginDetails();
                 var MacAddress = userLoginDetails.GetMacAddress().Result;
-                var LoginID = context.LoginDetails.FirstOrDefault(c => c.SystemMac == MacAddress);
+                var LoginID = context.LoginDetails.FirstOrDefault(c => c.SystemMAC == MacAddress);
                 var qs = (from obj in issueModel.issueDetails
                           select new Issue()
                           {
@@ -269,7 +277,7 @@ namespace Inventory_Mangement_System.Repository
                             Text = x.ProductName,
                             Id = x.ProductID,
                             Quantity=x.TotalProductQuantity,
-                            Unit=x.Unit
+                            Unit=x.ProductUnit.Type
                         }).ToList();
             }
         }
