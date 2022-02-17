@@ -40,5 +40,12 @@ namespace Inventory_Mangement_System.Controllers
             var result = _areaRepository.GetMacAddress();
             return Ok(result);
         }
+
+        [HttpPut("EditArea/{mid}/{sid}")]
+        public async Task<IActionResult> EditAreaAsync(UpdateAreaModel value, int mid, int sid)
+        {
+            var result = _areaRepository.EditArea(value, mid,sid);
+            return Ok(result);
+        }
     }
 }

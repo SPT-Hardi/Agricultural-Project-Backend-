@@ -24,7 +24,9 @@ namespace Inventory_Mangement_System.Repository
                           on s.MainAreaID equals m.MainAreaID
                           select new
                           {
+                              MainAreaID=m.MainAreaID,
                               MainAreaName=m.MainAreaName,
+                              SubAreaID=s.SubAreaID,
                               SubAreaName=s.SubAreaName,
                               UserName=(from u in context.LoginDetails
                                         where u.LoginID==s.LoginID
@@ -59,10 +61,13 @@ namespace Inventory_Mangement_System.Repository
                         throw new ArgumentException($"MainAreaName {item.MainAreaname} already Exist");
                     }
                 }
+
                 var mainarea = (from m in areaModel.arealist
                                 select new MainArea()
                                 {
-                                    MainAreaName = m.mname
+                                    MainAreaName = m.mname,
+                                    LoginID = 1,//macAddress.LoginID,
+                                    DateTime = DateTime.Now
                                 }).ToList();
                 context.MainAreas.InsertAllOnSubmit(mainarea);
                 context.SubmitChanges();
@@ -73,6 +78,7 @@ namespace Inventory_Mangement_System.Repository
                                      MainAreaID = m.MainAreaID,
                                      MainAreaname = m.MainAreaName
                                  }).ToList();
+
                 foreach (var item in mainarea2)
                 {
                     var SD1 = (from m in areaModel.arealist
@@ -81,7 +87,9 @@ namespace Inventory_Mangement_System.Repository
                                select new SubArea()
                                {
                                    MainAreaID = item.MainAreaID,
-                                   SubAreaName = y.sname
+                                   SubAreaName = y.sname,
+                                   LoginID = 1,//macAddress.LoginID,
+                                   DateTime = DateTime.Now
                                }).ToList();
                     context.SubAreas.InsertAllOnSubmit(SD1);
                     context.SubmitChanges();
@@ -143,6 +151,64 @@ namespace Inventory_Mangement_System.Repository
 
             }
         }
+
+        public Result EditArea(UpdateAreaModel value, int mid, int sid)
+        {
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                var m = (from x in context.MainAreas where x.MainAreaID == mid select x).FirstOrDefault();
+
+                if (m is null)
+                {
+                    throw new ArgumentException("MainArea doesn't exist");
+                }
+
+                var s = (from x in context.SubAreas where x.SubAreaID == sid select x).FirstOrDefault();
+
+                if (s is null)
+                {
+                    throw new ArgumentException("SubArea doesn't exist");
+                }
+                var checkMainArea = (from x in context.MainAreas where x.MainAreaName == value.MainAreaName select x).ToList();
+
+                if (m.MainAreaName != value.MainAreaName)
+                {
+                    var _m = context.MainAreas.SingleOrDefault(x => x.MainAreaName == value.MainAreaName);
+                    if (_m != null)
+                    {
+                        throw new ArgumentException("MainArea already Exist");
+                    }
+                    else
+                    {
+                        m.MainAreaName = value.MainAreaName;
+                        m.DateTime = DateTime.Now;
+                        s.SubAreaName = value.SubAreaName;
+                        s.DateTime = DateTime.Now;
+                        context.SubmitChanges();
+                    }
+                }
+                else
+                {
+                    var checkSubArea = (from x in context.SubAreas where x.SubAreaName == value.SubAreaName && x.MainAreaID == mid select x).ToList();
+                    if (checkSubArea.Any())
+                    {
+                        throw new ArgumentException("SubArea already exist");
+                    }
+                    m.MainAreaName = value.MainAreaName;
+                    m.DateTime = DateTime.Now;
+                    s.SubAreaName = value.SubAreaName;
+                    s.DateTime = DateTime.Now;
+                    context.SubmitChanges();
+                }
+                return new Result()
+                {
+                    Message = string.Format($"Area Updated Successfully."),
+                    Status = Result.ResultStatus.success,
+                };
+            }
+        }
+
+
         public Result GetMacAddress()
         {
             ManagementClass mc = new ManagementClass("Win32_NetworkAdapterConfiguration");

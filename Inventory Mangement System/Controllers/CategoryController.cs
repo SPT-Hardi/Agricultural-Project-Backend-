@@ -1,4 +1,5 @@
 ﻿using Inventory_Mangement_System.Model;
+using Inventory_Mangement_System.Model.Common;
 using Inventory_Mangement_System.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -31,7 +32,7 @@ namespace Inventory_Mangement_System.Controllers
             var result = await _categoryRepository.GetCategory();
             return Ok(result);
         }
-        
+
         [HttpGet("viewCategory")]
         public async Task<IActionResult> CategoryView()
         {
@@ -39,14 +40,16 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
-        [HttpGet("viewCategoryById/{id}")]
-        public async Task<IActionResult> CategoryViewById(int id)
+        [HttpGet("viewCategorys")]
+        public async Task<IActionResult> CategoryViews([FromQuery] Paging value)
         {
-            var result = await _categoryRepository.ViewCategoryById(id);
+            var result = _categoryRepository.ViewCategorys(value);
             return Ok(result);
         }
 
-        [HttpPut("editCategory/{id}")]
+        
+
+        [HttpPut("EditCategory/{id}")]
         public async Task<IActionResult> CategoryEdit(CategoryModel categoryModel, int id)
         {
             var result = _categoryRepository.EditCategory(categoryModel, id);

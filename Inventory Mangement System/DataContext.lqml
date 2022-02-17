@@ -81,7 +81,7 @@
       <Column Name="Description" Type="System.String" DbType="VARCHAR(300)" CanBeNull="true" UpdateCheck="Never" MaxLength="300" ed:ValidateMaxLength="300" ed:ValidateRequired="false" ed:Guid="1c8367db-62ce-43f4-bfd2-1ffc0e31ef3f" />
       <Column Name="UnitID" Type="System.Int32" DbType="INT" CanBeNull="true" UpdateCheck="Never" Precision="10" ed:ValidateRequired="false" ed:Guid="f265b0ee-7262-43b9-b737-fd6f1749def0" />
       <Column Name="CategoryID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="5b1dc02b-87a7-4d03-8bf4-64ee04b4e7eb" />
-      <Column Name="TotalProductQuantity" Type="System.Double" DbType="FLOAT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="53" ed:ValidateRequired="true" ed:Guid="555ee349-a910-44f2-8c4f-51725e6bb444" />
+      <Column Name="TotalProductQuantity" Type="System.Double" DbType="FLOAT" CanBeNull="true" UpdateCheck="Never" Precision="53" ed:ValidateRequired="false" ed:Guid="555ee349-a910-44f2-8c4f-51725e6bb444" />
       <Column Name="LoginID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="23d8f80c-79cb-4d5e-8e24-9e667663b5a2" />
       <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="9918e483-f452-4cc3-8e9f-2ecb0bdeaa7e" />
       <Association Name="Category_Product" ed:AssociationGuid="cc5ad639-c1a9-4f08-9699-107da62f0f43" Member="Category" ed:Guid="36fb4f93-024a-4f5c-923a-741b91b40e1f" ThisKey="CategoryID" OtherKey="CategoryID" Type="Category" DeleteRule="NO ACTION" IsForeignKey="true" />

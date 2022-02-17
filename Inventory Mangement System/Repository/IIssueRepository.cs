@@ -15,7 +15,7 @@ namespace Inventory_Mangement_System.Repository
 
         //Issue Detail By Id
         Task<IEnumerable> ViewIssueById(int issueID);
-        
+        Result EditIssue(IssueModel issueModel, int ID);
         Task<IEnumerable> GetMainArea();
         Task<IEnumerable> GetSubArea(int id);
         Task<IEnumerable> GetProduct();

@@ -11,5 +11,6 @@ namespace Inventory_Mangement_System.Repository
         //New Main Area Add
         Result AddMainAreaAsync(AreaModel AreaModel);
         Result GetMacAddress();
+        Result EditArea(UpdateAreaModel value, int mid, int sid);
     }
 }

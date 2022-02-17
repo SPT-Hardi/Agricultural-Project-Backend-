@@ -30,7 +30,7 @@ namespace Inventory_Mangement_System.Controllers
 
         //Issue Products
         [HttpPost("IssueProduct")]
-        public async Task<IActionResult> IssueProductDetails(IssueModel issueModel)
+        public async Task<IActionResult> IssueProductDetails([FromBody]IssueModel issueModel)
         {
             var result = _isueRepository.IssueProduct(issueModel);
             return Ok(result);
@@ -43,7 +43,13 @@ namespace Inventory_Mangement_System.Controllers
             var result = await _isueRepository.ViewIssueById(issueID);
             return Ok(result);
         }
-
+        
+        [HttpPut("EditIssue/{ID}")]
+        public async Task<IActionResult> EditIssueAsync([FromBody] IssueModel issueModel,[FromRoute] int ID)
+        {
+            var result =  _isueRepository.EditIssue(issueModel,ID);
+            return Ok(result);
+        }
         [HttpGet("getmainarea")]
         public async Task<IActionResult> MainAreaGet()
         {

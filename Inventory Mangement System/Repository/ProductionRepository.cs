@@ -131,14 +131,15 @@ namespace Inventory_Mangement_System.Repository
                             select new
                             {
                                 ProductionID = pd.ProductionID,
-                                MainAreaName = MA.MainAreaName,
-                                SubAreaName = SA.SubAreaName,
-                                VegetableName = VN.VegetableName,
-                                QuantityOfVegetable = pd.Quantity,
+                                MainAreaDetails = new Model.Common.IntegerNullString() { Id = pd.MainArea.MainAreaID, Text = pd.MainArea.MainAreaName },
+                                SubAreaDetails = new Model.Common.IntegerNullString() { Id = pd.SubArea.SubAreaID, Text = pd.SubArea.SubAreaName },
+                                Vegetablenm = VN.VegetableName,
+                                Quantity = pd.Quantity,
+                                Remark=pd.Remark,
                                 UserName = (from n in context.LoginDetails
                                             where n.LoginID == pd.LoginID
                                             select n.UserName).FirstOrDefault(),
-                                DateTime = String.Format("{0:dd-mm-yyyy hh:mm tt}", pd.DateTime),
+                                DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", pd.DateTime),
                             }).ToList()
                 };
             }
@@ -170,6 +171,45 @@ namespace Inventory_Mangement_System.Repository
             }
         }
 
+        public Result Editproduction(ProductionModel productionModel, int id)
+        {
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                ProductionDetail productionDetail = new ProductionDetail();
+                var pro = context.ProductionDetails.SingleOrDefault(x => x.ProductionID == id);
+                var v = (from x in context.Vegetables
+                         where x.VegetableName.ToLower() == productionModel.Vegetablenm.ToLower()
+                         select x).FirstOrDefault();
+                if (v == null)
+                {
+                    v = new Vegetable()
+                    {
+                        VegetableName = productionModel.Vegetablenm
+                    };
+                    context.Vegetables.InsertOnSubmit(v);
+                    context.SubmitChanges();
+                }
+                int vg = (from obj in context.Vegetables
+                          where obj.VegetableName == productionModel.Vegetablenm
+                          select obj.VegetableID).SingleOrDefault();
+
+                pro.MainAreaID = productionModel.MainAreaDetails.Id;
+                pro.SubAreaID = productionModel.SubAreaDetails.Id;
+                pro.VegetableID = vg;
+                pro.Quantity = productionModel.Quantity;
+                pro.DateTime = DateTime.Now;
+                pro.LoginID = 1;
+                pro.Remark = productionModel.Remark;
+                context.SubmitChanges();
+                return new Result()
+                {
+                    Message = string.Format($"{productionModel.Vegetablenm} Production details Added Successfully."),
+                    Status = Result.ResultStatus.success,
+                    Data = productionModel.Vegetablenm,
+                };
+            }
+        }
+        
        /* public Result EditProduction(ProductionModel productionModel, int id)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
@@ -221,6 +261,6 @@ namespace Inventory_Mangement_System.Repository
                 };
             }
         }*/
-        
+
     }
 }

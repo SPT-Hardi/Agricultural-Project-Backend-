@@ -109,7 +109,7 @@ namespace Inventory_Mangement_System
             app.UseMiddleware<JwtHandler>();
 
             // System Mac
-            //app.UseMiddleware<UserLoginDetails>();
+            //app.UseMiddleware<PasswordHasher>();
 
 
             app.UseEndpoints(endpoints =>

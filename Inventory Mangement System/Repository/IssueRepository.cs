@@ -28,25 +28,20 @@ namespace Inventory_Mangement_System.Repository
                 return new Result()
                 {
                     Status = Result.ResultStatus.success,
-                    Data = (from i in context.Issues
-                            join p in context.Products
-                            on i.ProductID equals p.ProductID
-                            join m in context.MainAreas
-                            on i.MainAreaID equals m.MainAreaID
-                            join s in context.SubAreas
-                            on i.SubAreaID equals s.SubAreaID
+                    Data = (from obj in context.Issues
                             select new
                             {
-                                IssueID = i.IssueID,
-                                Date = i.IssueDate,
-                                ProductName = p.ProductName,
-                                MainAreaName = m.MainAreaName,
-                                SubAreaName = s.SubAreaName,
-                                PurchaseQuantity = i.PurchaseQuantity,
+                                IssueID = obj.IssueID,
+                                Date = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.IssueDate),
+                                Product = new IntegerNullString() { Id = obj.Product.ProductID, Text = obj.Product.ProductName },
+                                MainArea = new IntegerNullString() { Id = obj.MainArea.MainAreaID, Text = obj.MainArea.MainAreaName },
+                                SubArea = new IntegerNullString() { Id = obj.SubArea.SubAreaID, Text = obj.SubArea.SubAreaName },
+                                IssueQuantity = obj.PurchaseQuantity,
+                                Remark=obj.Remark,
                                 UserName = (from n in context.LoginDetails
-                                            where n.LoginID == i.LoginID
+                                            where n.LoginID == obj.LoginID
                                             select n.UserName).FirstOrDefault(),
-                                DateTime = String.Format("{0:dd-mm-yyyy hh:mm tt}", i.DateTime),
+                                DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.DateTime),
                             }).ToList(),
                 };
             }
@@ -165,47 +160,127 @@ namespace Inventory_Mangement_System.Repository
             }
         }
 
-        public Result EditIssue(IssueModel issueModel,int id)
+        public Result EditIssue(IssueModel issueModel, int ID)
         {
-            using(ProductInventoryDataContext context=new ProductInventoryDataContext())
+            float RemainQuantity = 0;
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
-                var _p = (from obj in issueModel.issueDetails
-                          select new Issue()
-                          {
-                              ProductID = obj.Product.Id,
-                              MainAreaID = issueModel.MainArea.Id,
-                              SubAreaID = issueModel.SubArea.Id,
-                              Remark = obj.Remark,
-                              IssueDate = issueModel.Date.ToLocalTime(),
-                              //LoginID = LoginID.LoginID,
-                              DateTime = DateTime.Now,
-                              PurchaseQuantity = obj.IssueQuantity
-                          });
-                var product = (from p in context.Products
-                               select new { 
-                                   p.ProductName,
-                                   p.TotalProductQuantity
-                               }).FirstOrDefault();
+                //var MacAddress = context.LoginDetails.FirstOrDefault(c => c.SystemMac == macObj);
+                var qs = (
+                         from obj in context.Issues
+                         where obj.IssueID == ID
+                         select obj).SingleOrDefault();
+                var p = (from obj in issueModel.issueDetails
+                         select obj).SingleOrDefault();
+                var pd = (from obj in context.Products
+                          where obj.ProductID == qs.ProductID
+                          select obj).SingleOrDefault();
+                var ps = (from obj in context.Products
+                          where obj.ProductID == p.Product.Id
+                          select obj).SingleOrDefault();
+                var pid = (from obj in context.Issues
+                           where obj.SubAreaID == issueModel.SubArea.Id
+                           select new
+                           {
+                               ProductID = obj.ProductID
+                           }).ToList();
 
-                var _product = (from obj in issueModel.issueDetails
-                                select obj).FirstOrDefault();
 
-                if (product ==null)
+                if (qs.SubAreaID == issueModel.SubArea.Id)
                 {
-                    throw new ArgumentException("Product Is Not Exist.");
+                    if (qs.ProductID == p.Product.Id)
+                    {
+                        var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
+                        RemainQuantity = (float)temp - p.IssueQuantity;
+                        qs.IssueDate= issueModel.Date.ToLocalTime();
+                        qs.DateTime = DateTime.Now;
+                        qs.ProductID = p.Product.Id;
+                        qs.MainAreaID = issueModel.MainArea.Id;
+                        qs.SubAreaID = issueModel.SubArea.Id;
+                        qs.LoginID = 1;//MacAddress.LoginID;
+                        qs.Remark = p.Remark;
+                        qs.PurchaseQuantity = p.IssueQuantity;
+
+                        ps.TotalProductQuantity = RemainQuantity;
+                        context.SubmitChanges();
+                        return new Result()
+                        {
+                            Status = Result.ResultStatus.success,
+                            Message = "Issue Update Successfully",
+                            Data = $"Issue ID : {ID} updated successfully",
+                        };
+                    }
+                    else
+                    {
+                        foreach (var item in pid)
+                        {
+                            if (p.Product.Id == item.ProductID)
+                            {
+                                throw new Exception($"Entered Product : {item.ProductID} already issued for given sub" +
+                                    $" area : {issueModel.SubArea.Text}");
+
+                            }
+                        }
+                        var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
+                        qs.IssueDate = issueModel.Date.ToLocalTime();
+                        qs.DateTime = DateTime.Now;
+                        qs.ProductID = p.Product.Id;
+                        qs.MainAreaID = issueModel.MainArea.Id;
+                        qs.SubAreaID = issueModel.SubArea.Id;
+                        qs.LoginID = 1;//MacAddress.LoginID;
+                        qs.Remark = p.Remark;
+                        qs.PurchaseQuantity = p.IssueQuantity;
+                        RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity;
+                        ps.TotalProductQuantity = RemainQuantity;
+                        pd.TotalProductQuantity = temp;
+                        context.SubmitChanges();
+                        return new Result()
+                        {
+                            Status = Result.ResultStatus.success,
+                            Message = "Issue Update Successfully",
+                            Data = $"Issue ID : {ID} updated successfully",
+                        };
+                    }
+
+
+
                 }
-                if (product.TotalProductQuantity<_product.IssueQuantity)
+                else
                 {
-                    throw new ArgumentException($"{product.ProductName} Enter quantity {_product.IssueQuantity} more than existing quantity {product.TotalProductQuantity}");
+                    foreach (var item in pid)
+                    {
+                        if (p.Product.Id == item.ProductID)
+                        {
+                            throw new Exception($"Entered Product : {item.ProductID} already issued for given sub" +
+                                $" area : {issueModel.SubArea.Text}");
+
+                        }
+                    }
+                    var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
+                    pd.TotalProductQuantity = temp;
+                    qs.IssueDate= issueModel.Date.ToLocalTime();
+                    qs.DateTime = DateTime.Now;
+                    qs.ProductID = p.Product.Id;
+                    qs.MainAreaID = issueModel.MainArea.Id;
+                    qs.SubAreaID = issueModel.SubArea.Id;
+                    qs.LoginID = 1;// MacAddress.LoginID;
+                    qs.Remark = p.Remark;
+                    qs.PurchaseQuantity = p.IssueQuantity;
+                    RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity;
+                    ps.TotalProductQuantity = RemainQuantity;
+                    context.SubmitChanges();
+                    return new Result()
+                    {
+                        Status = Result.ResultStatus.success,
+                        Message = "Issue Update Successfully",
+                        Data = $"Issue ID : {ID} updated successfully",
+                    };
+
                 }
-                context.SubmitChanges();
-                return new Result()
-                {
-                    Message = string.Format($" Issue successfully!"),
-                    Status = Result.ResultStatus.success,
-                };
+                
             }
         }
+
         //Issue Detail By Id
         public async Task<IEnumerable> ViewIssueById(int issueID)
         {
@@ -361,3 +436,41 @@ namespace Inventory_Mangement_System.Repository
         }*/
     }
 }
+/*using(ProductInventoryDataContext context=new ProductInventoryDataContext())
+                {
+                    var _p = (from obj in issueModel.issueDetails
+                              select new Issue()
+                              {
+                                  ProductID = obj.Product.Id,
+                                  MainAreaID = issueModel.MainArea.Id,
+                                  SubAreaID = issueModel.SubArea.Id,
+                                  Remark = obj.Remark,
+                                  IssueDate = issueModel.Date.ToLocalTime(),
+                                  LoginID = 1,
+                                  DateTime = DateTime.Now,
+                                  PurchaseQuantity = obj.IssueQuantity
+                              });
+                    var product = (from p in context.Products
+                                   select new { 
+                                       p.ProductName,
+                                       p.TotalProductQuantity
+                                   }).FirstOrDefault();
+
+                    var _product = (from obj in issueModel.issueDetails
+                                    select obj).FirstOrDefault();
+
+                    if (product ==null)
+                    {
+                        throw new ArgumentException("Product Is Not Exist.");
+                    }
+                    if (product.TotalProductQuantity<_product.IssueQuantity)
+                    {
+                        throw new ArgumentException($"{product.ProductName} Enter quantity {_product.IssueQuantity} more than existing quantity {product.TotalProductQuantity}");
+                    }
+                    context.SubmitChanges();
+                    return new Result()
+                    {
+                        Message = string.Format($" Issue successfully!"),
+                        Status = Result.ResultStatus.success,
+                    };
+                }*/

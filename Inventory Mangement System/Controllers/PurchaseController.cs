@@ -42,6 +42,13 @@ namespace Inventory_Mangement_System.Controllers
 
             return Ok(result);
         }
+        
+        [HttpPut("EditPurchaseProduct/{ID}")]
+        public async Task<IActionResult> EditPurchaseProduct(PurchaseModel purchaseModel,int ID)
+        {
+            var result = _purchaseRepository.EditPurchaseProduct(purchaseModel,ID);
 
+            return Ok(result);
+        }
     }
 }

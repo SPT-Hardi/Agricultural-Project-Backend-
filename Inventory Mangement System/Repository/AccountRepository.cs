@@ -19,8 +19,8 @@ namespace Inventory_Mangement_System.Repository
     {
         private readonly IConfiguration _configuration;
         private readonly ITokenService _tokenService;
-
-        public AccountRepository (IConfiguration configuration,ITokenService tokenService )
+        Middleware.PasswordHasher passwordHasher = new PasswordHasher();
+        public AccountRepository (IConfiguration configuration,ITokenService tokenService)
         {
             _configuration = configuration;
             _tokenService = tokenService;
@@ -96,7 +96,7 @@ namespace Inventory_Mangement_System.Repository
             else
             {
                 user.UserName = userModel.UserName;
-                user.Password = userModel.Password;
+                user.Password = passwordHasher.EncryptPassword(userModel.Password);
                 user.RoleID = 2;
                 user.EmailAddress = userModel.EmailAddress;
                 user.SystemMAC= "18:C0:4D:D4:D4:A7";
@@ -148,7 +148,7 @@ namespace Inventory_Mangement_System.Repository
             var UserMacAddress = login.GetMacAddress().Result;
 
             var res = (from u1 in context.Users
-                       where u1.EmailAddress  == loginModel.EmailAddress  && u1.Password == loginModel.Password
+                       where u1.EmailAddress  == loginModel.EmailAddress  && u1.Password == loginModel.Password /*PasswordHasher.DecryptPassword(loginModel.Password)*/
                        select new
                        {
                            UserName = u1.UserName,

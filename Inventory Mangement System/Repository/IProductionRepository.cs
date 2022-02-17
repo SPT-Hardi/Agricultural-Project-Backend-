@@ -10,6 +10,6 @@ namespace Inventory_Mangement_System.Repository
         Result AddProductionDetails(ProductionModel value);
         Result ViewAllProductionDetails();
         Task<IEnumerable> ViewProductionById(int id);
-        //Result EditProduction(ProductionModel productionModel, int id);
+        Result Editproduction(ProductionModel productionModel, int id);
     }
 }

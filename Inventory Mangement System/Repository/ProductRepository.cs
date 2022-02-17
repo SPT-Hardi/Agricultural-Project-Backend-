@@ -33,7 +33,7 @@ namespace Inventory_Mangement_System.Repository
                                 UserName=(from n in context.LoginDetails
                                           where n.LoginID== x.LoginID
                                           select n.UserName).FirstOrDefault(),
-                                DateTime = String.Format("{0:dd-mm-yyyy hh:mm tt}", x.DateTime),
+                                DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", x.DateTime),
                             }).ToList(),
                 };
             }
@@ -161,6 +161,8 @@ namespace Inventory_Mangement_System.Repository
                 product.Company = productDetail.Company;
                 product.Description = productDetail.Description;
                 product.CategoryID = (int)productDetail.categoryType.Id;
+                product.LoginID = 1;
+                product.DateTime = DateTime.Now;
                 product.UnitID = (int)productDetail.type.Id;
                 context.SubmitChanges();
                 return new Result()
