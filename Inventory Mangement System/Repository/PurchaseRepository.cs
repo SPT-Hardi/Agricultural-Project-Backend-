@@ -56,7 +56,7 @@ namespace Inventory_Mangement_System.Repository
                                         Unit = (from u in context.Products
                                                 where u.ProductID == obj.productname.Id
                                                 select u.Unit).SingleOrDefault(),
-                                        PurchaseDate = obj.Purchasedate.ToLocalTime(),
+                                        PurchaseDate =obj.Purchasedate.ToLocalTime(),
                                         TotalQuantity = obj.totalquantity,
                                         TotalCost = obj.totalcost,
                                         Remark = obj.remarks,

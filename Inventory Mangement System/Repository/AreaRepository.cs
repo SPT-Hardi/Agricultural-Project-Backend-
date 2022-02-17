@@ -111,5 +111,61 @@ namespace Inventory_Mangement_System.Repository
                 //}; 
             }
         }
+
+        public Result EditAreaAsync(UpdateAreaModel value, int mid, int sid)
+        {
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                var m = (from x in context.MainAreas where x.MainAreaID == mid select x).FirstOrDefault();
+
+                if(m is null)
+                {
+                    throw new ArgumentException("MainArea doesn't exist");
+                }
+
+                var s = (from x in context.SubAreas where x.SubAreaID == sid select x).FirstOrDefault();
+
+                if (s is null)
+                {
+                    throw new ArgumentException("SubArea doesn't exist");
+                }
+                var checkMainArea = (from x in context.MainAreas where x.MainAreaName == value.MainAreaName select x).ToList();
+
+                if(m.MainAreaName  != value.MainAreaName)
+                {
+                    var _m = context.MainAreas.SingleOrDefault(x => x.MainAreaName == value.MainAreaName);
+                    if (_m != null)
+                    {
+                        throw new ArgumentException("MainArea already Exist");
+                    }
+                    else
+                    {
+                        m.MainAreaName = value.MainAreaName;
+                        m.DateTime = DateTime.Now;
+                        s.SubAreaName = value.SubAreaName;
+                        s.DateTime = DateTime.Now;
+                        context.SubmitChanges();
+                    }
+                }
+                else
+                {
+                    var checkSubArea = (from x in context.SubAreas where x.SubAreaName == value.SubAreaName && x.MainAreaID == mid select x).ToList();
+                    if (checkSubArea.Any())
+                    {
+                        throw new ArgumentException("SubArea already exist");
+                    }
+                    m.MainAreaName = value.MainAreaName;
+                    m.DateTime = DateTime.Now;
+                    s.SubAreaName = value.SubAreaName;
+                    s.DateTime = DateTime.Now;
+                    context.SubmitChanges();
+                }
+                return new Result()
+                {
+                    Message = string.Format($"Area Updated Successfully."),
+                    Status = Result.ResultStatus.success,
+                };
+            }
+        }
     }
 }

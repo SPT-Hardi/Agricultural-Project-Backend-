@@ -183,7 +183,7 @@ namespace Inventory_Mangement_System.Repository
                 RefreshToken refreshToken1 = new RefreshToken();
                 refreshToken1.RToken = refreshToken;
                 context.RefreshTokens.InsertOnSubmit(refreshToken1);
-                context.SubmitChanges();
+                context.SubmitChanges(); 
 
                 UserRefreshToken userRefreshToken = new UserRefreshToken();
                 userRefreshToken.UserID = res.UserID;
@@ -198,7 +198,7 @@ namespace Inventory_Mangement_System.Repository
                 LoginDetail l = new LoginDetail();
 
                 var mac = (from obj in context.LoginDetails
-                           where obj.SystemMac == UserMacAddress
+                           where obj.SystemMAC == UserMacAddress
                            select obj).ToList();
                 //if (mac.Count() > 0)
                 //{
@@ -208,11 +208,11 @@ namespace Inventory_Mangement_System.Repository
                 //}
                 //else
                 //{
-                    l.UserName = qs;
-                    l.SystemMac = UserMacAddress;
-                    l.DateTime = DateTime.Now;
-                    context.LoginDetails.InsertOnSubmit(l);
-                    context.SubmitChanges();
+                l.UserName = qs;
+                l.SystemMAC = UserMacAddress;
+                l.DateTime = DateTime.Now;
+                context.LoginDetails.InsertOnSubmit(l);
+                context.SubmitChanges();
                 //}
 
                 return new Result()

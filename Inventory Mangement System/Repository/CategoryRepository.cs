@@ -22,8 +22,10 @@ namespace Inventory_Mangement_System.Repository
             }
             else
             {
-                category.CategoryName = categoryModel.CategoryName;
+                category.CategoryName = (categoryModel.CategoryName[0] + categoryModel.CategoryName.Substring(1));
                 category.Description = categoryModel.Description;
+                category.LoginID = 1;
+                category.DateTime = DateTime.Now;
                 context.Categories.InsertOnSubmit(category);
                 context.SubmitChanges();
                 return new Result()
@@ -56,8 +58,12 @@ namespace Inventory_Mangement_System.Repository
                         select new 
                         {
                             CategoryID = x.CategoryID ,
-                            CategoryName = x.CategoryName ,
-                            Description = x.Description 
+                            CategoryName = x.CategoryName,//string.Format(char.ToUpper(x.CategoryName[0]) + x.CategoryName.Substring(1)),
+                            Description = x.Description,
+                            DateTime = x.DateTime ,
+                            UserName = (from y in context.LoginDetails
+                                        where y.LoginID == x.LoginID 
+                                        select y.UserName).SingleOrDefault(),
                         }).ToList();
             }
         }
@@ -97,6 +103,8 @@ namespace Inventory_Mangement_System.Repository
                 
                 ck.CategoryName = categoryModel.CategoryName;
                 ck.Description = categoryModel.Description;
+                ck.LoginID = 1;
+                ck.DateTime = DateTime.Now;
                 context.SubmitChanges();
                 return new Result()
                 {

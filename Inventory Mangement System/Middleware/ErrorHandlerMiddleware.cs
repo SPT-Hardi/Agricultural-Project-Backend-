@@ -23,54 +23,47 @@ namespace Inventory_Mangement_System.Middleware
             Result result = new Result();
             try
             {
-               await _next(context);
+                await _next(context);
             }
-            catch (ArgumentException e)
+            catch (Exception error)
             {
-                    var response = context.Response;
-                    response.ContentType = "application/json";
-                    response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    result = new Result()
-                    {
-                        Message = e.Message,
-                        Status = Result.ResultStatus.warning,
-                    };
-            }
-            catch (MethodAccessException e)
-            {
-                    var response = context.Response;
-                    response.ContentType = "application/json";
-                    response.StatusCode = (int)HttpStatusCode.NotModified;
-                    result = new Result()
-                    {
-                        Message = e.Message,
-                        Status = Result.ResultStatus.warning,
-                    };
-            }
-            catch (UnauthorizedAccessException e)
-            {
-                    var response = context.Response;
-                    response.ContentType = "application/json";
-                    response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    result = new Result()
-                    {
-                        Message = e.Message,
-                        Status = Result.ResultStatus.warning,
-                    };
-            }
-            catch (Exception e)
-            {
-                    var response = context.Response;
-                    response.ContentType = "application/json";
-                    response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    result = new Result()
-                    {
-                        Message = e.Message,
-                        Status = Result.ResultStatus.warning,
-                    };
-            }
-            finally
-            {
+                var response = context.Response;
+                response.ContentType = "application/json";
+                switch (error)
+                {
+                    case ArgumentException e:
+                        response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        result = new Result()
+                        {
+                            Message = e.Message,
+                            Status = Result.ResultStatus.warning,
+                        };
+                        break;
+                    case MethodAccessException e:
+                        response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        result = new Result()
+                        {
+                            Message = e.Message,
+                            Status = Result.ResultStatus.warning,
+                        };
+                        break;
+                    case UnauthorizedAccessException e:
+                        response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        result = new Result()
+                        {
+                            Message = e.Message,
+                            Status = Result.ResultStatus.warning,
+                        };
+                        break;
+                    default:
+                        response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        result = new Result()
+                        {
+                            Message = "Something went wrong",
+                            Status = Result.ResultStatus.warning,
+                        };
+                        break;
+                }
                 var errorJson = JsonConvert.SerializeObject(result);
                 await context.Response.WriteAsync(errorJson);
             }

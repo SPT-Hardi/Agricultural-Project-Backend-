@@ -9,5 +9,6 @@ namespace Inventory_Mangement_System.Repository
     {
         //New Main Area Add
         Result AddMainAreaAsync(AreaModel mainAreaModel);
+        Result EditAreaAsync(UpdateAreaModel areaModel, int mid, int sid);
     }
 }

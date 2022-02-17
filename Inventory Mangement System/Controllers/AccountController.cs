@@ -58,9 +58,13 @@ namespace Inventory_Mangement_System.Controllers
         [HttpGet("gettoken")]
         public ActionResult<string> GetToken()
         {
-            string rname = (string)HttpContext.Items["Rolename"];//context.Items["Rolename"] = RName;
-            int uid = (int)HttpContext.Items["UserId"];
-            return Ok(rname);
+            string  sname = "kokila";
+            var nm = char.ToUpper(sname[0]) + sname.Substring(1);
+            return Ok(nm);
+            //DateTime date = Convert.ToDateTime(string.Format("{0 DD/MM/YY hh:mm tt}", DateTime.Now));
+            //string rname = (string)HttpContext.Items["Rolename"];//context.Items["Rolename"] = RName;
+            //int uid = (int)HttpContext.Items["UserId"];
+            //return Ok(rname);
             //var isClaim = User.Claims.FirstOrDefault(x => x.Type.ToString().Equals(Claimstype.StringComparison.InvariantCultureIgnoreCase));
             //if (isClaim != null)
             //{

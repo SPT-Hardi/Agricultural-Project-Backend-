@@ -39,7 +39,7 @@ namespace Inventory_Mangement_System.Repository
                         context.SubmitChanges();
                     }
 
-                    var mac = context.LoginDetails.FirstOrDefault(c => c.SystemMac == UserMACAddress);
+                    var mac = context.LoginDetails.FirstOrDefault(c => c.SystemMAC == UserMACAddress);
                     var pd = (from obj in pm.ProductionLists
                               select obj).ToList();
 
@@ -152,7 +152,7 @@ namespace Inventory_Mangement_System.Repository
                 UserLoginDetails login = new UserLoginDetails();
                 ProductionDetail productionDetail = new ProductionDetail();
                 var UserMACAddress = login.GetMacAddress().Result;
-                var mac = context.LoginDetails.FirstOrDefault(c => c.SystemMac == UserMACAddress);
+                var mac = context.LoginDetails.FirstOrDefault(c => c.SystemMAC == UserMACAddress);
 
                 var veg = (from p in productionModel.ProductionLists
                            from v in context.Vegetables

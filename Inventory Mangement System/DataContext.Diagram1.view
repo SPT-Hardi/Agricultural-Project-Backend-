@@ -35,7 +35,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>66bae8ce-201f-4ab3-82ce-230d26d85eac</Path>
+                      <Path>e383f9c4-84b5-4c57-b1aa-6f9989545406</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -54,7 +54,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>fcb8597e-e702-4936-8744-ddae8ca0f4aa</Path>
+                      <Path>ff52eb91-e7fa-4431-81c0-75e9e9a99cab</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -73,7 +73,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>5953776b-c8ac-4983-83f1-d64bec56e19e</Path>
+                      <Path>ee621b3d-4d3d-4637-b53c-13f8fa290e16</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -92,7 +92,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>d3fcbc42-bdd6-4eb6-b0f0-43394195723e</Path>
+                      <Path>b7c3fabe-db10-455c-a78f-71a65c5d5859</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -111,7 +111,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>a7e4def9-7fde-4376-829f-a42e1c38aa30</Path>
+                      <Path>0714b5a4-27df-4f8d-9dda-afc2ee9f4ed6</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -142,7 +142,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>42e87ba6-f45e-4695-b30a-2d19a52b1e08</Path>
+                      <Path>84495712-f0ba-4085-985f-8472b69d39f2</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -161,7 +161,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>c235fd9f-25b5-4849-a86a-60b40c50f4af</Path>
+                      <Path>f0365c65-d650-4ed7-94b7-ed48143b80a6</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -182,8 +182,8 @@
               </Model>
             </Children>
             <Location>
-              <X>40 px</X>
-              <Y>40 px</Y>
+              <X>1024 px</X>
+              <Y>1318 px</Y>
             </Location>
             <Size>
               <Width>150 px</Width>
@@ -199,7 +199,7 @@
             </MaxSize>
             <Ports />
             <Oid xsi:type="SchemaModelOID">
-              <Path>5e0fb526-f8d5-46d8-8338-764f95218bc0</Path>
+              <Path>c154212a-01e9-4c73-bdf5-77d85ce55596</Path>
               <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
             </Oid>
             <FixedHeight>35 px</FixedHeight>
@@ -231,7 +231,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>fae7bfad-dde8-46e3-9bfc-c4a019a97794</Path>
+                      <Path>2948e555-e6ee-46e5-9074-c770349c6517</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -250,7 +250,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>3573594f-a912-4493-be37-697798ba1a72</Path>
+                      <Path>45b3ec59-632e-45b7-acc2-f88d472a0bc0</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -269,7 +269,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>53ac7b57-e8d3-41ae-9568-6faa365b9fc7</Path>
+                      <Path>638ccf69-d32a-4ffb-a5a3-da9150a705bd</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -288,7 +288,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>1d49b278-9cc0-4942-8824-b0e37d28c0ff</Path>
+                      <Path>9a2e4f45-077c-47f7-96d7-a117281059cd</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -307,7 +307,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>b38c9ef2-f50c-4d91-9301-3b028e525dd2</Path>
+                      <Path>bbccdc5e-c402-4b83-aef3-3b2dd4feb562</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -326,7 +326,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>3b75d891-4c48-4551-b393-646d92a3154e</Path>
+                      <Path>086a2675-3199-4fd8-93ae-18a10f265e87</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -345,7 +345,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>264e6fc6-5b0c-49a1-a406-f55cf597b471</Path>
+                      <Path>e706f005-f82d-4b4d-b760-c5af878c7231</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -364,7 +364,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>863ad051-f48b-4705-9272-5e7c328e864e</Path>
+                      <Path>f79a27ab-0200-44de-bd1e-1828c9aa2d12</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -383,7 +383,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>038ca949-3a18-4f05-a9e5-7dc9f7211132</Path>
+                      <Path>e2269fae-185b-45cb-9a20-ab039714e111</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -414,7 +414,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>14e7b9b1-5ea0-4c12-a4b6-40ad7fcce07e</Path>
+                      <Path>d968a51f-18bf-4ed4-881e-c04a0fdc0030</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -433,7 +433,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>2ff0a8e5-5c2d-49af-80c0-8f11eb7edf50</Path>
+                      <Path>493dc89d-3341-40f4-a9a1-913ce86feddd</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -452,7 +452,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>6bf52ac2-eb99-4dd3-8438-970a089f593b</Path>
+                      <Path>156180cd-b68c-4ded-8ecc-0df541a9d08e</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -471,7 +471,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>623c8a8c-c538-4870-a4ff-12b95180e9ee</Path>
+                      <Path>bf65f41a-db8b-4908-93f1-f9372bbbcc9e</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -492,8 +492,8 @@
               </Model>
             </Children>
             <Location>
-              <X>232 px</X>
-              <Y>40 px</Y>
+              <X>1234 px</X>
+              <Y>1598 px</Y>
             </Location>
             <Size>
               <Width>150 px</Width>
@@ -509,7 +509,7 @@
             </MaxSize>
             <Ports />
             <Oid xsi:type="SchemaModelOID">
-              <Path>3d217a18-f337-4f8b-a654-fc8cda106c1d</Path>
+              <Path>eb742808-17c9-4b5d-bc42-e0da23623af1</Path>
               <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
             </Oid>
             <FixedHeight>35 px</FixedHeight>
@@ -541,7 +541,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>3f3f0521-f1fb-4885-a68e-3182719f5d83</Path>
+                      <Path>f62747f5-9ad5-4df6-8fa7-c1adfcd481e4</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -560,7 +560,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>2323e76e-b86d-47a7-86e7-5d389ca48d75</Path>
+                      <Path>ecc552be-9ab7-4719-9009-379cf7a3dc55</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -579,7 +579,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>4e0ab5ae-c440-45ed-bc95-1df028698869</Path>
+                      <Path>b4171963-9447-456d-8bca-e63183d4e6b3</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -598,7 +598,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>a83fb2fb-11e9-4944-9516-cf0ef427a656</Path>
+                      <Path>22b91863-94e6-492f-8b79-8c7e2016b2fd</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -629,7 +629,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>dd6360ec-d9f6-4b92-bcb3-a693c585bdb7</Path>
+                      <Path>b47da8b3-d8bb-47e4-a0a8-ccd0c020f467</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -648,7 +648,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>b19e5088-74c2-48ca-a0bb-5d40b0b72212</Path>
+                      <Path>fa44349d-8835-4e12-931e-475c51835805</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -667,7 +667,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>f1992581-3b71-4788-a922-849a716008bd</Path>
+                      <Path>cea2754b-4821-45d6-9074-7f35093f26cc</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -686,7 +686,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>861fbd46-6ab8-48f2-a4e2-a6d7d39b11ad</Path>
+                      <Path>673ebd02-57e4-4ad7-8f64-d7296973ec5a</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -705,7 +705,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>c557bbcf-68dd-4cf0-b660-07a0f3bc03f6</Path>
+                      <Path>0aae478c-783e-475a-9f51-d60a840213b9</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -724,7 +724,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>33e7d328-9ad5-4d7f-b892-6c84b3674824</Path>
+                      <Path>6998128a-a322-4ceb-acdf-ec4dcf495b39</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -743,7 +743,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>39406681-63fa-4eab-81bb-223abe88f692</Path>
+                      <Path>e6d3f894-ad60-4ed0-be68-5a16040229ca</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -762,7 +762,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>0a185654-9949-4608-8d31-a14c61bc3376</Path>
+                      <Path>845aaab6-6287-498c-b9b5-99d639b73772</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -783,8 +783,8 @@
               </Model>
             </Children>
             <Location>
-              <X>40 px</X>
-              <Y>384 px</Y>
+              <X>309 px</X>
+              <Y>1589 px</Y>
             </Location>
             <Size>
               <Width>150 px</Width>
@@ -800,7 +800,7 @@
             </MaxSize>
             <Ports />
             <Oid xsi:type="SchemaModelOID">
-              <Path>10b510a2-be03-433d-a664-87cbfa2ae963</Path>
+              <Path>11218752-1826-424d-80ed-26fba94e3745</Path>
               <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
             </Oid>
             <FixedHeight>35 px</FixedHeight>
@@ -832,7 +832,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>e83f52a4-4a78-4d76-9724-44a00a596b87</Path>
+                      <Path>41d13f47-d2c8-48f8-962e-f7afb918ebc0</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -851,7 +851,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>31801869-c8c8-4939-86d9-8b8eb950c860</Path>
+                      <Path>c4926097-4877-4675-b6cf-386d8e9618e3</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -870,7 +870,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>06d1925b-6761-48a3-abee-c530fed33f8b</Path>
+                      <Path>fa777836-741a-4d27-a44c-1fae088d3f8c</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -889,49 +889,30 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>a468d7ad-7cb0-46a4-966c-ef82b0a10a71</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
-                    </Oid>
-                  </Model>
-                  <Model xsi:type="PropertyVwModel">
-                    <CustomProperties>
-                      <OID>48</OID>
-                      <Parent>43</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Location>
-                      <X>1 px</X>
-                      <Y>73 px</Y>
-                    </Location>
-                    <Size>
-                      <Width>144 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>b103ea2f-457a-4767-bfe9-59cfe1ff21fd</Path>
+                      <Path>9e579575-13e8-4627-a88e-6da2106af677</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                 </Children>
                 <Size>
                   <Width>146 px</Width>
-                  <Height>91 px</Height>
+                  <Height>73 px</Height>
                 </Size>
                 <MaxSize>
                   <Width>0 px</Width>
-                  <Height>91 px</Height>
+                  <Height>73 px</Height>
                 </MaxSize>
               </Model>
               <Model xsi:type="RelationPropertiesVwModel">
                 <CustomProperties>
-                  <OID>49</OID>
+                  <OID>48</OID>
                   <Parent>42</Parent>
                 </CustomProperties>
                 <Children>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>50</OID>
-                      <Parent>49</Parent>
+                      <OID>49</OID>
+                      <Parent>48</Parent>
                     </CustomProperties>
                     <Children />
                     <Size>
@@ -939,14 +920,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>d43086e6-95d1-46ff-a549-8a6240f8ea31</Path>
+                      <Path>0b2e852b-fca3-45a9-96ee-fa26b967528f</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>51</OID>
-                      <Parent>49</Parent>
+                      <OID>50</OID>
+                      <Parent>48</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -958,14 +939,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>44881c20-4eaa-461a-a544-bb68655ad84a</Path>
+                      <Path>96126d12-d6dd-4761-92db-1681b555a293</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>52</OID>
-                      <Parent>49</Parent>
+                      <OID>51</OID>
+                      <Parent>48</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -977,84 +958,65 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>dd57940b-412d-49ad-9064-a70c80dfce5a</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
-                    </Oid>
-                  </Model>
-                  <Model xsi:type="RelationPropertyVwModel">
-                    <CustomProperties>
-                      <OID>53</OID>
-                      <Parent>49</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Location>
-                      <X>0 px</X>
-                      <Y>54 px</Y>
-                    </Location>
-                    <Size>
-                      <Width>142 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>76eb1bbc-6b4f-4ad2-b4b1-825d4e84c5d0</Path>
+                      <Path>42854f6e-e7b8-42f9-9504-7472843ab5d6</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
                 </Children>
                 <Location>
                   <X>0 px</X>
-                  <Y>89 px</Y>
+                  <Y>71 px</Y>
                 </Location>
                 <Size>
                   <Width>146 px</Width>
-                  <Height>91 px</Height>
+                  <Height>73 px</Height>
                 </Size>
                 <MaxSize>
                   <Width>0 px</Width>
-                  <Height>91 px</Height>
+                  <Height>73 px</Height>
                 </MaxSize>
                 <Hidden>false</Hidden>
               </Model>
             </Children>
             <Location>
-              <X>424 px</X>
-              <Y>40 px</Y>
+              <X>40 px</X>
+              <Y>1634 px</Y>
             </Location>
             <Size>
               <Width>150 px</Width>
-              <Height>230 px</Height>
+              <Height>194 px</Height>
             </Size>
             <MinSize>
               <Width>100 px</Width>
-              <Height>230 px</Height>
+              <Height>194 px</Height>
             </MinSize>
             <MaxSize>
               <Width>800 px</Width>
-              <Height>230 px</Height>
+              <Height>194 px</Height>
             </MaxSize>
             <Ports />
             <Oid xsi:type="SchemaModelOID">
-              <Path>f7fd1ddc-da88-4e94-bc0d-9f0912b1fad9</Path>
+              <Path>8ed16e94-0c21-40a3-9922-270a2b400e86</Path>
               <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
             </Oid>
             <FixedHeight>35 px</FixedHeight>
           </Model>
           <Model xsi:type="ClassVwModel">
             <CustomProperties>
-              <OID>54</OID>
+              <OID>52</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Children>
               <Model xsi:type="PropertiesVwModel">
                 <CustomProperties>
-                  <OID>55</OID>
-                  <Parent>54</Parent>
+                  <OID>53</OID>
+                  <Parent>52</Parent>
                 </CustomProperties>
                 <Children>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>56</OID>
-                      <Parent>55</Parent>
+                      <OID>54</OID>
+                      <Parent>53</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1066,14 +1028,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>bb29ae13-fd8c-4a8f-8a9d-8b5d4bdcd2a5</Path>
+                      <Path>e1b84281-fcc4-4424-882a-f144bba03a7e</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>57</OID>
-                      <Parent>55</Parent>
+                      <OID>55</OID>
+                      <Parent>53</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1085,14 +1047,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>4f0538a0-b5d9-46d3-84e6-69ff9cf87298</Path>
+                      <Path>ce9a3d30-5565-4a02-aebb-26618b256e47</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>58</OID>
-                      <Parent>55</Parent>
+                      <OID>56</OID>
+                      <Parent>53</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1104,14 +1066,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>639df1bd-fbc1-4684-bba7-e085a0044aaa</Path>
+                      <Path>1b33c212-a1b6-4cd7-ad4e-95718e81fb2c</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>59</OID>
-                      <Parent>55</Parent>
+                      <OID>57</OID>
+                      <Parent>53</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1123,14 +1085,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>9223e95d-330e-4798-92a5-45cd32123274</Path>
+                      <Path>c1bf74cc-6d14-4366-a523-4152797ed56d</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>60</OID>
-                      <Parent>55</Parent>
+                      <OID>58</OID>
+                      <Parent>53</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1142,14 +1104,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>fc887f50-748c-434c-9e48-28f45e4ad68d</Path>
+                      <Path>6c505c3f-ca79-45c5-b9ca-49f8110a61d8</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>61</OID>
-                      <Parent>55</Parent>
+                      <OID>59</OID>
+                      <Parent>53</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1161,14 +1123,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>eef22459-ac88-4c50-9ad7-d5c76156ec8d</Path>
+                      <Path>3c2acb84-51a9-461b-97c5-242b097843b3</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>62</OID>
-                      <Parent>55</Parent>
+                      <OID>60</OID>
+                      <Parent>53</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1180,14 +1142,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>f48a4fea-e417-443e-867e-937b5b996688</Path>
+                      <Path>aa7d1190-6e20-47fe-9a06-f9c06e0696a1</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>63</OID>
-                      <Parent>55</Parent>
+                      <OID>61</OID>
+                      <Parent>53</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1199,7 +1161,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>570fb9f1-3a8e-4cb6-978f-bcc810847f04</Path>
+                      <Path>c03ac798-a75b-469d-9c6e-031df5bbeca8</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -1215,14 +1177,14 @@
               </Model>
               <Model xsi:type="RelationPropertiesVwModel">
                 <CustomProperties>
-                  <OID>64</OID>
-                  <Parent>54</Parent>
+                  <OID>62</OID>
+                  <Parent>52</Parent>
                 </CustomProperties>
                 <Children>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>65</OID>
-                      <Parent>64</Parent>
+                      <OID>63</OID>
+                      <Parent>62</Parent>
                     </CustomProperties>
                     <Children />
                     <Size>
@@ -1230,14 +1192,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>ad096b5e-8cd5-493c-a2a3-aaf25b65ff64</Path>
+                      <Path>0a3e4d1b-73b7-41ce-8ea3-d4a6b8d39fed</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>66</OID>
-                      <Parent>64</Parent>
+                      <OID>64</OID>
+                      <Parent>62</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1249,14 +1211,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>100b018e-7939-410f-b71d-7b53ab1d2248</Path>
+                      <Path>219930e8-4996-4a35-b468-1514384f6504</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>67</OID>
-                      <Parent>64</Parent>
+                      <OID>65</OID>
+                      <Parent>62</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1268,14 +1230,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>573967a0-cbb2-473d-a21b-35c2a0690cd7</Path>
+                      <Path>cc78d438-e5dd-4547-baa5-4d27c82979d8</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>68</OID>
-                      <Parent>64</Parent>
+                      <OID>66</OID>
+                      <Parent>62</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1287,7 +1249,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>22b875b2-01bd-418a-8bef-ecc03d22a225</Path>
+                      <Path>ed9c3980-e47d-42a8-afc1-555b2e207d4d</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -1308,8 +1270,8 @@
               </Model>
             </Children>
             <Location>
-              <X>424 px</X>
-              <Y>312 px</Y>
+              <X>245 px</X>
+              <Y>1071 px</Y>
             </Location>
             <Size>
               <Width>150 px</Width>
@@ -1325,27 +1287,27 @@
             </MaxSize>
             <Ports />
             <Oid xsi:type="SchemaModelOID">
-              <Path>3a0f0783-d6a3-4de0-8ab7-9d1acc8ad0ba</Path>
+              <Path>619e9b4c-fe9c-4a1d-b6df-61a9b398a679</Path>
               <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
             </Oid>
             <FixedHeight>35 px</FixedHeight>
           </Model>
           <Model xsi:type="ClassVwModel">
             <CustomProperties>
-              <OID>69</OID>
+              <OID>67</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Children>
               <Model xsi:type="PropertiesVwModel">
                 <CustomProperties>
-                  <OID>70</OID>
-                  <Parent>69</Parent>
+                  <OID>68</OID>
+                  <Parent>67</Parent>
                 </CustomProperties>
                 <Children>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>71</OID>
-                      <Parent>70</Parent>
+                      <OID>69</OID>
+                      <Parent>68</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1357,14 +1319,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>8f6c410a-3ed7-475f-b38f-2a2bb08211e9</Path>
+                      <Path>0f149ebf-1420-4450-8c11-7a0f5e8f38ae</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>72</OID>
-                      <Parent>70</Parent>
+                      <OID>70</OID>
+                      <Parent>68</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1376,14 +1338,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>299bb46d-8a20-4e83-9443-c1fb1dd35fba</Path>
+                      <Path>70e0ba4f-450d-4495-bda2-19f75b04172a</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>73</OID>
-                      <Parent>70</Parent>
+                      <OID>71</OID>
+                      <Parent>68</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1395,14 +1357,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>4b6b3bbc-1347-43fa-8120-65a15759649c</Path>
+                      <Path>070b0231-d34e-4922-a349-18c62bd4871f</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>74</OID>
-                      <Parent>70</Parent>
+                      <OID>72</OID>
+                      <Parent>68</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1414,14 +1376,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>a21ff3dc-5342-40c2-81ac-9c215ad0ad3e</Path>
+                      <Path>19e0ce8a-b541-4bf2-ba27-de48a0d0230f</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>75</OID>
-                      <Parent>70</Parent>
+                      <OID>73</OID>
+                      <Parent>68</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1433,14 +1395,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>41dac8fe-f2e2-4879-9d17-90f5e9b02d77</Path>
+                      <Path>f9a40924-7b95-42f1-a3e5-891dd2aaf528</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>76</OID>
-                      <Parent>70</Parent>
+                      <OID>74</OID>
+                      <Parent>68</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1452,14 +1414,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>bcade201-0800-4491-8254-969a7cf00311</Path>
+                      <Path>07fc5c6f-fa1a-47f4-a273-ad1d0d6fb7c1</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>77</OID>
-                      <Parent>70</Parent>
+                      <OID>75</OID>
+                      <Parent>68</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1471,14 +1433,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>4553f7f3-4425-412c-97ee-c4081690f2d1</Path>
+                      <Path>c4d4ed3a-77c9-46e7-82d5-1c82d13c4188</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>78</OID>
-                      <Parent>70</Parent>
+                      <OID>76</OID>
+                      <Parent>68</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1490,14 +1452,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>23538007-5bc7-430c-a7c5-2021719c958a</Path>
+                      <Path>f7b2053b-8e63-48ba-9945-e81d25916035</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>79</OID>
-                      <Parent>70</Parent>
+                      <OID>77</OID>
+                      <Parent>68</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1509,14 +1471,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>e7a416d8-90d1-4100-a850-e0069864da61</Path>
+                      <Path>7bdac31c-d34b-4c6f-b9dc-3e36578b15ff</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>80</OID>
-                      <Parent>70</Parent>
+                      <OID>78</OID>
+                      <Parent>68</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1528,49 +1490,30 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>9f8522f4-55aa-47dd-b198-c3424dc579ed</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
-                    </Oid>
-                  </Model>
-                  <Model xsi:type="PropertyVwModel">
-                    <CustomProperties>
-                      <OID>81</OID>
-                      <Parent>70</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Location>
-                      <X>1 px</X>
-                      <Y>181 px</Y>
-                    </Location>
-                    <Size>
-                      <Width>144 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>145e4041-5b96-48c5-8447-6269f8b1d659</Path>
+                      <Path>7edf8b9b-f88f-4d93-9fd1-ad9e3180c591</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                 </Children>
                 <Size>
                   <Width>146 px</Width>
-                  <Height>199 px</Height>
+                  <Height>181 px</Height>
                 </Size>
                 <MaxSize>
                   <Width>0 px</Width>
-                  <Height>199 px</Height>
+                  <Height>181 px</Height>
                 </MaxSize>
               </Model>
               <Model xsi:type="RelationPropertiesVwModel">
                 <CustomProperties>
-                  <OID>82</OID>
-                  <Parent>69</Parent>
+                  <OID>79</OID>
+                  <Parent>67</Parent>
                 </CustomProperties>
                 <Children>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>83</OID>
-                      <Parent>82</Parent>
+                      <OID>80</OID>
+                      <Parent>79</Parent>
                     </CustomProperties>
                     <Children />
                     <Size>
@@ -1578,14 +1521,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>e49abdbc-209f-46d9-9439-377c340f00f4</Path>
+                      <Path>119478e2-015c-49d6-9bb3-ad2273c847ef</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>84</OID>
-                      <Parent>82</Parent>
+                      <OID>81</OID>
+                      <Parent>79</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1597,14 +1540,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>27a025ab-1944-47a5-8b57-8a337d2432f4</Path>
+                      <Path>5fd69fa4-e47c-4eea-86d5-7218a7f621d7</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>85</OID>
-                      <Parent>82</Parent>
+                      <OID>82</OID>
+                      <Parent>79</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1616,14 +1559,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>a23adabc-77d2-44ab-9082-69894d13acfe</Path>
+                      <Path>ee1ecf0a-2d5f-4d5d-87c7-63054ccc5f02</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>86</OID>
-                      <Parent>82</Parent>
+                      <OID>83</OID>
+                      <Parent>79</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1635,65 +1578,103 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>8dc0fe16-6fbc-4937-82fa-afa1bc72c92e</Path>
+                      <Path>aa65975f-4131-4efb-9936-dc926a854609</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
+                    </Oid>
+                  </Model>
+                  <Model xsi:type="RelationPropertyVwModel">
+                    <CustomProperties>
+                      <OID>84</OID>
+                      <Parent>79</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Location>
+                      <X>0 px</X>
+                      <Y>72 px</Y>
+                    </Location>
+                    <Size>
+                      <Width>142 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>f2fcc4a1-3f39-4eeb-b9d4-22879827bed9</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
+                    </Oid>
+                  </Model>
+                  <Model xsi:type="RelationPropertyVwModel">
+                    <CustomProperties>
+                      <OID>85</OID>
+                      <Parent>79</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Location>
+                      <X>0 px</X>
+                      <Y>90 px</Y>
+                    </Location>
+                    <Size>
+                      <Width>142 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>e108fbb8-f25f-4d23-a92e-54b893569b0e</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
                 </Children>
                 <Location>
                   <X>0 px</X>
-                  <Y>197 px</Y>
+                  <Y>179 px</Y>
                 </Location>
                 <Size>
                   <Width>146 px</Width>
-                  <Height>91 px</Height>
+                  <Height>127 px</Height>
                 </Size>
                 <MaxSize>
                   <Width>0 px</Width>
-                  <Height>91 px</Height>
+                  <Height>127 px</Height>
                 </MaxSize>
                 <Hidden>false</Hidden>
               </Model>
             </Children>
             <Location>
-              <X>616 px</X>
-              <Y>40 px</Y>
+              <X>1024 px</X>
+              <Y>1571 px</Y>
             </Location>
             <Size>
               <Width>150 px</Width>
-              <Height>338 px</Height>
+              <Height>356 px</Height>
             </Size>
             <MinSize>
               <Width>100 px</Width>
-              <Height>338 px</Height>
+              <Height>356 px</Height>
             </MinSize>
             <MaxSize>
               <Width>800 px</Width>
-              <Height>338 px</Height>
+              <Height>356 px</Height>
             </MaxSize>
             <Ports />
             <Oid xsi:type="SchemaModelOID">
-              <Path>f33f3fd4-c09c-44a8-b501-425a07fea4be</Path>
+              <Path>a33ce142-0bd7-4f4d-a830-917c8de64566</Path>
               <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
             </Oid>
             <FixedHeight>35 px</FixedHeight>
           </Model>
           <Model xsi:type="ClassVwModel">
             <CustomProperties>
-              <OID>87</OID>
+              <OID>86</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Children>
               <Model xsi:type="PropertiesVwModel">
                 <CustomProperties>
-                  <OID>88</OID>
-                  <Parent>87</Parent>
+                  <OID>87</OID>
+                  <Parent>86</Parent>
                 </CustomProperties>
                 <Children>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>89</OID>
-                      <Parent>88</Parent>
+                      <OID>88</OID>
+                      <Parent>87</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1705,14 +1686,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>662a072e-4ea0-4283-a652-ec6e786792f1</Path>
+                      <Path>3bb01cb7-698a-4731-a9f5-e6c3fe3ee821</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>90</OID>
-                      <Parent>88</Parent>
+                      <OID>89</OID>
+                      <Parent>87</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1724,7 +1705,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>534bc9e3-196a-45b7-a5fc-047401877ed6</Path>
+                      <Path>4319d350-7faf-4794-8345-908a3bf7d580</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -1740,8 +1721,8 @@
               </Model>
               <Model xsi:type="RelationPropertiesVwModel">
                 <CustomProperties>
-                  <OID>91</OID>
-                  <Parent>87</Parent>
+                  <OID>90</OID>
+                  <Parent>86</Parent>
                 </CustomProperties>
                 <Children />
                 <Location>
@@ -1760,8 +1741,8 @@
               </Model>
             </Children>
             <Location>
-              <X>232 px</X>
-              <Y>384 px</Y>
+              <X>1494.09523010254 px</X>
+              <Y>40 px</Y>
             </Location>
             <Size>
               <Width>150 px</Width>
@@ -1777,27 +1758,27 @@
             </MaxSize>
             <Ports />
             <Oid xsi:type="SchemaModelOID">
-              <Path>0cd767ca-4002-4f51-ac21-225174edf8c3</Path>
+              <Path>ca4074e3-f0ca-4b75-b3d0-03095d6115d2</Path>
               <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
             </Oid>
             <FixedHeight>35 px</FixedHeight>
           </Model>
           <Model xsi:type="ClassVwModel">
             <CustomProperties>
-              <OID>92</OID>
+              <OID>91</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Children>
               <Model xsi:type="PropertiesVwModel">
                 <CustomProperties>
-                  <OID>93</OID>
-                  <Parent>92</Parent>
+                  <OID>92</OID>
+                  <Parent>91</Parent>
                 </CustomProperties>
                 <Children>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>94</OID>
-                      <Parent>93</Parent>
+                      <OID>93</OID>
+                      <Parent>92</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1809,14 +1790,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>24c25e25-3521-4c3a-94e8-33ff93983b40</Path>
+                      <Path>4984577a-27cc-48aa-90de-9899b8960a33</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>95</OID>
-                      <Parent>93</Parent>
+                      <OID>94</OID>
+                      <Parent>92</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1828,14 +1809,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>70239422-57ad-49fd-96c2-35bbfea6d235</Path>
+                      <Path>287f4e5b-d7dc-497c-afd7-8d32c501ebd3</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>96</OID>
-                      <Parent>93</Parent>
+                      <OID>95</OID>
+                      <Parent>92</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1847,14 +1828,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>493e6b0e-68e1-4f2f-8bad-ea840428117c</Path>
+                      <Path>f95676a2-f461-4c35-aee3-7fae6f5a5e91</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>97</OID>
-                      <Parent>93</Parent>
+                      <OID>96</OID>
+                      <Parent>92</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1866,14 +1847,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>749a00d1-8e68-4279-a311-cdb1160d3f48</Path>
+                      <Path>efe90697-5d0f-48f7-9a76-2970f09818ed</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>98</OID>
-                      <Parent>93</Parent>
+                      <OID>97</OID>
+                      <Parent>92</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1885,14 +1866,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>31d70428-8f28-4edd-bbcb-e81bfe095ee4</Path>
+                      <Path>8a07669b-210a-4ce1-8333-b03b5ee470de</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>99</OID>
-                      <Parent>93</Parent>
+                      <OID>98</OID>
+                      <Parent>92</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1904,14 +1885,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>ce07c51d-5c70-4858-8b31-fffce8b35fb6</Path>
+                      <Path>edc81631-80d5-4300-a0f2-2c52fc74faf2</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>100</OID>
-                      <Parent>93</Parent>
+                      <OID>99</OID>
+                      <Parent>92</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1923,14 +1904,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>62d080f5-089b-4365-8764-ad2496ddd51d</Path>
+                      <Path>d940c355-c8b1-4fbb-adb0-a6dd4848cc9a</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>101</OID>
-                      <Parent>93</Parent>
+                      <OID>100</OID>
+                      <Parent>92</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1942,14 +1923,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>e4cafcdb-0335-4bd2-8b63-490e06ef4739</Path>
+                      <Path>a5f04fd9-107e-4540-973f-9778bf0de756</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>102</OID>
-                      <Parent>93</Parent>
+                      <OID>101</OID>
+                      <Parent>92</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1961,14 +1942,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>75c219dd-2e2e-457c-bb97-85de3f2dca3f</Path>
+                      <Path>b52ff49d-e5a4-4cae-b8b9-9f3479673c2f</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>103</OID>
-                      <Parent>93</Parent>
+                      <OID>102</OID>
+                      <Parent>92</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -1980,7 +1961,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>ffd4e075-b0ee-43e8-b6da-0ed07e8adb0b</Path>
+                      <Path>bdd9c1f1-f9e6-4e6f-9f5c-a4f099ff3f08</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -1996,14 +1977,14 @@
               </Model>
               <Model xsi:type="RelationPropertiesVwModel">
                 <CustomProperties>
-                  <OID>104</OID>
-                  <Parent>92</Parent>
+                  <OID>103</OID>
+                  <Parent>91</Parent>
                 </CustomProperties>
                 <Children>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>105</OID>
-                      <Parent>104</Parent>
+                      <OID>104</OID>
+                      <Parent>103</Parent>
                     </CustomProperties>
                     <Children />
                     <Size>
@@ -2011,526 +1992,52 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>9a258a54-fc28-49aa-ae19-5bdc4d3f5999</Path>
+                      <Path>0fe76b6e-8036-4b2f-97a7-c868ce7df679</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
+                    </Oid>
+                  </Model>
+                  <Model xsi:type="RelationPropertyVwModel">
+                    <CustomProperties>
+                      <OID>105</OID>
+                      <Parent>103</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Location>
+                      <X>0 px</X>
+                      <Y>18 px</Y>
+                    </Location>
+                    <Size>
+                      <Width>142 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>b54ab648-ebfb-45f1-9edc-8b109b968c6c</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
                       <OID>106</OID>
-                      <Parent>104</Parent>
+                      <Parent>103</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
                       <X>0 px</X>
-                      <Y>18 px</Y>
+                      <Y>36 px</Y>
                     </Location>
                     <Size>
                       <Width>142 px</Width>
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>7d9a328c-6634-4a89-b8a4-d7b3ac6eed7b</Path>
+                      <Path>49229f61-f802-4e7c-b455-989671076f33</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
                       <OID>107</OID>
-                      <Parent>104</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Location>
-                      <X>0 px</X>
-                      <Y>36 px</Y>
-                    </Location>
-                    <Size>
-                      <Width>142 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>2802f19b-5639-428e-a905-feff46d274ea</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
-                    </Oid>
-                  </Model>
-                </Children>
-                <Location>
-                  <X>0 px</X>
-                  <Y>179 px</Y>
-                </Location>
-                <Size>
-                  <Width>146 px</Width>
-                  <Height>73 px</Height>
-                </Size>
-                <MaxSize>
-                  <Width>0 px</Width>
-                  <Height>73 px</Height>
-                </MaxSize>
-                <Hidden>false</Hidden>
-              </Model>
-            </Children>
-            <Location>
-              <X>616 px</X>
-              <Y>424 px</Y>
-            </Location>
-            <Size>
-              <Width>150 px</Width>
-              <Height>302 px</Height>
-            </Size>
-            <MinSize>
-              <Width>100 px</Width>
-              <Height>302 px</Height>
-            </MinSize>
-            <MaxSize>
-              <Width>800 px</Width>
-              <Height>302 px</Height>
-            </MaxSize>
-            <Ports />
-            <Oid xsi:type="SchemaModelOID">
-              <Path>43516c16-e8a2-4155-9182-7efe35effc7f</Path>
-              <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
-            </Oid>
-            <FixedHeight>35 px</FixedHeight>
-          </Model>
-          <Model xsi:type="ClassVwModel">
-            <CustomProperties>
-              <OID>108</OID>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <Children>
-              <Model xsi:type="PropertiesVwModel">
-                <CustomProperties>
-                  <OID>109</OID>
-                  <Parent>108</Parent>
-                </CustomProperties>
-                <Children>
-                  <Model xsi:type="PropertyVwModel">
-                    <CustomProperties>
-                      <OID>110</OID>
-                      <Parent>109</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Location>
-                      <X>1 px</X>
-                      <Y>1 px</Y>
-                    </Location>
-                    <Size>
-                      <Width>144 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>a4fca0e8-b8f6-4caf-9ffe-39a9054c5259</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
-                    </Oid>
-                  </Model>
-                  <Model xsi:type="PropertyVwModel">
-                    <CustomProperties>
-                      <OID>111</OID>
-                      <Parent>109</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Location>
-                      <X>1 px</X>
-                      <Y>19 px</Y>
-                    </Location>
-                    <Size>
-                      <Width>144 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>d2156878-d229-44a1-a02c-1018040b8360</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
-                    </Oid>
-                  </Model>
-                </Children>
-                <Size>
-                  <Width>146 px</Width>
-                  <Height>37 px</Height>
-                </Size>
-                <MaxSize>
-                  <Width>0 px</Width>
-                  <Height>37 px</Height>
-                </MaxSize>
-              </Model>
-              <Model xsi:type="RelationPropertiesVwModel">
-                <CustomProperties>
-                  <OID>112</OID>
-                  <Parent>108</Parent>
-                </CustomProperties>
-                <Children>
-                  <Model xsi:type="RelationPropertyVwModel">
-                    <CustomProperties>
-                      <OID>113</OID>
-                      <Parent>112</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Size>
-                      <Width>142 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>eed77e0e-b5b7-4317-8586-ccda0c72dc5e</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
-                    </Oid>
-                  </Model>
-                </Children>
-                <Location>
-                  <X>0 px</X>
-                  <Y>35 px</Y>
-                </Location>
-                <Size>
-                  <Width>146 px</Width>
-                  <Height>37 px</Height>
-                </Size>
-                <MaxSize>
-                  <Width>0 px</Width>
-                  <Height>37 px</Height>
-                </MaxSize>
-                <Hidden>false</Hidden>
-              </Model>
-            </Children>
-            <Location>
-              <X>232 px</X>
-              <Y>528 px</Y>
-            </Location>
-            <Size>
-              <Width>150 px</Width>
-              <Height>122 px</Height>
-            </Size>
-            <MinSize>
-              <Width>100 px</Width>
-              <Height>122 px</Height>
-            </MinSize>
-            <MaxSize>
-              <Width>800 px</Width>
-              <Height>122 px</Height>
-            </MaxSize>
-            <Ports />
-            <Oid xsi:type="SchemaModelOID">
-              <Path>3e222189-8048-4a63-b2d3-9a0e0d3f1ddf</Path>
-              <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
-            </Oid>
-            <FixedHeight>35 px</FixedHeight>
-          </Model>
-          <Model xsi:type="ClassVwModel">
-            <CustomProperties>
-              <OID>114</OID>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <Children>
-              <Model xsi:type="PropertiesVwModel">
-                <CustomProperties>
-                  <OID>115</OID>
-                  <Parent>114</Parent>
-                </CustomProperties>
-                <Children>
-                  <Model xsi:type="PropertyVwModel">
-                    <CustomProperties>
-                      <OID>116</OID>
-                      <Parent>115</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Location>
-                      <X>1 px</X>
-                      <Y>1 px</Y>
-                    </Location>
-                    <Size>
-                      <Width>144 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>4c6fed4c-83f6-4cc0-b907-7c20b1ac5cc5</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
-                    </Oid>
-                  </Model>
-                  <Model xsi:type="PropertyVwModel">
-                    <CustomProperties>
-                      <OID>117</OID>
-                      <Parent>115</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Location>
-                      <X>1 px</X>
-                      <Y>19 px</Y>
-                    </Location>
-                    <Size>
-                      <Width>144 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>6b66eb18-6c0b-46dd-bd9e-bfc1d26f825c</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
-                    </Oid>
-                  </Model>
-                </Children>
-                <Size>
-                  <Width>146 px</Width>
-                  <Height>37 px</Height>
-                </Size>
-                <MaxSize>
-                  <Width>0 px</Width>
-                  <Height>37 px</Height>
-                </MaxSize>
-              </Model>
-              <Model xsi:type="RelationPropertiesVwModel">
-                <CustomProperties>
-                  <OID>118</OID>
-                  <Parent>114</Parent>
-                </CustomProperties>
-                <Children>
-                  <Model xsi:type="RelationPropertyVwModel">
-                    <CustomProperties>
-                      <OID>119</OID>
-                      <Parent>118</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Size>
-                      <Width>142 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>16472dde-b32e-4fab-9615-3922fd4559b7</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
-                    </Oid>
-                  </Model>
-                </Children>
-                <Location>
-                  <X>0 px</X>
-                  <Y>35 px</Y>
-                </Location>
-                <Size>
-                  <Width>146 px</Width>
-                  <Height>37 px</Height>
-                </Size>
-                <MaxSize>
-                  <Width>0 px</Width>
-                  <Height>37 px</Height>
-                </MaxSize>
-                <Hidden>false</Hidden>
-              </Model>
-            </Children>
-            <Location>
-              <X>424 px</X>
-              <Y>640 px</Y>
-            </Location>
-            <Size>
-              <Width>150 px</Width>
-              <Height>122 px</Height>
-            </Size>
-            <MinSize>
-              <Width>100 px</Width>
-              <Height>122 px</Height>
-            </MinSize>
-            <MaxSize>
-              <Width>800 px</Width>
-              <Height>122 px</Height>
-            </MaxSize>
-            <Ports />
-            <Oid xsi:type="SchemaModelOID">
-              <Path>5a43c12e-7fd3-41ee-bc36-d7b6e844472e</Path>
-              <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
-            </Oid>
-            <FixedHeight>35 px</FixedHeight>
-          </Model>
-          <Model xsi:type="ClassVwModel">
-            <CustomProperties>
-              <OID>120</OID>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <Children>
-              <Model xsi:type="PropertiesVwModel">
-                <CustomProperties>
-                  <OID>121</OID>
-                  <Parent>120</Parent>
-                </CustomProperties>
-                <Children>
-                  <Model xsi:type="PropertyVwModel">
-                    <CustomProperties>
-                      <OID>122</OID>
-                      <Parent>121</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Location>
-                      <X>1 px</X>
-                      <Y>1 px</Y>
-                    </Location>
-                    <Size>
-                      <Width>144 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>982dd5a7-b600-4998-a8a2-44f6b0ea4614</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
-                    </Oid>
-                  </Model>
-                  <Model xsi:type="PropertyVwModel">
-                    <CustomProperties>
-                      <OID>123</OID>
-                      <Parent>121</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Location>
-                      <X>1 px</X>
-                      <Y>19 px</Y>
-                    </Location>
-                    <Size>
-                      <Width>144 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>e0e25c40-b488-4617-96c4-13f5b1fbef39</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
-                    </Oid>
-                  </Model>
-                  <Model xsi:type="PropertyVwModel">
-                    <CustomProperties>
-                      <OID>124</OID>
-                      <Parent>121</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Location>
-                      <X>1 px</X>
-                      <Y>37 px</Y>
-                    </Location>
-                    <Size>
-                      <Width>144 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>1446c175-0720-47ee-bd82-467261eb29d5</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
-                    </Oid>
-                  </Model>
-                  <Model xsi:type="PropertyVwModel">
-                    <CustomProperties>
-                      <OID>125</OID>
-                      <Parent>121</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Location>
-                      <X>1 px</X>
-                      <Y>55 px</Y>
-                    </Location>
-                    <Size>
-                      <Width>144 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>13d48237-f5de-4afd-bf96-6865ba381083</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
-                    </Oid>
-                  </Model>
-                  <Model xsi:type="PropertyVwModel">
-                    <CustomProperties>
-                      <OID>126</OID>
-                      <Parent>121</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Location>
-                      <X>1 px</X>
-                      <Y>73 px</Y>
-                    </Location>
-                    <Size>
-                      <Width>144 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>85b8f07a-3d10-48d6-aeb9-03145484eb6a</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
-                    </Oid>
-                  </Model>
-                  <Model xsi:type="PropertyVwModel">
-                    <CustomProperties>
-                      <OID>127</OID>
-                      <Parent>121</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Location>
-                      <X>1 px</X>
-                      <Y>91 px</Y>
-                    </Location>
-                    <Size>
-                      <Width>144 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>853d97e5-8f13-4059-9581-4380e2bd518b</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
-                    </Oid>
-                  </Model>
-                </Children>
-                <Size>
-                  <Width>146 px</Width>
-                  <Height>109 px</Height>
-                </Size>
-                <MaxSize>
-                  <Width>0 px</Width>
-                  <Height>109 px</Height>
-                </MaxSize>
-              </Model>
-              <Model xsi:type="RelationPropertiesVwModel">
-                <CustomProperties>
-                  <OID>128</OID>
-                  <Parent>120</Parent>
-                </CustomProperties>
-                <Children>
-                  <Model xsi:type="RelationPropertyVwModel">
-                    <CustomProperties>
-                      <OID>129</OID>
-                      <Parent>128</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Size>
-                      <Width>142 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>3ec2ee8f-1551-4aff-b1e6-fbf87c450f0e</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
-                    </Oid>
-                  </Model>
-                  <Model xsi:type="RelationPropertyVwModel">
-                    <CustomProperties>
-                      <OID>130</OID>
-                      <Parent>128</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Location>
-                      <X>0 px</X>
-                      <Y>18 px</Y>
-                    </Location>
-                    <Size>
-                      <Width>142 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>794f7fe3-4477-462e-aa5b-3bb86a4e7080</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
-                    </Oid>
-                  </Model>
-                  <Model xsi:type="RelationPropertyVwModel">
-                    <CustomProperties>
-                      <OID>131</OID>
-                      <Parent>128</Parent>
-                    </CustomProperties>
-                    <Children />
-                    <Location>
-                      <X>0 px</X>
-                      <Y>36 px</Y>
-                    </Location>
-                    <Size>
-                      <Width>142 px</Width>
-                      <Height>18 px</Height>
-                    </Size>
-                    <Oid xsi:type="SchemaModelOID">
-                      <Path>0ae4e70a-c19c-4ded-9287-a1377d5d2552</Path>
-                      <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
-                    </Oid>
-                  </Model>
-                  <Model xsi:type="RelationPropertyVwModel">
-                    <CustomProperties>
-                      <OID>132</OID>
-                      <Parent>128</Parent>
+                      <Parent>103</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -2542,65 +2049,103 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>62b86cb8-a976-4501-ac58-d264f7dfd1e2</Path>
+                      <Path>b33ce7fc-b169-421d-9784-610533a20ad3</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
+                    </Oid>
+                  </Model>
+                  <Model xsi:type="RelationPropertyVwModel">
+                    <CustomProperties>
+                      <OID>108</OID>
+                      <Parent>103</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Location>
+                      <X>0 px</X>
+                      <Y>72 px</Y>
+                    </Location>
+                    <Size>
+                      <Width>142 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>962da9c5-5242-4b2f-975b-bc365050acda</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
+                    </Oid>
+                  </Model>
+                  <Model xsi:type="RelationPropertyVwModel">
+                    <CustomProperties>
+                      <OID>109</OID>
+                      <Parent>103</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Location>
+                      <X>0 px</X>
+                      <Y>90 px</Y>
+                    </Location>
+                    <Size>
+                      <Width>142 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>7ae9cc76-5861-46f4-8269-7da03d836027</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
                 </Children>
                 <Location>
                   <X>0 px</X>
-                  <Y>107 px</Y>
+                  <Y>179 px</Y>
                 </Location>
                 <Size>
                   <Width>146 px</Width>
-                  <Height>91 px</Height>
+                  <Height>127 px</Height>
                 </Size>
                 <MaxSize>
                   <Width>0 px</Width>
-                  <Height>91 px</Height>
+                  <Height>127 px</Height>
                 </MaxSize>
                 <Hidden>false</Hidden>
               </Model>
             </Children>
             <Location>
-              <X>808 px</X>
-              <Y>40 px</Y>
+              <X>696 px</X>
+              <Y>1641 px</Y>
             </Location>
             <Size>
               <Width>150 px</Width>
-              <Height>248 px</Height>
+              <Height>356 px</Height>
             </Size>
             <MinSize>
               <Width>100 px</Width>
-              <Height>248 px</Height>
+              <Height>356 px</Height>
             </MinSize>
             <MaxSize>
               <Width>800 px</Width>
-              <Height>248 px</Height>
+              <Height>356 px</Height>
             </MaxSize>
             <Ports />
             <Oid xsi:type="SchemaModelOID">
-              <Path>430dd66a-dd06-4244-975c-1f3aa7a6f0b6</Path>
+              <Path>9664f042-3029-4a67-afa9-9f95cdb11427</Path>
               <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
             </Oid>
             <FixedHeight>35 px</FixedHeight>
           </Model>
           <Model xsi:type="ClassVwModel">
             <CustomProperties>
-              <OID>133</OID>
+              <OID>110</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Children>
               <Model xsi:type="PropertiesVwModel">
                 <CustomProperties>
-                  <OID>134</OID>
-                  <Parent>133</Parent>
+                  <OID>111</OID>
+                  <Parent>110</Parent>
                 </CustomProperties>
                 <Children>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>135</OID>
-                      <Parent>134</Parent>
+                      <OID>112</OID>
+                      <Parent>111</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -2612,14 +2157,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>503943a9-3b47-4453-ac4a-1fd92436d79d</Path>
+                      <Path>a30a536b-1e56-477c-a405-4cd0da70d1c8</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>136</OID>
-                      <Parent>134</Parent>
+                      <OID>113</OID>
+                      <Parent>111</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -2631,7 +2176,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>031facaf-8c19-4641-8d8a-dff8b1a24f59</Path>
+                      <Path>ec188275-3f09-48dc-b593-7a834ce92027</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -2647,14 +2192,14 @@
               </Model>
               <Model xsi:type="RelationPropertiesVwModel">
                 <CustomProperties>
-                  <OID>137</OID>
-                  <Parent>133</Parent>
+                  <OID>114</OID>
+                  <Parent>110</Parent>
                 </CustomProperties>
                 <Children>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>138</OID>
-                      <Parent>137</Parent>
+                      <OID>115</OID>
+                      <Parent>114</Parent>
                     </CustomProperties>
                     <Children />
                     <Size>
@@ -2662,14 +2207,311 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>c3960147-a7c7-4cbd-89b7-3b54a9c67484</Path>
+                      <Path>fea4485f-076e-4ef4-9509-3e8fce004a37</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
+                    </Oid>
+                  </Model>
+                </Children>
+                <Location>
+                  <X>0 px</X>
+                  <Y>35 px</Y>
+                </Location>
+                <Size>
+                  <Width>146 px</Width>
+                  <Height>37 px</Height>
+                </Size>
+                <MaxSize>
+                  <Width>0 px</Width>
+                  <Height>37 px</Height>
+                </MaxSize>
+                <Hidden>false</Hidden>
+              </Model>
+            </Children>
+            <Location>
+              <X>245 px</X>
+              <Y>709 px</Y>
+            </Location>
+            <Size>
+              <Width>150 px</Width>
+              <Height>122 px</Height>
+            </Size>
+            <MinSize>
+              <Width>100 px</Width>
+              <Height>122 px</Height>
+            </MinSize>
+            <MaxSize>
+              <Width>800 px</Width>
+              <Height>122 px</Height>
+            </MaxSize>
+            <Ports />
+            <Oid xsi:type="SchemaModelOID">
+              <Path>d861f7b4-6d4b-49d0-8151-f99a482de8ac</Path>
+              <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
+            </Oid>
+            <FixedHeight>35 px</FixedHeight>
+          </Model>
+          <Model xsi:type="ClassVwModel">
+            <CustomProperties>
+              <OID>116</OID>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <Children>
+              <Model xsi:type="PropertiesVwModel">
+                <CustomProperties>
+                  <OID>117</OID>
+                  <Parent>116</Parent>
+                </CustomProperties>
+                <Children>
+                  <Model xsi:type="PropertyVwModel">
+                    <CustomProperties>
+                      <OID>118</OID>
+                      <Parent>117</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Location>
+                      <X>1 px</X>
+                      <Y>1 px</Y>
+                    </Location>
+                    <Size>
+                      <Width>144 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>74ebedf9-6a22-40e1-a468-d65f328ff452</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
+                    </Oid>
+                  </Model>
+                  <Model xsi:type="PropertyVwModel">
+                    <CustomProperties>
+                      <OID>119</OID>
+                      <Parent>117</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Location>
+                      <X>1 px</X>
+                      <Y>19 px</Y>
+                    </Location>
+                    <Size>
+                      <Width>144 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>33b3d862-e2d3-4e7d-8b8e-26b3df76f9cb</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
+                    </Oid>
+                  </Model>
+                </Children>
+                <Size>
+                  <Width>146 px</Width>
+                  <Height>37 px</Height>
+                </Size>
+                <MaxSize>
+                  <Width>0 px</Width>
+                  <Height>37 px</Height>
+                </MaxSize>
+              </Model>
+              <Model xsi:type="RelationPropertiesVwModel">
+                <CustomProperties>
+                  <OID>120</OID>
+                  <Parent>116</Parent>
+                </CustomProperties>
+                <Children>
+                  <Model xsi:type="RelationPropertyVwModel">
+                    <CustomProperties>
+                      <OID>121</OID>
+                      <Parent>120</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Size>
+                      <Width>142 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>87bc8128-50ef-4b40-8942-9f13c31188a6</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
+                    </Oid>
+                  </Model>
+                </Children>
+                <Location>
+                  <X>0 px</X>
+                  <Y>35 px</Y>
+                </Location>
+                <Size>
+                  <Width>146 px</Width>
+                  <Height>37 px</Height>
+                </Size>
+                <MaxSize>
+                  <Width>0 px</Width>
+                  <Height>37 px</Height>
+                </MaxSize>
+                <Hidden>false</Hidden>
+              </Model>
+            </Children>
+            <Location>
+              <X>245 px</X>
+              <Y>40 px</Y>
+            </Location>
+            <Size>
+              <Width>150 px</Width>
+              <Height>122 px</Height>
+            </Size>
+            <MinSize>
+              <Width>100 px</Width>
+              <Height>122 px</Height>
+            </MinSize>
+            <MaxSize>
+              <Width>800 px</Width>
+              <Height>122 px</Height>
+            </MaxSize>
+            <Ports />
+            <Oid xsi:type="SchemaModelOID">
+              <Path>03ea5c58-2f4a-4d20-8330-352529794e4d</Path>
+              <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
+            </Oid>
+            <FixedHeight>35 px</FixedHeight>
+          </Model>
+          <Model xsi:type="ClassVwModel">
+            <CustomProperties>
+              <OID>122</OID>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <Children>
+              <Model xsi:type="PropertiesVwModel">
+                <CustomProperties>
+                  <OID>123</OID>
+                  <Parent>122</Parent>
+                </CustomProperties>
+                <Children>
+                  <Model xsi:type="PropertyVwModel">
+                    <CustomProperties>
+                      <OID>124</OID>
+                      <Parent>123</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Location>
+                      <X>1 px</X>
+                      <Y>1 px</Y>
+                    </Location>
+                    <Size>
+                      <Width>144 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>a053ad44-a723-4b5b-823e-917b0805950b</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
+                    </Oid>
+                  </Model>
+                  <Model xsi:type="PropertyVwModel">
+                    <CustomProperties>
+                      <OID>125</OID>
+                      <Parent>123</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Location>
+                      <X>1 px</X>
+                      <Y>19 px</Y>
+                    </Location>
+                    <Size>
+                      <Width>144 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>b49e0304-cb88-4d23-bb31-7c0ae9b41c08</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
+                    </Oid>
+                  </Model>
+                  <Model xsi:type="PropertyVwModel">
+                    <CustomProperties>
+                      <OID>126</OID>
+                      <Parent>123</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Location>
+                      <X>1 px</X>
+                      <Y>37 px</Y>
+                    </Location>
+                    <Size>
+                      <Width>144 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>5e71a665-cbca-43e3-b155-6d24cf583182</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
+                    </Oid>
+                  </Model>
+                  <Model xsi:type="PropertyVwModel">
+                    <CustomProperties>
+                      <OID>127</OID>
+                      <Parent>123</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Location>
+                      <X>1 px</X>
+                      <Y>55 px</Y>
+                    </Location>
+                    <Size>
+                      <Width>144 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>97921c7b-363a-4266-8229-34fe37de6520</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
+                    </Oid>
+                  </Model>
+                  <Model xsi:type="PropertyVwModel">
+                    <CustomProperties>
+                      <OID>128</OID>
+                      <Parent>123</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Location>
+                      <X>1 px</X>
+                      <Y>73 px</Y>
+                    </Location>
+                    <Size>
+                      <Width>144 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>1bd90d55-f6c2-4858-9d20-baa712a9b6e5</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
+                    </Oid>
+                  </Model>
+                </Children>
+                <Size>
+                  <Width>146 px</Width>
+                  <Height>91 px</Height>
+                </Size>
+                <MaxSize>
+                  <Width>0 px</Width>
+                  <Height>91 px</Height>
+                </MaxSize>
+              </Model>
+              <Model xsi:type="RelationPropertiesVwModel">
+                <CustomProperties>
+                  <OID>129</OID>
+                  <Parent>122</Parent>
+                </CustomProperties>
+                <Children>
+                  <Model xsi:type="RelationPropertyVwModel">
+                    <CustomProperties>
+                      <OID>130</OID>
+                      <Parent>129</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Size>
+                      <Width>142 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>36256a65-80d2-46f1-b6c5-18e36f18b04d</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>139</OID>
-                      <Parent>137</Parent>
+                      <OID>131</OID>
+                      <Parent>129</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -2681,7 +2523,146 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>5a7d4bc6-6f6f-4cce-be7d-fd5c1f328b56</Path>
+                      <Path>382e9f11-713c-48a5-bf31-b6077c99bdc6</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
+                    </Oid>
+                  </Model>
+                </Children>
+                <Location>
+                  <X>0 px</X>
+                  <Y>89 px</Y>
+                </Location>
+                <Size>
+                  <Width>146 px</Width>
+                  <Height>55 px</Height>
+                </Size>
+                <MaxSize>
+                  <Width>0 px</Width>
+                  <Height>55 px</Height>
+                </MaxSize>
+                <Hidden>false</Hidden>
+              </Model>
+            </Children>
+            <Location>
+              <X>1234 px</X>
+              <Y>1115 px</Y>
+            </Location>
+            <Size>
+              <Width>150 px</Width>
+              <Height>194 px</Height>
+            </Size>
+            <MinSize>
+              <Width>100 px</Width>
+              <Height>194 px</Height>
+            </MinSize>
+            <MaxSize>
+              <Width>800 px</Width>
+              <Height>194 px</Height>
+            </MaxSize>
+            <Ports />
+            <Oid xsi:type="SchemaModelOID">
+              <Path>502d5d2a-9e1a-47ec-89ce-502f1d1e66bb</Path>
+              <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
+            </Oid>
+            <FixedHeight>35 px</FixedHeight>
+          </Model>
+          <Model xsi:type="ClassVwModel">
+            <CustomProperties>
+              <OID>132</OID>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <Children>
+              <Model xsi:type="PropertiesVwModel">
+                <CustomProperties>
+                  <OID>133</OID>
+                  <Parent>132</Parent>
+                </CustomProperties>
+                <Children>
+                  <Model xsi:type="PropertyVwModel">
+                    <CustomProperties>
+                      <OID>134</OID>
+                      <Parent>133</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Location>
+                      <X>1 px</X>
+                      <Y>1 px</Y>
+                    </Location>
+                    <Size>
+                      <Width>144 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>7967ec36-f6af-48e9-a3af-18c76d574041</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
+                    </Oid>
+                  </Model>
+                  <Model xsi:type="PropertyVwModel">
+                    <CustomProperties>
+                      <OID>135</OID>
+                      <Parent>133</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Location>
+                      <X>1 px</X>
+                      <Y>19 px</Y>
+                    </Location>
+                    <Size>
+                      <Width>144 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>b9ad9df2-fa85-4c45-9a25-bbdaa1ddac67</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
+                    </Oid>
+                  </Model>
+                </Children>
+                <Size>
+                  <Width>146 px</Width>
+                  <Height>37 px</Height>
+                </Size>
+                <MaxSize>
+                  <Width>0 px</Width>
+                  <Height>37 px</Height>
+                </MaxSize>
+              </Model>
+              <Model xsi:type="RelationPropertiesVwModel">
+                <CustomProperties>
+                  <OID>136</OID>
+                  <Parent>132</Parent>
+                </CustomProperties>
+                <Children>
+                  <Model xsi:type="RelationPropertyVwModel">
+                    <CustomProperties>
+                      <OID>137</OID>
+                      <Parent>136</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Size>
+                      <Width>142 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>ac1b7cea-d5db-4177-8cfe-8269195d7a6f</Path>
+                      <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
+                    </Oid>
+                  </Model>
+                  <Model xsi:type="RelationPropertyVwModel">
+                    <CustomProperties>
+                      <OID>138</OID>
+                      <Parent>136</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Location>
+                      <X>0 px</X>
+                      <Y>18 px</Y>
+                    </Location>
+                    <Size>
+                      <Width>142 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
+                      <Path>7c9cfd62-4726-4b89-827b-d8c9d0d479d4</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -2702,8 +2683,8 @@
               </Model>
             </Children>
             <Location>
-              <X>808 px</X>
-              <Y>328 px</Y>
+              <X>245 px</X>
+              <Y>510 px</Y>
             </Location>
             <Size>
               <Width>150 px</Width>
@@ -2719,27 +2700,27 @@
             </MaxSize>
             <Ports />
             <Oid xsi:type="SchemaModelOID">
-              <Path>8df3be35-5625-455e-a326-7ed06ec963bf</Path>
+              <Path>9c9ea6d7-67a5-40db-bbce-e9a04736ac29</Path>
               <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
             </Oid>
             <FixedHeight>35 px</FixedHeight>
           </Model>
           <Model xsi:type="ClassVwModel">
             <CustomProperties>
-              <OID>140</OID>
+              <OID>139</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Children>
               <Model xsi:type="PropertiesVwModel">
                 <CustomProperties>
-                  <OID>141</OID>
-                  <Parent>140</Parent>
+                  <OID>140</OID>
+                  <Parent>139</Parent>
                 </CustomProperties>
                 <Children>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>142</OID>
-                      <Parent>141</Parent>
+                      <OID>141</OID>
+                      <Parent>140</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -2751,14 +2732,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>24fe658f-8305-442f-a7d1-5cab8f865a58</Path>
+                      <Path>4fbea258-4f4e-455e-95ee-70851add0183</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>143</OID>
-                      <Parent>141</Parent>
+                      <OID>142</OID>
+                      <Parent>140</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -2770,14 +2751,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>ca898678-bbeb-420e-849b-37c59f82bc36</Path>
+                      <Path>e640bdec-4a5e-4f3a-bcf1-8758c81e74db</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>144</OID>
-                      <Parent>141</Parent>
+                      <OID>143</OID>
+                      <Parent>140</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -2789,14 +2770,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>91af609e-6cb6-4773-bbb1-1fa518da48c3</Path>
+                      <Path>c90b5f17-9b68-43cc-9013-ff2d48b02727</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>145</OID>
-                      <Parent>141</Parent>
+                      <OID>144</OID>
+                      <Parent>140</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -2808,14 +2789,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>4d32f409-914d-4356-9ab0-e8afbb38c2c2</Path>
+                      <Path>d7918009-0008-4809-b856-67292f97718c</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>146</OID>
-                      <Parent>141</Parent>
+                      <OID>145</OID>
+                      <Parent>140</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -2827,14 +2808,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>0df86a15-f8ce-4389-8302-2964c22ada42</Path>
+                      <Path>ba4f1410-9509-4fbf-9d88-93593ccafa07</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>147</OID>
-                      <Parent>141</Parent>
+                      <OID>146</OID>
+                      <Parent>140</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -2846,14 +2827,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>de16efe5-66fa-45e3-a1a7-5cb81dc9353c</Path>
+                      <Path>a668dbc6-9c23-42d5-8dfe-a964d2619964</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>148</OID>
-                      <Parent>141</Parent>
+                      <OID>147</OID>
+                      <Parent>140</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -2865,7 +2846,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>7d950c59-a66e-45c8-b98c-7309fdf7137e</Path>
+                      <Path>9a1a4614-f90e-4b9d-8ce0-da1af7c812a4</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -2881,14 +2862,14 @@
               </Model>
               <Model xsi:type="RelationPropertiesVwModel">
                 <CustomProperties>
-                  <OID>149</OID>
-                  <Parent>140</Parent>
+                  <OID>148</OID>
+                  <Parent>139</Parent>
                 </CustomProperties>
                 <Children>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>150</OID>
-                      <Parent>149</Parent>
+                      <OID>149</OID>
+                      <Parent>148</Parent>
                     </CustomProperties>
                     <Children />
                     <Size>
@@ -2896,14 +2877,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>90706e9f-f4cf-4b9b-91c5-0a013a72096a</Path>
+                      <Path>380c4e3d-f95d-4ec9-8db4-7790994ccacd</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>151</OID>
-                      <Parent>149</Parent>
+                      <OID>150</OID>
+                      <Parent>148</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -2915,7 +2896,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>55c0daee-d732-4b80-b709-88fb660bb124</Path>
+                      <Path>571a6c3a-a029-4103-9556-8c48d6471955</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -2936,8 +2917,8 @@
               </Model>
             </Children>
             <Location>
-              <X>808 px</X>
-              <Y>512 px</Y>
+              <X>245 px</X>
+              <Y>221 px</Y>
             </Location>
             <Size>
               <Width>150 px</Width>
@@ -2953,27 +2934,27 @@
             </MaxSize>
             <Ports />
             <Oid xsi:type="SchemaModelOID">
-              <Path>ae4940bb-ad50-4b52-a2c2-315b512fd508</Path>
+              <Path>0c064647-b32e-4bee-b86e-9da215c50e6a</Path>
               <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
             </Oid>
             <FixedHeight>35 px</FixedHeight>
           </Model>
           <Model xsi:type="ClassVwModel">
             <CustomProperties>
-              <OID>152</OID>
+              <OID>151</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Children>
               <Model xsi:type="PropertiesVwModel">
                 <CustomProperties>
-                  <OID>153</OID>
-                  <Parent>152</Parent>
+                  <OID>152</OID>
+                  <Parent>151</Parent>
                 </CustomProperties>
                 <Children>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>154</OID>
-                      <Parent>153</Parent>
+                      <OID>153</OID>
+                      <Parent>152</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -2985,14 +2966,14 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>7f0894bc-c9d3-4d64-a72d-35ff3313610d</Path>
+                      <Path>1802e5b6-978a-49bd-95bf-68ce5f706c67</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
                   <Model xsi:type="PropertyVwModel">
                     <CustomProperties>
-                      <OID>155</OID>
-                      <Parent>153</Parent>
+                      <OID>154</OID>
+                      <Parent>152</Parent>
                     </CustomProperties>
                     <Children />
                     <Location>
@@ -3004,7 +2985,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>0640f3a7-9397-433c-a953-05dd4bf38e56</Path>
+                      <Path>698af39f-c112-477a-b3a5-06998b4467b5</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectProperty</TypeName>
                     </Oid>
                   </Model>
@@ -3020,14 +3001,14 @@
               </Model>
               <Model xsi:type="RelationPropertiesVwModel">
                 <CustomProperties>
-                  <OID>156</OID>
-                  <Parent>152</Parent>
+                  <OID>155</OID>
+                  <Parent>151</Parent>
                 </CustomProperties>
                 <Children>
                   <Model xsi:type="RelationPropertyVwModel">
                     <CustomProperties>
-                      <OID>157</OID>
-                      <Parent>156</Parent>
+                      <OID>156</OID>
+                      <Parent>155</Parent>
                     </CustomProperties>
                     <Children />
                     <Size>
@@ -3035,7 +3016,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>fb0356e2-91a2-4e75-8bed-8c0817e05589</Path>
+                      <Path>947663de-8f69-46d4-9ed8-a9833d09b84b</Path>
                       <TypeName>EntityDeveloper.Linq.LinqConnectRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -3056,8 +3037,8 @@
               </Model>
             </Children>
             <Location>
-              <X>232 px</X>
-              <Y>696 px</Y>
+              <X>245 px</X>
+              <Y>890 px</Y>
             </Location>
             <Size>
               <Width>150 px</Width>
@@ -3073,184 +3054,180 @@
             </MaxSize>
             <Ports />
             <Oid xsi:type="SchemaModelOID">
-              <Path>4d91b8ed-d4b6-4214-9bdd-12a916c41050</Path>
+              <Path>0ac7c556-2d1c-4b47-9077-bde47860e941</Path>
               <TypeName>EntityDeveloper.Linq.LinqClass</TypeName>
             </Oid>
             <FixedHeight>35 px</FixedHeight>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>158</OID>
+              <OID>157</OID>
               <OutModel>27</OutModel>
               <InModel>1</InModel>
-              <OutPort>159</OutPort>
-              <InPort>160</InPort>
+              <OutPort>158</OutPort>
+              <InPort>159</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>75 px</X>
-                  <Y>0 px</Y>
+                  <X>118.119047619048 px</X>
+                  <Y>1.16666666666697 px</Y>
                 </Location>
                 <Anchors>Left Right</Anchors>
                 <Align>Top</Align>
+                <CustomProperties>
+                  <OID>158</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>-0.142857142856997 px</X>
+                  <Y>96.3571428571431 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
                 <CustomProperties>
                   <OID>159</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>75 px</X>
-                  <Y>0 px</Y>
-                </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Bottom</Align>
-                <CustomProperties>
-                  <OID>160</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
+            <BendPoints>
+              <PointD>
+                <X>427.119047619048 px</X>
+                <Y>1414.35714285714 px</Y>
+              </PointD>
+            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>3e252a10-d708-4331-965a-86233151dd00</Path>
+              <Path>d76df6aa-d473-4bc3-83ed-7ea16b08e56d</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>161</OID>
+              <OID>160</OID>
               <OutModel>1</OutModel>
-              <InModel>69</InModel>
-              <OutPort>162</OutPort>
-              <InPort>163</InPort>
+              <InModel>67</InModel>
+              <OutPort>161</OutPort>
+              <InPort>162</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>97 px</Y>
+                  <X>75.9285714285716 px</X>
+                  <Y>194.404761904762 px</Y>
                 </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
+                <Anchors>Left Right</Anchors>
+                <Align>Bottom</Align>
+                <CustomProperties>
+                  <OID>161</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>75.9285714285716 px</X>
+                  <Y>0.571428571428896 px</Y>
+                </Location>
+                <Anchors>Left Right</Anchors>
+                <Align>Top</Align>
                 <CustomProperties>
                   <OID>162</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>0 px</X>
-                  <Y>97 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
-                <CustomProperties>
-                  <OID>163</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>210 px</X>
-                <Y>137 px</Y>
-              </PointD>
-              <PointD>
-                <X>210 px</X>
-                <Y>25 px</Y>
-              </PointD>
-              <PointD>
-                <X>596 px</X>
-                <Y>25 px</Y>
-              </PointD>
-              <PointD>
-                <X>596 px</X>
-                <Y>137 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>9fb3c362-1524-42ce-96af-71bcc53136c2</Path>
+              <Path>553a7ebb-858c-4248-91ee-3b4e98f13f61</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>164</OID>
-              <OutModel>69</OutModel>
+              <OID>163</OID>
+              <OutModel>42</OutModel>
               <InModel>11</InModel>
-              <OutPort>165</OutPort>
-              <InPort>166</InPort>
+              <OutPort>164</OutPort>
+              <InPort>165</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>226.5 px</Y>
+                  <X>76.0714285714286 px</X>
+                  <Y>194.52380952381 px</Y>
+                </Location>
+                <Anchors>Left Right</Anchors>
+                <Align>Bottom</Align>
+                <CustomProperties>
+                  <OID>164</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>149.928571428572 px</X>
+                  <Y>151.071428571429 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>165</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>0 px</X>
-                  <Y>226.5 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
-                <CustomProperties>
-                  <OID>166</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>596 px</X>
-                <Y>266.5 px</Y>
+                <X>116.071428571429 px</X>
+                <Y>2176.76190476191 px</Y>
               </PointD>
               <PointD>
-                <X>596 px</X>
-                <Y>280.5 px</Y>
+                <X>1443.09523809524 px</X>
+                <Y>2176.76190476191 px</Y>
               </PointD>
               <PointD>
-                <X>402 px</X>
-                <Y>280.5 px</Y>
-              </PointD>
-              <PointD>
-                <X>402 px</X>
-                <Y>266.5 px</Y>
+                <X>1443.09523809524 px</X>
+                <Y>1749.07142857143 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>b7241444-8103-40cc-9989-3aa993c238e9</Path>
+              <Path>62a60028-ce12-4a43-b5a7-ccb96f7172ec</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>167</OID>
-              <OutModel>27</OutModel>
+              <OID>166</OID>
+              <OutModel>122</OutModel>
               <InModel>11</InModel>
-              <OutPort>168</OutPort>
-              <InPort>169</InPort>
+              <OutPort>167</OutPort>
+              <InPort>168</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>112.5 px</X>
-                  <Y>0 px</Y>
+                  <X>75.5476190476193 px</X>
+                  <Y>194.547619047619 px</Y>
+                </Location>
+                <Anchors>Left Right</Anchors>
+                <Align>Bottom</Align>
+                <CustomProperties>
+                  <OID>167</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>75.5476190476193 px</X>
+                  <Y>0.61904761904816 px</Y>
                 </Location>
                 <Anchors>Left Right</Anchors>
                 <Align>Top</Align>
@@ -3259,53 +3236,39 @@
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>0 px</X>
-                  <Y>151 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
-                <CustomProperties>
-                  <OID>169</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>152.5 px</X>
-                <Y>364 px</Y>
-              </PointD>
-              <PointD>
-                <X>212 px</X>
-                <Y>364 px</Y>
-              </PointD>
-              <PointD>
-                <X>212 px</X>
-                <Y>191 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>328d8b9f-5d55-4283-9387-e7fb2d2f3c63</Path>
+              <Path>15a0775f-b378-4bc1-9352-8468f5712d65</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>170</OID>
-              <OutModel>42</OutModel>
+              <OID>169</OID>
+              <OutModel>67</OutModel>
               <InModel>11</InModel>
-              <OutPort>171</OutPort>
-              <InPort>172</InPort>
+              <OutPort>170</OutPort>
+              <InPort>171</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>115 px</Y>
+                  <X>150.309523809524 px</X>
+                  <Y>178.071428571429 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Right</Align>
+                <CustomProperties>
+                  <OID>170</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>-0.523809523809177 px</X>
+                  <Y>151.071428571429 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Left</Align>
@@ -3314,90 +3277,90 @@
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>0 px</X>
-                  <Y>115 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
-                <CustomProperties>
-                  <OID>172</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>5b570b81-a4bb-4ea1-a64b-36f9b2bf2cfc</Path>
+              <Path>236dbed7-08f8-4eca-b1d7-06fd8490f4a3</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>173</OID>
-              <OutModel>120</OutModel>
+              <OID>172</OID>
+              <OutModel>27</OutModel>
               <InModel>11</InModel>
-              <OutPort>174</OutPort>
-              <InPort>175</InPort>
+              <OutPort>173</OutPort>
+              <InPort>174</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>186 px</Y>
+                  <X>75.8571428571429 px</X>
+                  <Y>283.476190476191 px</Y>
                 </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
+                <Anchors>Left Right</Anchors>
+                <Align>Bottom</Align>
                 <CustomProperties>
-                  <OID>174</OID>
+                  <OID>173</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>186 px</Y>
+                  <X>75.5476190476193 px</X>
+                  <Y>301.52380952381 px</Y>
                 </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
+                <Anchors>Left Right</Anchors>
+                <Align>Bottom</Align>
                 <CustomProperties>
-                  <OID>175</OID>
+                  <OID>174</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>595 px</X>
-                <Y>226 px</Y>
+                <X>384.857142857143 px</X>
+                <Y>2115.90476190476 px</Y>
               </PointD>
               <PointD>
-                <X>595 px</X>
-                <Y>226 px</Y>
+                <X>1309.54761904762 px</X>
+                <Y>2115.90476190476 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>1810c177-9739-456a-95cc-0c700866dd42</Path>
+              <Path>d45b7424-6737-4afc-9097-44175c18607c</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>176</OID>
+              <OID>175</OID>
               <OutModel>27</OutModel>
               <InModel>42</InModel>
-              <OutPort>177</OutPort>
-              <InPort>178</InPort>
+              <OutPort>176</OutPort>
+              <InPort>177</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>142 px</Y>
+                  <X>-0.214285714285666 px</X>
+                  <Y>143.166666666667 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
+                <CustomProperties>
+                  <OID>176</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>150.452380952381 px</X>
+                  <Y>98.1666666666672 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Right</Align>
@@ -3406,437 +3369,311 @@
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>75 px</X>
-                  <Y>0 px</Y>
-                </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Bottom</Align>
-                <CustomProperties>
-                  <OID>178</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>499 px</X>
-                <Y>526 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>4c56670c-ea20-477f-90d1-b7c6ac77b82b</Path>
+              <Path>23e014e0-3e47-4ca5-9ea5-7a63dd031fb8</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>179</OID>
+              <OID>178</OID>
               <OutModel>27</OutModel>
-              <InModel>54</InModel>
-              <OutPort>180</OutPort>
-              <InPort>181</InPort>
+              <InModel>52</InModel>
+              <OutPort>179</OutPort>
+              <InPort>180</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>106 px</Y>
+                  <X>9.92857142857144 px</X>
+                  <Y>1.16666666666697 px</Y>
                 </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
+                <Anchors>Left Right</Anchors>
+                <Align>Top</Align>
+                <CustomProperties>
+                  <OID>179</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>73.9285714285714 px</X>
+                  <Y>284.190476190477 px</Y>
+                </Location>
+                <Anchors>Left Right</Anchors>
+                <Align>Bottom</Align>
                 <CustomProperties>
                   <OID>180</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>0 px</X>
-                  <Y>178 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
-                <CustomProperties>
-                  <OID>181</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>210 px</X>
-                <Y>490 px</Y>
-              </PointD>
-              <PointD>
-                <X>210 px</X>
-                <Y>504 px</Y>
-              </PointD>
-              <PointD>
-                <X>404 px</X>
-                <Y>504 px</Y>
-              </PointD>
-              <PointD>
-                <X>404 px</X>
-                <Y>490 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>c5d430c8-7d9f-4f5f-be10-c4f0b82560cc</Path>
+              <Path>f6db1bea-6ea2-4066-9d86-68873c40d0c7</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>182</OID>
+              <OID>181</OID>
               <OutModel>27</OutModel>
-              <InModel>69</InModel>
-              <OutPort>183</OutPort>
-              <InPort>184</InPort>
+              <InModel>67</InModel>
+              <OutPort>182</OutPort>
+              <InPort>183</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>213 px</Y>
+                  <X>150.238095238095 px</X>
+                  <Y>6.23809523809564 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Right</Align>
+                <CustomProperties>
+                  <OID>182</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>-0.142857142856997 px</X>
+                  <Y>10.7142857142862 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
                 <CustomProperties>
                   <OID>183</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>75 px</X>
-                  <Y>0 px</Y>
-                </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Bottom</Align>
-                <CustomProperties>
-                  <OID>184</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>210 px</X>
-                <Y>597 px</Y>
+                <X>518.404761904762 px</X>
+                <Y>1595.2380952381 px</Y>
               </PointD>
               <PointD>
-                <X>210 px</X>
-                <Y>667 px</Y>
-              </PointD>
-              <PointD>
-                <X>405 px</X>
-                <Y>667 px</Y>
-              </PointD>
-              <PointD>
-                <X>405 px</X>
-                <Y>621 px</Y>
-              </PointD>
-              <PointD>
-                <X>597 px</X>
-                <Y>621 px</Y>
-              </PointD>
-              <PointD>
-                <X>597 px</X>
-                <Y>398 px</Y>
-              </PointD>
-              <PointD>
-                <X>691 px</X>
-                <Y>398 px</Y>
+                <X>518.404761904762 px</X>
+                <Y>1581.71428571429 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>51c21cf0-fbd9-4a8b-a9ab-423f1bfc4d71</Path>
+              <Path>6a55dc28-b9f1-427c-a0c4-5f927c5a6e42</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>185</OID>
+              <OID>184</OID>
               <OutModel>27</OutModel>
-              <InModel>92</InModel>
-              <OutPort>186</OutPort>
-              <InPort>187</InPort>
+              <InModel>91</InModel>
+              <OutPort>185</OutPort>
+              <InPort>186</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>253.5 px</Y>
+                  <X>150.238095238095 px</X>
+                  <Y>278.404761904762 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Right</Align>
+                <CustomProperties>
+                  <OID>185</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>-0.0952380952379599 px</X>
+                  <Y>226.404761904762 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
                 <CustomProperties>
                   <OID>186</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>0 px</X>
-                  <Y>213.5 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
-                <CustomProperties>
-                  <OID>187</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>403 px</X>
-                <Y>637.5 px</Y>
-              </PointD>
-              <PointD>
-                <X>403 px</X>
-                <Y>637.5 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>f202a870-03ad-4e55-858b-349ce611031e</Path>
+              <Path>73d307f2-2b01-4ff9-86ec-6434206746da</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>188</OID>
+              <OID>187</OID>
               <OutModel>27</OutModel>
-              <InModel>92</InModel>
-              <OutPort>189</OutPort>
-              <InPort>190</InPort>
+              <InModel>91</InModel>
+              <OutPort>188</OutPort>
+              <InPort>189</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>192.5 px</Y>
+                  <X>150.238095238095 px</X>
+                  <Y>170.214285714286 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Right</Align>
+                <CustomProperties>
+                  <OID>188</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>-0.0952380952379599 px</X>
+                  <Y>118.214285714286 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
                 <CustomProperties>
                   <OID>189</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>0 px</X>
-                  <Y>152.5 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
-                <CustomProperties>
-                  <OID>190</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>210 px</X>
-                <Y>576.5 px</Y>
-              </PointD>
-              <PointD>
-                <X>210 px</X>
-                <Y>509 px</Y>
-              </PointD>
-              <PointD>
-                <X>401 px</X>
-                <Y>509 px</Y>
-              </PointD>
-              <PointD>
-                <X>401 px</X>
-                <Y>615 px</Y>
-              </PointD>
-              <PointD>
-                <X>596 px</X>
-                <Y>615 px</Y>
-              </PointD>
-              <PointD>
-                <X>596 px</X>
-                <Y>576.5 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>320c3e49-6bb8-4482-a837-0e5f4115f55d</Path>
+              <Path>9ce66af0-8649-4c16-950f-29674772a40f</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>191</OID>
+              <OID>190</OID>
               <OutModel>27</OutModel>
-              <InModel>120</InModel>
-              <OutPort>192</OutPort>
-              <InPort>193</InPort>
+              <InModel>91</InModel>
+              <OutPort>191</OutPort>
+              <InPort>192</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>35.5 px</Y>
+                  <X>150.238095238095 px</X>
+                  <Y>73.8571428571433 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Right</Align>
+                <CustomProperties>
+                  <OID>191</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>-0.0952380952379599 px</X>
+                  <Y>10.0238095238099 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
                 <CustomProperties>
                   <OID>192</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
+            </PortAnchors>
+            <BendPoints>
+              <PointD>
+                <X>577.571428571429 px</X>
+                <Y>1662.85714285714 px</Y>
+              </PointD>
+              <PointD>
+                <X>577.571428571429 px</X>
+                <Y>1651.02380952381 px</Y>
+              </PointD>
+            </BendPoints>
+            <IsManuallyRouted>false</IsManuallyRouted>
+            <Oid xsi:type="SchemaModelOID">
+              <Path>cd0a3dda-312e-40e7-9349-2a6a714501bb</Path>
+              <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
+            </Oid>
+          </Model>
+          <Model xsi:type="AssociationVwModel">
+            <CustomProperties>
+              <OID>193</OID>
+              <OutModel>42</OutModel>
+              <InModel>52</InModel>
+              <OutPort>194</OutPort>
+              <InPort>195</InPort>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
               <Port>
                 <Location>
-                  <X>75 px</X>
-                  <Y>0 px</Y>
+                  <X>76.0714285714286 px</X>
+                  <Y>0.11904761904816 px</Y>
                 </Location>
                 <Anchors>Left Right</Anchors>
-                <Align>Bottom</Align>
+                <Align>Top</Align>
                 <CustomProperties>
-                  <OID>193</OID>
+                  <OID>194</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>-0.452380952380935 px</X>
+                  <Y>142.190476190477 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
+                <CustomProperties>
+                  <OID>195</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>210 px</X>
-                <Y>419.5 px</Y>
-              </PointD>
-              <PointD>
-                <X>210 px</X>
-                <Y>365 px</Y>
-              </PointD>
-              <PointD>
-                <X>194.5 px</X>
-                <Y>365 px</Y>
-              </PointD>
-              <PointD>
-                <X>194.5 px</X>
-                <Y>346.5 px</Y>
-              </PointD>
-              <PointD>
-                <X>209 px</X>
-                <Y>346.5 px</Y>
-              </PointD>
-              <PointD>
-                <X>209 px</X>
-                <Y>350 px</Y>
-              </PointD>
-              <PointD>
-                <X>401 px</X>
-                <Y>350 px</Y>
-              </PointD>
-              <PointD>
-                <X>401 px</X>
-                <Y>381.5 px</Y>
-              </PointD>
-              <PointD>
-                <X>405 px</X>
-                <Y>381.5 px</Y>
-              </PointD>
-              <PointD>
-                <X>405 px</X>
-                <Y>293 px</Y>
-              </PointD>
-              <PointD>
-                <X>593 px</X>
-                <Y>293 px</Y>
-              </PointD>
-              <PointD>
-                <X>593 px</X>
-                <Y>405 px</Y>
-              </PointD>
-              <PointD>
-                <X>789 px</X>
-                <Y>405 px</Y>
-              </PointD>
-              <PointD>
-                <X>789 px</X>
-                <Y>308 px</Y>
-              </PointD>
-              <PointD>
-                <X>883 px</X>
-                <Y>308 px</Y>
+                <X>116.071428571429 px</X>
+                <Y>1213.19047619048 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>9a448717-31ff-4f9e-b04f-3ed080c3baed</Path>
+              <Path>12beb969-a50e-4ecc-8ae0-567725ac6fe8</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>194</OID>
-              <OutModel>42</OutModel>
-              <InModel>54</InModel>
-              <OutPort>195</OutPort>
-              <InPort>196</InPort>
+              <OID>196</OID>
+              <OutModel>122</OutModel>
+              <InModel>52</InModel>
+              <OutPort>197</OutPort>
+              <InPort>198</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>112.5 px</X>
-                  <Y>0 px</Y>
+                  <X>-0.523809523809177 px</X>
+                  <Y>98.1904761904766 px</Y>
                 </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Bottom</Align>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
                 <CustomProperties>
-                  <OID>195</OID>
+                  <OID>197</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
               <Port>
                 <Location>
-                  <X>112.5 px</X>
-                  <Y>0 px</Y>
-                </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Top</Align>
-                <CustomProperties>
-                  <OID>196</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
-            </PortAnchors>
-            <IsManuallyRouted>false</IsManuallyRouted>
-            <Oid xsi:type="SchemaModelOID">
-              <Path>987291f4-6f59-4b62-adba-95a21143d6e7</Path>
-              <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
-            </Oid>
-          </Model>
-          <Model xsi:type="AssociationVwModel">
-            <CustomProperties>
-              <OID>197</OID>
-              <OutModel>42</OutModel>
-              <InModel>120</InModel>
-              <OutPort>198</OutPort>
-              <InPort>199</InPort>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <PortAnchors>
-              <Port>
-                <Location>
-                  <X>0 px</X>
-                  <Y>115 px</Y>
+                  <X>150 px</X>
+                  <Y>142.190476190477 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Right</Align>
@@ -3845,346 +3682,254 @@
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>0 px</X>
-                  <Y>115 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
-                <CustomProperties>
-                  <OID>199</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>691 px</X>
-                <Y>155 px</Y>
-              </PointD>
-              <PointD>
-                <X>691 px</X>
-                <Y>155 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>e73032e9-d23f-47e0-896c-1066452e560c</Path>
+              <Path>f2995079-dd86-4101-9ee7-23a642815eb6</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>200</OID>
-              <OutModel>120</OutModel>
-              <InModel>54</InModel>
-              <OutPort>201</OutPort>
-              <InPort>202</InPort>
+              <OID>199</OID>
+              <OutModel>151</OutModel>
+              <InModel>52</InModel>
+              <OutPort>200</OutPort>
+              <InPort>201</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>62 px</Y>
+                  <X>73.9285714285714 px</X>
+                  <Y>122.02380952381 px</Y>
                 </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
+                <Anchors>Left Right</Anchors>
+                <Align>Bottom</Align>
+                <CustomProperties>
+                  <OID>200</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>73.9285714285714 px</X>
+                  <Y>0.190476190476602 px</Y>
+                </Location>
+                <Anchors>Left Right</Anchors>
+                <Align>Top</Align>
                 <CustomProperties>
                   <OID>201</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>75 px</X>
-                  <Y>0 px</Y>
-                </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Top</Align>
-                <CustomProperties>
-                  <OID>202</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>499 px</X>
-                <Y>102 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>9f4a14bf-2cf3-4203-b6c6-bc1bb515de50</Path>
+              <Path>89415806-2954-4074-9b8f-74c98f3cc61b</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>203</OID>
-              <OutModel>152</OutModel>
-              <InModel>54</InModel>
-              <OutPort>204</OutPort>
-              <InPort>205</InPort>
+              <OID>202</OID>
+              <OutModel>67</OutModel>
+              <InModel>91</InModel>
+              <OutPort>203</OutPort>
+              <InPort>204</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>75 px</X>
-                  <Y>0 px</Y>
+                  <X>-0.142857142856997 px</X>
+                  <Y>118.904761904762 px</Y>
                 </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Top</Align>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
+                <CustomProperties>
+                  <OID>203</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>150.357142857143 px</X>
+                  <Y>48.9047619047624 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>204</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>0 px</X>
-                  <Y>142 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
-                <CustomProperties>
-                  <OID>205</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>307 px</X>
-                <Y>676 px</Y>
-              </PointD>
-              <PointD>
-                <X>418.5 px</X>
-                <Y>676 px</Y>
-              </PointD>
-              <PointD>
-                <X>418.5 px</X>
-                <Y>476 px</Y>
-              </PointD>
-              <PointD>
-                <X>405 px</X>
-                <Y>476 px</Y>
-              </PointD>
-              <PointD>
-                <X>405 px</X>
-                <Y>454 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>bbbe1b8a-ffc9-4983-a948-cf5929f0058f</Path>
+              <Path>f3e3108f-5230-4ef6-9947-cb21e099d6b0</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>206</OID>
-              <OutModel>69</OutModel>
-              <InModel>92</InModel>
-              <OutPort>207</OutPort>
-              <InPort>208</InPort>
+              <OID>205</OID>
+              <OutModel>67</OutModel>
+              <InModel>91</InModel>
+              <OutPort>206</OutPort>
+              <InPort>207</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>112.5 px</X>
-                  <Y>0 px</Y>
+                  <X>-0.142857142856997 px</X>
+                  <Y>345.428571428572 px</Y>
                 </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Bottom</Align>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
+                <CustomProperties>
+                  <OID>206</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>150.357142857143 px</X>
+                  <Y>275.428571428572 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>207</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>112.5 px</X>
-                  <Y>0 px</Y>
-                </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Top</Align>
-                <CustomProperties>
-                  <OID>208</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>babfc482-5c72-4613-aeac-045a5ffaac14</Path>
+              <Path>5196d4df-b82d-4ae5-88d7-ab9bd3a34a0b</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>209</OID>
-              <OutModel>108</OutModel>
-              <InModel>133</InModel>
-              <OutPort>210</OutPort>
-              <InPort>211</InPort>
+              <OID>208</OID>
+              <OutModel>67</OutModel>
+              <InModel>91</InModel>
+              <OutPort>209</OutPort>
+              <InPort>210</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>61 px</Y>
+                  <X>75.9285714285716 px</X>
+                  <Y>355.571428571429 px</Y>
                 </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
+                <Anchors>Left Right</Anchors>
+                <Align>Bottom</Align>
+                <CustomProperties>
+                  <OID>209</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>143.595238095238 px</X>
+                  <Y>356.571428571429 px</Y>
+                </Location>
+                <Anchors>Left Right</Anchors>
+                <Align>Bottom</Align>
                 <CustomProperties>
                   <OID>210</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>75 px</X>
-                  <Y>0 px</Y>
-                </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Bottom</Align>
-                <CustomProperties>
-                  <OID>211</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>418.5 px</X>
-                <Y>589 px</Y>
+                <X>1099.92857142857 px</X>
+                <Y>2056.7380952381 px</Y>
               </PointD>
               <PointD>
-                <X>418.5 px</X>
-                <Y>590 px</Y>
-              </PointD>
-              <PointD>
-                <X>405 px</X>
-                <Y>590 px</Y>
-              </PointD>
-              <PointD>
-                <X>405 px</X>
-                <Y>615 px</Y>
-              </PointD>
-              <PointD>
-                <X>422.5 px</X>
-                <Y>615 px</Y>
-              </PointD>
-              <PointD>
-                <X>422.5 px</X>
-                <Y>632.5 px</Y>
-              </PointD>
-              <PointD>
-                <X>387.5 px</X>
-                <Y>632.5 px</Y>
-              </PointD>
-              <PointD>
-                <X>387.5 px</X>
-                <Y>781 px</Y>
-              </PointD>
-              <PointD>
-                <X>789 px</X>
-                <Y>781 px</Y>
-              </PointD>
-              <PointD>
-                <X>789 px</X>
-                <Y>488 px</Y>
-              </PointD>
-              <PointD>
-                <X>883 px</X>
-                <Y>488 px</Y>
+                <X>839.595238095238 px</X>
+                <Y>2056.7380952381 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>4d781a7b-56b8-49b7-b3c0-68d7b09133c6</Path>
+              <Path>5bb9999b-eb44-4da0-b155-e5f832de3dab</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>212</OID>
-              <OutModel>114</OutModel>
-              <InModel>140</InModel>
-              <OutPort>213</OutPort>
-              <InPort>214</InPort>
+              <OID>211</OID>
+              <OutModel>110</OutModel>
+              <InModel>132</InModel>
+              <OutPort>212</OutPort>
+              <InPort>213</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>51 px</Y>
+                  <X>73.9285714285714 px</X>
+                  <Y>0.428571428571559 px</Y>
                 </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
+                <Anchors>Left Right</Anchors>
+                <Align>Top</Align>
+                <CustomProperties>
+                  <OID>212</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>73.9285714285714 px</X>
+                  <Y>140.261904761905 px</Y>
+                </Location>
+                <Anchors>Left Right</Anchors>
+                <Align>Bottom</Align>
                 <CustomProperties>
                   <OID>213</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
-              <Port>
-                <Location>
-                  <X>0 px</X>
-                  <Y>179 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
-                <CustomProperties>
-                  <OID>214</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>594 px</X>
-                <Y>691 px</Y>
-              </PointD>
-              <PointD>
-                <X>594 px</X>
-                <Y>733 px</Y>
-              </PointD>
-              <PointD>
-                <X>788 px</X>
-                <Y>733 px</Y>
-              </PointD>
-              <PointD>
-                <X>788 px</X>
-                <Y>691 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>39d94581-2420-4443-9488-e095c98e0877</Path>
+              <Path>721b9d94-ab54-4b7a-9b2a-cf5226ddfb7b</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
           <Model xsi:type="AssociationVwModel">
             <CustomProperties>
-              <OID>215</OID>
-              <OutModel>140</OutModel>
-              <InModel>133</InModel>
-              <OutPort>216</OutPort>
-              <InPort>217</InPort>
+              <OID>214</OID>
+              <OutModel>116</OutModel>
+              <InModel>139</InModel>
+              <OutPort>215</OutPort>
+              <InPort>216</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>112.5 px</X>
-                  <Y>0 px</Y>
+                  <X>73.9285714285714 px</X>
+                  <Y>121.714285714286 px</Y>
+                </Location>
+                <Anchors>Left Right</Anchors>
+                <Align>Bottom</Align>
+                <CustomProperties>
+                  <OID>215</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>73.9285714285714 px</X>
+                  <Y>-0.119047619047478 px</Y>
                 </Location>
                 <Anchors>Left Right</Anchors>
                 <Align>Top</Align>
@@ -4193,22 +3938,51 @@
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
+            </PortAnchors>
+            <IsManuallyRouted>false</IsManuallyRouted>
+            <Oid xsi:type="SchemaModelOID">
+              <Path>58a4a99d-ef1a-4e20-a6fd-2fd68304066f</Path>
+              <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
+            </Oid>
+          </Model>
+          <Model xsi:type="AssociationVwModel">
+            <CustomProperties>
+              <OID>217</OID>
+              <OutModel>139</OutModel>
+              <InModel>132</InModel>
+              <OutPort>218</OutPort>
+              <InPort>219</InPort>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
               <Port>
                 <Location>
-                  <X>112.5 px</X>
-                  <Y>0 px</Y>
+                  <X>73.9285714285714 px</X>
+                  <Y>229.785714285714 px</Y>
                 </Location>
                 <Anchors>Left Right</Anchors>
                 <Align>Bottom</Align>
                 <CustomProperties>
-                  <OID>217</OID>
+                  <OID>218</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>73.9285714285714 px</X>
+                  <Y>-0.0476190476188094 px</Y>
+                </Location>
+                <Anchors>Left Right</Anchors>
+                <Align>Top</Align>
+                <CustomProperties>
+                  <OID>219</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
             </PortAnchors>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>b0277eac-f862-49e7-a13e-4517cb5264a1</Path>
+              <Path>a7a11665-9fdd-4d08-827b-a00962e39415</Path>
               <TypeName>EntityDeveloper.Linq.LinqConnectAssociation</TypeName>
             </Oid>
           </Model>
@@ -4216,14 +3990,14 @@
         <GridSize>8 px</GridSize>
         <ViewPort>
           <ScaleMode>Free</ScaleMode>
-          <Scale>0.350112379</Scale>
+          <Scale>0.251927018</Scale>
           <Location>
-            <X>-482.130910870117 px</X>
-            <Y>-207.933233951983 px</Y>
+            <X>-1210.13402742041 px</X>
+            <Y>-2.55201227971793 px</Y>
           </Location>
         </ViewPort>
         <Oid xsi:type="SchemaModelOID">
-          <Path>64369302-ffaf-4f2b-990d-caf48933bb67</Path>
+          <Path>f322fbee-e132-4ae4-91aa-d847e49da035</Path>
           <TypeName>EntityDeveloper.Linq.LinqConnectContextModel</TypeName>
         </Oid>
       </Model>

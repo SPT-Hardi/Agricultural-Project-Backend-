@@ -94,7 +94,7 @@ namespace Inventory_Mangement_System.Controllers
                     refreshToken = newRefreshToken
                 });
             }
-        }
+                                          }
 
         /**//* [Authorize]
  */

@@ -27,5 +27,12 @@ namespace Inventory_Mangement_System.Controllers
             var result = _mainAreaRepository.AddMainAreaAsync(mainAreaModel);
             return Ok(result);
         }
+
+        [HttpPut("editArea/{mid}/{sid}")]
+        public async Task<IActionResult> EditArea(UpdateAreaModel mainAreaModel, int mid, int sid)
+        { 
+            var result = _mainAreaRepository.EditAreaAsync(mainAreaModel,mid,sid);
+            return Ok(result);
+        }
     }
 }

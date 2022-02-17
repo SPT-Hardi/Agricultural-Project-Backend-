@@ -180,7 +180,7 @@ namespace Inventory_Mangement_System.Repository
                 UserLoginDetails login = new UserLoginDetails();
                 var MacAddress = login.GetMacAddress().Result;
 
-                var LoginID = context.LoginDetails.FirstOrDefault(c => c.SystemMac == MacAddress);
+                var LoginID = context.LoginDetails.FirstOrDefault(c => c.SystemMAC == MacAddress);
                 var qs = (from obj in issueModel.issueDetails
                           select new Issue()
                           {

@@ -30,6 +30,11 @@ namespace Inventory_Mangement_System
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(option =>
+            {
+                option.AddDefaultPolicy(builder => builder.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
+            });
+
             services.AddTransient<IAccountRepository,AccountRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
@@ -39,12 +44,15 @@ namespace Inventory_Mangement_System
             services.AddTransient<IIssueRepository, IssueRepository>();
             services.AddTransient<IProductionRepository, ProductionRepository>();
             services.AddTransient<IInventoryViewRepository, InventoryViewRepository>();
-            
+
+
+            ProductInventoryContext.ProductInventoryDataContext db
+  = new ProductInventoryContext.ProductInventoryDataContext("Data Source=DESKTOP-JFJO2JL;Initial Catalog=Product Inventory;Integrated Security=False;Persist Security Info=True;User ID=SuperAdmin;Password=SuperAdmin;License Key=qHnH5wx/L422kFN4WQussVkqbelF0xGMaZi+DGL6lhFu+VTasW/ZRA22+dVoDbuQ64trDZsBMziLDE9kumHeTDKlcRSCvsotqn7rHn9VHFXS3Jmh/rFBVSxav6UlKmT4POdU+hnX8ACaigXhFdBiZ4NeHNVRNTqJ4fUTou0czKt8ATWxOB2MjUrprbYTV2ECFJOo2uLgwGzqeEpv1gGPLKR3p5DOKdeMu61FRAak23fmjt8PPQpz50o1E0r0FFdoQrJIYKkMxqRiD2IhVxlcVCvpIqR31rWwKJ1sNquGBMU=;");
+
+
             services.AddControllers().AddNewtonsoftJson();
-            services.AddCors(option =>
-            {
-                option.AddDefaultPolicy(builder => builder.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
-            });
+           
+
 
             services.AddAuthentication(option =>
             {
@@ -78,7 +86,6 @@ namespace Inventory_Mangement_System
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
             app.UseCors(builder => builder
                .AllowAnyHeader()
                .AllowAnyMethod()
