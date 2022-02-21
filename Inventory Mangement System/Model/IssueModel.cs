@@ -24,6 +24,7 @@ namespace Inventory_Mangement_System.Model
         public float IssueQuantity { get; set; }
 
         public Model.Common.IntegerNullString Product { get; set; } = new Model.Common.IntegerNullString();
-
+       
     }
+    
 }

@@ -26,7 +26,7 @@ namespace Inventory_Mangement_System.Repository
             _tokenService = tokenService;
         }
 
-        //To add new role
+        //Add Role
         public Result AddRole(RoleModel roleModel )
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
@@ -75,7 +75,7 @@ namespace Inventory_Mangement_System.Repository
             }
         }
 
-        //To register user details
+        //User Registration
         public Result RegisterUser(UserModel userModel)
         {
             ProductInventoryDataContext context = new ProductInventoryDataContext();
@@ -91,11 +91,11 @@ namespace Inventory_Mangement_System.Repository
                          }).Count();
             if (query != 0)
             {
-                throw new ArgumentException("User Already Exists");
+                throw new ArgumentException("User Already Exists With Same Name!");
             }
             else
             {
-                user.UserName = userModel.UserName;
+                user.UserName = char.ToUpper(userModel.UserName[0]) + userModel.UserName.Substring(1).ToLower();
                 user.Password = passwordHasher.EncryptPassword(userModel.Password);
                 user.RoleID = 2;
                 user.EmailAddress = userModel.EmailAddress;
@@ -111,32 +111,7 @@ namespace Inventory_Mangement_System.Repository
                 };
              }
         }
-
-        //View User By Id
-        public async Task<IEnumerable> ViewUserById(int userID)
-        {
-            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
-            {
-                User user = new User();
-                user = context.Users.SingleOrDefault(id => id.UserID == userID);
-                if (user == null)
-                {
-                    throw new ArgumentException("User Does Not Exist.");
-                }
-                return (from u in context.Users
-                        join r in context.Roles
-                        on u.RoleID equals r.RoleID
-                        where u.UserID == userID
-                        select new
-                        {
-                            UserName=u.UserName,
-                            EmailAddress = u.EmailAddress,
-                            //Password=u.Password,
-                            RoleName=r.RoleName
-                        }).ToList();
-            }
-        }
-
+        //User Login
         public Result LoginUser(LoginModel loginModel )
         {
             ProductInventoryDataContext context = new ProductInventoryDataContext();

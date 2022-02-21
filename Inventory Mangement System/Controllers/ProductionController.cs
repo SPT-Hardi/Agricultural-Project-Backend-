@@ -19,6 +19,7 @@ namespace Inventory_Mangement_System.Controllers
         {
             _productionRepository = productionRepository;
         }
+        //View All Production Details 
         [HttpPost("addproduction")]
         public async Task<IActionResult> ProductionDetailAdded([FromBody] ProductionModel productionModel)
         {
@@ -26,6 +27,8 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
 
         }
+
+        //Add Production Details
         [HttpGet("viewproductiondetail")]
         public async Task<IActionResult> ViewProductionDetail()
         {
@@ -33,13 +36,7 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
-        [HttpGet("viewproductionbyId/{id}")]
-        public async Task<IActionResult> ViewProductionById(int id)
-        {
-            var result = _productionRepository.ViewProductionById(id);
-            return Ok(result);
-        }
-
+        //Edit Production
         [HttpPut("Editproduction/{id}")]
         public async Task<IActionResult> EditProduction(ProductionModel productionModel, int id)
         {

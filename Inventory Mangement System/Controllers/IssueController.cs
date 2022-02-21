@@ -36,20 +36,15 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
-        //Issue Detail By Id
-        [HttpGet("ViewIssueById/{issueID}")]
-        public async Task<IActionResult> ViewIssueByIdAsync([FromRoute] int issueID)
-        {
-            var result = await _isueRepository.ViewIssueById(issueID);
-            return Ok(result);
-        }
-        
+        //Edit Issue Details
         [HttpPut("EditIssue/{ID}")]
         public async Task<IActionResult> EditIssueAsync([FromBody] IssueModel issueModel,[FromRoute] int ID)
         {
             var result =  _isueRepository.EditIssue(issueModel,ID);
             return Ok(result);
         }
+
+        //Get MainArea Dropdown
         [HttpGet("getmainarea")]
         public async Task<IActionResult> MainAreaGet()
         {
@@ -57,6 +52,7 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
+        //Get SubArea Dropdown
         [HttpGet("getsubarea/{id}")]
         public async Task<IActionResult> SubAreaGet(int id)
         {
@@ -64,26 +60,27 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
+        //Get Product Dropdown with Unit And Quantity
         [HttpGet("getproduct")]
         public async Task<IActionResult> ProductGet()
         {
             var result = await _isueRepository.GetProduct();
             return Ok(result);
         }
-
-        /*[HttpGet("GetProductTotalQuantity")]
+                
+    }
+}
+/*[HttpGet("GetProductTotalQuantity")]
         public async Task<IActionResult> GetProductTotalQuantityAsync()
         {
             var result = await _isueRepository.GetProductTotalQuantity();
             return Ok(result);
         }*/
-    /*   //to view total quantity
-        [HttpPost("total")]
-        public async Task<IActionResult> totalcount(IssueModel issueModel)
-        {
-            var result = _isueRepository.total(issueModel);
-            return Ok(result);
-        }
-    */
+/*   //to view total quantity
+    [HttpPost("total")]
+    public async Task<IActionResult> totalcount(IssueModel issueModel)
+    {
+        var result = _isueRepository.total(issueModel);
+        return Ok(result);
     }
-}
+*/

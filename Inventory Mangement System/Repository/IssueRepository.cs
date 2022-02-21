@@ -12,15 +12,7 @@ namespace Inventory_Mangement_System.Repository
 {
     public class IssueRepository : IIssueRepository
     {
-        //private readonly UserLoginDetails _userLoginDetails;
-
-        //private float diff;
-        //public IssueRepository(UserLoginDetails userLoginDetails)
-        //{
-        //    _userLoginDetails = userLoginDetails;
-        //}
-
-        //All Issue Details
+        //View Issue Details
         public Result ViewAllIssue()
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
@@ -33,7 +25,7 @@ namespace Inventory_Mangement_System.Repository
                             {
                                 IssueID = obj.IssueID,
                                 Date = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.IssueDate),
-                                Product = new IntegerNullString() { Id = obj.Product.ProductID, Text = obj.Product.ProductName },
+                                Product = new { Id = obj.Product.ProductID, Text = obj.Product.ProductName , Unit = obj.Product.ProductUnit.Type },
                                 MainArea = new IntegerNullString() { Id = obj.MainArea.MainAreaID, Text = obj.MainArea.MainAreaName },
                                 SubArea = new IntegerNullString() { Id = obj.SubArea.SubAreaID, Text = obj.SubArea.SubAreaName },
                                 IssueQuantity = obj.PurchaseQuantity,
@@ -46,62 +38,7 @@ namespace Inventory_Mangement_System.Repository
                 };
             }
         }
-       /* //Issue Products
-        public Result IssueProduct(IssueModel issueModel)
-        {
-            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
-            {
-                Issue issue = new Issue();
-                var query = (from r in context.PurchaseDetails
-                             where r.ProductID == issueModel.Product.Id
-                             select r.TotalQuantity).ToList();
-                double sum = 0;
-                foreach (var item in query)
-                {
-                    sum = sum + item;
-                }
-
-                var query2 = (from r in context.Issues
-                              where r.ProductID == issueModel.Product.Id
-                              select r.PurchaseQuantity).ToList();
-                double p = 0;
-                foreach (var item in query2)
-                {
-                    p = p + item;
-                }
-
-                var diff = sum - p;
-                if (diff >= issueModel.IssueQuantity)
-                {
-                    issue.PurchaseQuantity = issueModel.IssueQuantity;
-                    issue.Date = issueModel.Date.ToLocalTime();
-                    issue.MainAreaID = issueModel.MainArea.Id;
-                    issue.SubAreaID = issueModel.SubArea.Id;
-                    issue.ProductID = issueModel.Product.Id;
-                    context.Issues.InsertOnSubmit(issue);
-                    context.SubmitChanges();
-                    return new Result()
-                    {
-                        Message = string.Format($"{issueModel.Product.Text} Issue successfully!"),
-                        Status = Result.ResultStatus.success,
-                        Data = issueModel.Product.Text,
-                    };
-                }
-                else
-                {
-                    throw new ArgumentException($"Product Out Of Stock.Total Quantity is {diff}");
-                    return new Result()
-                    {
-                        Message = string.Format($"Product Out Of Stock.Total Quantity is {diff}"),
-                        Status = Result.ResultStatus.none,
-                        Data = diff,
-                    };
-                }
-
-                return $"{issueModel.Product.Text } Add Successfully";
-            }
-        }*/
-
+        
         //Issue Products
         public Result IssueProduct(IssueModel issueModel)
         {
@@ -119,11 +56,11 @@ namespace Inventory_Mangement_System.Repository
                               SubAreaID = issueModel.SubArea.Id,
                               Remark = obj.Remark,
                               IssueDate = issueModel.Date.ToLocalTime(),
-                              //LoginID = LoginID.LoginID,
+                              LoginID = 1,//LoginID.LoginID,
                               DateTime = DateTime.Now,
                               PurchaseQuantity = obj.IssueQuantity
                           }).ToList();
-
+                
                 foreach (var item in qs)
                 {
                     var p = (from obj in context.Products
@@ -160,14 +97,14 @@ namespace Inventory_Mangement_System.Repository
             }
         }
 
+        //Edit Issue Details
         public Result EditIssue(IssueModel issueModel, int ID)
         {
             float RemainQuantity = 0;
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 //var MacAddress = context.LoginDetails.FirstOrDefault(c => c.SystemMac == macObj);
-                var qs = (
-                         from obj in context.Issues
+                var qs = (from obj in context.Issues
                          where obj.IssueID == ID
                          select obj).SingleOrDefault();
                 var p = (from obj in issueModel.issueDetails
@@ -184,8 +121,15 @@ namespace Inventory_Mangement_System.Repository
                            {
                                ProductID = obj.ProductID
                            }).ToList();
-
-
+                if(qs.PurchaseQuantity< p.IssueQuantity)
+                {
+                    if (pd.TotalProductQuantity < p.IssueQuantity)
+                    {
+                        throw new ArgumentException($"Product name :{pd.ProductID} ," +
+                            $"Enter quantity{p.IssueQuantity} more than existing quantity{pd.TotalProductQuantity}");
+                    }
+                }
+                
                 if (qs.SubAreaID == issueModel.SubArea.Id)
                 {
                     if (qs.ProductID == p.Product.Id)
@@ -241,9 +185,6 @@ namespace Inventory_Mangement_System.Repository
                             Data = $"Issue ID : {ID} updated successfully",
                         };
                     }
-
-
-
                 }
                 else
                 {
@@ -280,38 +221,7 @@ namespace Inventory_Mangement_System.Repository
                 
             }
         }
-
-        //Issue Detail By Id
-        public async Task<IEnumerable> ViewIssueById(int issueID)
-        {
-            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
-            {
-                Issue issue=new Issue();
-                issue = context.Issues.SingleOrDefault(id => id.IssueID == issueID);
-                if (issue == null)
-                {
-                    throw new ArgumentException("Issue Detail Does Not Exist.");
-                }
-                return (from i in context.Issues
-                        join p in context.Products
-                        on i.ProductID equals p.ProductID
-                        join m in context.MainAreas
-                        on i.MainAreaID equals m.MainAreaID
-                        join s in context.SubAreas
-                        on i.SubAreaID equals s.SubAreaID
-                        where i.IssueID == issueID
-                        select new
-                        {
-                            IssueID = i.IssueID,
-                            Date = i.IssueDate,
-                            ProductName = p.ProductName,
-                            MainAreaName = m.MainAreaName,
-                            SubAreaName = s.SubAreaName,
-                            PurchaseQuantity = i.PurchaseQuantity
-                        }).ToList();
-            }
-        }
-
+        
         //Get MainArea Dropdown
         public async Task<IEnumerable> GetMainArea()
         {
@@ -341,7 +251,7 @@ namespace Inventory_Mangement_System.Repository
             }
         }
 
-        //Get Product Dropdown
+        //Get Product Dropdown with Unit And Quantity
         public async Task<IEnumerable> GetProduct()
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
@@ -356,8 +266,67 @@ namespace Inventory_Mangement_System.Repository
                         }).ToList();
             }
         }
-        //Get Product With Total Quantity Dropdown
- /*       public async Task<IEnumerable> GetProductTotalQuantity()
+ 
+    }
+}
+/* //Issue Products
+        public Result IssueProduct(IssueModel issueModel)
+        {
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                Issue issue = new Issue();
+                var query = (from r in context.PurchaseDetails
+                             where r.ProductID == issueModel.Product.Id
+                             select r.TotalQuantity).ToList();
+                double sum = 0;
+                foreach (var item in query)
+                {
+                    sum = sum + item;
+                }
+
+                var query2 = (from r in context.Issues
+                              where r.ProductID == issueModel.Product.Id
+                              select r.PurchaseQuantity).ToList();
+                double p = 0;
+                foreach (var item in query2)
+                {
+                    p = p + item;
+                }
+
+                var diff = sum - p;
+                if (diff >= issueModel.IssueQuantity)
+                {
+                    issue.PurchaseQuantity = issueModel.IssueQuantity;
+                    issue.Date = issueModel.Date.ToLocalTime();
+                    issue.MainAreaID = issueModel.MainArea.Id;
+                    issue.SubAreaID = issueModel.SubArea.Id;
+                    issue.ProductID = issueModel.Product.Id;
+                    context.Issues.InsertOnSubmit(issue);
+                    context.SubmitChanges();
+                    return new Result()
+                    {
+                        Message = string.Format($"{issueModel.Product.Text} Issue successfully!"),
+                        Status = Result.ResultStatus.success,
+                        Data = issueModel.Product.Text,
+                    };
+                }
+                else
+                {
+                    throw new ArgumentException($"Product Out Of Stock.Total Quantity is {diff}");
+                    return new Result()
+                    {
+                        Message = string.Format($"Product Out Of Stock.Total Quantity is {diff}"),
+                        Status = Result.ResultStatus.none,
+                        Data = diff,
+                    };
+                }
+
+                return $"{issueModel.Product.Text } Add Successfully";
+            }
+        }*/
+
+/*      //Get Product With Total Quantity Dropdown
+       public async Task<IEnumerable> GetProductTotalQuantity()
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
@@ -434,8 +403,15 @@ namespace Inventory_Mangement_System.Repository
                 };
             }
         }*/
-    }
-}
+/*
+        //private readonly UserLoginDetails _userLoginDetails;
+
+        //private float diff;
+        //public IssueRepository(UserLoginDetails userLoginDetails)
+        //{
+        //    _userLoginDetails = userLoginDetails;
+        //}
+*/
 /*using(ProductInventoryDataContext context=new ProductInventoryDataContext())
                 {
                     var _p = (from obj in issueModel.issueDetails

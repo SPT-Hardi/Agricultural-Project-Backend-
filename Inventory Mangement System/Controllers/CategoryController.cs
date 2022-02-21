@@ -18,21 +18,7 @@ namespace Inventory_Mangement_System.Controllers
             _categoryRepository = categoryRepository;
         }
 
-        [HttpPost("addCategory")]
-        public async Task<IActionResult> CategoryAdded(CategoryModel categoryModel)
-        {
-            var result = _categoryRepository.AddCategory(categoryModel);
-            return Ok(result);
-        }
-
-
-        [HttpGet("getCategory")]
-        public async Task<IActionResult> CategoryGet()
-        {
-            var result = await _categoryRepository.GetCategory();
-            return Ok(result);
-        }
-
+        //View Category
         [HttpGet("viewCategory")]
         public async Task<IActionResult> CategoryView()
         {
@@ -40,6 +26,31 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
+        //Add New Category
+        [HttpPost("addCategory")]
+        public async Task<IActionResult> CategoryAdded(CategoryModel categoryModel)
+        {
+            var result = _categoryRepository.AddCategory(categoryModel);
+            return Ok(result);
+        }
+
+        //Edit Category     
+        [HttpPut("EditCategory/{id}")]
+        public async Task<IActionResult> CategoryEdit(CategoryModel categoryModel, int id)
+        {
+            var result = _categoryRepository.EditCategory(categoryModel, id);
+            return Ok(result);
+        }
+
+        //DropDown For Category
+        [HttpGet("getCategory")]
+        public async Task<IActionResult> CategoryGet()
+        {
+            var result = await _categoryRepository.GetCategory();
+            return Ok(result);
+        }
+
+        //View Category With Paging
         [HttpGet("viewCategorys")]
         public async Task<IActionResult> CategoryViews([FromQuery] Paging value)
         {
@@ -48,12 +59,5 @@ namespace Inventory_Mangement_System.Controllers
         }
 
         
-
-        [HttpPut("EditCategory/{id}")]
-        public async Task<IActionResult> CategoryEdit(CategoryModel categoryModel, int id)
-        {
-            var result = _categoryRepository.EditCategory(categoryModel, id);
-            return Ok(result);
-        }
     }
 }

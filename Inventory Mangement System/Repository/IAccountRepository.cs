@@ -7,14 +7,14 @@ namespace Inventory_Mangement_System.Repository
 {
     public interface IAccountRepository
     {
+        //Add Role
         Result AddRole(RoleModel roleModel);
 
         //View All User
         Task<IEnumerable> ViewAllUser();
-
+        //User Registration
         Result RegisterUser(UserModel userModel);
-        //View User By Id
-        Task<IEnumerable> ViewUserById(int userID);
+        //User Login
         Result LoginUser(LoginModel loginModel);
     }
 }

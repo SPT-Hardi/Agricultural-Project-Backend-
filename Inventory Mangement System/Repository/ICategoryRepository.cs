@@ -7,13 +7,20 @@ namespace Inventory_Mangement_System.Repository
 {
     public interface ICategoryRepository
     {
-        //Result AddCategory(CategoryModel categoryModel, int Uid);
+        //View Category
+        Result ViewCategory();
+
+        //Add New Category
         Result AddCategory(CategoryModel categoryModel);
+        
+        //Edit Category
+        Result EditCategory(CategoryModel categoryModel, int id);
+
+        //DropDown For Category
         Task<IEnumerable> GetCategory();
 
-        Result ViewCategory();
-        Task<IEnumerable> ViewCategoryById(int cid);
-        Result EditCategory(CategoryModel categoryModel, int id);
+        //View Category With Paging
         Result ViewCategorys(Paging value);
+
     }
 }

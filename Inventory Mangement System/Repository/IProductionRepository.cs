@@ -7,9 +7,13 @@ namespace Inventory_Mangement_System.Repository
 { 
     public interface IProductionRepository
     {
+        //View All Production Details 
         Result AddProductionDetails(ProductionModel value);
+
+        //Add Production Details
         Result ViewAllProductionDetails();
-        Task<IEnumerable> ViewProductionById(int id);
+
+        //Edit Production
         Result Editproduction(ProductionModel productionModel, int id);
     }
 }

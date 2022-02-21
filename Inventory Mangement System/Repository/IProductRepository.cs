@@ -14,15 +14,11 @@ namespace Inventory_Mangement_System.Repository
         //Add Product
         Result AddProduct(ProductModel productModel);
 
-        //View Product By Id
-        Result ViewProductById(int productID);
-
-        //Edit Product Using Put Method
+        //Edit Product 
         Result EditProduct(ProductDetail productDetail, int productID);
         
         //Get Unit
         Task<IEnumerable> GetUnit();
 
-        Result UpdateProduct(JsonPatchDocument productModel, int productID);
     }
 }

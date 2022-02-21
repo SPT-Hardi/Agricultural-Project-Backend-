@@ -33,7 +33,7 @@ namespace Inventory_Mangement_System.Controllers
 
         //Add Product
         [HttpPost ("addproduct")]
-       // [Authorize(Roles = "Super Admin,Admin")]
+        // [Authorize(Roles = "Super Admin,Admin")]
         public async Task<IActionResult> ProductAdded(ProductModel productModel)
         {
             var result = _productRepository.AddProduct(productModel);
@@ -41,15 +41,7 @@ namespace Inventory_Mangement_System.Controllers
            
         }
 
-        //View Product By Id
-        [HttpGet("ViewProductById/{productID}")]
-        public async Task<IActionResult> ViewProductByIDAsync([FromRoute] int productID)
-        {
-            var result = _productRepository.ViewProductById(productID);
-            return Ok(result);
-        }
-
-        //Edit Product Using Put Method
+        //Edit Product 
         [HttpPut("EditProduct/{productID}")]
         public async Task<IActionResult> EditProductAsync([FromBody] ProductDetail productDetail, [FromRoute] int productID)
         {
@@ -65,11 +57,5 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
-        [HttpPatch("UpdateProduct/{productID}")]
-        public async Task<IActionResult> Update([FromBody] JsonPatchDocument productModel, [FromRoute] int productID)
-        {
-            var result = _productRepository.UpdateProduct(productModel, productID);
-            return Ok(result);
-        }
     }
 }

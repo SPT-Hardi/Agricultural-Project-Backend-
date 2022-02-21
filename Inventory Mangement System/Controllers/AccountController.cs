@@ -25,7 +25,7 @@ namespace Inventory_Mangement_System.Controllers
             _accountRepository = accountRepository;
             _configuration = configuration;
         }
-
+        //Add Role
         [HttpPost ("addRole")]
         public async Task<IActionResult> RoleAdded(RoleModel roleModel)
         {
@@ -33,7 +33,7 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
-        //View User By Id
+        //View All User
         [HttpGet("ViewAllUser")]
         public async Task<IActionResult> ViewAllUserAsync()
         {
@@ -41,8 +41,9 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
+        //User Registration 
         [HttpPost("SignUp")]
-       // [Authorize(Roles="Super Admin")]
+        // [Authorize(Roles="Super Admin")]
         //[Authorize]
         public async Task<IActionResult> SignUp([FromBody]UserModel userModel)
         {
@@ -55,14 +56,7 @@ namespace Inventory_Mangement_System.Controllers
             //return Unauthorized();
         }
         
-        //View User By Id
-        [HttpGet("ViewUserById/{userID}")]
-        public async Task<IActionResult> ViewUserByIDAsync([FromRoute] int userID)
-        {
-            var result = await _accountRepository.ViewUserById(userID);
-            return Ok(result);
-        }
-
+        //User Login
         [HttpPost("Login")]
         public async Task<IActionResult> SignIn([FromBody]LoginModel loginModel)
         {
@@ -70,24 +64,5 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
-        [HttpGet("gettoken")]
-        public ActionResult<string> GetToken()
-        {
-            int uid = (int)HttpContext.Items["UserId"];
-            return Ok(uid);
-            
-            //var isClaim = User.Claims.FirstOrDefault(x => x.Type.ToString().Equals(ClaimTypes.Name, StringComparison.InvariantCultureIgnoreCase));
-            //if (isClaim != null)
-            //{
-            //    var id = isClaim.Value;
-            //    var name1 = User.Identity.Name;
-
-            //    return Ok(name1);
-            //}
-            //else
-            //{
-            //    return BadRequest("no");
-            //}
-        }
     }
 }

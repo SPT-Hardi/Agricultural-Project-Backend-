@@ -11,18 +11,42 @@ namespace Inventory_Mangement_System.Repository
 {
     public class PurchaseRepository : IPurchaseRepository
     {
-        public async Task<IEnumerable> GetunitByid(int id)
+        //View Purchase Details
+        public Result GetPurchaseDetails()
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
-                return (from x in context.Products
-                        where x.ProductID == id
-                        select new
-                        {
-                            Unit = x.ProductUnit.Type,
-                        }).ToList();
+                PurchaseDetail purchaseDetail = new PurchaseDetail();
+
+                return new Result()
+                {
+                    Status = Result.ResultStatus.success,
+                    Data = (from obj in context.PurchaseDetails
+                            join obj2 in context.Products
+                            on obj.ProductID equals obj2.ProductID into JoinTablePN
+                            from PN in JoinTablePN.DefaultIfEmpty()
+                            select new
+                            {
+                                PurchaseID = obj.PurchaseID,
+                                ProductName = new IntegerNullString() { Id = obj.Product.ProductID, Text = obj.Product.ProductName },
+                                TotalQuantity = obj.TotalQuantity,
+                                TotalCost = obj.TotalCost,
+                                Unit = obj.Unit,//new IntegerNullString() { Id=obj.ProductUnit.UnitID,Text=obj.ProductUnit.Type},
+                                Remark = obj.Remark,
+                                VendorName = obj.VendorName,
+                                PurchaseDate = String.Format("{0:dd-mm-yyyy hh:mm tt}", obj.PurchaseDate),
+                                UserName = (from n in context.LoginDetails
+                                            where n.LoginID == obj.LoginID
+                                            select n.UserName).FirstOrDefault(),
+                                DateTime = String.Format("{0:dd-mm-yyyy hh:mm tt}", obj.DateTime),
+                            }).ToList(),
+
+                };
             }
+
         }
+
+        //Add Purchase Details
         public Result AddPurchaseDetails(PurchaseModel purchaseModel)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
@@ -40,7 +64,7 @@ namespace Inventory_Mangement_System.Repository
                                         TotalQuantity = obj.totalquantity,
                                         TotalCost = obj.totalcost,
                                         Remark = obj.remarks,
-                                        VendorName = obj.vendorname,
+                                        VendorName = char.ToUpper(obj.vendorname[0]) + obj.vendorname.Substring(1).ToLower(),
                                         LoginID = 1,
                                         DateTime = DateTime.Now
 
@@ -60,72 +84,13 @@ namespace Inventory_Mangement_System.Repository
 
                 return new Result()
                 {
-                    Message = string.Format($" Purchase successfully!"),
+                    Message = string.Format($"Total {purchaselist.Count()} Product Purchase Successfully"),
                     Status = Result.ResultStatus.success,
-                    Data = $"Total {purchaselist.Count()} Product Purchase Successfully",
                 };
             }
         }
-        /*public Result AddPurchaseDetails(PurchaseModel purchaseModel)
-        {
-            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
-            {
-                PurchaseDetail purchaseDetail = new PurchaseDetail();
-                purchaseDetail.ProductID = purchaseModel.productname.Id;
-                var funit = (from u in context.Products
-                             where u.ProductID == purchaseModel.productname.Id
-                             select u.ProductUnit.Type).SingleOrDefault();
-                purchaseDetail.Unit = funit;
-                purchaseDetail.PurchaseDate = purchaseModel.Purchasedate.ToLocalTime();
-                purchaseDetail.TotalQuantity = purchaseModel.totalquantity;
-                purchaseDetail.TotalCost = purchaseModel.totalcost;
-                purchaseDetail.Remark = purchaseModel.remarks;
-                purchaseDetail.VendorName = purchaseModel.vendorname;
 
-                context.PurchaseDetails.InsertOnSubmit(purchaseDetail);
-                context.SubmitChanges();
-                return new Result()
-                {
-                    Message = string.Format($"{purchaseModel.productname.Text} Purchase successfully!"),
-                    Status = Result.ResultStatus.success,
-                    Data = purchaseModel.productname.Text,
-                };
-            }
-        }*/
-
-        public Result GetPurchaseDetails()
-        {
-            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
-            {
-                PurchaseDetail purchaseDetail = new PurchaseDetail();
-
-                return new Result()
-                {
-                    Status = Result.ResultStatus.success,
-                    Data = (from obj in context.PurchaseDetails
-                            join obj2 in context.Products
-                            on obj.ProductID equals obj2.ProductID into JoinTablePN
-                            from PN in JoinTablePN.DefaultIfEmpty()
-                            select new
-                            {
-                                PurchaseID = obj.PurchaseID,
-                                ProductName = PN.ProductName,
-                                TotalQuantity = obj.TotalQuantity,
-                                TotalCost = obj.TotalCost,
-                                Unit = obj.Unit,
-                                Remark = obj.Remark,
-                                VendorName = obj.VendorName,
-                                PurchaseDate = String.Format("{0:dd-mm-yyyy hh:mm tt}", obj.PurchaseDate),
-                                UserName = (from n in context.LoginDetails
-                                            where n.LoginID == obj.LoginID
-                                            select n.UserName).FirstOrDefault(),
-                                DateTime = String.Format("{0:dd-mm-yyyy hh:mm tt}", obj.DateTime),
-                            }).ToList(),
-                };
-            }
-
-        }
-
+        //Edit Purchase Details
         public Result EditPurchaseProduct(PurchaseModel purchaseModel, int ID)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
@@ -141,7 +106,13 @@ namespace Inventory_Mangement_System.Repository
                 var q = (from obj in purchaseModel.purchaseList
                          select obj).SingleOrDefault();
 
-
+                var issue = (from i in context.Issues
+                             where i.ProductID == qs.ProductID
+                             select i).ToList();
+                if(issue!=null)
+                {
+                    throw new ArgumentException($"Product Already Issue Can not be Update.");
+                }
                 if (qs.ProductID == q.productname.Id)
                 {
                     var db = (from obj in context.Products
@@ -169,20 +140,23 @@ namespace Inventory_Mangement_System.Repository
                 qs.TotalCost = q.totalcost;
                 qs.Unit = funit;
                 qs.Remark = q.remarks;
-                qs.VendorName = q.vendorname;
+                qs.VendorName = char.ToUpper(q.vendorname[0]) + q.vendorname.Substring(1).ToLower();
                 qs.PurchaseDate = q.Purchasedate.ToLocalTime();
                 context.SubmitChanges();
 
                 return new Result()
                 {
-                    Message = "Purchase Updated Successfully",
+                    Message = string.Format("Purchase Updated Successfully"),
                     Status = Result.ResultStatus.success,
-                    Data = q.productname.Text,
+
                 };
             }
         }
         
-        /*public Result Update(PurchaseModel purchaseModel, int ID)
+        
+    }
+}
+/*public Result Update(PurchaseModel purchaseModel, int ID)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
@@ -237,5 +211,29 @@ namespace Inventory_Mangement_System.Repository
                 };
             }
         }*/
-    }
-}
+/*public Result AddPurchaseDetails(PurchaseModel purchaseModel)
+        {
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                PurchaseDetail purchaseDetail = new PurchaseDetail();
+                purchaseDetail.ProductID = purchaseModel.productname.Id;
+                var funit = (from u in context.Products
+                             where u.ProductID == purchaseModel.productname.Id
+                             select u.ProductUnit.Type).SingleOrDefault();
+                purchaseDetail.Unit = funit;
+                purchaseDetail.PurchaseDate = purchaseModel.Purchasedate.ToLocalTime();
+                purchaseDetail.TotalQuantity = purchaseModel.totalquantity;
+                purchaseDetail.TotalCost = purchaseModel.totalcost;
+                purchaseDetail.Remark = purchaseModel.remarks;
+                purchaseDetail.VendorName = purchaseModel.vendorname;
+
+                context.PurchaseDetails.InsertOnSubmit(purchaseDetail);
+                context.SubmitChanges();
+                return new Result()
+                {
+                    Message = string.Format($"{purchaseModel.productname.Text} Purchase successfully!"),
+                    Status = Result.ResultStatus.success,
+                    Data = purchaseModel.productname.Text,
+                };
+            }
+        }*/

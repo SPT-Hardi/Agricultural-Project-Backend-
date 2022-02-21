@@ -21,6 +21,7 @@ namespace Inventory_Mangement_System.Controllers
             _areaRepository = areaRepository;
         }
 
+        //View All Main And Sub Area
         [HttpGet("ViewAllArea")]
         public async Task<IActionResult> ViewAllAreaAsync()
         {
@@ -28,23 +29,26 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
+        //Add New Main And Sub Area
         [HttpPost("addMainArea")]
         public async Task<IActionResult> AddMainArea(AreaModel mainAreaModel)
         {
             var result = _areaRepository.AddMainAreaAsync(mainAreaModel);
             return Ok(result);
         }
-        [HttpGet("MacAddress")]
-        public async Task<IActionResult> ActionResultAsync()
-        {
-            var result = _areaRepository.GetMacAddress();
-            return Ok(result);
-        }
 
+        //Edit Main And Sub Area
         [HttpPut("EditArea/{mid}/{sid}")]
         public async Task<IActionResult> EditAreaAsync(UpdateAreaModel value, int mid, int sid)
         {
             var result = _areaRepository.EditArea(value, mid,sid);
+            return Ok(result);
+        }
+
+        [HttpGet("MacAddress")]
+        public async Task<IActionResult> ActionResultAsync()
+        {
+            var result = _areaRepository.GetMacAddress();
             return Ok(result);
         }
     }

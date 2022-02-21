@@ -7,10 +7,12 @@ namespace Inventory_Mangement_System.Repository
 {
     public interface IAreaRepository
     {
+        //View All Main And Sub Area
         Result ViewAllArea();
         //New Main Area Add
         Result AddMainAreaAsync(AreaModel AreaModel);
-        Result GetMacAddress();
+        //Edit Main And Sub Area
         Result EditArea(UpdateAreaModel value, int mid, int sid);
+        Result GetMacAddress();
     }
 }

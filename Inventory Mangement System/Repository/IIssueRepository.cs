@@ -7,17 +7,22 @@ namespace Inventory_Mangement_System.Repository
 {
     public interface IIssueRepository
     {
-        //All Issue Details
+        //View Issue Details
         Result ViewAllIssue();
-        
+
         //Issue Products
         Result IssueProduct(IssueModel issueModel);
 
-        //Issue Detail By Id
-        Task<IEnumerable> ViewIssueById(int issueID);
+        //Edit Issue Details
         Result EditIssue(IssueModel issueModel, int ID);
+
+        //Get MainArea Dropdown
         Task<IEnumerable> GetMainArea();
+
+        //Get SubArea Dropdown
         Task<IEnumerable> GetSubArea(int id);
+
+        //Get Product Dropdown with Unit And Quantity
         Task<IEnumerable> GetProduct();
 
        // Task<IEnumerable> GetProductTotalQuantity();

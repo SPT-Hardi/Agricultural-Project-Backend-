@@ -1,4 +1,5 @@
 D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\Inventory Mangement System.exe
+D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\web.config
 D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json
 D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\appsettings.json
 D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\Inventory Mangement System.dll

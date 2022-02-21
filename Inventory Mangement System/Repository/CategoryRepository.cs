@@ -11,47 +11,7 @@ namespace Inventory_Mangement_System.Repository
 {
     public class CategoryRepository : ICategoryRepository
     {
-        //public Result AddCategory(CategoryModel categoryModel, int Uid)
-        public Result AddCategory(CategoryModel categoryModel)
-        {
-            ProductInventoryDataContext context = new ProductInventoryDataContext();
-            Category category = new Category();
-            var res = context.Categories.FirstOrDefault(x => x.CategoryName == categoryModel.CategoryName);
-            if (res != null)
-            {
-                throw new ArgumentException("Category Already Exist");
-            }
-            else
-            {
-                category.CategoryName = categoryModel.CategoryName;
-                category.Description = categoryModel.Description;
-                category.LoginID = 1;
-                category.DateTime = DateTime.Now;
-                context.Categories.InsertOnSubmit(category);
-                context.SubmitChanges();
-                return new Result()
-                {
-                    Message = string.Format($"Category {categoryModel.CategoryName } Added Successfully"),
-                    Status = Result.ResultStatus.success,
-                    Data = categoryModel.CategoryName,
-                };
-            }
-        }
-
-        public async Task<IEnumerable> GetCategory()
-        {
-            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
-            {
-                 var res= (from x in context.Categories
-                        select new IntegerNullString()
-                        {
-                            Text = x.CategoryName,
-                            Id = x.CategoryID
-                        }).ToList();
-                return res;
-            }
-        }
-
+        //View Category
         public Result ViewCategory()
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
@@ -73,6 +33,81 @@ namespace Inventory_Mangement_System.Repository
                 };
             }
         }
+
+        //Add New Category
+        public Result AddCategory(CategoryModel categoryModel)
+        {
+            ProductInventoryDataContext context = new ProductInventoryDataContext();
+            Category category = new Category();
+            var res = context.Categories.FirstOrDefault(x => x.CategoryName == categoryModel.CategoryName);
+            if (res != null)
+            {
+                throw new ArgumentException("Category Already Exist");
+            }
+            else
+            {
+                category.CategoryName = char.ToUpper(categoryModel.CategoryName[0]) + categoryModel.CategoryName.Substring(1).ToLower(); 
+                category.Description = categoryModel.Description;
+                category.LoginID = 1;
+                category.DateTime = DateTime.Now;
+                context.Categories.InsertOnSubmit(category);
+                context.SubmitChanges();
+                return new Result()
+                {
+                    Message = string.Format($"Category {category.CategoryName } Added Successfully"),
+                    Status = Result.ResultStatus.success,
+                    Data = categoryModel.CategoryName,
+                };
+            }
+        }
+        
+        //Edit Category
+        public Result EditCategory(CategoryModel categoryModel, int id)
+        {
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                var ck = context.Categories.SingleOrDefault(x => x.CategoryID == id);
+                if (ck == null)
+                {
+                    throw new ArgumentException("Category Doesn't Exist");
+                }
+                if (ck.CategoryName != categoryModel.CategoryName)
+                {
+                    var _c = context.Categories.SingleOrDefault(x => x.CategoryName == categoryModel.CategoryName);
+                    if (_c != null)
+                    {
+                        throw new ArgumentException("Category Already Exist");
+                    }
+                }
+                ck.CategoryName = char.ToUpper(categoryModel.CategoryName[0]) + categoryModel.CategoryName.Substring(1).ToLower();
+                ck.Description = categoryModel.Description;
+                ck.DateTime = DateTime.Now;
+                ck.LoginID = 1;
+                context.SubmitChanges();
+                return new Result()
+                {
+                    Message = string.Format($"Category {ck.CategoryName} Update Successfully"),
+                    Status = Result.ResultStatus.success,
+                };
+            }
+        }
+
+        //DropDown For Category
+        public async Task<IEnumerable> GetCategory()
+        {
+            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
+            {
+                var res = (from x in context.Categories
+                           select new IntegerNullString()
+                           {
+                               Text = x.CategoryName,
+                               Id = x.CategoryID
+                           }).ToList();
+                return res;
+            }
+        }
+
+        //View Category With Paging
         public Result ViewCategorys(Paging value)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
@@ -86,12 +121,12 @@ namespace Inventory_Mangement_System.Repository
                                   UserName = (from n in context.LoginDetails
                                               where n.LoginID == x.LoginID
                                               select n.UserName).FirstOrDefault(),
-                                  //DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", x.DateTime),
+                                  DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", x.DateTime),
                               }).AsQueryable();
 
                 int count = source.Count();
                 int CurrentPage = value.pageNumber;
-                
+
                 int PageSize = value.pageSize;
                 int TotalCount = count;
                 int TotalPages = (int)Math.Ceiling(count / (double)PageSize);
@@ -111,57 +146,14 @@ namespace Inventory_Mangement_System.Repository
                 // Setting Header
                 //_httpContext.Response.Headers.Add("Paging-Headers", JsonConvert.SerializeObject(paginationMetadata));
 
-                return new Result() 
-                { 
-                    Data = items, 
-                    Status = Result.ResultStatus.success 
-                };
-            }
-
-        }
-        public async Task<IEnumerable> ViewCategoryById(int cid)
-        {
-            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
-            {
-                return (from x in context.Categories
-                        where x.CategoryID == cid
-                        select new
-                        {
-                            CategoryName = x.CategoryName,
-                            Description = x.Description
-                        }).ToList();
-            }
-        }
-
-        public Result EditCategory(CategoryModel categoryModel, int id)
-        {
-            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
-            {
-                var ck = context.Categories.SingleOrDefault(x => x.CategoryID == id);
-                if (ck == null)
-                {
-                    throw new ArgumentException("Category doesn't Exist");
-                }
-                if (ck.CategoryName != categoryModel.CategoryName)
-                {
-                    var _c = context.Categories.SingleOrDefault(x => x.CategoryName == categoryModel.CategoryName);
-                    if (_c != null)
-                    {
-                        throw new ArgumentException("Category already Exist");
-                    }
-                }
-                ck.CategoryName = categoryModel.CategoryName;
-                ck.Description = categoryModel.Description;
-                ck.DateTime = DateTime.Now;
-                ck.LoginID = 1;
-                context.SubmitChanges();
                 return new Result()
                 {
-                    Message = string.Format($"Category {categoryModel.CategoryName} Update Successfully"),
-                    Status = Result.ResultStatus.success,
-                    Data = categoryModel.CategoryName,
+                    Data = items,
+                    Status = Result.ResultStatus.success
                 };
             }
+
         }
+
     }
 }

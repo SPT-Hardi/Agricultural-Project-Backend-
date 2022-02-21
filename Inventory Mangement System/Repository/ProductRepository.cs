@@ -38,36 +38,7 @@ namespace Inventory_Mangement_System.Repository
                 };
             }
         }
-        /*
-        //Add Product
-        public Result AddProduct(ProductModel productModel)
-        {
-            ProductInventoryDataContext context = new ProductInventoryDataContext();
-            Category category = new Category();
-            Product product = new Product();
-
-            var pname = context.Products.Where(name => name.ProductName == productModel.ProductName).SingleOrDefault();
-            if (pname != null)
-            {
-                throw new ArgumentException("Product Alredy Exits.");
-            }
-            product.ProductName = productModel.ProductName;
-            product.Variety = productModel.Variety;
-            product.Company = productModel.Company;
-            product.Description = productModel.Description;
-            product.Unit = (string)productModel.type.Text;
-            product.CategoryID = (int)productModel.categoryType.Id;
-            context.Products.InsertOnSubmit(product);
-            context.SubmitChanges();
-            //return $"{productModel.ProductName} Added Successfully";
-            return new Result()
-            {
-                Message = string.Format($"{productModel.ProductName} Added Successfully."),
-                Status = Result.ResultStatus.success,
-                Data = productModel.ProductName,
-            };
-        } 
-        */
+        
         //Add Product
         public Result AddProduct(ProductModel productModel)
         {
@@ -78,12 +49,13 @@ namespace Inventory_Mangement_System.Repository
             var pro = (from p in productModel.ProductDetails
                        select new Product()
                        {
-                           ProductName = p.ProductName,
+                           ProductName = char.ToUpper(p.ProductName[0]) + p.ProductName.Substring(1).ToLower(),
                            Variety = p.Variety,
                            Company = p.Company,
                            Description = p.Description,
                            CategoryID = p.categoryType.Id,
                            LoginID=1,
+                           TotalProductQuantity=0,
                            DateTime=DateTime.Now,
                            UnitID = p.type.Id
                        }).ToList();
@@ -106,39 +78,7 @@ namespace Inventory_Mangement_System.Repository
             };
         }
 
-        //View Product By Id
-        public Result ViewProductById(int productID)
-        {
-            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
-            {
-                Product product = new Product();
-                /*product = context.Products.SingleOrDefault(id => id.ProductID == productID);
-                if (product == null)
-                {
-                    throw new ArgumentException("Product Does Not Exist.");
-                }*/
-                return new Result()
-                {
-                    Status= Result.ResultStatus.success,
-                    Data = (from x in context.Products
-                            join catid in context.Categories
-                            on x.CategoryID equals catid.CategoryID
-                            where x.ProductID == productID
-                            select new
-                            {
-                                ProductID = x.ProductID,
-                                ProductName = x.ProductName,
-                                Varitey = x.Variety,
-                                Company = x.Company,
-                                Description = x.Description,
-                                Type = new Model.Common.IntegerNullString() { Id = x.ProductUnit.UnitID, Text = x.ProductUnit.Type },
-                                CategoryType = new Model.Common.IntegerNullString() { Id = x.Category.CategoryID, Text = x.Category.CategoryName },
-                            }).ToList(),
-                };
-            }
-        }
-
-        //Edit Product Using Put Method
+        //Edit Product 
         public Result EditProduct(ProductDetail productDetail, int productID)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
@@ -156,7 +96,7 @@ namespace Inventory_Mangement_System.Repository
                         throw new Exception("Product Alredy Exits.");
                     }
                 }
-                product.ProductName = productDetail.ProductName;
+                product.ProductName = char.ToUpper(productDetail.ProductName[0]) + productDetail.ProductName.Substring(1).ToLower();
                 product.Variety = productDetail.Variety;
                 product.Company = productDetail.Company;
                 product.Description = productDetail.Description;
@@ -167,9 +107,8 @@ namespace Inventory_Mangement_System.Repository
                 context.SubmitChanges();
                 return new Result()
                 {
-                    Message = string.Format($"{productDetail.ProductName} Product Update Successfully."),
+                    Message = string.Format($"{productDetail.ProductName} Updated Successfully."),
                     Status = Result.ResultStatus.success,
-                    Data = productDetail.ProductName,
                 };
             }
         }
@@ -188,24 +127,5 @@ namespace Inventory_Mangement_System.Repository
             }
         }
 
-        public Result UpdateProduct(JsonPatchDocument productModel, int productID)
-        {
-            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
-            {
-                Product product = new Product();
-                product = context.Products.SingleOrDefault(id => id.ProductID == productID);
-                if (product == null)
-                {
-                    throw new Exception("");
-                }
-                productModel.ApplyTo(product);
-                context.SubmitChanges();
-                return new Result()
-                {
-                    Message = string.Format("fully!"),
-                    Status = Result.ResultStatus.success,
-                };
-            }
-        }
     }
 }

@@ -20,13 +20,16 @@ namespace Inventory_Mangement_System.Controllers
             _purchaseRepository = purchaseRepository;
         }
 
-        [HttpGet("GetunitByid/{id}")]
-        public async Task<IActionResult> UnitById(int id)
+        //View Purchase Details
+        [HttpGet("getpurchaseproduct")]
+        public async Task<IActionResult> GetPurchaseDetails()
         {
-            var result = await _purchaseRepository.GetunitByid(id);
+            var result = _purchaseRepository.GetPurchaseDetails();
 
             return Ok(result);
         }
+
+        //Add Purchase Details
         [HttpPost("purchaseproduct")]
         public async Task<IActionResult> PurchaseDetailsAdded(PurchaseModel purchaseModel)
         {
@@ -35,14 +38,7 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
-        [HttpGet("getpurchaseproduct")]
-        public async Task<IActionResult> PurchaseDetailsGeted()
-        {
-            var result = _purchaseRepository.GetPurchaseDetails();
-
-            return Ok(result);
-        }
-        
+        //Edit Purchase Details
         [HttpPut("EditPurchaseProduct/{ID}")]
         public async Task<IActionResult> EditPurchaseProduct(PurchaseModel purchaseModel,int ID)
         {
