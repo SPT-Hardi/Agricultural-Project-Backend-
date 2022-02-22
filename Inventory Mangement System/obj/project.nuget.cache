@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1vZ18u6llWeJcX52xRtfailcbHgIv9e17i5B0UQII8ZdmZTQbC72lrlhaa7/w0YIZfyTyFKpZtqo1h7L5rWNVA==",
+  "dgSpecHash": "jqUU70h7i4blJHvx+2Cohxk3T1q8g1/D5HeD+D3un8WY72DptsSsZ/25PZwNaRW56qLonK5zelcr78ug3g+ydA==",
   "success": true,
-  "projectFilePath": "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\Inventory Mangement System.csproj",
+  "projectFilePath": "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\InventorySystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SMARTY\\.nuget\\packages\\devart.data.linq\\4.9.2403\\devart.data.linq.4.9.2403.nupkg.sha512",
     "C:\\Users\\SMARTY\\.nuget\\packages\\devart.data.sqlserver.linq\\4.9.2403\\devart.data.sqlserver.linq.4.9.2403.nupkg.sha512",

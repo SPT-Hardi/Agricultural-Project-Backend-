@@ -6847,9 +6847,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\Inventory Mangement System.csproj",
-      "projectName": "Inventory Mangement System",
-      "projectPath": "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\Inventory Mangement System.csproj",
+      "projectUniqueName": "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\InventorySystem.csproj",
+      "projectName": "InventorySystem",
+      "projectPath": "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\InventorySystem.csproj",
       "packagesPath": "C:\\Users\\SMARTY\\.nuget\\packages\\",
       "outputPath": "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\obj\\",
       "projectStyle": "PackageReference",

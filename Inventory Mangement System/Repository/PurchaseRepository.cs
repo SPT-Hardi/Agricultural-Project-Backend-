@@ -25,6 +25,7 @@ namespace Inventory_Mangement_System.Repository
                             join obj2 in context.Products
                             on obj.ProductID equals obj2.ProductID into JoinTablePN
                             from PN in JoinTablePN.DefaultIfEmpty()
+                            orderby obj.PurchaseID descending 
                             select new
                             {
                                 PurchaseID = obj.PurchaseID,

@@ -21,12 +21,11 @@ namespace Inventory_Mangement_System.Repository
                 {
                     Status=Result.ResultStatus.success,
                     Data=(from s in context.SubAreas
-                          join m in context.MainAreas
-                          on s.MainAreaID equals m.MainAreaID
+                          orderby s.SubAreaID descending
                           select new
                           {
-                              MainAreaID=m.MainAreaID,
-                              MainAreaName=m.MainAreaName,
+                              MainAreaID=s.MainArea.MainAreaID,
+                              MainAreaName=s.MainArea.MainAreaName,
                               SubAreaID=s.SubAreaID,
                               SubAreaName=s.SubAreaName,
                               UserName=(from u in context.LoginDetails

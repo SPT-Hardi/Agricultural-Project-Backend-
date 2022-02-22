@@ -15,21 +15,20 @@ namespace Inventory_Mangement_System
     {
         public static void Main(string[] args)
         {
-            //CreateHostBuilder(args).Build().Run();
-            var host = CreateWebHostBuilder(args).Build();
-            host.StartNgrokAsync();
-            host.Run();
+            CreateHostBuilder(args).Build().Run();
+
+
 
         }
 
-        //public static IHostBuilder CreateHostBuilder(string[] args) =>
-        //    Host.CreateDefaultBuilder(args)
-        //        .ConfigureWebHostDefaults(webBuilder =>
-        //        {
-        //            webBuilder.UseStartup<Startup>();
-        //        });
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-        WebHost.CreateDefaultBuilder(args)
-        .UseStartup<Startup>();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://localhost:5000", "http://20.204.136.73:5024"); //Windows IP
+
+                });
+        
     }
 }

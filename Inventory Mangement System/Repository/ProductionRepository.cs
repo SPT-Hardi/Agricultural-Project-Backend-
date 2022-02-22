@@ -21,6 +21,7 @@ namespace Inventory_Mangement_System.Repository
                 {
                     Status = Result.ResultStatus.success,
                     Data = (from pd in context.ProductionDetails
+                            orderby pd.ProductionID descending
                             select new
                             {
                                 ProductionID = pd.ProductionID,

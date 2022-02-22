@@ -1,10 +1,10 @@
-D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\Inventory Mangement System.exe
+D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\InventorySystem.exe
 D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\web.config
 D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json
 D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\appsettings.json
-D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\Inventory Mangement System.dll
-D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\Inventory Mangement System.runtimeconfig.json
-D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\Inventory Mangement System.pdb
+D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\InventorySystem.dll
+D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\InventorySystem.runtimeconfig.json
+D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\InventorySystem.pdb
 D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\Devart.Data.Linq.dll
 D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\Devart.Data.SqlServer.Linq.dll
 D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
@@ -54,4 +54,4 @@ D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\Pu
 D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\runtimes\win\lib\netcoreapp2.0\System.Management.dll
 D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\Inventory Mangement System.deps.json
+D:\Agricultural-Project-Backend\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\InventorySystem.deps.json

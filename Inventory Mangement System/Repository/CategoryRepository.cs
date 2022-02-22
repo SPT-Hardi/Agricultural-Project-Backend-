@@ -20,6 +20,7 @@ namespace Inventory_Mangement_System.Repository
                 {
                     Status = Result.ResultStatus.success,
                     Data = (from x in context.Categories
+                            orderby x.CategoryID descending
                             select new
                             {
                                 CategoryID = x.CategoryID,
