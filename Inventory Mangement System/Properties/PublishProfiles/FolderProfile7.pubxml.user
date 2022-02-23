@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Agricultural-Project-Backend\Inventory Mangement System\bin\Release\net5.0\publish\</_PublishTargetUrl>
+    <History>False|2022-02-22T12:49:41.3609566Z;False|2022-02-22T18:19:01.3838777+05:30;False|2022-02-22T18:18:42.9321846+05:30;True|2022-02-22T18:11:58.5841925+05:30;True|2022-02-22T18:09:37.9147331+05:30;False|2022-02-22T18:09:32.0967587+05:30;True|2022-02-22T18:07:04.1787857+05:30;</History>
+  </PropertyGroup>
+</Project>

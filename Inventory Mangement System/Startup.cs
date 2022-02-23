@@ -12,7 +12,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using NgrokAspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +35,7 @@ namespace Inventory_Mangement_System
             });
 
             ProductInventoryContext.ProductInventoryDataContext db 
-                = new ProductInventoryContext.ProductInventoryDataContext("Data Source=DESKTOP-ED3OOSD;Initial Catalog=Product Inventory;Integrated Security=False;Persist Security Info=True;User ID=SuperAdmin;Password=SuperAdmin;License Key=qHnH5wx/L422kFN4WQussVkqbelF0xGMaZi+DGL6lhFu+VTasW/ZRA22+dVoDbuQ64trDZsBMziLDE9kumHeTDKlcRSCvsotqn7rHn9VHFXS3Jmh/rFBVSxav6UlKmT4POdU+hnX8ACaigXhFdBiZ4NeHNVRNTqJ4fUTou0czKt8ATWxOB2MjUrprbYTV2ECFJOo2uLgwGzqeEpv1gGPLKR3p5DOKdeMu61FRAak23fmjt8PPQpz50o1E0r0FFdoQrJIYKkMxqRiD2IhVxlcVCvpIqR31rWwKJ1sNquGBMU=;");
+                = new ProductInventoryContext.ProductInventoryDataContext("data source=20.204.136.73;initial catalog=ProductInventory;integrated security=False;persist security info=True;user id=piDB;password=PI@2022@@#;License Key=qHnH5wx/L422kFN4WQussVkqbelF0xGMaZi+DGL6lhFu+VTasW/ZRA22+dVoDbuQ64trDZsBMziLDE9kumHeTDKlcRSCvsotqn7rHn9VHFXS3Jmh/rFBVSxav6UlKmT4POdU+hnX8ACaigXhFdBiZ4NeHNVRNTqJ4fUTou0czKt8ATWxOB2MjUrprbYTV2ECFJOo2uLgwGzqeEpv1gGPLKR3p5DOKdeMu61FRAak23fmjt8PPQpz50o1E0r0FFdoQrJIYKkMxqRiD2IhVxlcVCvpIqR31rWwKJ1sNquGBMU=;");
 
             services.AddTransient <IAccountRepository,AccountRepository >();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
@@ -48,7 +47,6 @@ namespace Inventory_Mangement_System
             services.AddTransient<IProductionRepository, ProductionRepository>();
             services.AddTransient<IInventoryViewRepository, InventoryViewRepository>();
 
-            services.AddNgrok();
             services.AddControllers().AddNewtonsoftJson(); ;
             
             services.AddAuthentication(option =>

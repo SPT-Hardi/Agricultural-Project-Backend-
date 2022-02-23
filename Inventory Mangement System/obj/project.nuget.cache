@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jqUU70h7i4blJHvx+2Cohxk3T1q8g1/D5HeD+D3un8WY72DptsSsZ/25PZwNaRW56qLonK5zelcr78ug3g+ydA==",
+  "dgSpecHash": "uIRK0padaFF3XZ5Zn2vntLKK4zo6PADYVUZDZBCnFO/ORyqzi1alXaLJ1GHk8c0zQ8GBBBFCbd/cClWTpnOnkw==",
   "success": true,
   "projectFilePath": "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\InventorySystem.csproj",
   "expectedPackageFiles": [
@@ -45,7 +45,6 @@
     "C:\\Users\\SMARTY\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\SMARTY\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\2.2.0\\microsoft.extensions.fileproviders.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\SMARTY\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\2.2.0\\microsoft.extensions.hosting.abstractions.2.2.0.nupkg.sha512",
-    "C:\\Users\\SMARTY\\.nuget\\packages\\microsoft.extensions.http\\2.1.1\\microsoft.extensions.http.2.1.1.nupkg.sha512",
     "C:\\Users\\SMARTY\\.nuget\\packages\\microsoft.extensions.identity.core\\5.0.0\\microsoft.extensions.identity.core.5.0.0.nupkg.sha512",
     "C:\\Users\\SMARTY\\.nuget\\packages\\microsoft.extensions.identity.stores\\5.0.0\\microsoft.extensions.identity.stores.5.0.0.nupkg.sha512",
     "C:\\Users\\SMARTY\\.nuget\\packages\\microsoft.extensions.logging\\5.0.0\\microsoft.extensions.logging.5.0.0.nupkg.sha512",
@@ -68,7 +67,6 @@
     "C:\\Users\\SMARTY\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\SMARTY\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
     "C:\\Users\\SMARTY\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
-    "C:\\Users\\SMARTY\\.nuget\\packages\\ngrok.aspnetcore\\1.0.6\\ngrok.aspnetcore.1.0.6.nupkg.sha512",
     "C:\\Users\\SMARTY\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\SMARTY\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\SMARTY\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

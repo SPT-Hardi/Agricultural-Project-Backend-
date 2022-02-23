@@ -43,7 +43,7 @@ namespace Inventory_Mangement_System.Controllers
 
         //User Registration 
         [HttpPost("SignUp")]
-        // [Authorize(Roles="Super Admin")]
+        [Authorize(Roles = "Admin")]
         //[Authorize]
         public async Task<IActionResult> SignUp([FromBody]UserModel userModel)
         {

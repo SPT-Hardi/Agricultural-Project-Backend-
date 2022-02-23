@@ -30,7 +30,6 @@ D:\Agricultural-Project-Backend\Inventory Mangement System\bin\Debug\net5.0\Micr
 D:\Agricultural-Project-Backend\Inventory Mangement System\bin\Debug\net5.0\Microsoft.OpenApi.dll
 D:\Agricultural-Project-Backend\Inventory Mangement System\bin\Debug\net5.0\Newtonsoft.Json.dll
 D:\Agricultural-Project-Backend\Inventory Mangement System\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
-D:\Agricultural-Project-Backend\Inventory Mangement System\bin\Debug\net5.0\NgrokAspNetCore.Lib.dll
 D:\Agricultural-Project-Backend\Inventory Mangement System\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Agricultural-Project-Backend\Inventory Mangement System\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Agricultural-Project-Backend\Inventory Mangement System\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll

@@ -33,12 +33,12 @@ namespace Inventory_Mangement_System.Controllers
 
         //Add Product
         [HttpPost ("addproduct")]
-        // [Authorize(Roles = "Super Admin,Admin")]
+        [Authorize(Roles = "Super Admin,Admin")]
         public async Task<IActionResult> ProductAdded(ProductModel productModel)
         {
             var result = _productRepository.AddProduct(productModel);
             return Ok(result);
-           
+
         }
 
         //Edit Product 

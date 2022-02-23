@@ -84,10 +84,6 @@
               "target": "Package",
               "version": "[5.0.0, )"
             },
-            "Ngrok.AspNetCore": {
-              "target": "Package",
-              "version": "[1.0.6, )"
-            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
