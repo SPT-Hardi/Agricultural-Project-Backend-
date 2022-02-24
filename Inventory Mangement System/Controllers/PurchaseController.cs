@@ -33,7 +33,8 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPost("purchaseproduct")]
         public async Task<IActionResult> PurchaseDetailsAdded(PurchaseModel purchaseModel)
         {
-            var result = _purchaseRepository.AddPurchaseDetails(purchaseModel);
+            int LoginId = (int)HttpContext.Items["LoginId"];
+            var result = _purchaseRepository.AddPurchaseDetails(purchaseModel,LoginId);
 
             return Ok(result);
         }
@@ -42,7 +43,8 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPut("EditPurchaseProduct/{ID}")]
         public async Task<IActionResult> EditPurchaseProduct(PurchaseModel purchaseModel,int ID)
         {
-            var result = _purchaseRepository.EditPurchaseProduct(purchaseModel,ID);
+            int LoginId = (int)HttpContext.Items["LoginId"];
+            var result = _purchaseRepository.EditPurchaseProduct(purchaseModel,ID,LoginId);
 
             return Ok(result);
         }

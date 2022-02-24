@@ -41,14 +41,11 @@ namespace Inventory_Mangement_System.Repository
         }
         
         //Issue Products
-        public Result IssueProduct(IssueModel issueModel)
+        public Result IssueProduct(IssueModel issueModel, int LoginId)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 Issue i = new Issue();
-                UserLoginDetails userLoginDetails = new UserLoginDetails();
-                var MacAddress = userLoginDetails.GetMacAddress().Result;
-                var LoginID = context.LoginDetails.FirstOrDefault(c => c.SystemMAC == MacAddress);
                 var qs = (from obj in issueModel.issueDetails
                           select new Issue()
                           {
@@ -57,7 +54,7 @@ namespace Inventory_Mangement_System.Repository
                               SubAreaID = issueModel.SubArea.Id,
                               Remark = obj.Remark,
                               IssueDate = issueModel.Date.ToLocalTime(),
-                              LoginID = 1,//LoginID.LoginID,
+                              LoginID = LoginId,
                               DateTime = DateTime.Now,
                               PurchaseQuantity = obj.IssueQuantity
                           }).ToList();
@@ -99,7 +96,7 @@ namespace Inventory_Mangement_System.Repository
         }
 
         //Edit Issue Details
-        public Result EditIssue(IssueModel issueModel, int ID)
+        public Result EditIssue(IssueModel issueModel, int ID, int LoginId)
         {
             float RemainQuantity = 0;
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
@@ -142,7 +139,7 @@ namespace Inventory_Mangement_System.Repository
                         qs.ProductID = p.Product.Id;
                         qs.MainAreaID = issueModel.MainArea.Id;
                         qs.SubAreaID = issueModel.SubArea.Id;
-                        qs.LoginID = 1;//MacAddress.LoginID;
+                        qs.LoginID = LoginId;
                         qs.Remark = p.Remark;
                         qs.PurchaseQuantity = p.IssueQuantity;
 
@@ -172,7 +169,7 @@ namespace Inventory_Mangement_System.Repository
                         qs.ProductID = p.Product.Id;
                         qs.MainAreaID = issueModel.MainArea.Id;
                         qs.SubAreaID = issueModel.SubArea.Id;
-                        qs.LoginID = 1;//MacAddress.LoginID;
+                        qs.LoginID = LoginId;
                         qs.Remark = p.Remark;
                         qs.PurchaseQuantity = p.IssueQuantity;
                         RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity;
@@ -205,7 +202,7 @@ namespace Inventory_Mangement_System.Repository
                     qs.ProductID = p.Product.Id;
                     qs.MainAreaID = issueModel.MainArea.Id;
                     qs.SubAreaID = issueModel.SubArea.Id;
-                    qs.LoginID = 1;// MacAddress.LoginID;
+                    qs.LoginID = LoginId;
                     qs.Remark = p.Remark;
                     qs.PurchaseQuantity = p.IssueQuantity;
                     RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity;
@@ -270,184 +267,3 @@ namespace Inventory_Mangement_System.Repository
  
     }
 }
-/* //Issue Products
-        public Result IssueProduct(IssueModel issueModel)
-        {
-            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
-            {
-                Issue issue = new Issue();
-                var query = (from r in context.PurchaseDetails
-                             where r.ProductID == issueModel.Product.Id
-                             select r.TotalQuantity).ToList();
-                double sum = 0;
-                foreach (var item in query)
-                {
-                    sum = sum + item;
-                }
-
-                var query2 = (from r in context.Issues
-                              where r.ProductID == issueModel.Product.Id
-                              select r.PurchaseQuantity).ToList();
-                double p = 0;
-                foreach (var item in query2)
-                {
-                    p = p + item;
-                }
-
-                var diff = sum - p;
-                if (diff >= issueModel.IssueQuantity)
-                {
-                    issue.PurchaseQuantity = issueModel.IssueQuantity;
-                    issue.Date = issueModel.Date.ToLocalTime();
-                    issue.MainAreaID = issueModel.MainArea.Id;
-                    issue.SubAreaID = issueModel.SubArea.Id;
-                    issue.ProductID = issueModel.Product.Id;
-                    context.Issues.InsertOnSubmit(issue);
-                    context.SubmitChanges();
-                    return new Result()
-                    {
-                        Message = string.Format($"{issueModel.Product.Text} Issue successfully!"),
-                        Status = Result.ResultStatus.success,
-                        Data = issueModel.Product.Text,
-                    };
-                }
-                else
-                {
-                    throw new ArgumentException($"Product Out Of Stock.Total Quantity is {diff}");
-                    return new Result()
-                    {
-                        Message = string.Format($"Product Out Of Stock.Total Quantity is {diff}"),
-                        Status = Result.ResultStatus.none,
-                        Data = diff,
-                    };
-                }
-
-                return $"{issueModel.Product.Text } Add Successfully";
-            }
-        }*/
-
-/*      //Get Product With Total Quantity Dropdown
-       public async Task<IEnumerable> GetProductTotalQuantity()
-        {
-            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
-            {
-                
-                var result = (from p in context.Products
-                          join pur in context.PurchaseDetails
-                          on p.ProductID equals pur.ProductID
-                              join i in context.Issues
-                              on p.ProductID equals i.ProductID
-                              group new { pur, i } by new { p.ProductID, p.ProductName} into newg
-                          select new// IntegerNullString
-                          {
-                              Text = newg.Key.ProductName,
-                              Total = (float)newg.Sum(g => g.pur.TotalQuantity),
-                              Issuet= (float)newg.Sum(g => g.i.PurchaseQuantity),
-                          }).ToList();
-                
-                return result;
-        //        var productListResult = orderProductVariantListResult
-        //.GroupBy(pv => pv.Product)
-        //.Select(g => new
-        //{
-        //    Product = g.Key,
-        //    TotalOrderCount = g.Count(),
-        //    TotalSales = g.Sum(pv => pv.Sales),
-        //    TotalQuantity = g.Sum(pv => pv.Quantity),
-        //})
-        //.OrderByDescending(x => x.TotalOrderCount).ToList();
-                
-
-                //return (from p in context.Products
-                //        join pur in context.PurchaseDetails
-                //        on p.ProductID equals pur.ProductID
-                //        join i in context.Issues
-                //        on p.ProductID equals i.ProductID
-                //        select new IntegerNullString()
-                //        {
-                //            Id = p.ProductID,
-                //            Text = p.ProductName,
-                //            Total = (float)((float)pur.TotalQuantity-i.PurchaseQuantity)
-                //        }).ToList();
-            }
-        }
-        /*
-        public Result total(IssueModel issueModel)
-        {
-            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
-            {
-                Issue issue = new Issue();
-                var query = (from r in context.PurchaseDetails
-                             where r.ProductID == issueModel.Product.Id
-                             select r.TotalQuantity).ToList();
-                double sum = 0;
-                foreach (var item in query)
-                {
-                    sum = sum + item;
-                }
-
-                var query2 = (from r in context.Issues
-                              where r.ProductID == issueModel.Product.Id
-                              select r.PurchaseQuantity).ToList();
-                double p = 0;
-                foreach (var item in query2)
-                {
-                    p = p + item;
-                }
-
-                var diff = sum - p;
-                return new Result()
-                {
-                    Status = Result.ResultStatus.success,
-                    Message= "Total Quantity Purchase",
-                    Data = sum,
-                };
-            }
-        }*/
-/*
-        //private readonly UserLoginDetails _userLoginDetails;
-
-        //private float diff;
-        //public IssueRepository(UserLoginDetails userLoginDetails)
-        //{
-        //    _userLoginDetails = userLoginDetails;
-        //}
-*/
-/*using(ProductInventoryDataContext context=new ProductInventoryDataContext())
-                {
-                    var _p = (from obj in issueModel.issueDetails
-                              select new Issue()
-                              {
-                                  ProductID = obj.Product.Id,
-                                  MainAreaID = issueModel.MainArea.Id,
-                                  SubAreaID = issueModel.SubArea.Id,
-                                  Remark = obj.Remark,
-                                  IssueDate = issueModel.Date.ToLocalTime(),
-                                  LoginID = 1,
-                                  DateTime = DateTime.Now,
-                                  PurchaseQuantity = obj.IssueQuantity
-                              });
-                    var product = (from p in context.Products
-                                   select new { 
-                                       p.ProductName,
-                                       p.TotalProductQuantity
-                                   }).FirstOrDefault();
-
-                    var _product = (from obj in issueModel.issueDetails
-                                    select obj).FirstOrDefault();
-
-                    if (product ==null)
-                    {
-                        throw new ArgumentException("Product Is Not Exist.");
-                    }
-                    if (product.TotalProductQuantity<_product.IssueQuantity)
-                    {
-                        throw new ArgumentException($"{product.ProductName} Enter quantity {_product.IssueQuantity} more than existing quantity {product.TotalProductQuantity}");
-                    }
-                    context.SubmitChanges();
-                    return new Result()
-                    {
-                        Message = string.Format($" Issue successfully!"),
-                        Status = Result.ResultStatus.success,
-                    };
-                }*/

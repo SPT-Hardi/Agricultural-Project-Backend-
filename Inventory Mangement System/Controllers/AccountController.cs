@@ -43,7 +43,7 @@ namespace Inventory_Mangement_System.Controllers
 
         //User Registration 
         [HttpPost("SignUp")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         //[Authorize]
         public async Task<IActionResult> SignUp([FromBody]UserModel userModel)
         {
@@ -58,7 +58,7 @@ namespace Inventory_Mangement_System.Controllers
         
         //User Login
         [HttpPost("Login")]
-        public async Task<IActionResult> SignIn([FromBody]LoginModel loginModel)
+        public IActionResult SignIn([FromBody]LoginModel loginModel)
         {
             var result = _accountRepository.LoginUser(loginModel);
             return Ok(result);

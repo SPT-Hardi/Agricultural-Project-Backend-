@@ -32,7 +32,8 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPost("IssueProduct")]
         public async Task<IActionResult> IssueProductDetails([FromBody]IssueModel issueModel)
         {
-            var result = _isueRepository.IssueProduct(issueModel);
+            int LoginId = (int)HttpContext.Items["LoginId"];
+            var result = _isueRepository.IssueProduct(issueModel,LoginId);
             return Ok(result);
         }
 
@@ -40,7 +41,8 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPut("EditIssue/{ID}")]
         public async Task<IActionResult> EditIssueAsync([FromBody] IssueModel issueModel,[FromRoute] int ID)
         {
-            var result =  _isueRepository.EditIssue(issueModel,ID);
+            int LoginId = (int)HttpContext.Items["LoginId"];
+            var result =  _isueRepository.EditIssue(issueModel,ID,LoginId);
             return Ok(result);
         }
 
@@ -70,17 +72,3 @@ namespace Inventory_Mangement_System.Controllers
                 
     }
 }
-/*[HttpGet("GetProductTotalQuantity")]
-        public async Task<IActionResult> GetProductTotalQuantityAsync()
-        {
-            var result = await _isueRepository.GetProductTotalQuantity();
-            return Ok(result);
-        }*/
-/*   //to view total quantity
-    [HttpPost("total")]
-    public async Task<IActionResult> totalcount(IssueModel issueModel)
-    {
-        var result = _isueRepository.total(issueModel);
-        return Ok(result);
-    }
-*/

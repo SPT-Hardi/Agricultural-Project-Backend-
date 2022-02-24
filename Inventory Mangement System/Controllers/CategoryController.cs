@@ -30,7 +30,8 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPost("addCategory")]
         public async Task<IActionResult> CategoryAdded(CategoryModel categoryModel)
         {
-            var result = _categoryRepository.AddCategory(categoryModel);
+            int LoginId = (int)HttpContext.Items["LoginId"];
+            var result = _categoryRepository.AddCategory(categoryModel,LoginId);
             return Ok(result);
         }
 
@@ -38,7 +39,8 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPut("EditCategory/{id}")]
         public async Task<IActionResult> CategoryEdit(CategoryModel categoryModel, int id)
         {
-            var result = _categoryRepository.EditCategory(categoryModel, id);
+            int LoginId = (int)HttpContext.Items["LoginId"];
+            var result = _categoryRepository.EditCategory(categoryModel, id,LoginId);
             return Ok(result);
         }
 

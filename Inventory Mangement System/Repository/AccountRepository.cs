@@ -99,7 +99,7 @@ namespace Inventory_Mangement_System.Repository
                 user.Password = passwordHasher.EncryptPassword(userModel.Password);
                 user.RoleID = 2;
                 user.EmailAddress = userModel.EmailAddress;
-                user.SystemMAC= "18:C0:4D:D4:D4:A7";
+               /* user.SystemMAC= "18:C0:4D:D4:D4:A7";*/
                 user.DateTime = DateTime.Now;
                 context.Users.InsertOnSubmit(user);
                 context.SubmitChanges();
@@ -118,10 +118,6 @@ namespace Inventory_Mangement_System.Repository
             User user = new User();
             Role role = new Role();
 
-
-            UserLoginDetails login = new UserLoginDetails();
-            var UserMacAddress = login.GetMacAddress().Result;
-
             var res = (from u1 in context.Users
                        where u1.EmailAddress  == loginModel.EmailAddress  && u1.Password == loginModel.Password /*PasswordHasher.DecryptPassword(loginModel.Password)*/
                        select new
@@ -133,11 +129,25 @@ namespace Inventory_Mangement_System.Repository
                        }).FirstOrDefault();
             if (res != null)
             {
+                var qs = (from obj in context.Users
+                          where obj.EmailAddress == loginModel.EmailAddress
+                          select obj.UserName).FirstOrDefault();
+
+                LoginDetail l = new LoginDetail();
+
+                /*                var mac = (from obj in context.LoginDetails
+                                           where obj.SystemMAC == UserMacAddress
+                                           select obj).ToList();*/
+                l.UserName = qs;
+                //SystemMAC = qs;
+                l.DateTime = DateTime.Now;
+                context.LoginDetails.InsertOnSubmit(l);
+                context.SubmitChanges();
                 var authclaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name,loginModel.EmailAddress),
                     new Claim (ClaimTypes.Role,res.RoleName),
-                    new Claim (ClaimTypes .Sid ,res.UserID .ToString()),
+                    new Claim (ClaimTypes .Sid ,l.LoginID.ToString()),
                     new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid ().ToString ()),
                 };
 
@@ -152,21 +162,6 @@ namespace Inventory_Mangement_System.Repository
                 userRefreshToken.UserID = res.UserID;
                 userRefreshToken.RefreshID = refreshToken1.RefreshID;
                 context.UserRefreshTokens.InsertOnSubmit(userRefreshToken);
-                context.SubmitChanges();
-
-                var qs = (from obj in context.Users
-                          where obj.EmailAddress == loginModel.EmailAddress
-                          select obj.UserName).FirstOrDefault();
-
-                LoginDetail l = new LoginDetail();
-
-                var mac = (from obj in context.LoginDetails
-                           where obj.SystemMAC == UserMacAddress
-                           select obj).ToList();
-                l.UserName = qs;
-                l.SystemMAC = UserMacAddress;
-                l.DateTime = DateTime.Now;
-                context.LoginDetails.InsertOnSubmit(l);
                 context.SubmitChanges();
 
                 return new Result()

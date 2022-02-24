@@ -41,7 +41,7 @@ namespace Inventory_Mangement_System.Repository
         }
         
         //Add Product
-        public Result AddProduct(ProductModel productModel)
+        public Result AddProduct(ProductModel productModel,int LoginId)
         {
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             Category category = new Category();
@@ -55,7 +55,7 @@ namespace Inventory_Mangement_System.Repository
                            Company = p.Company,
                            Description = p.Description,
                            CategoryID = p.categoryType.Id,
-                           LoginID=1,
+                           LoginID=LoginId,
                            TotalProductQuantity=0,
                            DateTime=DateTime.Now,
                            UnitID = p.type.Id
@@ -80,7 +80,7 @@ namespace Inventory_Mangement_System.Repository
         }
 
         //Edit Product 
-        public Result EditProduct(ProductDetail productDetail, int productID)
+        public Result EditProduct(ProductDetail productDetail, int productID,int LoginId)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
@@ -102,7 +102,7 @@ namespace Inventory_Mangement_System.Repository
                 product.Company = productDetail.Company;
                 product.Description = productDetail.Description;
                 product.CategoryID = (int)productDetail.categoryType.Id;
-                product.LoginID = 1;
+                product.LoginID = LoginId;
                 product.DateTime = DateTime.Now;
                 product.UnitID = (int)productDetail.type.Id;
                 context.SubmitChanges();

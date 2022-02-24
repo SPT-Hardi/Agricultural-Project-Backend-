@@ -10,9 +10,9 @@ namespace Inventory_Mangement_System.Repository
         //View All Main And Sub Area
         Result ViewAllArea();
         //New Main Area Add
-        Result AddMainAreaAsync(AreaModel AreaModel);
+        Result AddMainAreaAsync(AreaModel AreaModel,int LoginId);
         //Edit Main And Sub Area
-        Result EditArea(UpdateAreaModel value, int mid, int sid);
-        Result GetMacAddress();
+        Result EditArea(UpdateAreaModel value, int mid, int sid,int LoginId);
+        
     }
 }

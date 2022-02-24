@@ -46,8 +46,8 @@ namespace Inventory_Mangement_System.Middleware
                 }, out SecurityToken validatedToken
                 );
                 var jwtToken = (JwtSecurityToken)validatedToken;
-                int UserId = int.Parse(jwtToken.Claims.First(x => x.Type == ClaimTypes.Sid).Value);
-                context.Items["UserId"] = UserId;
+                int LoginId = int.Parse(jwtToken.Claims.First(x => x.Type == ClaimTypes.Sid).Value);
+                context.Items["LoginId"] = LoginId;
                 string RName = jwtToken.Claims.First(x => x.Type == ClaimTypes.Role).Value;
                 context.Items["Rolename"] = RName;
 

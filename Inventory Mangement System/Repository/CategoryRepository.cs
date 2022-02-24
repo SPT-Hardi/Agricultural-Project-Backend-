@@ -36,7 +36,7 @@ namespace Inventory_Mangement_System.Repository
         }
 
         //Add New Category
-        public Result AddCategory(CategoryModel categoryModel)
+        public Result AddCategory(CategoryModel categoryModel, int LoginId)
         {
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             Category category = new Category();
@@ -49,7 +49,7 @@ namespace Inventory_Mangement_System.Repository
             {
                 category.CategoryName = char.ToUpper(categoryModel.CategoryName[0]) + categoryModel.CategoryName.Substring(1).ToLower(); 
                 category.Description = categoryModel.Description;
-                category.LoginID = 1;
+                category.LoginID = LoginId;
                 category.DateTime = DateTime.Now;
                 context.Categories.InsertOnSubmit(category);
                 context.SubmitChanges();
@@ -63,7 +63,7 @@ namespace Inventory_Mangement_System.Repository
         }
         
         //Edit Category
-        public Result EditCategory(CategoryModel categoryModel, int id)
+        public Result EditCategory(CategoryModel categoryModel, int id, int LoginId)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
@@ -83,7 +83,7 @@ namespace Inventory_Mangement_System.Repository
                 ck.CategoryName = char.ToUpper(categoryModel.CategoryName[0]) + categoryModel.CategoryName.Substring(1).ToLower();
                 ck.Description = categoryModel.Description;
                 ck.DateTime = DateTime.Now;
-                ck.LoginID = 1;
+                ck.LoginID = LoginId;
                 context.SubmitChanges();
                 return new Result()
                 {

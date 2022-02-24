@@ -48,7 +48,7 @@ namespace Inventory_Mangement_System.Repository
         }
 
         //Add Purchase Details
-        public Result AddPurchaseDetails(PurchaseModel purchaseModel)
+        public Result AddPurchaseDetails(PurchaseModel purchaseModel,int LoginId)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
@@ -66,7 +66,7 @@ namespace Inventory_Mangement_System.Repository
                                         TotalCost = obj.totalcost,
                                         Remark = obj.remarks,
                                         VendorName = char.ToUpper(obj.vendorname[0]) + obj.vendorname.Substring(1).ToLower(),
-                                        LoginID = 1,
+                                        LoginID = LoginId,
                                         DateTime = DateTime.Now
 
 
@@ -92,7 +92,7 @@ namespace Inventory_Mangement_System.Repository
         }
 
         //Edit Purchase Details
-        public Result EditPurchaseProduct(PurchaseModel purchaseModel, int ID)
+        public Result EditPurchaseProduct(PurchaseModel purchaseModel, int ID,int LoginId)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
@@ -141,6 +141,7 @@ namespace Inventory_Mangement_System.Repository
                 qs.TotalCost = q.totalcost;
                 qs.Unit = funit;
                 qs.Remark = q.remarks;
+                qs.LoginID = LoginId;
                 qs.VendorName = char.ToUpper(q.vendorname[0]) + q.vendorname.Substring(1).ToLower();
                 qs.PurchaseDate = q.Purchasedate.ToLocalTime();
                 context.SubmitChanges();
@@ -157,84 +158,3 @@ namespace Inventory_Mangement_System.Repository
         
     }
 }
-/*public Result Update(PurchaseModel purchaseModel, int ID)
-        {
-            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
-            {
-                var funit = (from obj in purchaseModel.purchaseList
-                             from u in context.Products
-                             where obj.productname.Id == u.ProductID
-                             select u.ProductUnit.UnitID).SingleOrDefault();
-                var qs = (from obj in context.PurchaseDetails
-                          where obj.PurchaseID == ID
-                          select obj).SingleOrDefault();
-
-                var q = (from obj in purchaseModel.purchaseList
-                         select obj).SingleOrDefault();
-
-
-                if (qs.ProductID == q.productname.Id)
-                {
-                    var db = (from obj in context.Products
-                              where obj.ProductID == qs.ProductID
-                              select obj).SingleOrDefault();
-                    var updatedQuantity = db.TotalProductQuantity - qs.TotalQuantity;
-                    db.TotalProductQuantity = updatedQuantity + q.totalquantity;
-                    context.SubmitChanges();
-                }
-                else
-                {
-                    var db = (from obj in context.Products
-                              where obj.ProductID == qs.ProductID
-                              select obj).SingleOrDefault();
-                    var udb = (from obj in context.Products
-                               where obj.ProductID == q.productname.Id
-                               select obj).SingleOrDefault();
-
-                    db.TotalProductQuantity = db.TotalProductQuantity - qs.TotalQuantity;
-                    udb.TotalProductQuantity = udb.TotalProductQuantity + q.totalquantity;
-                    context.SubmitChanges();
-                }
-                qs.ProductID = q.productname.Id;
-                qs.TotalQuantity = q.totalquantity;
-                qs.TotalCost = q.totalcost;
-                qs.UnitID = funit;
-                qs.Remark = q.remarks;
-                qs.VendorName = q.vendorname;
-                qs.PurchaseDate = q.Purchasedate.ToLocalTime();
-                context.SubmitChanges();
-
-                return new Result()
-                {
-                    Message = "Purchase Updated Successfully",
-                    Status = Result.ResultStatus.success,
-                    Data = q.productname.Text,
-                };
-            }
-        }*/
-/*public Result AddPurchaseDetails(PurchaseModel purchaseModel)
-        {
-            using (ProductInventoryDataContext context = new ProductInventoryDataContext())
-            {
-                PurchaseDetail purchaseDetail = new PurchaseDetail();
-                purchaseDetail.ProductID = purchaseModel.productname.Id;
-                var funit = (from u in context.Products
-                             where u.ProductID == purchaseModel.productname.Id
-                             select u.ProductUnit.Type).SingleOrDefault();
-                purchaseDetail.Unit = funit;
-                purchaseDetail.PurchaseDate = purchaseModel.Purchasedate.ToLocalTime();
-                purchaseDetail.TotalQuantity = purchaseModel.totalquantity;
-                purchaseDetail.TotalCost = purchaseModel.totalcost;
-                purchaseDetail.Remark = purchaseModel.remarks;
-                purchaseDetail.VendorName = purchaseModel.vendorname;
-
-                context.PurchaseDetails.InsertOnSubmit(purchaseDetail);
-                context.SubmitChanges();
-                return new Result()
-                {
-                    Message = string.Format($"{purchaseModel.productname.Text} Purchase successfully!"),
-                    Status = Result.ResultStatus.success,
-                    Data = purchaseModel.productname.Text,
-                };
-            }
-        }*/

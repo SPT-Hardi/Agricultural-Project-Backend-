@@ -33,7 +33,8 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPost("addMainArea")]
         public async Task<IActionResult> AddMainArea(AreaModel mainAreaModel)
         {
-            var result = _areaRepository.AddMainAreaAsync(mainAreaModel);
+            int LoginId = (int)HttpContext.Items["LoginId"];
+            var result = _areaRepository.AddMainAreaAsync(mainAreaModel,LoginId);
             return Ok(result);
         }
 
@@ -41,15 +42,10 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPut("EditArea/{mid}/{sid}")]
         public async Task<IActionResult> EditAreaAsync(UpdateAreaModel value, int mid, int sid)
         {
-            var result = _areaRepository.EditArea(value, mid,sid);
+            int LoginId = (int)HttpContext.Items["LoginId"];
+            var result = _areaRepository.EditArea(value, mid,sid,LoginId);
             return Ok(result);
         }
-
-        [HttpGet("MacAddress")]
-        public async Task<IActionResult> ActionResultAsync()
-        {
-            var result = _areaRepository.GetMacAddress();
-            return Ok(result);
-        }
+        
     }
 }

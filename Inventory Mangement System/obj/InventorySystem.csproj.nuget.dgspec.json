@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\InventorySystem.csproj": {}
+    "D:\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj": {}
   },
   "projects": {
-    "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\InventorySystem.csproj": {
+    "D:\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\InventorySystem.csproj",
+        "projectUniqueName": "D:\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj",
         "projectName": "InventorySystem",
-        "projectPath": "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\InventorySystem.csproj",
-        "packagesPath": "C:\\Users\\SMARTY\\.nuget\\packages\\",
-        "outputPath": "D:\\Agricultural-Project-Backend\\Inventory Mangement System\\obj\\",
+        "projectPath": "D:\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj",
+        "packagesPath": "C:\\Users\\VijalPatel\\.nuget\\packages\\",
+        "outputPath": "D:\\Agricultural-Project-Backend-\\Inventory Mangement System\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\SMARTY\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\VijalPatel\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -87,10 +87,6 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
-            },
-            "System.Management": {
-              "target": "Package",
-              "version": "[5.0.0, )"
             }
           },
           "imports": [
@@ -111,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
         }
       }
     }

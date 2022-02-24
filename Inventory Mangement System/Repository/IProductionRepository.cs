@@ -8,12 +8,12 @@ namespace Inventory_Mangement_System.Repository
     public interface IProductionRepository
     {
         //View All Production Details 
-        Result AddProductionDetails(ProductionModel value);
-
-        //Add Production Details
         Result ViewAllProductionDetails();
 
+        //Add Production Details
+        Result AddProductionDetails(ProductionModel value,int LoginId);
+
         //Edit Production
-        Result Editproduction(ProductionModel productionModel, int id);
+        Result Editproduction(ProductionModel productionModel, int id,int LoginId);
     }
 }
