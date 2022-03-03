@@ -89,6 +89,16 @@ namespace Inventory_Mangement_System.Repository
                 {
                     Message = string.Format($"Category {ck.CategoryName} Update Successfully"),
                     Status = Result.ResultStatus.success,
+                    Data =  new
+                            {
+                                CategoryID = ck.CategoryID,
+                                CategoryName = ck.CategoryName,
+                                Description = ck.Description,
+                                UserName = (from n in context.LoginDetails
+                                            where n.LoginID == ck.LoginID
+                                            select n.UserName).FirstOrDefault(),
+                                DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", ck.DateTime),
+                            },
                 };
             }
         }

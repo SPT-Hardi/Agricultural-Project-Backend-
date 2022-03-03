@@ -35,11 +35,11 @@ namespace Inventory_Mangement_System.Repository
                                 Unit = obj.Unit,//new IntegerNullString() { Id=obj.ProductUnit.UnitID,Text=obj.ProductUnit.Type},
                                 Remark = obj.Remark,
                                 VendorName = obj.VendorName,
-                                PurchaseDate = String.Format("{0:dd-mm-yyyy hh:mm tt}", obj.PurchaseDate),
+                                PurchaseDate = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.PurchaseDate),
                                 UserName = (from n in context.LoginDetails
                                             where n.LoginID == obj.LoginID
                                             select n.UserName).FirstOrDefault(),
-                                DateTime = String.Format("{0:dd-mm-yyyy hh:mm tt}", obj.DateTime),
+                                DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.DateTime),
                             }).ToList(),
 
                 };
@@ -100,6 +100,7 @@ namespace Inventory_Mangement_System.Repository
                              from u in context.Products
                              where obj.productname.Id == u.ProductID
                              select u.ProductUnit.Type).SingleOrDefault();
+
                 var qs = (from obj in context.PurchaseDetails
                           where obj.PurchaseID == ID
                           select obj).SingleOrDefault();
@@ -110,7 +111,7 @@ namespace Inventory_Mangement_System.Repository
                 var issue = (from i in context.Issues
                              where i.ProductID == qs.ProductID
                              select i).ToList();
-                if(issue!=null)
+                if(issue==null)
                 {
                     throw new ArgumentException($"Product Already Issue Can not be Update.");
                 }

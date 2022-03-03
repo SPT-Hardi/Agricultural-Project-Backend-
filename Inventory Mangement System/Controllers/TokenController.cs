@@ -29,6 +29,14 @@ namespace Inventory_Mangement_System.Controllers
             string refreshToken = tokenModel.RefreshToken;
             using (ProductInventoryDataContext _context=new ProductInventoryDataContext())
             {
+                if(token is null)
+                {
+                    throw new ArgumentException("Token Not Found.");
+                }
+                if (refreshToken is null)
+                {
+                    throw new ArgumentException("RefreshToken Not Found.");
+                }
                 var principal = _tokenService.GetPrincipalFromExpiredToken(token);
                 var emailid = principal.Identity.Name;
                 var user = _context.Users.SingleOrDefault(x => x.EmailAddress == emailid);
@@ -53,6 +61,14 @@ namespace Inventory_Mangement_System.Controllers
 
                 r1.RToken = newRefreshToken;
                 _context.SubmitChanges();
+                if(newJwtToken is null)
+                {
+                    throw new ArgumentException("Error While Generating New Token");
+                }
+                if (newRefreshToken is null)
+                {
+                    throw new ArgumentException("Error While Generating New Refresh Token");
+                }
                 return new ObjectResult(new
                 {
                     token = newJwtToken,

@@ -118,7 +118,7 @@
     <Type Name="RefreshToken" ed:Guid="8ee78e8a-9751-4bf1-9edb-f9c48d24d80b">
       <Column Name="RefreshID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="10aed791-3890-4306-9c6e-041ca8d9ed4a" />
       <Column Name="RToken" Type="System.String" DbType="VARCHAR(100) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="100" ed:ValidateMaxLength="100" ed:ValidateRequired="true" ed:Guid="29a00a72-0c39-4e44-aadc-e61b5163ec0d" />
-      <Association Name="RefreshToken_UserRefreshToken" ed:AssociationGuid="e8016c38-2418-4280-9010-2ad48d02d38a" Member="UserRefreshTokens" ed:Guid="7c76b91e-1333-4ba1-99c3-77d24cca49eb" ThisKey="RefreshID" OtherKey="RefreshID" Type="UserRefreshToken" />
+      <Association Name="RefreshToken_UserRefreshToken" ed:AssociationGuid="3070fcbb-b1e2-4ae1-9fdc-7f1dba5c1b1e" Member="UserRefreshTokens" ed:Guid="a41530c9-b517-46f9-9a19-9ad72d3f1fe6" ThisKey="RefreshID" OtherKey="RefreshID" Type="UserRefreshToken" />
     </Type>
   </Table>
   <Table Name="dbo.Roles" Member="Roles">
@@ -141,14 +141,6 @@
       <Association Name="SubArea_ProductionDetail" ed:AssociationGuid="678725b6-0890-4025-8dde-652271533f18" Member="ProductionDetails" ed:Guid="17b12b25-864f-48f6-be8c-e4638a198a37" ThisKey="SubAreaID" OtherKey="SubAreaID" Type="ProductionDetail" />
     </Type>
   </Table>
-  <Table Name="dbo.UserRefreshToken" Member="UserRefreshTokens">
-    <Type Name="UserRefreshToken" ed:Guid="83a98379-d736-4894-b2d1-1596eb04e26c">
-      <Column Name="UserID" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="0b7da582-64d7-43aa-89ff-ef4c56c5c889" />
-      <Column Name="RefreshID" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="4ca234fb-fed4-4bd6-b80c-1c594ded31ad" />
-      <Association Name="RefreshToken_UserRefreshToken" ed:AssociationGuid="e8016c38-2418-4280-9010-2ad48d02d38a" Member="RefreshToken" ed:Guid="65d5483b-0485-4532-8134-2288d703be0e" ThisKey="RefreshID" OtherKey="RefreshID" Type="RefreshToken" DeleteRule="NO ACTION" IsForeignKey="true" />
-      <Association Name="User_UserRefreshToken" ed:AssociationGuid="999a062e-bee6-4247-8f09-cf9640b4eb83" Member="User" ed:Guid="84572a5d-b58d-4c08-9f44-57a8ae177313" ThisKey="UserID" OtherKey="UserID" Type="User" DeleteRule="NO ACTION" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Users" Member="Users">
     <Type Name="User" ed:Guid="ece215e6-bd20-40f4-873c-5ad766420ebd">
       <Column Name="UserID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="b32255d3-50f7-46db-8b04-9087f0105a9d" />
@@ -158,7 +150,7 @@
       <Column Name="RoleID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="dedae563-1d29-479b-bc64-a455c7621247" />
       <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="eafacad8-d961-4630-965d-f797092a2c84" />
       <Association Name="Role_User" ed:AssociationGuid="b063409e-91c2-419f-be6b-26ff6699032f" Member="Role" ed:Guid="24b815af-2971-4770-976f-d5a84362d31c" ThisKey="RoleID" OtherKey="RoleID" Type="Role" DeleteRule="NO ACTION" IsForeignKey="true" />
-      <Association Name="User_UserRefreshToken" ed:AssociationGuid="999a062e-bee6-4247-8f09-cf9640b4eb83" Member="UserRefreshTokens" ed:Guid="33027d20-68ac-40ba-b178-3bc035557a89" ThisKey="UserID" OtherKey="UserID" Type="UserRefreshToken" />
+      <Association Name="User_UserRefreshToken" ed:AssociationGuid="aa5f50ed-3bee-40c8-8fb8-1bb2888b4704" Member="UserRefreshTokens" ed:Guid="76e6eec2-4058-46ed-8ab5-5e2c8574afa7" ThisKey="UserID" OtherKey="UserID" Type="UserRefreshToken" />
     </Type>
   </Table>
   <Table Name="dbo.Vegetables" Member="Vegetables">
@@ -166,6 +158,14 @@
       <Column Name="VegetableID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="9c7c094d-d92c-4e22-b1bb-3087ef5641e5" />
       <Column Name="VegetableName" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="c26d13fd-270b-466f-9bdf-3d63e5517884" />
       <Association Name="Vegetable_ProductionDetail" ed:AssociationGuid="bb78769f-09ab-41f5-86d8-7cd4bedf096d" Member="ProductionDetails" ed:Guid="e6b61da0-19be-424a-8d76-ef059e7bf3f2" ThisKey="VegetableID" OtherKey="VegetableID" Type="ProductionDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserRefreshTokens" Member="UserRefreshTokens">
+    <Type Name="UserRefreshToken" ed:Guid="caf507c6-41a6-494a-8402-7dc5e52917e6">
+      <Column Name="UserID" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="cfb023f2-3913-4db7-b154-a2e8ece8922a" />
+      <Column Name="RefreshID" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="f68a679d-4673-49db-a42a-9cbe3b80187b" />
+      <Association Name="RefreshToken_UserRefreshToken" ed:AssociationGuid="3070fcbb-b1e2-4ae1-9fdc-7f1dba5c1b1e" Member="RefreshToken" ed:Guid="6c8f2325-85a4-429b-b34a-583637182c85" ThisKey="RefreshID" OtherKey="RefreshID" Type="RefreshToken" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="User_UserRefreshToken" ed:AssociationGuid="aa5f50ed-3bee-40c8-8fb8-1bb2888b4704" Member="User" ed:Guid="413dc4e3-96a5-4328-8e2f-9d15b4d2a100" ThisKey="UserID" OtherKey="UserID" Type="User" DeleteRule="NO ACTION" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
