@@ -33,9 +33,12 @@ namespace Inventory_Mangement_System.Controllers
 
         //Add Product
         [HttpPost ("addproduct")]
-        [Authorize(Roles = "Super Admin,Admin")]
         public async Task<IActionResult> ProductAdded(ProductModel productModel)
         {
+            if ((int)HttpContext.Items["LoginId"] == 0)
+            {
+                throw new ArgumentException("JWT Token Not Found.");
+            }
             int LoginId = (int)HttpContext.Items["LoginId"];
             var result = _productRepository.AddProduct(productModel,LoginId);
             return Ok(result);
@@ -46,6 +49,10 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPut("EditProduct/{productID}")]
         public async Task<IActionResult> EditProductAsync([FromBody] ProductDetail productDetail, [FromRoute] int productID)
         {
+            if ((int)HttpContext.Items["LoginId"] == 0)
+            {
+                throw new ArgumentException("JWT Token Not Found.");
+            }
             int LoginId = (int)HttpContext.Items["LoginId"];
             var result = _productRepository.EditProduct(productDetail, productID,LoginId);
             return Ok(result);

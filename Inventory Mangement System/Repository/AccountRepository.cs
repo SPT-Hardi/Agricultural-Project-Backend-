@@ -99,7 +99,7 @@ namespace Inventory_Mangement_System.Repository
                 user.Password = passwordHasher.EncryptPassword(userModel.Password);
                 user.RoleID = 2;
                 user.EmailAddress = userModel.EmailAddress;
-               /* user.SystemMAC= "18:C0:4D:D4:D4:A7";*/
+              
                 user.DateTime = DateTime.Now;
                 context.Users.InsertOnSubmit(user);
                 context.SubmitChanges();
@@ -111,15 +111,15 @@ namespace Inventory_Mangement_System.Repository
                 };
              }
         }
-        //User Login
-        public Result LoginUser(LoginModel loginModel )
+       
+        public Result LoginUser(LoginModel loginModel)
         {
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             User user = new User();
             Role role = new Role();
 
             var res = (from u1 in context.Users
-                       where u1.EmailAddress  == loginModel.EmailAddress  && u1.Password == loginModel.Password /*PasswordHasher.DecryptPassword(loginModel.Password)*/
+                       where u1.EmailAddress  == loginModel.EmailAddress  && u1.Password == loginModel.Password
                        select new
                        {
                            UserName = u1.UserName,
@@ -135,11 +135,7 @@ namespace Inventory_Mangement_System.Repository
 
                 LoginDetail l = new LoginDetail();
 
-                /*                var mac = (from obj in context.LoginDetails
-                                           where obj.SystemMAC == UserMacAddress
-                                           select obj).ToList();*/
                 l.UserName = qs;
-                //SystemMAC = qs;
                 l.DateTime = DateTime.Now;
                 context.LoginDetails.InsertOnSubmit(l);
                 context.SubmitChanges();
@@ -147,7 +143,7 @@ namespace Inventory_Mangement_System.Repository
                 {
                     new Claim(ClaimTypes.Name,loginModel.EmailAddress),
                     new Claim (ClaimTypes.Role,res.RoleName),
-                    new Claim (ClaimTypes .Sid ,l.LoginID.ToString()),
+                    new Claim (ClaimTypes.Sid ,l.LoginID.ToString()),
                     new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid ().ToString ()),
                 };
 

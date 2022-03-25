@@ -6,6 +6,6 @@ namespace Inventory_Mangement_System.Repository
 {
     public interface IInventoryViewRepository
     {
-        Task<IEnumerable> GetInventoryView();
+        Result GetInventoryView();
     }
 }

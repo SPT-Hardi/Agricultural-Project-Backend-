@@ -47,7 +47,7 @@ namespace Inventory_Mangement_System
             services.AddTransient<IProductionRepository, ProductionRepository>();
             services.AddTransient<IInventoryViewRepository, InventoryViewRepository>();
 
-            services.AddControllers().AddNewtonsoftJson(); ;
+            services.AddControllers().AddNewtonsoftJson(); 
             
             services.AddAuthentication(option =>
             {

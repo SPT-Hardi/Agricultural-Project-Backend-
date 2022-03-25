@@ -69,7 +69,7 @@ namespace Inventory_Mangement_System.Middleware
                 hasError = true;
 
                 var response = context.Response;
-                //response.ContentType = "application/json";
+               
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
                 result = new Result()
                 {

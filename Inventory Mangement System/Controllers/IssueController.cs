@@ -1,5 +1,6 @@
 ﻿using Inventory_Mangement_System.Model;
 using Inventory_Mangement_System.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,27 +14,32 @@ namespace Inventory_Mangement_System.Controllers
     [ApiController]
     public class IssueController : ControllerBase
     {
-        private readonly IIssueRepository _isueRepository;
+        private readonly IIssueRepository _issueRepository;
 
-        public IssueController (IIssueRepository isueRepository)
+        public IssueController(IIssueRepository issueRepository)
         {
-            _isueRepository = isueRepository;
+            _issueRepository = issueRepository;
         }
 
         //All Issue Details
         [HttpGet("ViewAllIssue")]
         public async Task<IActionResult> ViewAllIssueAsync()
         {
-            var result = _isueRepository.ViewAllIssue();
+            var result = _issueRepository.ViewAllIssue();
             return Ok(result);
         }
 
         //Issue Products
         [HttpPost("IssueProduct")]
+        [Authorize]
         public async Task<IActionResult> IssueProductDetails([FromBody]IssueModel issueModel)
         {
+            if ((int)HttpContext.Items["LoginId"] == 0)
+            {
+                throw new ArgumentException("JWT Token Not Found.");
+            }
             int LoginId = (int)HttpContext.Items["LoginId"];
-            var result = _isueRepository.IssueProduct(issueModel,LoginId);
+            var result = _issueRepository.IssueProduct(issueModel,LoginId);
             return Ok(result);
         }
 
@@ -41,8 +47,12 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPut("EditIssue/{ID}")]
         public async Task<IActionResult> EditIssueAsync([FromBody] IssueModel issueModel,[FromRoute] int ID)
         {
+            if ((int)HttpContext.Items["LoginId"] == 0)
+            {
+                throw new ArgumentException("JWT Token Not Found.");
+            }
             int LoginId = (int)HttpContext.Items["LoginId"];
-            var result =  _isueRepository.EditIssue(issueModel,ID,LoginId);
+            var result = _issueRepository.EditIssue(issueModel,ID,LoginId);
             return Ok(result);
         }
 
@@ -50,7 +60,7 @@ namespace Inventory_Mangement_System.Controllers
         [HttpGet("getmainarea")]
         public async Task<IActionResult> MainAreaGet()
         {
-            var result = await _isueRepository.GetMainArea();
+            var result = await _issueRepository.GetMainArea();
             return Ok(result);
         }
 
@@ -58,7 +68,7 @@ namespace Inventory_Mangement_System.Controllers
         [HttpGet("getsubarea/{id}")]
         public async Task<IActionResult> SubAreaGet(int id)
         {
-            var result = await _isueRepository.GetSubArea(id);
+            var result = await _issueRepository.GetSubArea(id);
             return Ok(result);
         }
 
@@ -66,7 +76,7 @@ namespace Inventory_Mangement_System.Controllers
         [HttpGet("getproduct")]
         public async Task<IActionResult> ProductGet()
         {
-            var result = await _isueRepository.GetProduct();
+            var result = await _issueRepository.GetProduct();
             return Ok(result);
         }
                 

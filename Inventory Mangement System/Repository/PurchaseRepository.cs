@@ -17,7 +17,6 @@ namespace Inventory_Mangement_System.Repository
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 PurchaseDetail purchaseDetail = new PurchaseDetail();
-
                 return new Result()
                 {
                     Status = Result.ResultStatus.success,
@@ -65,11 +64,9 @@ namespace Inventory_Mangement_System.Repository
                                         TotalQuantity = obj.totalquantity,
                                         TotalCost = obj.totalcost,
                                         Remark = obj.remarks,
-                                        VendorName = char.ToUpper(obj.vendorname[0]) + obj.vendorname.Substring(1).ToLower(),
+                                        VendorName = (obj.vendorname == null  ? "" : char.ToUpper(obj.vendorname[0]) + obj.vendorname.Substring(1).ToLower()),
                                         LoginID = LoginId,
                                         DateTime = DateTime.Now
-
-
                                     }).ToList();
                 foreach (var item in purchaselist)
                 {
@@ -143,7 +140,7 @@ namespace Inventory_Mangement_System.Repository
                 qs.Unit = funit;
                 qs.Remark = q.remarks;
                 qs.LoginID = LoginId;
-                qs.VendorName = char.ToUpper(q.vendorname[0]) + q.vendorname.Substring(1).ToLower();
+                qs.VendorName = (q.vendorname == null ? "" : char.ToUpper(q.vendorname[0]) + q.vendorname.Substring(1).ToLower());
                 qs.PurchaseDate = q.Purchasedate.ToLocalTime();
                 context.SubmitChanges();
 

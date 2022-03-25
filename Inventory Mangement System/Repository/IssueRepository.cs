@@ -1,5 +1,4 @@
-﻿using Inventory_Mangement_System.Middleware;
-using Inventory_Mangement_System.Model;
+﻿using Inventory_Mangement_System.Model;
 using Inventory_Mangement_System.Model.Common;
 using ProductInventoryContext;
 using System;
@@ -26,11 +25,11 @@ namespace Inventory_Mangement_System.Repository
                             {
                                 IssueID = obj.IssueID,
                                 Date = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.IssueDate),
-                                Product = new { Id = obj.Product.ProductID, Text = obj.Product.ProductName , Unit = obj.Product.ProductUnit.Type },
+                                Product = new { Id = obj.Product.ProductID, Text = obj.Product.ProductName, Unit = obj.Product.ProductUnit.Type },
                                 MainArea = new IntegerNullString() { Id = obj.MainArea.MainAreaID, Text = obj.MainArea.MainAreaName },
                                 SubArea = new IntegerNullString() { Id = obj.SubArea.SubAreaID, Text = obj.SubArea.SubAreaName },
                                 IssueQuantity = obj.PurchaseQuantity,
-                                Remark=obj.Remark,
+                                Remark = obj.Remark,
                                 UserName = (from n in context.LoginDetails
                                             where n.LoginID == obj.LoginID
                                             select n.UserName).FirstOrDefault(),
@@ -39,7 +38,7 @@ namespace Inventory_Mangement_System.Repository
                 };
             }
         }
-        
+
         //Issue Products
         public Result IssueProduct(IssueModel issueModel, int LoginId)
         {
@@ -58,12 +57,13 @@ namespace Inventory_Mangement_System.Repository
                               DateTime = DateTime.Now,
                               PurchaseQuantity = obj.IssueQuantity
                           }).ToList();
-                
+
                 foreach (var item in qs)
                 {
                     var p = (from obj in context.Products
                              where obj.ProductID == item.ProductID
-                             select new {
+                             select new
+                             {
                                  obj.TotalProductQuantity,
                                  obj.ProductName
                              }).SingleOrDefault();
@@ -86,7 +86,7 @@ namespace Inventory_Mangement_System.Repository
                     context.SubmitChanges();
 
                 }
-                
+
                 return new Result()
                 {
                     Message = string.Format($" Issue successfully!"),
@@ -103,8 +103,8 @@ namespace Inventory_Mangement_System.Repository
             {
                 //var MacAddress = context.LoginDetails.FirstOrDefault(c => c.SystemMac == macObj);
                 var qs = (from obj in context.Issues
-                         where obj.IssueID == ID
-                         select obj).SingleOrDefault();
+                          where obj.IssueID == ID
+                          select obj).SingleOrDefault();
                 var p = (from obj in issueModel.issueDetails
                          select obj).SingleOrDefault();
                 var pd = (from obj in context.Products
@@ -119,22 +119,30 @@ namespace Inventory_Mangement_System.Repository
                            {
                                ProductID = obj.ProductID
                            }).ToList();
-                if(qs.PurchaseQuantity< p.IssueQuantity)
+                if(pd.ProductID== ID)
                 {
-                    if (pd.TotalProductQuantity < p.IssueQuantity)
+                    throw new ArgumentException("Product Does Not Exits.");
+                }
+                if (p.IssueQuantity == 0)
+                {
+                    throw new ArgumentException($"Please Enter {p.Product.Text} Issue Quantity More Than Zero");
+                }
+                if (qs.PurchaseQuantity < p.IssueQuantity)
+                {
+                    if (pd.TotalProductQuantity+qs.PurchaseQuantity < p.IssueQuantity)
                     {
                         throw new ArgumentException($"Product name :{pd.ProductID} ," +
                             $"Enter quantity{p.IssueQuantity} more than existing quantity{pd.TotalProductQuantity}");
                     }
                 }
-                
+
                 if (qs.SubAreaID == issueModel.SubArea.Id)
                 {
                     if (qs.ProductID == p.Product.Id)
                     {
                         var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
                         RemainQuantity = (float)temp - p.IssueQuantity;
-                        qs.IssueDate= issueModel.Date.ToLocalTime();
+                        qs.IssueDate = issueModel.Date.ToLocalTime();
                         qs.DateTime = DateTime.Now;
                         qs.ProductID = p.Product.Id;
                         qs.MainAreaID = issueModel.MainArea.Id;
@@ -197,7 +205,7 @@ namespace Inventory_Mangement_System.Repository
                     }
                     var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
                     pd.TotalProductQuantity = temp;
-                    qs.IssueDate= issueModel.Date.ToLocalTime();
+                    qs.IssueDate = issueModel.Date.ToLocalTime();
                     qs.DateTime = DateTime.Now;
                     qs.ProductID = p.Product.Id;
                     qs.MainAreaID = issueModel.MainArea.Id;
@@ -216,10 +224,10 @@ namespace Inventory_Mangement_System.Repository
                     };
 
                 }
-                
+
             }
         }
-        
+
         //Get MainArea Dropdown
         public async Task<IEnumerable> GetMainArea()
         {
@@ -239,8 +247,8 @@ namespace Inventory_Mangement_System.Repository
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
-                return (from x in context.SubAreas 
-                        where x.MainAreaID == id 
+                return (from x in context.SubAreas
+                        where x.MainAreaID == id
                         select new IntegerNullString()
                         {
                             Text = x.SubAreaName,
@@ -255,15 +263,14 @@ namespace Inventory_Mangement_System.Repository
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 return (from x in context.Products
-                        select new 
+                        select new
                         {
                             Text = x.ProductName,
                             Id = x.ProductID,
-                            Quantity=x.TotalProductQuantity,
-                            Unit=x.ProductUnit.Type
+                            Quantity = x.TotalProductQuantity,
+                            Unit = x.ProductUnit.Type
                         }).ToList();
             }
         }
- 
     }
 }
