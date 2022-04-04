@@ -136,10 +136,10 @@ namespace Inventory_Mangement_System.Repository
                     }
                     else
                     {
-                        m.MainAreaName = char.ToUpper(value.MainAreaName[0]) + value.MainAreaName.Substring(1).ToLower();
+                        m.MainAreaName = value.MainAreaName;
                         m.DateTime = DateTime.Now;
                         m.LoginID = LoginId;
-                        s.SubAreaName = char.ToUpper(value.SubAreaName[0]) + value.SubAreaName.Substring(1).ToLower(); 
+                        s.SubAreaName =value.SubAreaName; 
                         s.DateTime = DateTime.Now;
                         s.LoginID = LoginId;
                         context.SubmitChanges();

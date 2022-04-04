@@ -46,8 +46,8 @@ D:\Agricultural-Project-Backend-\Inventory Mangement System\obj\Release\net5.0\P
 D:\Agricultural-Project-Backend-\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\runtimes\win-arm64\native\sni.dll
 D:\Agricultural-Project-Backend-\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\runtimes\win-x64\native\sni.dll
 D:\Agricultural-Project-Backend-\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\runtimes\win-x86\native\sni.dll
-D:\Agricultural-Project-Backend-\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\runtimes\unix\lib\netstandard2.0\System.Data.SqlClient.dll
-D:\Agricultural-Project-Backend-\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\runtimes\win\lib\netstandard2.0\System.Data.SqlClient.dll
+D:\Agricultural-Project-Backend-\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Agricultural-Project-Backend-\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\Agricultural-Project-Backend-\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\Agricultural-Project-Backend-\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\Agricultural-Project-Backend-\Inventory Mangement System\obj\Release\net5.0\PubTmp\Out\InventorySystem.deps.json

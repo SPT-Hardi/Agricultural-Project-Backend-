@@ -12,6 +12,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Inventory_Mangement_System.Repository
 {
@@ -95,8 +96,8 @@ namespace Inventory_Mangement_System.Repository
             }
             else
             {
-                user.UserName = char.ToUpper(userModel.UserName[0]) + userModel.UserName.Substring(1).ToLower();
-                user.Password = passwordHasher.EncryptPassword(userModel.Password);
+                user.UserName = userModel.UserName;
+                user.Password = userModel.Password;
                 user.RoleID = 2;
                 user.EmailAddress = userModel.EmailAddress;
               
@@ -114,32 +115,35 @@ namespace Inventory_Mangement_System.Repository
        
         public Result LoginUser(LoginModel loginModel)
         {
-            ProductInventoryDataContext context = new ProductInventoryDataContext();
-            User user = new User();
-            Role role = new Role();
-
-            var res = (from u1 in context.Users
-                       where u1.EmailAddress  == loginModel.EmailAddress  && u1.Password == passwordHasher.DecryptPassword(loginModel.Password)
-                       select new
-                       {
-                           UserName = u1.UserName,
-                           UserID = u1.UserID,
-                           RoleID = u1.RoleID,
-                           RoleName = u1.Role.RoleName
-                       }).FirstOrDefault();
-            if (res != null)
+            using (TransactionScope scope = new TransactionScope())
             {
-                var qs = (from obj in context.Users
-                          where obj.EmailAddress == loginModel.EmailAddress
-                          select obj.UserName).FirstOrDefault();
 
-                LoginDetail l = new LoginDetail();
+                ProductInventoryDataContext context = new ProductInventoryDataContext();
+                User user = new User();
+                Role role = new Role();
 
-                l.UserName = qs;
-                l.DateTime = DateTime.Now;
-                context.LoginDetails.InsertOnSubmit(l);
-                context.SubmitChanges();
-                var authclaims = new List<Claim>
+                var res = (from u1 in context.Users
+                           where u1.EmailAddress == loginModel.EmailAddress && u1.Password == loginModel.Password
+                           select new
+                           {
+                               UserName = u1.UserName,
+                               UserID = u1.UserID,
+                               RoleID = u1.RoleID,
+                               RoleName = u1.Role.RoleName
+                           }).FirstOrDefault();
+                if (res != null)
+                {
+                    var qs = (from obj in context.Users
+                              where obj.EmailAddress == loginModel.EmailAddress
+                              select obj.UserName).FirstOrDefault();
+
+                    LoginDetail l = new LoginDetail();
+
+                    l.UserName = qs;
+                    l.DateTime = DateTime.Now;
+                    context.LoginDetails.InsertOnSubmit(l);
+                    context.SubmitChanges();
+                    var authclaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name,loginModel.EmailAddress),
                     new Claim (ClaimTypes.Role,res.RoleName),
@@ -147,36 +151,37 @@ namespace Inventory_Mangement_System.Repository
                     new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid ().ToString ()),
                 };
 
-                var jwtToken = _tokenService.GenerateAccessToken(authclaims);
-                var refreshToken = _tokenService.GenerateRefreshToken();
-                RefreshToken refreshToken1 = new RefreshToken();
-                refreshToken1.RToken = refreshToken;
-                context.RefreshTokens.InsertOnSubmit(refreshToken1);
-                context.SubmitChanges();
+                    var jwtToken = _tokenService.GenerateAccessToken(authclaims);
+                    var refreshToken = _tokenService.GenerateRefreshToken();
+                    RefreshToken refreshToken1 = new RefreshToken();
+                    refreshToken1.RToken = refreshToken;
+                    context.RefreshTokens.InsertOnSubmit(refreshToken1);
+                    context.SubmitChanges();
 
-                UserRefreshToken userRefreshToken = new UserRefreshToken();
-                userRefreshToken.UserID = res.UserID;
-                userRefreshToken.RefreshID = refreshToken1.RefreshID;
-                context.UserRefreshTokens.InsertOnSubmit(userRefreshToken);
-                context.SubmitChanges();
-
-                return new Result()
-                {
-                    Message = string.Format($"Login Successfully"),
-                    Status = Result.ResultStatus.success,
-                    Data = new
+                    UserRefreshToken userRefreshToken = new UserRefreshToken();
+                    userRefreshToken.UserID = res.UserID;
+                    userRefreshToken.RefreshID = refreshToken1.RefreshID;
+                    context.UserRefreshTokens.InsertOnSubmit(userRefreshToken);
+                    context.SubmitChanges();
+                    scope.Complete();
+                    return new Result()
                     {
-                        token = jwtToken,
-                        refreshToken = refreshToken,
-                        UserName = res.UserName,
-                        EmailAddress = loginModel.EmailAddress,
-                        RoleName = res.RoleName,
-                    },
-                };
-            }
-            else
-            {
-                throw new ArgumentException("Please Enter Valid Login Details..");
+                        Message = string.Format($"Login Successfully"),
+                        Status = Result.ResultStatus.success,
+                        Data = new
+                        {
+                            token = jwtToken,
+                            refreshToken = refreshToken,
+                            UserName = res.UserName,
+                            EmailAddress = loginModel.EmailAddress,
+                            RoleName = res.RoleName,
+                        },
+                    };
+                }
+                else
+                {
+                    throw new ArgumentException("Please Enter Valid Login Details..");
+                }
             }
         }
     }

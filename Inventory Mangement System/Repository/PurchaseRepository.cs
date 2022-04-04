@@ -31,7 +31,7 @@ namespace Inventory_Mangement_System.Repository
                                 ProductName = new IntegerNullString() { Id = obj.Product.ProductID, Text = obj.Product.ProductName },
                                 TotalQuantity = obj.TotalQuantity,
                                 TotalCost = obj.TotalCost,
-                                Unit = obj.Unit,//new IntegerNullString() { Id=obj.ProductUnit.UnitID,Text=obj.ProductUnit.Type},
+                                Unit = obj.Unit,
                                 Remark = obj.Remark,
                                 VendorName = obj.VendorName,
                                 PurchaseDate = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.PurchaseDate),
