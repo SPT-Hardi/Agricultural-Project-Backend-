@@ -119,7 +119,7 @@ namespace Inventory_Mangement_System.Repository
             Role role = new Role();
 
             var res = (from u1 in context.Users
-                       where u1.EmailAddress  == loginModel.EmailAddress  && u1.Password == loginModel.Password
+                       where u1.EmailAddress  == loginModel.EmailAddress  && u1.Password == passwordHasher.DecryptPassword(loginModel.Password)
                        select new
                        {
                            UserName = u1.UserName,

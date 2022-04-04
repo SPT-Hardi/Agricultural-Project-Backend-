@@ -45,7 +45,6 @@ namespace Inventory_Mangement_System.Repository
         {
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             Category category = new Category();
-            Product product = new Product();
 
             var pro = (from p in productModel.ProductDetails
                        select new Product()
@@ -73,9 +72,8 @@ namespace Inventory_Mangement_System.Repository
             context.SubmitChanges();
             return new Result()
             {
-                Message = string.Format($"{product.ProductName} Added Successfully."),
-                Status = Result.ResultStatus.success,
-                Data = product.ProductName,
+                Message = string.Format($"Product Added Successfully."),
+                Status = Result.ResultStatus.success
             };
         }
 
