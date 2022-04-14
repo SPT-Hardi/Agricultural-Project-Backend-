@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj": {}
+    "C:\\Users\\VijalPatel\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj": {}
   },
   "projects": {
-    "D:\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj": {
+    "C:\\Users\\VijalPatel\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj",
+        "projectUniqueName": "C:\\Users\\VijalPatel\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj",
         "projectName": "InventorySystem",
-        "projectPath": "D:\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj",
+        "projectPath": "C:\\Users\\VijalPatel\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj",
         "packagesPath": "C:\\Users\\VijalPatel\\.nuget\\packages\\",
-        "outputPath": "D:\\Agricultural-Project-Backend-\\Inventory Mangement System\\obj\\",
+        "outputPath": "C:\\Users\\VijalPatel\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\VijalPatel\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,7 +46,11 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[5.0.0, )"
+              "version": "[5.0.7, )"
+            },
+            "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
+              "target": "Package",
+              "version": "[5.0.7, )"
             },
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",
@@ -83,6 +87,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.0, )"
+            },
+            "Microsoft.Identity.Web": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Microsoft.Identity.Web.UI": {
+              "target": "Package",
+              "version": "[1.1.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

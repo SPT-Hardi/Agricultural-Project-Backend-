@@ -54,8 +54,6 @@ namespace Inventory_Mangement_System.Repository
                                MainAreaname = y.MainAreaName
                            }).ToList();
 
-
-
                 foreach (var item in mn1)
                 {
                     if (mn1.Count() > 0)
@@ -63,7 +61,6 @@ namespace Inventory_Mangement_System.Repository
                         throw new ArgumentException($"MainAreaName {item.MainAreaname} already Exist");
                     }
                 }
-
                 LoginDetail lgin = new LoginDetail();
             
 
