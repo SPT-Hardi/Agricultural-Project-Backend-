@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\VijalPatel\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj": {}
+    "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\VijalPatel\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj": {
+    "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\VijalPatel\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj",
         "projectName": "InventorySystem",
-        "projectPath": "C:\\Users\\VijalPatel\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj",
-        "packagesPath": "C:\\Users\\VijalPatel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\VijalPatel\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\obj\\",
+        "projectPath": "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "E:\\Visual Studio\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\VijalPatel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -123,7 +127,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }
