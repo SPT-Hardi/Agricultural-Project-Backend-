@@ -119,10 +119,7 @@ namespace Inventory_Mangement_System.Repository
                            {
                                ProductID = obj.ProductID
                            }).ToList();
-                if(pd.ProductID== ID)
-                {
-                    throw new ArgumentException("Product Does Not Exits.");
-                }
+                
                 if (p.IssueQuantity == 0)
                 {
                     throw new ArgumentException($"Please Enter {p.Product.Text} Issue Quantity More Than Zero");
