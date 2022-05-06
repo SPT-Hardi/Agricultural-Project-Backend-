@@ -10,7 +10,9 @@ namespace Inventory_Mangement_System.Model
     {
         [Required(ErrorMessage = "Date Is Required.")]
         public DateTime Date { get; set; }
+    
         public Model.Common.IntegerNullString MainArea { get; set; } = new Model.Common.IntegerNullString();
+        
         public Model.Common.IntegerNullString SubArea { get; set; } = new Model.Common.IntegerNullString();
         public List<IssueDetail> issueDetails { get; set; } = new List<IssueDetail>();
     }
@@ -22,7 +24,7 @@ namespace Inventory_Mangement_System.Model
         [RegularExpression(@"^[0-9]+$", ErrorMessage = "Please Enter Only Letter.")]
         [Required(ErrorMessage = "Issue Quantity Required.")]
         public float IssueQuantity { get; set; }
-
+       
         public Model.Common.IntegerNullString Product { get; set; } = new Model.Common.IntegerNullString();
        
     }

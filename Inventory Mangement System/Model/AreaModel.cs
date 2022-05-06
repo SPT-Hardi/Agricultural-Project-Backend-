@@ -18,7 +18,8 @@ namespace Inventory_Mangement_System.Model
     }
     public class SubAreaModel
     {
-       public string sname { get; set; }
+        [RegularExpression(@"^[a-zA-Z0-9]{1,50}$",ErrorMessage ="Alphanumeric , Minimum 1 & Maximum 50 Character are allowed")]
+        public string? sname { get; set; } = null;
 
     }
 

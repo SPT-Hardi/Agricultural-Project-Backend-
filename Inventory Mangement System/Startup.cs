@@ -34,8 +34,11 @@ namespace Inventory_Mangement_System
                 option.AddDefaultPolicy(builder => builder.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
             });
 
-            ProductInventoryContext.ProductInventoryDataContext db 
+            /*ProductInventoryContext.ProductInventoryDataContext db 
                 = new ProductInventoryContext.ProductInventoryDataContext("data source=20.204.136.73;initial catalog=ProductInventory;integrated security=False;persist security info=True;user id=piDB;password=PI@2022@@#;License Key=qHnH5wx/L422kFN4WQussVkqbelF0xGMaZi+DGL6lhFu+VTasW/ZRA22+dVoDbuQ64trDZsBMziLDE9kumHeTDKlcRSCvsotqn7rHn9VHFXS3Jmh/rFBVSxav6UlKmT4POdU+hnX8ACaigXhFdBiZ4NeHNVRNTqJ4fUTou0czKt8ATWxOB2MjUrprbYTV2ECFJOo2uLgwGzqeEpv1gGPLKR3p5DOKdeMu61FRAak23fmjt8PPQpz50o1E0r0FFdoQrJIYKkMxqRiD2IhVxlcVCvpIqR31rWwKJ1sNquGBMU=;");
+*/
+            ProductInventoryContext.ProductInventoryDataContext db
+               = new ProductInventoryContext.ProductInventoryDataContext("data source=DESKTOP-CQ3I7DI;initial catalog='Product Inventory';integrated security=False;persist security info=True;user id=kv;password=123456;License Key=qHnH5wx/L422kFN4WQussVkqbelF0xGMaZi+DGL6lhFu+VTasW/ZRA22+dVoDbuQ64trDZsBMziLDE9kumHeTDKlcRSCvsotqn7rHn9VHFXS3Jmh/rFBVSxav6UlKmT4POdU+hnX8ACaigXhFdBiZ4NeHNVRNTqJ4fUTou0czKt8ATWxOB2MjUrprbYTV2ECFJOo2uLgwGzqeEpv1gGPLKR3p5DOKdeMu61FRAak23fmjt8PPQpz50o1E0r0FFdoQrJIYKkMxqRiD2IhVxlcVCvpIqR31rWwKJ1sNquGBMU=;");
 
             services.AddTransient <IAccountRepository,AccountRepository >();
             services.AddTransient<ICategoryRepository, CategoryRepository>();

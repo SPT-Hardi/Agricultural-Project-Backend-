@@ -38,6 +38,11 @@ namespace Inventory_Mangement_System.Model
         public float totalcost { get; set; }
         public string remarks { get; set; }
         public string vendorname { get; set; }
+       
+        public string PurchaseLocation { get; set; }
+        [Required(ErrorMessage = "BillNumber is required!")]
+        [RegularExpression(@"^[a-zA-Z0-9'@-#.\s]{1,50}$", ErrorMessage = "Maximum 50 character allowed!")]
+        public string BillNumber { get; set; }
         public Model.Common.IntegerNullString productname { get; set; } = new Model.Common.IntegerNullString();
     }
     

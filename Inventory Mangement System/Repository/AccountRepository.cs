@@ -79,6 +79,7 @@ namespace Inventory_Mangement_System.Repository
         //User Registration
         public Result RegisterUser(UserModel userModel)
         {
+            var ISDT = new ISDT().GetISDT(DateTime.Now);
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             User user = new User();
             Role role = new Role();
@@ -101,7 +102,7 @@ namespace Inventory_Mangement_System.Repository
                 user.RoleID = 2;
                 user.EmailAddress = userModel.EmailAddress;
               
-                user.DateTime = DateTime.Now;
+                user.DateTime = ISDT;
                 context.Users.InsertOnSubmit(user);
                 context.SubmitChanges();
                 return new Result()
@@ -115,6 +116,7 @@ namespace Inventory_Mangement_System.Repository
        
         public Result LoginUser(LoginModel loginModel)
         {
+            var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             using (TransactionScope scope = new TransactionScope())
             {
 
@@ -140,7 +142,7 @@ namespace Inventory_Mangement_System.Repository
                     LoginDetail l = new LoginDetail();
 
                     l.UserName = qs;
-                    l.DateTime = DateTime.Now;
+                    l.DateTime = ISDT;
                     context.LoginDetails.InsertOnSubmit(l);
                     context.SubmitChanges();
                     var authclaims = new List<Claim>

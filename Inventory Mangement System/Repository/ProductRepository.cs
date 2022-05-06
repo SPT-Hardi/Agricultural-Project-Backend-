@@ -35,6 +35,7 @@ namespace Inventory_Mangement_System.Repository
                                           where n.LoginID== x.LoginID
                                           select n.UserName).FirstOrDefault(),
                                 DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", x.DateTime),
+                                IsEditable=x.IsEditable,
                             }).ToList(),
                 };
             }
@@ -43,6 +44,7 @@ namespace Inventory_Mangement_System.Repository
         //Add Product
         public Result AddProduct(ProductModel productModel,int LoginId)
         {
+            var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             Category category = new Category();
 
@@ -56,7 +58,7 @@ namespace Inventory_Mangement_System.Repository
                            CategoryID = p.categoryType.Id,
                            LoginID=LoginId,
                            TotalProductQuantity=0,
-                           DateTime=DateTime.Now,
+                           DateTime=ISDT,
                            UnitID = p.type.Id
                        }).ToList();
             foreach (var item in pro)
@@ -80,6 +82,7 @@ namespace Inventory_Mangement_System.Repository
         //Edit Product 
         public Result EditProduct(ProductDetail productDetail, int productID,int LoginId)
         {
+            var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 var product = context.Products.SingleOrDefault(id => id.ProductID == productID);
@@ -95,15 +98,27 @@ namespace Inventory_Mangement_System.Repository
                         throw new Exception("Product Alredy Exits.");
                     }
                 }
-                product.ProductName = char.ToUpper(productDetail.ProductName[0]) + productDetail.ProductName.Substring(1).ToLower();
-                product.Variety = productDetail.Variety;
-                product.Company = productDetail.Company;
-                product.Description = productDetail.Description;
-                product.CategoryID = (int)productDetail.categoryType.Id;
-                product.LoginID = LoginId;
-                product.DateTime = DateTime.Now;
-                product.UnitID = (int)productDetail.type.Id;
+                if (product.IsEditable == false) 
+                {
+                    throw new ArgumentException("Not editable!");
+                }
+                //backup entry
+                product.IsEditable = false;
                 context.SubmitChanges();
+
+                //new entry
+                Product p = new Product();
+                p.ProductName = char.ToUpper(productDetail.ProductName[0]) + productDetail.ProductName.Substring(1).ToLower();
+                p.Variety = productDetail.Variety;
+                p.Company = productDetail.Company;
+                p.Description = productDetail.Description;
+                p.CategoryID = (int)productDetail.categoryType.Id;
+                p.LoginID = LoginId;
+                p.DateTime = ISDT;
+                p.UnitID = (int)productDetail.type.Id;
+                context.Products.InsertOnSubmit(p);
+                context.SubmitChanges();
+                
                 return new Result()
                 {
                     Message = string.Format($"{productDetail.ProductName} Updated Successfully."),

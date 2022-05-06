@@ -39,6 +39,7 @@ namespace Inventory_Mangement_System.Repository
                                             where n.LoginID == obj.LoginID
                                             select n.UserName).FirstOrDefault(),
                                 DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.DateTime),
+                                IsEditable=obj.IsEditable,
                             }).ToList(),
 
                 };
@@ -49,6 +50,11 @@ namespace Inventory_Mangement_System.Repository
         //Add Purchase Details
         public Result AddPurchaseDetails(PurchaseModel purchaseModel,int LoginId)
         {
+            var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
+            if (LoginId == 0) 
+            {
+                throw new ArgumentException("You are not authorized!");
+            }
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 PurchaseDetail purchaseDetail = new PurchaseDetail();
@@ -64,9 +70,11 @@ namespace Inventory_Mangement_System.Repository
                                         TotalQuantity = obj.totalquantity,
                                         TotalCost = obj.totalcost,
                                         Remark = obj.remarks,
+                                        PurchaseLocation=obj.PurchaseLocation,
+                                        BillNumber=obj.BillNumber,
                                         VendorName = (obj.vendorname == null  ? "" : char.ToUpper(obj.vendorname[0]) + obj.vendorname.Substring(1).ToLower()),
                                         LoginID = LoginId,
-                                        DateTime = DateTime.Now
+                                        DateTime = ISDT
                                     }).ToList();
                 foreach (var item in purchaselist)
                 {
@@ -93,6 +101,10 @@ namespace Inventory_Mangement_System.Repository
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
+                if (LoginId == 0) 
+                {
+                    throw new ArgumentException("You are not authorized!");
+                }
                 var funit = (from obj in purchaseModel.purchaseList
                              from u in context.Products
                              where obj.productname.Id == u.ProductID
@@ -134,10 +146,13 @@ namespace Inventory_Mangement_System.Repository
                     udb.TotalProductQuantity = udb.TotalProductQuantity + q.totalquantity;
                     context.SubmitChanges();
                 }
+
                 qs.ProductID = q.productname.Id;
                 qs.TotalQuantity = q.totalquantity;
                 qs.TotalCost = q.totalcost;
                 qs.Unit = funit;
+                qs.PurchaseLocation = q.PurchaseLocation;
+                qs.BillNumber = q.BillNumber;
                 qs.Remark = q.remarks;
                 qs.LoginID = LoginId;
                 qs.VendorName = (q.vendorname == null ? "" : char.ToUpper(q.vendorname[0]) + q.vendorname.Substring(1).ToLower());

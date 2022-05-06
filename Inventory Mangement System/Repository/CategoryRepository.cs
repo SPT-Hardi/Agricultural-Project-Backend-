@@ -38,6 +38,7 @@ namespace Inventory_Mangement_System.Repository
         //Add New Category
         public Result AddCategory(CategoryModel categoryModel, int LoginId)
         {
+            var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             Category category = new Category();
             var res = context.Categories.FirstOrDefault(x => x.CategoryName == categoryModel.CategoryName);
@@ -50,7 +51,7 @@ namespace Inventory_Mangement_System.Repository
                 category.CategoryName = char.ToUpper(categoryModel.CategoryName[0]) + categoryModel.CategoryName.Substring(1).ToLower(); 
                 category.Description = categoryModel.Description;
                 category.LoginID = LoginId;
-                category.DateTime = DateTime.Now;
+                category.DateTime = ISDT;
                 context.Categories.InsertOnSubmit(category);
                 context.SubmitChanges();
                 return new Result()
@@ -65,6 +66,7 @@ namespace Inventory_Mangement_System.Repository
         //Edit Category
         public Result EditCategory(CategoryModel categoryModel, int id, int LoginId)
         {
+            var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 var ck = context.Categories.SingleOrDefault(x => x.CategoryID == id);
@@ -82,7 +84,7 @@ namespace Inventory_Mangement_System.Repository
                 }
                 ck.CategoryName = char.ToUpper(categoryModel.CategoryName[0]) + categoryModel.CategoryName.Substring(1).ToLower();
                 ck.Description = categoryModel.Description;
-                ck.DateTime = DateTime.Now;
+                ck.DateTime = ISDT;
                 ck.LoginID = LoginId;
                 context.SubmitChanges();
                 return new Result()

@@ -40,6 +40,7 @@ namespace Inventory_Mangement_System.Repository
         //Add New Main And Sub Area
         public Result AddMainAreaAsync(AreaModel areaModel, int LoginId)
         {
+            var ISDT = new ISDT().GetISDT(DateTime.Now);
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 MainArea mainArea = new MainArea();
@@ -69,7 +70,7 @@ namespace Inventory_Mangement_System.Repository
                                 {
                                     MainAreaName = m.mname,
                                     LoginID = LoginId,
-                                    DateTime = DateTime.Now
+                                    DateTime =ISDT
                                 }).ToList();
                 context.MainAreas.InsertAllOnSubmit(mainarea);
                 context.SubmitChanges();
@@ -85,13 +86,13 @@ namespace Inventory_Mangement_System.Repository
                 {
                     var SD1 = (from m in areaModel.arealist
                                from y in m.subarea
-                               where m.mname == item.MainAreaname
+                               where m.mname == item.MainAreaname && y.sname!=null
                                select new SubArea()
                                {
                                    MainAreaID = item.MainAreaID,
                                    SubAreaName = y.sname,
                                    LoginID = LoginId,
-                                   DateTime = DateTime.Now
+                                   DateTime = ISDT
                                }).ToList();
                     context.SubAreas.InsertAllOnSubmit(SD1);
                     context.SubmitChanges();
@@ -107,6 +108,7 @@ namespace Inventory_Mangement_System.Repository
         //Edit Main And Sub Area
         public Result EditArea(UpdateAreaModel value, int mid, int sid,int LoginId)
         {
+            var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 var m = (from x in context.MainAreas where x.MainAreaID == mid select x).FirstOrDefault();
@@ -117,46 +119,59 @@ namespace Inventory_Mangement_System.Repository
                 }
 
                 var s = (from x in context.SubAreas where x.SubAreaID == sid select x).FirstOrDefault();
-
-                if (s is null)
+                if (sid != 0)
                 {
-                    throw new ArgumentException("SubArea Doesn't Exist");
-                }
-                var checkMainArea = (from x in context.MainAreas where x.MainAreaName == value.MainAreaName select x).ToList();
 
-                if (m.MainAreaName != value.MainAreaName)
-                {
-                    var _m = context.MainAreas.SingleOrDefault(x => x.MainAreaName == value.MainAreaName);
-                    if (_m != null)
+                    if (s is null)
                     {
-                        throw new ArgumentException($"MainArea {value.MainAreaName} Already Exist");
+                        throw new ArgumentException("SubArea Doesn't Exist");
+                    }
+                }
+                //var checkMainArea = (from x in context.MainAreas where x.MainAreaName == value.MainAreaName select x).ToList();
+                if (sid != 0)
+                {
+
+                    if (m.MainAreaName != value.MainAreaName)
+                    {
+                        var _m = context.MainAreas.SingleOrDefault(x => x.MainAreaName == value.MainAreaName);
+                        if (_m != null)
+                        {
+                            throw new ArgumentException($"MainArea {value.MainAreaName} Already Exist");
+                        }
+                        else
+                        {
+                            m.MainAreaName = value.MainAreaName;
+                            m.DateTime = ISDT;
+                            m.LoginID = LoginId;
+                            if (s != null) 
+                            {
+                                s.SubAreaName = value.SubAreaName;
+                            }
+                            s.DateTime = ISDT;
+                            s.LoginID = LoginId;
+                            context.SubmitChanges();
+                        }
                     }
                     else
                     {
-                        m.MainAreaName = value.MainAreaName;
-                        m.DateTime = DateTime.Now;
+                        var checkSubArea = (from x in context.SubAreas where x.SubAreaName == value.SubAreaName && x.MainAreaID == mid select x).ToList();
+                        if (checkSubArea.Any())
+                        {
+                            throw new ArgumentException($"SubArea {value.SubAreaName} Already Exist");
+                        }
+                        m.MainAreaName = char.ToUpper(value.MainAreaName[0]) + value.MainAreaName.Substring(1).ToLower();
+                        m.DateTime = ISDT;
                         m.LoginID = LoginId;
-                        s.SubAreaName =value.SubAreaName; 
-                        s.DateTime = DateTime.Now;
+                        if (s != null)
+                        {
+                            s.SubAreaName = char.ToUpper(value.SubAreaName[0]) + value.SubAreaName.Substring(1).ToLower();
+                        }
+                        s.DateTime = ISDT;
                         s.LoginID = LoginId;
                         context.SubmitChanges();
                     }
                 }
-                else
-                {
-                    var checkSubArea = (from x in context.SubAreas where x.SubAreaName == value.SubAreaName && x.MainAreaID == mid select x).ToList();
-                    if (checkSubArea.Any())
-                    {
-                        throw new ArgumentException($"SubArea {value.SubAreaName} Already Exist");
-                    }
-                    m.MainAreaName = char.ToUpper(value.MainAreaName[0]) + value.MainAreaName.Substring(1).ToLower();
-                    m.DateTime = DateTime.Now;
-                    m.LoginID = LoginId;
-                    s.SubAreaName = char.ToUpper(value.SubAreaName[0]) + value.SubAreaName.Substring(1).ToLower();
-                    s.DateTime = DateTime.Now;
-                    s.LoginID = LoginId;
-                    context.SubmitChanges();
-                }
+        
                 return new Result()
                 {
                     Message = string.Format($"Area Updated Successfully."),

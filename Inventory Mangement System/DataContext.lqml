@@ -1,171 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Database Name="ProductInventory" EntityNamespace="ProductInventoryContext" ContextNamespace="ProductInventoryContext" Class="ProductInventoryDataContext" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ed:Guid="8400c5a7-9e8e-4801-a3d6-0c2c601d7347" Provider="Devart.Data.SqlServer.Linq.Provider.SqlDataProvider, Devart.Data.SqlServer.Linq" Extended="true" xmlns="http://schemas.devart.com/linqconnect/mapping">
-  <Connection Mode="ConnectionString" ConnectionString="Data Source=20.204.136.73;Initial Catalog=ProductInventory;Integrated Security=False;Persist Security Info=True;User ID=piDB;Password=PI@2022@@#" Provider="System.Data.SqlClient" />
+<Database Name="Product Inventory" EntityNamespace="ProductInventoryContext" ContextNamespace="ProductInventoryContext" Class="ProductInventoryDataContext" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ed:Guid="7a024d46-e9b9-432d-aea4-e14c67efd860" Provider="Devart.Data.SqlServer.Linq.Provider.SqlDataProvider, Devart.Data.SqlServer.Linq" Extended="true" xmlns="http://schemas.devart.com/linqconnect/mapping">
+  <Connection Mode="ConnectionString" ConnectionString="Data Source=DESKTOP-CQ3I7DI;Initial Catalog=&quot;Product Inventory&quot;;Integrated Security=False;Persist Security Info=True;User ID=kv;Password=123456" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Categories" Member="Categories">
-    <Type Name="Category" ed:Guid="50722f2c-b0cf-4aac-a5fd-b8ebd702503c">
-      <Column Name="CategoryID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="cc5d0e58-7ba1-4d9b-8bbb-d66af73f986c" />
-      <Column Name="CategoryName" Type="System.String" DbType="VARCHAR(30) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="30" ed:ValidateMaxLength="30" ed:ValidateRequired="true" ed:Guid="d2e53d6d-32f4-436e-a0ad-4ff62dba9592" />
-      <Column Name="Description" Type="System.String" DbType="VARCHAR(300)" CanBeNull="true" UpdateCheck="Never" MaxLength="300" ed:ValidateMaxLength="300" ed:ValidateRequired="false" ed:Guid="97b58d18-9ef2-45f0-bfc4-6157c2886976" />
-      <Column Name="LoginID" Type="System.Int32" DbType="INT" CanBeNull="true" UpdateCheck="Never" Precision="10" ed:ValidateRequired="false" ed:Guid="82d14f2b-a17c-4b3e-9912-50f2df1db52e" />
-      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="0a8f57ff-2a24-49d9-9c4d-b8a2709ecd3d" />
-      <Association Name="LoginDetail_Category" ed:AssociationGuid="e1077897-1b71-4018-9baa-335e2cb02daf" Member="LoginDetail" ed:Guid="cde240f9-fa5c-48d4-8f09-20c6536f7f02" ThisKey="LoginID" OtherKey="LoginID" Type="LoginDetail" DeleteRule="NO ACTION" IsForeignKey="true" />
-      <Association Name="Category_Product" ed:AssociationGuid="d09a98f4-48d6-4ff5-9ab5-0c151b4684b8" Member="Products" ed:Guid="34a473b5-0168-4e63-ab88-0b1a2c40af57" ThisKey="CategoryID" OtherKey="CategoryID" Type="Product" />
+    <Type Name="Category" ed:Guid="734ebe8f-c5dc-4490-9499-18c15dbbe8cf">
+      <Column Name="CategoryID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="b105ff43-f62d-4e6a-9f90-7fe82dbefc46" />
+      <Column Name="CategoryName" Type="System.String" DbType="VARCHAR(30) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="30" ed:ValidateMaxLength="30" ed:ValidateRequired="true" ed:Guid="085d1259-09ca-41b5-9231-443accd0b83d" />
+      <Column Name="Description" Type="System.String" DbType="VARCHAR(300) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="300" ed:ValidateMaxLength="300" ed:ValidateRequired="true" ed:Guid="582cbd67-ead9-4caa-80a2-019ffd7c7db7" />
+      <Column Name="LoginID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="9a88c18b-23f4-4bcb-bee8-ece44039f05c" />
+      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="9ea485d7-5e89-42d4-8a7e-95d08d6e2aca" />
+      <Association Name="LoginDetail_Category" ed:AssociationGuid="66ebe78d-7307-4227-8a38-d5c127690495" Member="LoginDetail" ed:Guid="bd8f908e-491d-483a-8794-97307f4338d4" ThisKey="LoginID" OtherKey="LoginID" Type="LoginDetail" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="Category_Product" ed:AssociationGuid="4be05619-abc7-4bad-810b-691a6545fc3a" Member="Products" ed:Guid="fe8d7374-4b78-4591-bec3-f06a3475fbfc" ThisKey="CategoryID" OtherKey="CategoryID" Type="Product" />
     </Type>
   </Table>
   <Table Name="dbo.Issues" Member="Issues">
-    <Type Name="Issue" ed:Guid="1d569aee-54c3-4c57-90b4-5f1bb7b4e85d">
-      <Column Name="IssueID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="1b8fb236-81c2-4b55-9e33-f25c86213a0b" />
-      <Column Name="IssueDate" Type="System.DateTime" DbType="DATE NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="49fa3242-d477-4ef7-b97f-a3c8c1d0ae97" />
-      <Column Name="MainAreaID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="878d44c1-95fe-4788-8cf3-c0b2e318119c" />
-      <Column Name="SubAreaID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="53934f80-a79d-4b8e-8acf-27c2ce190883" />
-      <Column Name="ProductID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="5a18736e-96ff-497b-9078-3bd5143835bb" />
-      <Column Name="PurchaseQuantity" Type="System.Double" DbType="FLOAT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="53" ed:ValidateRequired="true" ed:Guid="3a36f546-2f5a-457f-9ecd-77080968ad3e" />
-      <Column Name="LoginID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="3761385e-f225-4233-934e-9b8db31c00b0" />
-      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="cbdba5d0-97b4-4da9-b8e4-6d16dcecda67" />
-      <Column Name="Remark" Type="System.String" DbType="VARCHAR(150)" CanBeNull="true" UpdateCheck="Never" MaxLength="150" ed:ValidateMaxLength="150" ed:ValidateRequired="false" ed:Guid="aeffc7a0-f66f-440d-a12d-16169ac37dd6" />
-      <Association Name="MainArea_Issue" ed:AssociationGuid="57dbdea7-4086-47b5-bffb-c7b0f23f19e3" Member="MainArea" ed:Guid="0c04ad8d-0c25-4542-8e4b-7084640f544e" ThisKey="MainAreaID" OtherKey="MainAreaID" Type="MainArea" DeleteRule="NO ACTION" IsForeignKey="true" />
-      <Association Name="Product_Issue" ed:AssociationGuid="79687c8e-05ed-45d8-a77b-7a7a90a33a8f" Member="Product" ed:Guid="76d7044f-6b4e-470e-9097-97d6e6e3c038" ThisKey="ProductID" OtherKey="ProductID" Type="Product" DeleteRule="NO ACTION" IsForeignKey="true" />
-      <Association Name="LoginDetail_Issue" ed:AssociationGuid="4793e94a-3f64-4e0c-9f14-4e169e387807" Member="LoginDetail" ed:Guid="df403747-172d-46f2-89c9-a442f0b599f2" ThisKey="LoginID" OtherKey="LoginID" Type="LoginDetail" DeleteRule="NO ACTION" IsForeignKey="true" />
-      <Association Name="SubArea_Issue" ed:AssociationGuid="001dda8d-c8e9-4599-b6a3-411d26a5c0be" Member="SubArea" ed:Guid="104f033b-cfcf-4b1e-ace7-17df09defa8b" ThisKey="SubAreaID" OtherKey="SubAreaID" Type="SubArea" DeleteRule="NO ACTION" IsForeignKey="true" />
+    <Type Name="Issue" ed:Guid="39a02b5d-e1ed-479b-aedc-dc221414394a">
+      <Column Name="IssueID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="245a6249-1461-4188-91fc-649a22905eb4" />
+      <Column Name="IssueDate" Type="System.DateTime" DbType="DATE NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="a6fd82df-6696-4aed-b337-3313de0b83d6" />
+      <Column Name="MainAreaID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="58e0d566-f63c-4112-9157-4725526a1e2d" />
+      <Column Name="SubAreaID" Type="System.Int32" DbType="INT" CanBeNull="true" UpdateCheck="Never" Precision="10" ed:ValidateRequired="false" ed:Guid="9abd692b-9d89-4ff2-add7-0fe03974dd14" />
+      <Column Name="ProductID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="56dc60bc-9b05-4835-bbcf-186994963b24" />
+      <Column Name="PurchaseQuantity" Type="System.Double" DbType="FLOAT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="53" ed:ValidateRequired="true" ed:Guid="e83566eb-2502-4fea-98e5-cf3579924b89" />
+      <Column Name="LoginID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="8e172e4c-e13b-4ad7-bdc9-a1948ebd5aba" />
+      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="973dfe5c-2a54-4473-b1e0-ec7d0dcf66fa" />
+      <Column Name="Remark" Type="System.String" DbType="VARCHAR(150)" CanBeNull="true" UpdateCheck="Never" MaxLength="150" ed:ValidateMaxLength="150" ed:ValidateRequired="false" ed:Guid="a1f0dd40-79fb-45af-a612-a1c2d0d85674" />
+      <Association Name="SubArea_Issue" ed:AssociationGuid="b0a4b773-21bf-4bbc-9484-819840eb64d5" Member="SubArea" ed:Guid="54a6a24e-8d8c-4480-91b2-624cd5478c2e" ThisKey="SubAreaID" OtherKey="SubAreaID" Type="SubArea" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="MainArea_Issue" ed:AssociationGuid="55c3dc69-fe90-4a90-bd80-0c7eb270d1a1" Member="MainArea" ed:Guid="895c8225-ea9c-4bcd-beab-e2ea6edcd81b" ThisKey="MainAreaID" OtherKey="MainAreaID" Type="MainArea" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="LoginDetail_Issue" ed:AssociationGuid="f3b3378d-105c-4f73-ab91-ef96bad4cbe7" Member="LoginDetail" ed:Guid="1b2e5f66-83da-4bae-b206-5f15e71f348e" ThisKey="LoginID" OtherKey="LoginID" Type="LoginDetail" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="Product_Issue" ed:AssociationGuid="c954bb8a-edc6-4be8-8ad8-9e2f4be8898b" Member="Product" ed:Guid="45a015c6-dae7-4df1-90e2-bb2100ad5767" ThisKey="ProductID" OtherKey="ProductID" Type="Product" DeleteRule="NO ACTION" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.LoginDetails" Member="LoginDetails">
-    <Type Name="LoginDetail" ed:Guid="88615574-cb6c-4ba2-be0c-c05ef710f2d8">
-      <Column Name="LoginID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="fa797818-42e6-449d-8d05-1d9f3f07ec5c" />
-      <Column Name="UserName" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="98b8ecf4-8cb1-4b72-93b3-dcc8d1f1f367" />
-      <Column Name="SystemMAC" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="21d50b8b-d5a5-49fb-9ec7-d144031e7dfc" />
-      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="a745e37f-7d6c-41ac-8c9e-82f1f8137a69" />
-      <Association Name="LoginDetail_Category" ed:AssociationGuid="e1077897-1b71-4018-9baa-335e2cb02daf" Member="Categories" ed:Guid="3cc8263e-0e88-4820-bca9-e40e8e5b0e1e" ThisKey="LoginID" OtherKey="LoginID" Type="Category" />
-      <Association Name="LoginDetail_Issue" ed:AssociationGuid="4793e94a-3f64-4e0c-9f14-4e169e387807" Member="Issues" ed:Guid="f18b83f6-d560-4e03-96d7-8f41daed44ef" ThisKey="LoginID" OtherKey="LoginID" Type="Issue" />
-      <Association Name="LoginDetail_MainArea" ed:AssociationGuid="e7e289ef-40ac-476b-9bcf-24c477923228" Member="MainAreas" ed:Guid="9eb48633-4a4b-44da-9b06-9b7a8fcf3d4d" ThisKey="LoginID" OtherKey="LoginID" Type="MainArea" />
-      <Association Name="LoginDetail_ProductionDetail" ed:AssociationGuid="869a60a0-a4ac-4c9c-a6e3-d2a058f60804" Member="ProductionDetails" ed:Guid="aef069d3-6138-4fb8-b756-f2ce7ee3133e" ThisKey="LoginID" OtherKey="LoginID" Type="ProductionDetail" />
-      <Association Name="LoginDetail_Product" ed:AssociationGuid="954ddacc-489e-4939-a3a9-813cf2960873" Member="Products" ed:Guid="eed1e925-793e-4b17-9ca0-146abb1c2cb4" ThisKey="LoginID" OtherKey="LoginID" Type="Product" />
-      <Association Name="LoginDetail_PurchaseDetail" ed:AssociationGuid="cdea231a-734c-40c6-ac22-55d807b34111" Member="PurchaseDetails" ed:Guid="2f13e660-aaf3-46a1-8a57-90b85b60f753" ThisKey="LoginID" OtherKey="LoginID" Type="PurchaseDetail" />
-      <Association Name="LoginDetail_SubArea" ed:AssociationGuid="66a0204a-653e-4d2b-b263-1ea156077903" Member="SubAreas" ed:Guid="d46adafe-da96-4461-9de5-33e6c02100a5" ThisKey="LoginID" OtherKey="LoginID" Type="SubArea" />
+    <Type Name="LoginDetail" ed:Guid="531251cb-ef5b-4d11-a9b2-cfc6745a4d42">
+      <Column Name="LoginID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="ff934487-b5a0-44da-9fdb-ea3105b742ba" />
+      <Column Name="UserName" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="82c733db-39cc-4033-bf8c-6ceba6bdc8c8" />
+      <Column Name="SystemMAC" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="67f348e6-0a62-4850-9c3f-e570ae25d05a" />
+      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="ddcbefff-3b3e-4f7f-b756-9d0c31f38e84" />
+      <Association Name="LoginDetail_Category" ed:AssociationGuid="66ebe78d-7307-4227-8a38-d5c127690495" Member="Categories" ed:Guid="fe2c7c29-f34d-49f0-99d1-cd4c7e5e0e53" ThisKey="LoginID" OtherKey="LoginID" Type="Category" />
+      <Association Name="LoginDetail_Issue" ed:AssociationGuid="f3b3378d-105c-4f73-ab91-ef96bad4cbe7" Member="Issues" ed:Guid="95b96ed9-53cf-4e20-917d-e6594114979c" ThisKey="LoginID" OtherKey="LoginID" Type="Issue" />
+      <Association Name="LoginDetail_MainArea" ed:AssociationGuid="50ecbe96-b6d8-4f6f-8f72-81923b9dd420" Member="MainAreas" ed:Guid="1d319bde-3fa7-46e7-8bd8-fa88ac8757ff" ThisKey="LoginID" OtherKey="LoginID" Type="MainArea" />
+      <Association Name="LoginDetail_ProductionDetail" ed:AssociationGuid="e9597fb3-710b-411b-9f7d-64ffa425938f" Member="ProductionDetails" ed:Guid="1131770b-fdf1-4a7f-809c-1c497004f9c1" ThisKey="LoginID" OtherKey="LoginID" Type="ProductionDetail" />
+      <Association Name="LoginDetail_Product" ed:AssociationGuid="bc90fd7e-ccd5-4c70-b805-cbb4fbbc9ba8" Member="Products" ed:Guid="81382728-6d97-455b-a76f-ffc01de97fe8" ThisKey="LoginID" OtherKey="LoginID" Type="Product" />
+      <Association Name="LoginDetail_PurchaseDetail" ed:AssociationGuid="d50c1ce7-c9d5-4dfa-b1fd-f9d7c93c3ec3" Member="PurchaseDetails" ed:Guid="e44c03ad-c56f-4c39-a285-2c29f8b4c308" ThisKey="LoginID" OtherKey="LoginID" Type="PurchaseDetail" />
+      <Association Name="LoginDetail_SubArea" ed:AssociationGuid="bf3d2857-880f-4eac-8de1-364c1da8ff9b" Member="SubAreas" ed:Guid="119c283a-e6c1-4ee6-ad64-170d2050e829" ThisKey="LoginID" OtherKey="LoginID" Type="SubArea" />
     </Type>
   </Table>
   <Table Name="dbo.MainArea" Member="MainAreas">
-    <Type Name="MainArea" ed:Guid="795b1a80-5411-4ae5-af64-f7afcc6e7cdb">
-      <Column Name="MainAreaID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="5cdebc11-c298-4608-a611-891b1d89c929" />
-      <Column Name="MainAreaName" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="7afd36d0-a576-42b1-a5a4-d64ae740d3b8" />
-      <Column Name="LoginID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="eba62b4e-d25c-4c5b-8005-a2cba84aef9d" />
-      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="e42536ba-65f0-4811-ad7f-52a1fdecc045" />
-      <Association Name="MainArea_Issue" ed:AssociationGuid="57dbdea7-4086-47b5-bffb-c7b0f23f19e3" Member="Issues" ed:Guid="f3f1f148-b286-4dbf-b22b-3eca75a17575" ThisKey="MainAreaID" OtherKey="MainAreaID" Type="Issue" />
-      <Association Name="LoginDetail_MainArea" ed:AssociationGuid="e7e289ef-40ac-476b-9bcf-24c477923228" Member="LoginDetail" ed:Guid="f96575c7-ff7e-41c5-908a-e27526ee8609" ThisKey="LoginID" OtherKey="LoginID" Type="LoginDetail" DeleteRule="NO ACTION" IsForeignKey="true" />
-      <Association Name="MainArea_ProductionDetail" ed:AssociationGuid="630fde60-8468-454e-8f0e-95caa70d7cdb" Member="ProductionDetails" ed:Guid="bf75b1bd-3bd7-4632-a4c4-3cc2ffff5c68" ThisKey="MainAreaID" OtherKey="MainAreaID" Type="ProductionDetail" />
-      <Association Name="MainArea_SubArea" ed:AssociationGuid="c7d09d14-a990-4448-ab26-28f9c1bb8f5f" Member="SubAreas" ed:Guid="c3e73418-e4fd-46d4-b79d-95c397d78e6b" ThisKey="MainAreaID" OtherKey="MainAreaID" Type="SubArea" />
+    <Type Name="MainArea" ed:Guid="ee7583a5-47b2-4a9c-8507-396a84b7d8a8">
+      <Column Name="MainAreaID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="d27eac9f-18b0-4867-bf25-c99ed24dd77a" />
+      <Column Name="MainAreaName" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="c8309dbf-4810-4b26-91ef-18e917efa622" />
+      <Column Name="LoginID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="ddf71db2-de08-4321-9c0d-17ebbcc4b089" />
+      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="5e135793-bc44-491e-8646-7cab8b927f95" />
+      <Association Name="MainArea_Issue" ed:AssociationGuid="55c3dc69-fe90-4a90-bd80-0c7eb270d1a1" Member="Issues" ed:Guid="dd9f9b6e-2f3f-415e-a78c-7a734aa9452c" ThisKey="MainAreaID" OtherKey="MainAreaID" Type="Issue" />
+      <Association Name="LoginDetail_MainArea" ed:AssociationGuid="50ecbe96-b6d8-4f6f-8f72-81923b9dd420" Member="LoginDetail" ed:Guid="d5c2bf31-915c-428b-9b2e-47b3d209ed56" ThisKey="LoginID" OtherKey="LoginID" Type="LoginDetail" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="MainArea_ProductionDetail" ed:AssociationGuid="3d89ac91-7a81-4d00-9431-bc35cf8dbe91" Member="ProductionDetails" ed:Guid="7cfe723e-2e38-42f0-9ad0-3d42bf641717" ThisKey="MainAreaID" OtherKey="MainAreaID" Type="ProductionDetail" />
+      <Association Name="MainArea_SubArea" ed:AssociationGuid="d7053ac4-04c0-4195-987e-ed68f2d69cf0" Member="SubAreas" ed:Guid="2dc7ee55-788e-4150-8a73-d0873d9daf21" ThisKey="MainAreaID" OtherKey="MainAreaID" Type="SubArea" />
     </Type>
   </Table>
   <Table Name="dbo.ProductionDetail" Member="ProductionDetails">
-    <Type Name="ProductionDetail" ed:Guid="ec3d58ac-d72c-4147-bc25-fe4a656233eb">
-      <Column Name="ProductionID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="134ccfc7-e971-4090-85c0-78dcc1c00b56" />
-      <Column Name="MainAreaID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="84fab2ff-8451-4052-8120-dbc58d1185cd" />
-      <Column Name="SubAreaID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="34abafa2-bf6d-458d-9d6c-4d5a9dc894f7" />
-      <Column Name="VegetableID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="1b2864e0-e3d9-43d3-b4d9-43607098b12c" />
-      <Column Name="Quantity" Type="System.Double" DbType="FLOAT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="53" ed:ValidateRequired="true" ed:Guid="5692453c-fbee-4dab-a3c4-1a7c2cfac445" />
-      <Column Name="LoginID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="38cd3884-dbc4-4e78-a24c-14f311ccf7de" />
-      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="dbb8e660-ea75-4a96-bd4a-c6f27c29e23f" />
-      <Column Name="Remark" Type="System.String" DbType="VARCHAR(150)" CanBeNull="true" UpdateCheck="Never" MaxLength="150" ed:ValidateMaxLength="150" ed:ValidateRequired="false" ed:Guid="bc457783-bb85-4499-a267-00e1a6c8f403" />
-      <Association Name="MainArea_ProductionDetail" ed:AssociationGuid="630fde60-8468-454e-8f0e-95caa70d7cdb" Member="MainArea" ed:Guid="0915a864-3ed3-4835-b94a-5335d12369b2" ThisKey="MainAreaID" OtherKey="MainAreaID" Type="MainArea" DeleteRule="NO ACTION" IsForeignKey="true" />
-      <Association Name="LoginDetail_ProductionDetail" ed:AssociationGuid="869a60a0-a4ac-4c9c-a6e3-d2a058f60804" Member="LoginDetail" ed:Guid="85f82596-5fc9-4e26-a717-654c4868118a" ThisKey="LoginID" OtherKey="LoginID" Type="LoginDetail" DeleteRule="NO ACTION" IsForeignKey="true" />
-      <Association Name="Vegetable_ProductionDetail" ed:AssociationGuid="e15ea237-3ecc-46e8-b6e5-ce7e61ed4ee1" Member="Vegetable" ed:Guid="c83d947b-0fa3-4adb-af15-54c280e37e0d" ThisKey="VegetableID" OtherKey="VegetableID" Type="Vegetable" DeleteRule="NO ACTION" IsForeignKey="true" />
-      <Association Name="SubArea_ProductionDetail" ed:AssociationGuid="d93d6719-006b-4810-a626-e028132ad4b0" Member="SubArea" ed:Guid="232d0f02-29e3-48cf-a037-f48dde6f77ab" ThisKey="SubAreaID" OtherKey="SubAreaID" Type="SubArea" DeleteRule="NO ACTION" IsForeignKey="true" />
+    <Type Name="ProductionDetail" ed:Guid="d9566cdf-95bd-4aba-acb3-03fde43468bb">
+      <Column Name="ProductionID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="524f5639-0643-4c9e-8545-a6a3d0d07282" />
+      <Column Name="MainAreaID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="70f7b652-37f9-4880-832a-0d06d9066957" />
+      <Column Name="SubAreaID" Type="System.Int32" DbType="INT" CanBeNull="true" UpdateCheck="Never" Precision="10" ed:ValidateRequired="false" ed:Guid="20f292a7-928d-4b0e-ae1a-5da846be7cfe" />
+      <Column Name="VegetableId" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="b629ede2-a4f2-4d6a-9789-0261e6b871bf" />
+      <Column Name="Quantity" Type="System.Double" DbType="FLOAT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="53" ed:ValidateRequired="true" ed:Guid="8bf8440c-7393-45e3-82ed-7d229147ca7c" />
+      <Column Name="LoginID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="44775b5a-9e3d-4518-8e71-d53aeedbe314" />
+      <Column Name="LastUpdateDate" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="b2abdc78-ac52-455c-9fb6-f9553c501e33" />
+      <Column Name="Remark" Type="System.String" DbType="VARCHAR(150)" CanBeNull="true" UpdateCheck="Never" MaxLength="150" ed:ValidateMaxLength="150" ed:ValidateRequired="false" ed:Guid="1f656c11-9ed8-40f4-82b3-a68a00d1be3a" />
+      <Column Name="Date" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="3f82b7a7-7f06-4953-b395-8e0ceec3ef92" />
+      <Association Name="SubArea_ProductionDetail" ed:AssociationGuid="02844a99-5d00-4917-a6e5-a5925e72925a" Member="SubArea" ed:Guid="33542760-a729-479a-8b9d-3254bca87ddc" ThisKey="SubAreaID" OtherKey="SubAreaID" Type="SubArea" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="MainArea_ProductionDetail" ed:AssociationGuid="3d89ac91-7a81-4d00-9431-bc35cf8dbe91" Member="MainArea" ed:Guid="c6661390-0736-496a-8404-5f89b4a03d2f" ThisKey="MainAreaID" OtherKey="MainAreaID" Type="MainArea" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="LoginDetail_ProductionDetail" ed:AssociationGuid="e9597fb3-710b-411b-9f7d-64ffa425938f" Member="LoginDetail" ed:Guid="5394e16b-fff2-4082-8dfb-f99fcced2722" ThisKey="LoginID" OtherKey="LoginID" Type="LoginDetail" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="Vegetable_ProductionDetail" ed:AssociationGuid="82e78d76-45c6-40b2-a6a2-350fdde212b0" Member="Vegetable" ed:Guid="6600ee13-71b1-449a-9691-a18feba13080" ThisKey="VegetableId" OtherKey="VegetableId" Type="Vegetable" DeleteRule="NO ACTION" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Products" Member="Products">
-    <Type Name="Product" ed:Guid="9586fdc5-dee5-4d24-851f-8c40e4a0aa86">
-      <Column Name="ProductID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="7040d5ab-7e33-4052-a248-0336ab86cae7" />
-      <Column Name="ProductName" Type="System.String" DbType="VARCHAR(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="20" ed:ValidateMaxLength="20" ed:ValidateRequired="true" ed:Guid="ce4e64b1-55da-4ce1-8a69-f7e3cb3c3e69" />
-      <Column Name="Variety" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="827f3b2d-6825-4aab-a865-e2250fa1eb1a" />
-      <Column Name="Company" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="2addb79b-015e-464d-ae9e-8bea69253e98" />
-      <Column Name="Description" Type="System.String" DbType="VARCHAR(300)" CanBeNull="true" UpdateCheck="Never" MaxLength="300" ed:ValidateMaxLength="300" ed:ValidateRequired="false" ed:Guid="4c6e558c-e93d-4bb2-8470-4d6a6093e290" />
-      <Column Name="UnitID" Type="System.Int32" DbType="INT" CanBeNull="true" UpdateCheck="Never" Precision="10" ed:ValidateRequired="false" ed:Guid="b3c6f750-e4a6-4de1-938b-d14506b66d21" />
-      <Column Name="CategoryID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="04b5b02c-ddd3-441b-ab82-cc3086bb1bd3" />
-      <Column Name="TotalProductQuantity" Type="System.Double" DbType="FLOAT" CanBeNull="true" UpdateCheck="Never" Precision="53" ed:ValidateRequired="false" ed:Guid="6cfbb1fd-cf84-4499-8c56-3f2943e5fe52" />
-      <Column Name="LoginID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="df4a0436-d7f5-4b83-b3aa-c59882844052" />
-      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="95dae6e1-d85f-4d8f-aa4d-605fd110f996" />
-      <Association Name="Product_Issue" ed:AssociationGuid="79687c8e-05ed-45d8-a77b-7a7a90a33a8f" Member="Issues" ed:Guid="593e439d-707e-47ec-905e-0e72f790dde7" ThisKey="ProductID" OtherKey="ProductID" Type="Issue" />
-      <Association Name="ProductUnit_Product" ed:AssociationGuid="374012e5-eeee-48da-8132-0536afba6e91" Member="ProductUnit" ed:Guid="5588b25d-8b23-4f55-b0a8-160df47e6516" ThisKey="UnitID" OtherKey="UnitID" Type="ProductUnit" DeleteRule="NO ACTION" IsForeignKey="true" />
-      <Association Name="LoginDetail_Product" ed:AssociationGuid="954ddacc-489e-4939-a3a9-813cf2960873" Member="LoginDetail" ed:Guid="5dec0fee-32fd-4aeb-960a-2855dea5f211" ThisKey="LoginID" OtherKey="LoginID" Type="LoginDetail" DeleteRule="NO ACTION" IsForeignKey="true" />
-      <Association Name="Category_Product" ed:AssociationGuid="d09a98f4-48d6-4ff5-9ab5-0c151b4684b8" Member="Category" ed:Guid="6e2b78d7-8234-4329-8cb2-9de99706ee2d" ThisKey="CategoryID" OtherKey="CategoryID" Type="Category" DeleteRule="NO ACTION" IsForeignKey="true" />
-      <Association Name="Product_PurchaseDetail" ed:AssociationGuid="e0639969-255b-4ade-9a1a-14fa816e0020" Member="PurchaseDetails" ed:Guid="f242cdc9-603c-4c34-810f-bdcc4d918d1f" ThisKey="ProductID" OtherKey="ProductID" Type="PurchaseDetail" />
+    <Type Name="Product" ed:Guid="223c57f3-6ce8-4f90-b43c-9f14d5062570">
+      <Column Name="ProductID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="12deee9b-6d4a-4ebe-a442-9342b20f90ea" />
+      <Column Name="ProductName" Type="System.String" DbType="VARCHAR(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="20" ed:ValidateMaxLength="20" ed:ValidateRequired="true" ed:Guid="1c724a08-aa55-432d-8a6a-2dce09c6cd5b" />
+      <Column Name="Variety" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="44997dc4-8eb1-4b4e-9102-cbc9cc2f0eba" />
+      <Column Name="Company" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="db295eb8-09eb-4b9c-9378-445213925a10" />
+      <Column Name="Description" Type="System.String" DbType="VARCHAR(300)" CanBeNull="true" UpdateCheck="Never" MaxLength="300" ed:ValidateMaxLength="300" ed:ValidateRequired="false" ed:Guid="dea01c8f-581a-4791-a785-20642757278e" />
+      <Column Name="UnitID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="cc81dcfe-9c5c-4692-a42b-23668e339b11" />
+      <Column Name="CategoryID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="efa306b0-33b3-495b-93e8-f3732d58b9ff" />
+      <Column Name="TotalProductQuantity" Type="System.Double" DbType="FLOAT" CanBeNull="true" UpdateCheck="Never" Precision="53" ed:ValidateRequired="false" ed:Guid="6fefb460-56c3-44b9-b9c8-ab892dd85e95" />
+      <Column Name="LoginID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="a904dc39-3ab3-4dc2-8571-03d9b90a0458" />
+      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="0057b16d-9f39-4840-8d7c-19c056b6b1b6" />
+      <Column Name="IsEditable" Type="System.Boolean" DbType="BIT" CanBeNull="true" UpdateCheck="Never" DefaultValue="1" ed:ValidateRequired="false" ed:Guid="c1bce7f9-2f70-4963-8ccb-8a39d80d6f91" />
+      <Association Name="Product_Issue" ed:AssociationGuid="c954bb8a-edc6-4be8-8ad8-9e2f4be8898b" Member="Issues" ed:Guid="24069496-dbcf-4e1b-8d0e-b4e00fa13eb6" ThisKey="ProductID" OtherKey="ProductID" Type="Issue" />
+      <Association Name="Category_Product" ed:AssociationGuid="4be05619-abc7-4bad-810b-691a6545fc3a" Member="Category" ed:Guid="8b72042e-262f-460f-8403-12021cca6728" ThisKey="CategoryID" OtherKey="CategoryID" Type="Category" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="LoginDetail_Product" ed:AssociationGuid="bc90fd7e-ccd5-4c70-b805-cbb4fbbc9ba8" Member="LoginDetail" ed:Guid="06262607-54ba-4428-bddc-93f88e1b30cd" ThisKey="LoginID" OtherKey="LoginID" Type="LoginDetail" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="ProductUnit_Product" ed:AssociationGuid="62e24f3e-5ed9-46a3-9cde-f2e58a8d25f9" Member="ProductUnit" ed:Guid="bed91944-c958-40ea-8852-d4d48add1760" ThisKey="UnitID" OtherKey="UnitID" Type="ProductUnit" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="Product_PurchaseDetail" ed:AssociationGuid="d4d875b1-c1b1-47ac-9896-1ae11450d938" Member="PurchaseDetails" ed:Guid="12f2c975-48b9-4bce-ab23-c91cf36ac311" ThisKey="ProductID" OtherKey="ProductID" Type="PurchaseDetail" />
     </Type>
   </Table>
   <Table Name="dbo.ProductUnits" Member="ProductUnits">
-    <Type Name="ProductUnit" ed:Guid="aee3f7c5-bebc-4ce7-96f7-9753069cb3c4">
-      <Column Name="UnitID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="c2563286-fd40-4070-86cf-dce6d50d8180" />
-      <Column Name="Type" Type="System.String" DbType="VARCHAR(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="20" ed:ValidateMaxLength="20" ed:ValidateRequired="true" ed:Guid="6b13b015-2a1d-4639-9ddb-bc78b8e2dc46" />
-      <Association Name="ProductUnit_Product" ed:AssociationGuid="374012e5-eeee-48da-8132-0536afba6e91" Member="Products" ed:Guid="d5649370-1354-42c7-93dd-f46d50a0877e" ThisKey="UnitID" OtherKey="UnitID" Type="Product" />
+    <Type Name="ProductUnit" ed:Guid="04b78979-ae87-4498-91ea-bd71fd42b6f2">
+      <Column Name="UnitID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="3525ed21-6eaf-43c8-b02c-19c58e5c80b3" />
+      <Column Name="Type" Type="System.String" DbType="VARCHAR(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="20" ed:ValidateMaxLength="20" ed:ValidateRequired="true" ed:Guid="90c783de-ae8c-47a5-a23e-80495e4a0bb2" />
+      <Association Name="ProductUnit_Product" ed:AssociationGuid="62e24f3e-5ed9-46a3-9cde-f2e58a8d25f9" Member="Products" ed:Guid="daa0f43d-34ac-46cb-a30d-ee1939e547d4" ThisKey="UnitID" OtherKey="UnitID" Type="Product" />
     </Type>
   </Table>
   <Table Name="dbo.PurchaseDetails" Member="PurchaseDetails">
-    <Type Name="PurchaseDetail" ed:Guid="771e3ad5-5d04-435a-a0f2-809d5dbc59ae">
-      <Column Name="PurchaseID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="6a5fe885-f5a8-495a-84af-9b472043f901" />
-      <Column Name="ProductID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="14cd5cd5-4ba8-4a09-a59d-44c5204e5ad4" />
-      <Column Name="TotalQuantity" Type="System.Double" DbType="FLOAT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="53" ed:ValidateRequired="true" ed:Guid="04f185ee-72bd-4621-89c4-910935a9bfb0" />
-      <Column Name="TotalCost" Type="System.Double" DbType="FLOAT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="53" ed:ValidateRequired="true" ed:Guid="176bcc88-5c06-4c8b-a716-b15e52ddb856" />
-      <Column Name="Unit" Type="System.String" DbType="VARCHAR(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="20" ed:ValidateMaxLength="20" ed:ValidateRequired="true" ed:Guid="e88aedfc-07fc-4dc6-b8aa-037143db6839" />
-      <Column Name="VendorName" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="11b72f9f-2413-47a1-b1bf-8ea90dd03c06" />
-      <Column Name="PurchaseDate" Type="System.DateTime" DbType="DATE NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="46a52028-ffec-42e9-9449-a5053d1596e4" />
-      <Column Name="Remark" Type="System.String" DbType="VARCHAR(150)" CanBeNull="true" UpdateCheck="Never" MaxLength="150" ed:ValidateMaxLength="150" ed:ValidateRequired="false" ed:Guid="8fccf7e8-5856-4e76-8950-1bdb42ffd3dc" />
-      <Column Name="LoginID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="b08b2360-4b28-4570-9dfc-4dea27854b8f" />
-      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="dcf15269-9b8a-406d-9a2c-af09e0c6236d" />
-      <Association Name="Product_PurchaseDetail" ed:AssociationGuid="e0639969-255b-4ade-9a1a-14fa816e0020" Member="Product" ed:Guid="54000dad-1226-434c-9c74-adec0dbdd895" ThisKey="ProductID" OtherKey="ProductID" Type="Product" DeleteRule="NO ACTION" IsForeignKey="true" />
-      <Association Name="LoginDetail_PurchaseDetail" ed:AssociationGuid="cdea231a-734c-40c6-ac22-55d807b34111" Member="LoginDetail" ed:Guid="8fb83440-11ec-4133-85d8-b34a05f3cf6c" ThisKey="LoginID" OtherKey="LoginID" Type="LoginDetail" DeleteRule="NO ACTION" IsForeignKey="true" />
+    <Type Name="PurchaseDetail" ed:Guid="344bde53-fd2c-4c9a-8f2c-2ba0e3a1654e">
+      <Column Name="PurchaseID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="9c5bf103-8f73-4b5f-a5c5-add33cba6f5f" />
+      <Column Name="ProductID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="e137282b-4205-44fa-9d9a-e9b17ecce041" />
+      <Column Name="TotalQuantity" Type="System.Double" DbType="FLOAT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="53" ed:ValidateRequired="true" ed:Guid="1ac06dc1-0268-4b5e-a446-555ce40fc2dd" />
+      <Column Name="TotalCost" Type="System.Double" DbType="FLOAT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="53" ed:ValidateRequired="true" ed:Guid="12d8f873-f1f6-487f-a407-0bf5231ee3ce" />
+      <Column Name="Unit" Type="System.String" DbType="VARCHAR(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="20" ed:ValidateMaxLength="20" ed:ValidateRequired="true" ed:Guid="0f6a50cb-a1fe-4dd0-b545-f1fece7c4c09" />
+      <Column Name="VendorName" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="1da50c76-b166-43f8-ba5b-51b6f11992e2" />
+      <Column Name="PurchaseDate" Type="System.DateTime" DbType="DATE NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="36792b41-0210-4521-9867-a0d0bc172845" />
+      <Column Name="Remark" Type="System.String" DbType="VARCHAR(150)" CanBeNull="true" UpdateCheck="Never" MaxLength="150" ed:ValidateMaxLength="150" ed:ValidateRequired="false" ed:Guid="b28ed3f2-1e72-478a-b1eb-59fbb3659265" />
+      <Column Name="LoginID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="2b44d077-f9ad-4022-afd9-d585509b50a9" />
+      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="af9521d6-c0ba-4ce3-be93-5fc53501a9d5" />
+      <Column Name="PurchaseLocation" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="05ae15ee-efa0-4ff2-a798-d07c8e01daec" />
+      <Column Name="BillNumber" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="1bfa801a-0aee-468a-989d-4f9a541d5bca" />
+      <Column Name="IsEditable" Type="System.Boolean" DbType="BIT" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="1dcacbab-31a9-48d1-8ebe-158c572cfe4e" />
+      <Association Name="Product_PurchaseDetail" ed:AssociationGuid="d4d875b1-c1b1-47ac-9896-1ae11450d938" Member="Product" ed:Guid="e2674e4b-1b8b-46ac-ac97-6265a3a9d1ee" ThisKey="ProductID" OtherKey="ProductID" Type="Product" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="LoginDetail_PurchaseDetail" ed:AssociationGuid="d50c1ce7-c9d5-4dfa-b1fd-f9d7c93c3ec3" Member="LoginDetail" ed:Guid="1d8639d5-b846-442d-97a4-22ec1bca0156" ThisKey="LoginID" OtherKey="LoginID" Type="LoginDetail" DeleteRule="NO ACTION" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.RefreshToken" Member="RefreshTokens">
-    <Type Name="RefreshToken" ed:Guid="d0484f9f-8d54-4bc4-83a7-54b4fcd35c91">
-      <Column Name="RefreshID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="67294cc4-2cef-416a-8a7d-e341e2d717a5" />
-      <Column Name="RToken" Type="System.String" DbType="VARCHAR(100)" CanBeNull="true" UpdateCheck="Never" MaxLength="100" ed:ValidateMaxLength="100" ed:ValidateRequired="false" ed:Guid="8a184434-1635-487c-a19d-e7d78f366220" />
-      <Association Name="RefreshToken_UserRefreshToken" ed:AssociationGuid="8f7a426d-ae24-404a-96ef-780106f6ec98" Member="UserRefreshTokens" ed:Guid="0e4259fa-b914-4a8e-b616-0ab09273772f" ThisKey="RefreshID" OtherKey="RefreshID" Type="UserRefreshToken" />
+    <Type Name="RefreshToken" ed:Guid="f0a64202-7953-4587-80b0-32bd7701519f">
+      <Column Name="RefreshID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="5fdc5e59-de51-4910-9bd3-456becf6f83b" />
+      <Column Name="RToken" Type="System.String" DbType="VARCHAR(100) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="100" ed:ValidateMaxLength="100" ed:ValidateRequired="true" ed:Guid="cf1059e0-6b8c-46ad-bda0-8789ea494260" />
+      <Association Name="RefreshToken_UserRefreshToken" ed:AssociationGuid="19931dc2-9220-4013-9d47-f78a38fa6b75" Member="UserRefreshTokens" ed:Guid="ff7ad02f-6ab7-4bb6-af52-79a3c6f6c144" ThisKey="RefreshID" OtherKey="RefreshID" Type="UserRefreshToken" />
     </Type>
   </Table>
   <Table Name="dbo.Roles" Member="Roles">
-    <Type Name="Role" ed:Guid="bc983b71-cb4b-4971-a288-517a119b52b3">
-      <Column Name="RoleID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="c447182a-f9b2-469f-82e9-5e51c1c3b1de" />
-      <Column Name="RoleName" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="afb2ee15-2933-4356-b9ba-ba8b3731ad84" />
-      <Association Name="Role_User" ed:AssociationGuid="f0bf83af-4c33-4d5c-9fdd-61f348a07010" Member="Users" ed:Guid="c4308d91-5e93-404f-85e3-4af0ea6a2bd7" ThisKey="RoleID" OtherKey="RoleID" Type="User" />
+    <Type Name="Role" ed:Guid="69bd796a-8a4d-41d3-9f63-f225f4f089b9">
+      <Column Name="RoleID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="3a3ce919-7c3d-4e09-a382-d3aceb78d1bb" />
+      <Column Name="RoleName" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="9ebac918-aaa6-4232-b252-35c6f580be11" />
+      <Association Name="Role_User" ed:AssociationGuid="dd416d15-59e3-4e0f-a7da-b1963b27bcff" Member="Users" ed:Guid="15368f16-007d-4ef6-8a21-d7653bb662bc" ThisKey="RoleID" OtherKey="RoleID" Type="User" />
     </Type>
   </Table>
   <Table Name="dbo.SubArea" Member="SubAreas">
-    <Type Name="SubArea" ed:Guid="63ed20ae-7a6f-4d3b-99ef-af8d6f27fc6a">
-      <Column Name="SubAreaID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="7519418d-1ffb-486a-bfcb-30bb30558e77" />
-      <Column Name="SubAreaName" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="e8d80e8b-afa4-4307-bb3c-2fc7b5a4d0fb" />
-      <Column Name="MainAreaID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="4b2f42dc-0dc8-4ee1-b866-c8554f2c70f8" />
-      <Column Name="LoginID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="81576510-6536-421c-a275-9f29eff4d3c0" />
-      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="66ce707c-f6ba-446a-98aa-7a3ff53a4421" />
-      <Association Name="SubArea_Issue" ed:AssociationGuid="001dda8d-c8e9-4599-b6a3-411d26a5c0be" Member="Issues" ed:Guid="1b3afd0d-8df4-4828-a5aa-734d807b1dc1" ThisKey="SubAreaID" OtherKey="SubAreaID" Type="Issue" />
-      <Association Name="SubArea_ProductionDetail" ed:AssociationGuid="d93d6719-006b-4810-a626-e028132ad4b0" Member="ProductionDetails" ed:Guid="57c46ebe-8d01-4235-bd68-5f039416b480" ThisKey="SubAreaID" OtherKey="SubAreaID" Type="ProductionDetail" />
-      <Association Name="MainArea_SubArea" ed:AssociationGuid="c7d09d14-a990-4448-ab26-28f9c1bb8f5f" Member="MainArea" ed:Guid="5df8602d-5853-438f-be48-ecf966f557b8" ThisKey="MainAreaID" OtherKey="MainAreaID" Type="MainArea" DeleteRule="NO ACTION" IsForeignKey="true" />
-      <Association Name="LoginDetail_SubArea" ed:AssociationGuid="66a0204a-653e-4d2b-b263-1ea156077903" Member="LoginDetail" ed:Guid="00ee9160-29e9-4d3b-aba2-6686c9aa4499" ThisKey="LoginID" OtherKey="LoginID" Type="LoginDetail" DeleteRule="NO ACTION" IsForeignKey="true" />
+    <Type Name="SubArea" ed:Guid="2518e0fb-8701-4ef5-9f14-9ecdd7495ea1">
+      <Column Name="SubAreaID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="ca972aee-f43d-406f-912d-77f692ff7b42" />
+      <Column Name="SubAreaName" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="04268fea-b406-4af9-ba3e-4f4de96bcd4e" />
+      <Column Name="MainAreaID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="5376fd53-cd9d-4dcc-9f6e-53cc331536d1" />
+      <Column Name="LoginID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="8e7cd3e1-965e-4978-b3b4-bd26fbd10f9d" />
+      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="ead7bbb0-0bf0-483f-a1f7-41976f117e42" />
+      <Association Name="SubArea_Issue" ed:AssociationGuid="b0a4b773-21bf-4bbc-9484-819840eb64d5" Member="Issues" ed:Guid="61db82bb-923f-40de-b121-cf94aeac0d4b" ThisKey="SubAreaID" OtherKey="SubAreaID" Type="Issue" />
+      <Association Name="SubArea_ProductionDetail" ed:AssociationGuid="02844a99-5d00-4917-a6e5-a5925e72925a" Member="ProductionDetails" ed:Guid="8df227bb-557e-461f-8342-34f5016f36c5" ThisKey="SubAreaID" OtherKey="SubAreaID" Type="ProductionDetail" />
+      <Association Name="MainArea_SubArea" ed:AssociationGuid="d7053ac4-04c0-4195-987e-ed68f2d69cf0" Member="MainArea" ed:Guid="05d0570d-36d2-443a-b9c7-26a50a333580" ThisKey="MainAreaID" OtherKey="MainAreaID" Type="MainArea" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="LoginDetail_SubArea" ed:AssociationGuid="bf3d2857-880f-4eac-8de1-364c1da8ff9b" Member="LoginDetail" ed:Guid="5c23806b-78c3-44a7-b08d-2e6898ad2060" ThisKey="LoginID" OtherKey="LoginID" Type="LoginDetail" DeleteRule="NO ACTION" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.UserRefreshTokens" Member="UserRefreshTokens">
-    <Type Name="UserRefreshToken" ed:Guid="f507bf70-41fc-4d00-99af-18b3cf9a8e89">
-      <Column Name="UserID" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="8c34a684-7c9b-420f-9842-5a6844059d5a" />
-      <Column Name="RefreshID" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="d1b5cddb-0c2d-44f8-98be-ac13587da620" />
-      <Association Name="RefreshToken_UserRefreshToken" ed:AssociationGuid="8f7a426d-ae24-404a-96ef-780106f6ec98" Member="RefreshToken" ed:Guid="0ab71968-7917-4979-b140-15c45edf8e28" ThisKey="RefreshID" OtherKey="RefreshID" Type="RefreshToken" DeleteRule="NO ACTION" IsForeignKey="true" />
-      <Association Name="User_UserRefreshToken" ed:AssociationGuid="a4fbec6e-93d8-4b86-8024-81fcb06c9bf1" Member="User" ed:Guid="5b1c794a-18d6-45b5-8b76-e81b0691e159" ThisKey="UserID" OtherKey="UserID" Type="User" DeleteRule="NO ACTION" IsForeignKey="true" />
+  <Table Name="dbo.UserRefreshToken" Member="UserRefreshTokens">
+    <Type Name="UserRefreshToken" ed:Guid="8dfa492e-5798-4c06-ae19-8cf550cdd467">
+      <Column Name="UserID" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="d0a5e9a3-c65e-4e9c-9ce0-56a16e77cfc2" />
+      <Column Name="RefreshID" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="f55a1d2d-3788-4235-b06f-72a05e226e9a" />
+      <Association Name="User_UserRefreshToken" ed:AssociationGuid="395aa61d-8771-4298-ae56-8118b7293ac8" Member="User" ed:Guid="211e7546-ebdd-4ba0-98f8-4eded2bad980" ThisKey="UserID" OtherKey="UserID" Type="User" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="RefreshToken_UserRefreshToken" ed:AssociationGuid="19931dc2-9220-4013-9d47-f78a38fa6b75" Member="RefreshToken" ed:Guid="fd8d708a-d65b-4295-b1cf-dcaab30a06b4" ThisKey="RefreshID" OtherKey="RefreshID" Type="RefreshToken" DeleteRule="NO ACTION" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Users" Member="Users">
-    <Type Name="User" ed:Guid="aef56556-fe31-48cf-b375-65edc2d7e54a">
-      <Column Name="UserID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="be618274-d003-4961-88d6-63c3090c924d" />
-      <Column Name="UserName" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="55ee0919-30e0-419a-b1e5-0776bce43755" />
-      <Column Name="Password" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="730d268a-4662-434a-8b5d-c420c5e115ab" />
-      <Column Name="EmailAddress" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="fb2720bf-b7a1-4941-ba2c-fcfa69abb00e" />
-      <Column Name="RoleID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="a467ce20-a9f1-4f43-9fb2-e0c345f5660a" />
-      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="c7cd357c-d970-4475-8de8-612af0a11935" />
-      <Association Name="User_UserRefreshToken" ed:AssociationGuid="a4fbec6e-93d8-4b86-8024-81fcb06c9bf1" Member="UserRefreshTokens" ed:Guid="36766194-fbc1-422a-a5e8-6ea407ebecfa" ThisKey="UserID" OtherKey="UserID" Type="UserRefreshToken" />
-      <Association Name="Role_User" ed:AssociationGuid="f0bf83af-4c33-4d5c-9fdd-61f348a07010" Member="Role" ed:Guid="fe69595b-bb0b-4589-8564-6885336d83e9" ThisKey="RoleID" OtherKey="RoleID" Type="Role" DeleteRule="NO ACTION" IsForeignKey="true" />
+    <Type Name="User" ed:Guid="53b56259-d697-49df-88c2-65fa1431d777">
+      <Column Name="UserID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="9f0617eb-0d4f-4b32-99ad-3322350736a8" />
+      <Column Name="UserName" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="f2ac3213-5f94-4e1a-9237-2ad673cb3c25" />
+      <Column Name="Password" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="7e2594fb-cb7e-45d4-9076-6603b580d874" />
+      <Column Name="EmailAddress" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="4cc641f4-3f1d-4f58-8c46-037ca36e830d" />
+      <Column Name="RoleID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="10" ed:ValidateRequired="true" ed:Guid="c83cfaf9-0bbb-4b3b-a74a-6ec0d803aea0" />
+      <Column Name="SystemMAC" Type="System.String" DbType="VARCHAR(20)" CanBeNull="true" UpdateCheck="Never" MaxLength="20" ed:ValidateMaxLength="20" ed:ValidateRequired="false" ed:Guid="9c041a01-6a35-4ea6-8649-f1baa3cc46c2" />
+      <Column Name="DateTime" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="fafad52d-a3d6-4002-a52b-79f858c892bf" />
+      <Association Name="User_UserRefreshToken" ed:AssociationGuid="395aa61d-8771-4298-ae56-8118b7293ac8" Member="UserRefreshTokens" ed:Guid="d3b86cde-e94c-40fc-b29d-6ca74365e5dc" ThisKey="UserID" OtherKey="UserID" Type="UserRefreshToken" />
+      <Association Name="Role_User" ed:AssociationGuid="dd416d15-59e3-4e0f-a7da-b1963b27bcff" Member="Role" ed:Guid="4cd85d7e-cf99-44ac-8e07-5753a627e4c5" ThisKey="RoleID" OtherKey="RoleID" Type="Role" DeleteRule="NO ACTION" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Vegetables" Member="Vegetables">
-    <Type Name="Vegetable" ed:Guid="e55591d8-905c-41a7-be62-1a577f44d9fc">
-      <Column Name="VegetableID" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="78d5a5a6-efdd-410f-ab4c-8b9e93d9a3a3" />
-      <Column Name="VegetableName" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="7043f140-fad6-40ce-9adf-0e5a1de5ebfa" />
-      <Association Name="Vegetable_ProductionDetail" ed:AssociationGuid="e15ea237-3ecc-46e8-b6e5-ce7e61ed4ee1" Member="ProductionDetails" ed:Guid="708497fc-37d9-4795-93af-2fafd8b782a8" ThisKey="VegetableID" OtherKey="VegetableID" Type="ProductionDetail" />
+    <Type Name="Vegetable" ed:Guid="0ebb033e-c47d-4b11-acbe-f0d58f3be652">
+      <Column Name="VegetableId" Type="System.Int32" AutoSync="OnInsert" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="10" ed:ValidateRequired="true" ed:Guid="ea6a794e-1c11-46d0-b8f1-62cdec3b4845" />
+      <Column Name="VegetableName" Type="System.String" DbType="VARCHAR(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="c8e21cdf-2565-4aeb-bb35-03de12b51d08" />
+      <Association Name="Vegetable_ProductionDetail" ed:AssociationGuid="82e78d76-45c6-40b2-a6a2-350fdde212b0" Member="ProductionDetails" ed:Guid="ca4f6622-d150-4cc9-a7be-593462e307b9" ThisKey="VegetableId" OtherKey="VegetableId" Type="ProductionDetail" />
     </Type>
   </Table>
 </Database>

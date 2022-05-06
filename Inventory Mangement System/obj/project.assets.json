@@ -4541,24 +4541,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HP\\.nuget\\packages\\": {},
-    "E:\\Visual Studio\\NuGetPackages": {}
+    "C:\\Users\\RajMashruwala\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj",
+      "projectUniqueName": "D:\\AGRI\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj",
       "projectName": "InventorySystem",
-      "projectPath": "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj",
-      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\source\\repos\\Agricultural-Project-Backend-\\Inventory Mangement System\\obj\\",
+      "projectPath": "D:\\AGRI\\Agricultural-Project-Backend-\\Inventory Mangement System\\InventorySystem.csproj",
+      "packagesPath": "C:\\Users\\RajMashruwala\\.nuget\\packages\\",
+      "outputPath": "D:\\AGRI\\Agricultural-Project-Backend-\\Inventory Mangement System\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "E:\\Visual Studio\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\RajMashruwala\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4667,7 +4662,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
       }
     }
   }
