@@ -143,6 +143,7 @@ namespace Inventory_Mangement_System.Repository
 
                     l.UserName = qs;
                     l.DateTime = ISDT;
+                    l.UserID = res.UserID;
                     context.LoginDetails.InsertOnSubmit(l);
                     context.SubmitChanges();
                     var authclaims = new List<Claim>

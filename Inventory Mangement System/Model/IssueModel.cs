@@ -19,9 +19,10 @@ namespace Inventory_Mangement_System.Model
 
     public class IssueDetail
     {
+        [RegularExpression(@"^.{1,150}$", ErrorMessage = "Maximum 150 characters are allowed!")]
         public string Remark { get; set; }
 
-        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Please Enter Only Letter.")]
+        [RegularExpression(@"^[0-9.]{1,9}$", ErrorMessage = "Please Enter only float value having max 2 digit after decimal.")]
         [Required(ErrorMessage = "Issue Quantity Required.")]
         public float IssueQuantity { get; set; }
        

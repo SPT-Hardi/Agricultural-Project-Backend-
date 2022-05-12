@@ -13,10 +13,11 @@ namespace Inventory_Mangement_System.Model
         [Required(ErrorMessage = "Vegetable Name Required.")]
         public string Vegetablenm { get; set; }*/
 
-        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Please Enter Only Letter.")]
+        [RegularExpression(@"^[0-9.]{1,9}$", ErrorMessage = "Please Enter only float value having max 2 digit after decimal.")]
         [Required(ErrorMessage = "Quantity Required.")]
         public float Quantity { get; set; }
         public IntegerNullString Vegetable { get; set; } = new IntegerNullString();
+        [RegularExpression(@"^.{1,150}$",ErrorMessage ="Maximum 150 characters are allowed!")]
         public string Remark { get; set; }
         public Model.Common.IntegerNullString MainAreaDetails { get; set; } = new Model.Common.IntegerNullString();
         public Model.Common.IntegerNullString SubAreaDetails { get; set; } = new Model.Common.IntegerNullString();

@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Inventory_Mangement_System.Repository
 {
@@ -33,7 +34,9 @@ namespace Inventory_Mangement_System.Repository
                                 UserName = (from n in context.LoginDetails
                                             where n.LoginID == obj.LoginID
                                             select n.UserName).FirstOrDefault(),
-                                DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.DateTime),
+                                IssueDate = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.IssueDate),
+                                LastUpdated= String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.LastUpdated),
+                                BackupDate= String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.BackupDate),
                             }).ToList(),
                 };
             }
@@ -45,49 +48,54 @@ namespace Inventory_Mangement_System.Repository
             var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
-                Issue i = new Issue();
-                var qs = (from obj in issueModel.issueDetails
-                          select new Issue()
-                          {
-                              ProductID = obj.Product.Id,
-                              MainAreaID = issueModel.MainArea.Id,
-                              SubAreaID = issueModel.SubArea.Id==0 ? null : issueModel.SubArea.Id,
-                              Remark = obj.Remark,
-                              IssueDate = issueModel.Date.ToLocalTime(),
-                              LoginID = LoginId,
-                              DateTime = ISDT,
-                              PurchaseQuantity = obj.IssueQuantity
-                          }).ToList();
+                using (TransactionScope scope = new TransactionScope())
+                {
 
-                foreach (var item in qs)
-                {
-                    var p = (from obj in context.Products
-                             where obj.ProductID == item.ProductID
-                             select new
-                             {
-                                 obj.TotalProductQuantity,
-                                 obj.ProductName
-                             }).SingleOrDefault();
-                    if (item.PurchaseQuantity == 0)
+                    Issue i = new Issue();
+                    var qs = (from obj in issueModel.issueDetails
+                              select new Issue()
+                              {
+                                  ProductID = obj.Product.Id,
+                                  MainAreaID = issueModel.MainArea.Id,
+                                  SubAreaID = issueModel.SubArea.Id == 0 ? null : issueModel.SubArea.Id,
+                                  Remark = obj.Remark,
+                                  LoginID = LoginId,
+                                  IssueDate = issueModel.Date.ToLocalTime(),
+                                  LastUpdated = ISDT,
+                                  BackupDate = ISDT,
+                                  PurchaseQuantity = obj.IssueQuantity
+                              }).ToList();
+
+                    foreach (var item in qs)
                     {
-                        throw new ArgumentException($"Please Enter {p.ProductName} Issue Quantity More Than Zero");
+                        var p = (from obj in context.Products
+                                 where obj.ProductID == item.ProductID
+                                 select new
+                                 {
+                                     obj.TotalProductQuantity,
+                                     obj.ProductName
+                                 }).SingleOrDefault();
+                        if (item.PurchaseQuantity == 0)
+                        {
+                            throw new ArgumentException($"Please Enter {p.ProductName} Issue Quantity More Than Zero");
+                        }
+                        if (p.TotalProductQuantity < item.PurchaseQuantity)
+                        {
+                            throw new ArgumentException($"Product name :{item.ProductID} ," +
+                                $"Enter quantity{item.PurchaseQuantity} more than existing quantity{p}");
+                        }
                     }
-                    if (p.TotalProductQuantity < item.PurchaseQuantity)
-                    {
-                        throw new ArgumentException($"Product name :{item.ProductID} ," +
-                            $"Enter quantity{item.PurchaseQuantity} more than existing quantity{p}");
-                    }
-                }
-                context.Issues.InsertAllOnSubmit(qs);
-                context.SubmitChanges();
-                foreach (var item in qs)
-                {
-                    var updatePQ = context.Products.FirstOrDefault(c => c.ProductID == item.ProductID);
-                    updatePQ.TotalProductQuantity = updatePQ.TotalProductQuantity - item.PurchaseQuantity;
+                    context.Issues.InsertAllOnSubmit(qs);
                     context.SubmitChanges();
+                    foreach (var item in qs)
+                    {
+                        var updatePQ = context.Products.FirstOrDefault(c => c.ProductID == item.ProductID);
+                        updatePQ.TotalProductQuantity = updatePQ.TotalProductQuantity - item.PurchaseQuantity;
+                        context.SubmitChanges();
 
+                    }
+                    scope.Complete();
                 }
-
                 return new Result()
                 {
                     Message = string.Format($" Issue successfully!"),
@@ -103,10 +111,33 @@ namespace Inventory_Mangement_System.Repository
             float RemainQuantity = 0;
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
-                //var MacAddress = context.LoginDetails.FirstOrDefault(c => c.SystemMac == macObj);
-                var qs = (from obj in context.Issues
-                          where obj.IssueID == ID
-                          select obj).SingleOrDefault();
+                using (TransactionScope scope = new TransactionScope()) 
+                {
+                    
+                    //var MacAddress = context.LoginDetails.FirstOrDefault(c => c.SystemMac == macObj);
+                    var qs = (from obj in context.Issues
+                              where obj.IssueID == ID
+                              select obj).SingleOrDefault();
+                    if (qs.IsEditable == false)
+                    {
+                        throw new ArgumentException("Not editable!");
+                    }
+                    // backup entry not editable
+                    Issue backup = new Issue();
+                    backup.ProductID = qs.ProductID;
+                    backup.MainAreaID = qs.MainAreaID;
+                    backup.SubAreaID = qs.SubAreaID;
+                    backup.Remark = qs.Remark;
+                    backup.LoginID = qs.LoginID;
+                    backup.IssueDate = qs.IssueDate;
+                    backup.LastUpdated = qs.LastUpdated;
+                    backup.BackupDate = qs.BackupDate;
+                    backup.PurchaseQuantity = qs.PurchaseQuantity;
+                    backup.IsEditable = false;
+                    context.Issues.InsertOnSubmit(backup);
+                    context.SubmitChanges();
+
+
                 var p = (from obj in issueModel.issueDetails
                          select obj).SingleOrDefault();
                 var pd = (from obj in context.Products
@@ -115,8 +146,8 @@ namespace Inventory_Mangement_System.Repository
                 var ps = (from obj in context.Products
                           where obj.ProductID == p.Product.Id
                           select obj).SingleOrDefault();
- 
-
+                
+                
                 if (p.IssueQuantity == 0)
                 {
                     throw new ArgumentException($"Please Enter {p.Product.Text} Issue Quantity More Than Zero");
@@ -129,32 +160,75 @@ namespace Inventory_Mangement_System.Repository
                             $"Enter quantity{p.IssueQuantity} more than existing quantity{pd.TotalProductQuantity}");
                     }
                 }
-                if (qs.SubAreaID != null)
-                {
-
-                    if (qs.SubAreaID == issueModel.SubArea.Id)
+                    if (qs.SubAreaID != null)
                     {
-                        if (qs.ProductID == p.Product.Id)
-                        {
-                            var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
-                            RemainQuantity = (float)temp - p.IssueQuantity;
-                            qs.IssueDate = issueModel.Date.ToLocalTime();
-                            qs.DateTime = ISDT;
-                            qs.ProductID = p.Product.Id;
-                            qs.MainAreaID = issueModel.MainArea.Id;
-                            qs.SubAreaID = issueModel.SubArea.Id;
-                            qs.LoginID = LoginId;
-                            qs.Remark = p.Remark;
-                            qs.PurchaseQuantity = p.IssueQuantity;
 
-                            ps.TotalProductQuantity = RemainQuantity;
-                            context.SubmitChanges();
-                            return new Result()
+                        if (qs.SubAreaID == issueModel.SubArea.Id)
+                        {
+                            if (qs.ProductID == p.Product.Id)
                             {
-                                Status = Result.ResultStatus.success,
-                                Message = "Issue Update Successfully",
-                                Data = $"Issue ID : {ID} updated successfully",
-                            };
+                                var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
+                                RemainQuantity = (float)temp - p.IssueQuantity;
+                                qs.IssueDate = issueModel.Date.ToLocalTime();
+                                qs.LastUpdated = ISDT;
+                                qs.ProductID = p.Product.Id;
+                                qs.MainAreaID = issueModel.MainArea.Id;
+                                qs.SubAreaID = issueModel.SubArea.Id;
+                                qs.LoginID = LoginId;
+                                qs.Remark = p.Remark;
+                                qs.PurchaseQuantity = p.IssueQuantity;
+
+                                ps.TotalProductQuantity = RemainQuantity;
+                                context.SubmitChanges();
+
+                                scope.Complete();
+                                return new Result()
+                                {
+                                    Status = Result.ResultStatus.success,
+                                    Message = "Issue Update Successfully",
+                                    Data = $"Issue ID : {ID} updated successfully",
+                                };
+                            }
+                            else
+                            {
+                                var pid = (from obj in context.Issues
+                                           where obj.SubAreaID == issueModel.SubArea.Id
+                                           select new
+                                           {
+                                               ProductID = obj.ProductID
+                                           }).ToList();
+
+                                foreach (var item in pid)
+                                {
+                                    if (p.Product.Id == item.ProductID)
+                                    {
+                                        throw new Exception($"Entered Product : {item.ProductID} already issued for given sub" +
+                                            $" area : {issueModel.SubArea.Text}");
+
+                                    }
+                                }
+                                var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
+                                qs.IssueDate = issueModel.Date.ToLocalTime();
+                                qs.LastUpdated = ISDT;
+                                qs.ProductID = p.Product.Id;
+                                qs.MainAreaID = issueModel.MainArea.Id;
+                                qs.SubAreaID = issueModel.SubArea.Id;
+                                qs.LoginID = LoginId;
+                                qs.Remark = p.Remark;
+                                qs.PurchaseQuantity = p.IssueQuantity;
+                                RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity;
+                                ps.TotalProductQuantity = RemainQuantity;
+                                pd.TotalProductQuantity = temp;
+                                context.SubmitChanges();
+
+                                scope.Complete();
+                                return new Result()
+                                {
+                                    Status = Result.ResultStatus.success,
+                                    Message = "Issue Update Successfully",
+                                    Data = $"Issue ID : {ID} updated successfully",
+                                };
+                            }
                         }
                         else
                         {
@@ -175,8 +249,9 @@ namespace Inventory_Mangement_System.Repository
                                 }
                             }
                             var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
+                            pd.TotalProductQuantity = temp;
                             qs.IssueDate = issueModel.Date.ToLocalTime();
-                            qs.DateTime = ISDT;
+                            qs.LastUpdated = ISDT;
                             qs.ProductID = p.Product.Id;
                             qs.MainAreaID = issueModel.MainArea.Id;
                             qs.SubAreaID = issueModel.SubArea.Id;
@@ -185,81 +260,86 @@ namespace Inventory_Mangement_System.Repository
                             qs.PurchaseQuantity = p.IssueQuantity;
                             RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity;
                             ps.TotalProductQuantity = RemainQuantity;
-                            pd.TotalProductQuantity = temp;
                             context.SubmitChanges();
+
+                            scope.Complete();
                             return new Result()
                             {
                                 Status = Result.ResultStatus.success,
                                 Message = "Issue Update Successfully",
                                 Data = $"Issue ID : {ID} updated successfully",
                             };
+
                         }
                     }
                     else
                     {
-                        var pid = (from obj in context.Issues
-                                   where obj.SubAreaID == issueModel.SubArea.Id
-                                   select new
-                                   {
-                                       ProductID = obj.ProductID
-                                   }).ToList();
-
-                        foreach (var item in pid)
+                        if (qs.MainAreaID == issueModel.MainArea.Id)
                         {
-                            if (p.Product.Id == item.ProductID)
+                            if (qs.ProductID == p.Product.Id)
                             {
-                                throw new Exception($"Entered Product : {item.ProductID} already issued for given sub" +
-                                    $" area : {issueModel.SubArea.Text}");
+                                var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
+                                RemainQuantity = (float)temp - p.IssueQuantity;
+                                qs.IssueDate = issueModel.Date.ToLocalTime();
+                                qs.LastUpdated = ISDT;
+                                qs.ProductID = p.Product.Id;
+                                qs.MainAreaID = issueModel.MainArea.Id;
+                                //qs.SubAreaID = issueModel.SubArea.Id;
+                                qs.LoginID = LoginId;
+                                qs.Remark = p.Remark;
+                                qs.PurchaseQuantity = p.IssueQuantity;
 
+                                ps.TotalProductQuantity = RemainQuantity;
+                                context.SubmitChanges();
+
+                                scope.Complete();
+                                return new Result()
+                                {
+                                    Status = Result.ResultStatus.success,
+                                    Message = "Issue Update Successfully",
+                                    Data = $"Issue ID : {ID} updated successfully",
+                                };
                             }
-                        }
-                        var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
-                        pd.TotalProductQuantity = temp;
-                        qs.IssueDate = issueModel.Date.ToLocalTime();
-                        qs.DateTime = ISDT;
-                        qs.ProductID = p.Product.Id;
-                        qs.MainAreaID = issueModel.MainArea.Id;
-                        qs.SubAreaID = issueModel.SubArea.Id;
-                        qs.LoginID = LoginId;
-                        qs.Remark = p.Remark;
-                        qs.PurchaseQuantity = p.IssueQuantity;
-                        RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity;
-                        ps.TotalProductQuantity = RemainQuantity;
-                        context.SubmitChanges();
-                        return new Result()
-                        {
-                            Status = Result.ResultStatus.success,
-                            Message = "Issue Update Successfully",
-                            Data = $"Issue ID : {ID} updated successfully",
-                        };
-
-                    }
-                }
-                else 
-                {
-                    if (qs.MainAreaID == issueModel.MainArea.Id) 
-                    {
-                        if (qs.ProductID == p.Product.Id)
-                        {
-                            var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
-                            RemainQuantity = (float)temp - p.IssueQuantity;
-                            qs.IssueDate = issueModel.Date.ToLocalTime();
-                            qs.DateTime = ISDT;
-                            qs.ProductID = p.Product.Id;
-                            qs.MainAreaID = issueModel.MainArea.Id;
-                            //qs.SubAreaID = issueModel.SubArea.Id;
-                            qs.LoginID = LoginId;
-                            qs.Remark = p.Remark;
-                            qs.PurchaseQuantity = p.IssueQuantity;
-
-                            ps.TotalProductQuantity = RemainQuantity;
-                            context.SubmitChanges();
-                            return new Result()
+                            else
                             {
-                                Status = Result.ResultStatus.success,
-                                Message = "Issue Update Successfully",
-                                Data = $"Issue ID : {ID} updated successfully",
-                            };
+                                var pid = (from obj in context.Issues
+                                           where obj.MainAreaID == issueModel.MainArea.Id
+                                           select new
+                                           {
+                                               ProductID = obj.ProductID
+                                           }).ToList();
+
+                                foreach (var item in pid)
+                                {
+                                    if (p.Product.Id == item.ProductID)
+                                    {
+                                        throw new Exception($"Entered Product : {item.ProductID} already issued for given sub" +
+                                            $" area : {issueModel.MainArea.Text}");
+
+                                    }
+                                }
+                                var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
+                                qs.IssueDate = issueModel.Date.ToLocalTime();
+                                qs.LastUpdated = ISDT;
+                                qs.ProductID = p.Product.Id;
+                                qs.MainAreaID = issueModel.MainArea.Id;
+                                // qs.SubAreaID = issueModel.SubArea.Id;
+                                qs.LoginID = LoginId;
+                                qs.Remark = p.Remark;
+                                qs.PurchaseQuantity = p.IssueQuantity;
+                                RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity;
+                                ps.TotalProductQuantity = RemainQuantity;
+                                pd.TotalProductQuantity = temp;
+                                context.SubmitChanges();
+
+                                scope.Complete();
+                                return new Result()
+                                {
+                                    Status = Result.ResultStatus.success,
+                                    Message = "Issue Update Successfully",
+                                    Data = $"Issue ID : {ID} updated successfully",
+                                };
+                            }
                         }
                         else
                         {
@@ -280,69 +360,34 @@ namespace Inventory_Mangement_System.Repository
                                 }
                             }
                             var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
+                            pd.TotalProductQuantity = temp;
                             qs.IssueDate = issueModel.Date.ToLocalTime();
-                            qs.DateTime = ISDT;
+                            qs.LastUpdated = ISDT;
                             qs.ProductID = p.Product.Id;
                             qs.MainAreaID = issueModel.MainArea.Id;
-                           // qs.SubAreaID = issueModel.SubArea.Id;
+                            //qs.SubAreaID = issueModel.SubArea.Id;
                             qs.LoginID = LoginId;
                             qs.Remark = p.Remark;
                             qs.PurchaseQuantity = p.IssueQuantity;
                             RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity;
                             ps.TotalProductQuantity = RemainQuantity;
-                            pd.TotalProductQuantity = temp;
                             context.SubmitChanges();
+
+                            scope.Complete();
                             return new Result()
                             {
                                 Status = Result.ResultStatus.success,
                                 Message = "Issue Update Successfully",
                                 Data = $"Issue ID : {ID} updated successfully",
                             };
+
                         }
                     }
-                    else 
-                    {
-                        var pid = (from obj in context.Issues
-                                   where obj.MainAreaID == issueModel.MainArea.Id
-                                   select new
-                                   {
-                                       ProductID = obj.ProductID
-                                   }).ToList();
-
-                        foreach (var item in pid)
-                        {
-                            if (p.Product.Id == item.ProductID)
-                            {
-                                throw new Exception($"Entered Product : {item.ProductID} already issued for given sub" +
-                                    $" area : {issueModel.MainArea.Text}");
-
-                            }
-                        }
-                        var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
-                        pd.TotalProductQuantity = temp;
-                        qs.IssueDate = issueModel.Date.ToLocalTime();
-                        qs.DateTime = ISDT;
-                        qs.ProductID = p.Product.Id;
-                        qs.MainAreaID = issueModel.MainArea.Id;
-                        //qs.SubAreaID = issueModel.SubArea.Id;
-                        qs.LoginID = LoginId;
-                        qs.Remark = p.Remark;
-                        qs.PurchaseQuantity = p.IssueQuantity;
-                        RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity;
-                        ps.TotalProductQuantity = RemainQuantity;
-                        context.SubmitChanges();
-                        return new Result()
-                        {
-                            Status = Result.ResultStatus.success,
-                            Message = "Issue Update Successfully",
-                            Data = $"Issue ID : {ID} updated successfully",
-                        };
-
-                    
+                          
 
                 }
 
-                }
+                          
 
             }
         }

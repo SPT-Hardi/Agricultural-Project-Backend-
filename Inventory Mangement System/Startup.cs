@@ -4,10 +4,12 @@ using Inventory_Mangement_System.serevices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -39,7 +41,8 @@ namespace Inventory_Mangement_System
 */
             ProductInventoryContext.ProductInventoryDataContext db
                = new ProductInventoryContext.ProductInventoryDataContext("data source=DESKTOP-CQ3I7DI;initial catalog='Product Inventory';integrated security=False;persist security info=True;user id=kv;password=123456;License Key=qHnH5wx/L422kFN4WQussVkqbelF0xGMaZi+DGL6lhFu+VTasW/ZRA22+dVoDbuQ64trDZsBMziLDE9kumHeTDKlcRSCvsotqn7rHn9VHFXS3Jmh/rFBVSxav6UlKmT4POdU+hnX8ACaigXhFdBiZ4NeHNVRNTqJ4fUTou0czKt8ATWxOB2MjUrprbYTV2ECFJOo2uLgwGzqeEpv1gGPLKR3p5DOKdeMu61FRAak23fmjt8PPQpz50o1E0r0FFdoQrJIYKkMxqRiD2IhVxlcVCvpIqR31rWwKJ1sNquGBMU=;");
-
+            
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient <IAccountRepository,AccountRepository >();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
@@ -81,8 +84,10 @@ namespace Inventory_Mangement_System
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHttpContextAccessor accessor)
         {
+            Inventory_Mangement_System.Repository.Developer.Contact.Current.SetHttpContextAccessor(accessor);
+
             app.UseCors(builder => builder
             .AllowAnyHeader()
             .AllowAnyMethod()

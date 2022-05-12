@@ -34,8 +34,9 @@ namespace Inventory_Mangement_System.Repository
                                 UserName = (from n in context.LoginDetails
                                             where n.LoginID == pd.LoginID
                                             select n.UserName).FirstOrDefault(),
-                                DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", pd.LastUpdateDate),
-                                ProductionDate= String.Format("{0:dd-MM-yyyy hh:mm tt}", pd.Date),
+                                LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", pd.LastUpdated),
+                                ProductionDate= String.Format("{0:dd-MM-yyyy hh:mm tt}", pd.ProductionDate),
+                                BackupDate= String.Format("{0:dd-MM-yyyy hh:mm tt}", pd.BackupDate),
                             }).ToList()
                 };
             }
@@ -68,8 +69,9 @@ namespace Inventory_Mangement_System.Repository
                 productionDetail.SubAreaID = productionModel.SubAreaDetails.Id==0? null: productionModel.SubAreaDetails.Id; 
                 productionDetail.VegetableId = productionModel.Vegetable.Id;
                 productionDetail.Quantity = productionModel.Quantity;
-                productionDetail.LastUpdateDate =ISDT;
-                productionDetail.Date = productionModel.ProductionDate;
+                productionDetail.LastUpdated =ISDT;
+                productionDetail.ProductionDate = productionModel.ProductionDate.ToLocalTime();
+                productionDetail.BackupDate = ISDT;
                 productionDetail.LoginID = LoginId;
                 productionDetail.Remark = productionModel.Remark;
                 context.ProductionDetails.InsertOnSubmit(productionDetail);
@@ -91,12 +93,31 @@ namespace Inventory_Mangement_System.Repository
 
                 using (ProductInventoryDataContext context = new ProductInventoryDataContext())
                 {
-                    ProductionDetail productionDetail = new ProductionDetail();
+                    ProductionDetail backup = new ProductionDetail();
                     var pro = context.ProductionDetails.SingleOrDefault(x => x.ProductionID == id);
                     if (pro == null)
                     {
-                        throw new ArgumentException("Production Details Does Not Exits!.");
+                        throw new ArgumentException("Production Details does Not Exits!.");
                     }
+                    if (pro.IsEditable == false) 
+                    {
+                        throw new ArgumentException("Not editable!");
+                    }
+
+                    //backup new entry not editable
+                    backup.MainAreaID = pro.MainAreaID;
+                    backup.SubAreaID = pro.SubAreaID;
+                    backup.VegetableId = pro.VegetableId;
+                    backup.Quantity = pro.Quantity;
+                    backup.LastUpdated = pro.LastUpdated;
+                    backup.ProductionDate = pro.ProductionDate;
+                    backup.BackupDate = pro.BackupDate;
+                    backup.LoginID = pro.LoginID;
+                    backup.Remark = pro.Remark;
+                    backup.IsEditable = false;
+
+                    context.ProductionDetails.InsertOnSubmit(backup);
+                    context.SubmitChanges();
 
                     /* var v = (from x in context.Vegetables
                               where x.VegetableName.ToLower() == productionModel.Vegetablenm.ToLower()
@@ -122,8 +143,8 @@ namespace Inventory_Mangement_System.Repository
                     }
                     pro.VegetableId = productionModel.Vegetable.Id;
                     pro.Quantity = productionModel.Quantity;
-                    pro.LastUpdateDate = ISDT;
-                    pro.Date = productionModel.ProductionDate;
+                    pro.LastUpdated= ISDT;
+                    pro.ProductionDate = productionModel.ProductionDate.ToLocalTime();
                     pro.LoginID = LoginId;
                     pro.Remark = productionModel.Remark;
                     context.SubmitChanges();

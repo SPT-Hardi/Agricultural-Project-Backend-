@@ -81,3 +81,4 @@ D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.
 D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\ref\InventorySystem.dll
 D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.pdb
 D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.genruntimeconfig.cache
+D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Kendo.Mvc.dll

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Inventory_Mangement_System.Repository.Developer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -50,6 +51,7 @@ namespace Inventory_Mangement_System.Middleware
                 context.Items["LoginId"] = LoginId;
                 string RName = jwtToken.Claims.First(x => x.Type == ClaimTypes.Role).Value;
                 context.Items["Rolename"] = RName;
+                context.Items["Ids"] = new UserServices().GetIds(LoginId);
 
             }
             catch (Exception)

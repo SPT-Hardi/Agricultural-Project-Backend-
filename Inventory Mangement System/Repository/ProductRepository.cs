@@ -35,7 +35,7 @@ namespace Inventory_Mangement_System.Repository
                                           where n.LoginID== x.LoginID
                                           select n.UserName).FirstOrDefault(),
                                 DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", x.DateTime),
-                                IsEditable=x.IsEditable,
+                                
                             }).ToList(),
                 };
             }
@@ -98,25 +98,25 @@ namespace Inventory_Mangement_System.Repository
                         throw new Exception("Product Alredy Exits.");
                     }
                 }
-                if (product.IsEditable == false) 
+                /*if (product.IsEditable == false) 
                 {
                     throw new ArgumentException("Not editable!");
                 }
                 //backup entry
                 product.IsEditable = false;
-                context.SubmitChanges();
+                context.SubmitChanges();*/
 
-                //new entry
-                Product p = new Product();
-                p.ProductName = char.ToUpper(productDetail.ProductName[0]) + productDetail.ProductName.Substring(1).ToLower();
-                p.Variety = productDetail.Variety;
-                p.Company = productDetail.Company;
-                p.Description = productDetail.Description;
-                p.CategoryID = (int)productDetail.categoryType.Id;
-                p.LoginID = LoginId;
-                p.DateTime = ISDT;
-                p.UnitID = (int)productDetail.type.Id;
-                context.Products.InsertOnSubmit(p);
+                //update
+                //Product p = new Product();
+                product.ProductName = char.ToUpper(productDetail.ProductName[0]) + productDetail.ProductName.Substring(1).ToLower();
+                product.Variety = productDetail.Variety;
+                product.Company = productDetail.Company;
+                product.Description = productDetail.Description;
+                product.CategoryID = (int)productDetail.categoryType.Id;
+                product.LoginID = LoginId;
+                product.DateTime = ISDT;
+                product.UnitID = (int)productDetail.type.Id;
+                //context.Products.InsertOnSubmit(p);
                 context.SubmitChanges();
                 
                 return new Result()
