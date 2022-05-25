@@ -1,4 +1,4 @@
-using Inventory_Mangement_System.Middleware;
+﻿using Inventory_Mangement_System.Middleware;
 using Inventory_Mangement_System.Repository;
 using Inventory_Mangement_System.serevices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -48,9 +48,9 @@ namespace Inventory_Mangement_System
 */
             ProductInventoryContext.ProductInventoryDataContext db
                = new ProductInventoryContext.ProductInventoryDataContext("data source=DESKTOP-CQ3I7DI;initial catalog='Product Inventory';integrated security=False;persist security info=True;user id=kv;password=123456;License Key=qHnH5wx/L422kFN4WQussVkqbelF0xGMaZi+DGL6lhFu+VTasW/ZRA22+dVoDbuQ64trDZsBMziLDE9kumHeTDKlcRSCvsotqn7rHn9VHFXS3Jmh/rFBVSxav6UlKmT4POdU+hnX8ACaigXhFdBiZ4NeHNVRNTqJ4fUTou0czKt8ATWxOB2MjUrprbYTV2ECFJOo2uLgwGzqeEpv1gGPLKR3p5DOKdeMu61FRAak23fmjt8PPQpz50o1E0r0FFdoQrJIYKkMxqRiD2IhVxlcVCvpIqR31rWwKJ1sNquGBMU=;");
-            
+
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddTransient <IAccountRepository,AccountRepository >();
+            services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ITokenService, TokenService>();
@@ -60,8 +60,8 @@ namespace Inventory_Mangement_System
             services.AddTransient<IProductionRepository, ProductionRepository>();
             services.AddTransient<IInventoryViewRepository, InventoryViewRepository>();
 
-            services.AddControllers().AddNewtonsoftJson(); 
-            
+            services.AddControllers().AddNewtonsoftJson();
+
             services.AddAuthentication(option =>
             {
 
@@ -106,7 +106,7 @@ namespace Inventory_Mangement_System
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            
+
             app.UseAuthentication();
             app.UseAuthorization();
 

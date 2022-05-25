@@ -22,7 +22,7 @@ namespace Inventory_Mangement_System
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls("https://agriculture.spt.com"); //Windows IP http://localhost:5028","http://10.0.0.4:5028
+                    //webBuilder.UseUrls("https://agriculture.spt.com"); //Windows IP http://localhost:5028","http://10.0.0.4:5028
                 });
         
     }

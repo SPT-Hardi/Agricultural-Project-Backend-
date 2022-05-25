@@ -191,7 +191,7 @@ namespace Inventory_Mangement_System.Repository
                     var res = new
                     {
                         ProductionID = pro.ProductionID,
-                        MainAreaDetails = new Model.Common.IntegerNullString() { Id=productionModel.Area.Id,Text=productionModel.Area.Text},
+                        Area = new Model.Common.IntegerNullString() { Id=productionModel.Area.Id,Text=productionModel.Area.Text},
                         Vegetable = new IntegerNullString() { Id = productionModel.Vegetable.Id, Text = productionModel.Vegetable.Text },
                         Quantity = pro.Quantity,
                         Remark = pro.Remark,
