@@ -22,22 +22,62 @@ namespace Inventory_Mangement_System.Repository
                 {
                     Status = Result.ResultStatus.success,
                     Data = (from pd in context.ProductionDetails
+                            where pd.IsEditable==true
                             orderby pd.ProductionID descending
                             select new
                             {
                                 ProductionID = pd.ProductionID,
-                                MainAreaDetails = new Model.Common.IntegerNullString() { Id = pd.MainArea.MainAreaID, Text = pd.MainArea.MainAreaName },
-                                SubAreaDetails = new Model.Common.IntegerNullString() { Id = pd.SubAreaID==null ? 0 : pd.SubArea.SubAreaID, Text = pd.SubAreaID==null ? null : pd.SubArea.SubAreaName },
-                                Vegetablenm = pd.Vegetable.VegetableName,
+                                Area = new Model.Common.IntegerNullString() {Id=pd.AreaDetail.AreaId,Text=pd.AreaDetail.AreaName },
+                                Vegetable = new IntegerNullString() { Id=pd.Vegetable.VegetableId,Text=pd.Vegetable.VegetableName},
                                 Quantity = pd.Quantity,
                                 Remark = pd.Remark,
-                                UserName = (from n in context.LoginDetails
-                                            where n.LoginID == pd.LoginID
-                                            select n.UserName).FirstOrDefault(),
-                                LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", pd.LastUpdated),
-                                ProductionDate= String.Format("{0:dd-MM-yyyy hh:mm tt}", pd.ProductionDate),
-                                BackupDate= String.Format("{0:dd-MM-yyyy hh:mm tt}", pd.BackupDate),
+                                UserName = pd.LoginDetail.UserName,
+                                LastUpdated = pd.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                                ProductionDate= pd.ProductionDate.ToString("dd-MM-yyyy"),
+                                IsEditable=pd.IsEditable,
+                                EditedList=(from x in context.ProductionDetails
+                                            where x.ParentId==pd.ProductionID
+                                            orderby x.ProductionID descending
+                                            select new 
+                                            {
+                                                ProductionID = x.ProductionID,
+                                                Area = new Model.Common.IntegerNullString() { Id = x.AreaDetail.AreaId, Text = x.AreaDetail.AreaName },
+                                                Vegetable = new IntegerNullString() { Id = x.Vegetable.VegetableId, Text = x.Vegetable.VegetableName },
+                                                Quantity = x.Quantity,
+                                                Remark = x.Remark,
+                                                UserName = x.LoginDetail.UserName,
+                                                LastUpdated = x.LastUpdated,
+                                                ProductionDate = x.ProductionDate,
+                                                IsEditable = x.IsEditable,
+
+                                            }).ToList()
                             }).ToList()
+                };
+            }
+        }
+        public Result GetEditProductionDetails(int Id) 
+        {
+            using (ProductInventoryDataContext c = new ProductInventoryDataContext())
+            {
+
+                return new Result()
+                {
+                    Status = Result.ResultStatus.success,
+                    Message = "Edited Production details get successfully!",
+                    Data = (from pd in c.ProductionDetails
+                            where pd.ParentId == Id
+                            select new 
+                            {
+                                ProductionID = pd.ProductionID,
+                                Area = new Model.Common.IntegerNullString() { Id = pd.AreaDetail.AreaId, Text = pd.AreaDetail.AreaName },
+                                Vegetable = new IntegerNullString() { Id = pd.Vegetable.VegetableId, Text = pd.Vegetable.VegetableName },
+                                Quantity = pd.Quantity,
+                                Remark = pd.Remark,
+                                UserName = pd.LoginDetail.UserName,
+                                LastUpdated = pd.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                                ProductionDate = pd.ProductionDate.ToString("dd-MM-yyyy"),
+                                IsEditable = pd.IsEditable,
+                            }).ToList(),
                 };
             }
         }
@@ -48,39 +88,44 @@ namespace Inventory_Mangement_System.Repository
             var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
-                ProductionDetail productionDetail = new ProductionDetail();
-               /* var v = (from x in context.Vegetables
-                         where x.VegetableName.ToLower() == productionModel.Vegetablenm.ToLower()
-                         select x).FirstOrDefault();
-                if(v == null)
+                using (TransactionScope scope = new TransactionScope())
                 {
-                    v = new Vegetable()
-                    {
-                        VegetableName = char.ToUpper(productionModel.Vegetablenm[0]) + productionModel.Vegetablenm.Substring(1).ToLower()
-                    };
-                    context.Vegetables.InsertOnSubmit(v);
+
+                    ProductionDetail productionDetail = new ProductionDetail();
+                    /* var v = (from x in context.Vegetables
+                              where x.VegetableName.ToLower() == productionModel.Vegetablenm.ToLower()
+                              select x).FirstOrDefault();
+                     if(v == null)
+                     {
+                         v = new Vegetable()
+                         {
+                             VegetableName = char.ToUpper(productionModel.Vegetablenm[0]) + productionModel.Vegetablenm.Substring(1).ToLower()
+                         };
+                         context.Vegetables.InsertOnSubmit(v);
+                         context.SubmitChanges();
+                     }
+                     int vg = (from obj in context.Vegetables
+                               where obj.VegetableName == productionModel.Vegetablenm
+                               select obj.VegetableID).SingleOrDefault();*/
+
+                    productionDetail.AreaId = productionModel.Area.Id;
+                    productionDetail.VegetableId = productionModel.Vegetable.Id;
+                    productionDetail.Quantity = ((decimal)productionModel.Quantity);
+                    productionDetail.LastUpdated = ISDT;
+                    productionDetail.ProductionDate = productionModel.ProductionDate.ToLocalTime();
+                    productionDetail.LoginID = LoginId;
+                    productionDetail.Remark = productionModel.Remark;
+
+                    context.ProductionDetails.InsertOnSubmit(productionDetail);
                     context.SubmitChanges();
+
+                    scope.Complete();
+                    return new Result()
+                    {
+                        Message = string.Format($"{productionModel.Vegetable.Text} Production DSetails Added Successfully."),
+                        Status = Result.ResultStatus.success
+                    };
                 }
-                int vg = (from obj in context.Vegetables
-                          where obj.VegetableName == productionModel.Vegetablenm
-                          select obj.VegetableID).SingleOrDefault();*/
-                
-                productionDetail.MainAreaID = productionModel.MainAreaDetails.Id;
-                productionDetail.SubAreaID = productionModel.SubAreaDetails.Id==0? null: productionModel.SubAreaDetails.Id; 
-                productionDetail.VegetableId = productionModel.Vegetable.Id;
-                productionDetail.Quantity = productionModel.Quantity;
-                productionDetail.LastUpdated =ISDT;
-                productionDetail.ProductionDate = productionModel.ProductionDate.ToLocalTime();
-                productionDetail.BackupDate = ISDT;
-                productionDetail.LoginID = LoginId;
-                productionDetail.Remark = productionModel.Remark;
-                context.ProductionDetails.InsertOnSubmit(productionDetail);
-                context.SubmitChanges();
-                return new Result()
-                {
-                    Message = string.Format($"{productionModel.Vegetable.Text} Production DSetails Added Successfully."),
-                    Status = Result.ResultStatus.success,
-                };
             }
         }
         
@@ -105,14 +150,13 @@ namespace Inventory_Mangement_System.Repository
                     }
 
                     //backup new entry not editable
-                    backup.MainAreaID = pro.MainAreaID;
-                    backup.SubAreaID = pro.SubAreaID;
+                    backup.AreaId = pro.AreaId;
+                    backup.ParentId = pro.ProductionID;
                     backup.VegetableId = pro.VegetableId;
                     backup.Quantity = pro.Quantity;
-                    backup.LastUpdated = pro.LastUpdated;
+                    backup.LastUpdated = ISDT;
                     backup.ProductionDate = pro.ProductionDate;
-                    backup.BackupDate = pro.BackupDate;
-                    backup.LoginID = pro.LoginID;
+                    backup.LoginID = LoginId;
                     backup.Remark = pro.Remark;
                     backup.IsEditable = false;
 
@@ -136,24 +180,34 @@ namespace Inventory_Mangement_System.Repository
                                where obj.VegetableName == productionModel.Vegetablenm
                                select obj.VegetableID).SingleOrDefault();
      */
-                    pro.MainAreaID = productionModel.MainAreaDetails.Id;
-                    if (pro.SubAreaID != null) 
-                    {
-                       pro.SubAreaID = productionModel.SubAreaDetails.Id;
-                    }
-                    pro.VegetableId = productionModel.Vegetable.Id;
-                    pro.Quantity = productionModel.Quantity;
-                    pro.LastUpdated= ISDT;
                     pro.ProductionDate = productionModel.ProductionDate.ToLocalTime();
+                    pro.AreaId = productionModel.Area.Id;
+                    pro.VegetableId = productionModel.Vegetable.Id;
+                    pro.Quantity = ((decimal)productionModel.Quantity);
+                    pro.LastUpdated= ISDT;
                     pro.LoginID = LoginId;
                     pro.Remark = productionModel.Remark;
                     context.SubmitChanges();
-
+                    var res = new
+                    {
+                        ProductionID = pro.ProductionID,
+                        MainAreaDetails = new Model.Common.IntegerNullString() { Id=productionModel.Area.Id,Text=productionModel.Area.Text},
+                        Vegetable = new IntegerNullString() { Id = productionModel.Vegetable.Id, Text = productionModel.Vegetable.Text },
+                        Quantity = pro.Quantity,
+                        Remark = pro.Remark,
+                        UserName = (from n in context.LoginDetails
+                                    where n.LoginID == LoginId
+                                    select n.UserName).FirstOrDefault(),
+                        LastUpdated = pro.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                        ProductionDate = pro.ProductionDate.ToString("dd-MM-yyyy"),
+                        IsEditable = pro.IsEditable,
+                    };
                     scope.Complete();
                     return new Result()
                     {
                         Message = string.Format($"{productionModel.Vegetable.Text} Production Details Updated Successfully."),
                         Status = Result.ResultStatus.success,
+                        Data=res,
                     };
                 }
             }

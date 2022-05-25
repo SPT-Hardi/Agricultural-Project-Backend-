@@ -17,10 +17,10 @@ namespace Inventory_Mangement_System.Repository
         Result EditIssue(IssueModel issueModel, int ID,int LoginId);
 
         //Get MainArea Dropdown
-        Task<IEnumerable> GetMainArea();
+        Task<IEnumerable> GetArea();
 
         //Get SubArea Dropdown
-        Task<IEnumerable> GetSubArea(int id);
+        //Task<IEnumerable> GetSubArea(int id);
 
         //Get Product Dropdown with Unit And Quantity
         Task<IEnumerable> GetProduct();

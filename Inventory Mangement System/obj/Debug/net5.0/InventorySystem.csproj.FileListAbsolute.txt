@@ -1,3 +1,10 @@
+D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.csproj.AssemblyReference.cache
+D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.GeneratedMSBuildEditorConfig.editorconfig
+D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.AssemblyInfoInputs.cache
+D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.AssemblyInfo.cs
+D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.csproj.CoreCompileInputs.cache
+D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.MvcApplicationPartsAssemblyInfo.cs
+D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.MvcApplicationPartsAssemblyInfo.cache
 D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\web.config
 D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\appsettings.Development.json
 D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\appsettings.json
@@ -65,13 +72,7 @@ D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.
 D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.csproj.AssemblyReference.cache
-D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.GeneratedMSBuildEditorConfig.editorconfig
-D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.AssemblyInfoInputs.cache
-D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.AssemblyInfo.cs
-D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.csproj.CoreCompileInputs.cache
-D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.MvcApplicationPartsAssemblyInfo.cs
-D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.MvcApplicationPartsAssemblyInfo.cache
+D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Kendo.Mvc.dll
 D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\staticwebassets\InventorySystem.StaticWebAssets.Manifest.cache
 D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\staticwebassets\InventorySystem.StaticWebAssets.xml
 D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\scopedcss\bundle\InventorySystem.styles.css
@@ -81,4 +82,3 @@ D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.
 D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\ref\InventorySystem.dll
 D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.pdb
 D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\obj\Debug\net5.0\InventorySystem.genruntimeconfig.cache
-D:\AGRI\Agricultural-Project-Backend-\Inventory Mangement System\bin\Debug\net5.0\Kendo.Mvc.dll

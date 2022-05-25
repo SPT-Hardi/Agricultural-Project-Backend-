@@ -34,9 +34,9 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(new Vegetables().View());
         }
 
-        [HttpPatch]
+        [HttpPut]
         [Route("Update/{Id}")]
-        public IActionResult Patch([FromBody]Model.VegetableList value,[FromRoute]int Id)
+        public IActionResult Patch([FromBody]Model.Vegetable value,[FromRoute]int Id)
         {
             var LoginId = HttpContext.Items["LoginId"];
             return Ok(new Vegetables().Update(Id,value,LoginId));

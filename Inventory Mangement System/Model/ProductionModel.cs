@@ -19,8 +19,9 @@ namespace Inventory_Mangement_System.Model
         public IntegerNullString Vegetable { get; set; } = new IntegerNullString();
         [RegularExpression(@"^.{1,150}$",ErrorMessage ="Maximum 150 characters are allowed!")]
         public string Remark { get; set; }
-        public Model.Common.IntegerNullString MainAreaDetails { get; set; } = new Model.Common.IntegerNullString();
-        public Model.Common.IntegerNullString SubAreaDetails { get; set; } = new Model.Common.IntegerNullString();
+        public Model.Common.IntegerNullString Area { get; set; } = new Model.Common.IntegerNullString();
+        
+        [Required(ErrorMessage ="ProductionDate is required!")]
         public DateTime ProductionDate { get; set; }
         //public List<ProductionList> ProductionLists { get; set; } = new List<ProductionList>();
     }

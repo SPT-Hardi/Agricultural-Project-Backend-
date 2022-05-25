@@ -29,6 +29,13 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
+        //Get dropdown of non-editable records of given Id
+        [HttpGet("GetEditedIssue/{Id}")]
+        public IActionResult GetEditedIssueDetails(int Id) 
+        {
+            return Ok(new IssueRepository().GetEditIssueDetails(Id));
+        }
+
         //Issue Products
         [HttpPost("IssueProduct")]
         [Authorize]
@@ -57,20 +64,20 @@ namespace Inventory_Mangement_System.Controllers
         }
 
         //Get MainArea Dropdown
-        [HttpGet("getmainarea")]
-        public async Task<IActionResult> MainAreaGet()
+        [HttpGet("getarea")]
+        public async Task<IActionResult> AreaGet()
         {
-            var result = await _issueRepository.GetMainArea();
+            var result = await _issueRepository.GetArea();
             return Ok(result);
         }
 
         //Get SubArea Dropdown
-        [HttpGet("getsubarea/{id}")]
+     /*   [HttpGet("getsubarea/{id}")]
         public async Task<IActionResult> SubAreaGet(int id)
         {
             var result = await _issueRepository.GetSubArea(id);
             return Ok(result);
-        }
+        }*/
 
         //Get Product Dropdown with Unit And Quantity
         [HttpGet("getproduct")]

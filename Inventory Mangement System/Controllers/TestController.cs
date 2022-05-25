@@ -8,12 +8,19 @@ using System.Threading.Tasks;
 
 namespace Inventory_Mangement_System.Controllers
 {
-    [Route("test")]
+
     [ApiController]
     public class TestController : ControllerBase
     {
         [HttpGet]
-        public IActionResult Test() 
+        [Route("test")]
+        public IActionResult Test()
+        {
+            return Ok("Working!!");
+        }
+        [HttpPut]
+        [Route("put")]
+        public IActionResult TestPut() 
         {
             return Ok("Working!!");
         }

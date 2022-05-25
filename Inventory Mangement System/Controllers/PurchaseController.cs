@@ -15,7 +15,7 @@ namespace Inventory_Mangement_System.Controllers
     {
         private readonly IPurchaseRepository _purchaseRepository;
 
-        public PurchaseController (IPurchaseRepository purchaseRepository)
+        public PurchaseController(IPurchaseRepository purchaseRepository)
         {
             _purchaseRepository = purchaseRepository;
         }
@@ -38,22 +38,28 @@ namespace Inventory_Mangement_System.Controllers
                 throw new ArgumentException("JWT Token Not Found.");
             }
             int LoginId = (int)HttpContext.Items["LoginId"];
-            var result = _purchaseRepository.AddPurchaseDetails(purchaseModel,LoginId);
+            var result = _purchaseRepository.AddPurchaseDetails(purchaseModel, LoginId);
             return Ok(result);
         }
 
         //Edit Purchase Details
         [HttpPut("EditPurchaseProduct/{ID}")]
-        public async Task<IActionResult> EditPurchaseProduct(PurchaseModel purchaseModel,int ID)
+        public async Task<IActionResult> EditPurchaseProduct(PurchaseModel purchaseModel, int ID)
         {
             if ((int)HttpContext.Items["LoginId"] == 0)
             {
                 throw new ArgumentException("JWT Token Not Found.");
             }
             int LoginId = (int)HttpContext.Items["LoginId"];
-            var result = _purchaseRepository.EditPurchaseProduct(purchaseModel,ID,LoginId);
+            var result = _purchaseRepository.EditPurchaseProduct(purchaseModel, ID, LoginId);
 
             return Ok(result);
+        }
+
+        [HttpGet("GetEditedPurchase/{Id}")]
+        public IActionResult GetEditPurchaseDetails(int Id) 
+        {
+            return Ok(new PurchaseRepository().GetPurchaseEditDetails(Id));
         }
     }
 }

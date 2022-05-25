@@ -8,12 +8,10 @@ namespace Inventory_Mangement_System.Model
 {
     public class IssueModel
     {
-        [Required(ErrorMessage = "Date Is Required.")]
-        public DateTime Date { get; set; }
-    
-        public Model.Common.IntegerNullString MainArea { get; set; } = new Model.Common.IntegerNullString();
-        
-        public Model.Common.IntegerNullString SubArea { get; set; } = new Model.Common.IntegerNullString();
+        [Required(ErrorMessage = "IssueDate is Required.")]
+        public DateTime IssueDate { get; set; }
+
+        public Model.Common.IntegerNullString Area { get; set; } = new Common.IntegerNullString();
         public List<IssueDetail> issueDetails { get; set; } = new List<IssueDetail>();
     }
 

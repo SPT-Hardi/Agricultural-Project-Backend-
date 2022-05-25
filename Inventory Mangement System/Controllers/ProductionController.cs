@@ -28,6 +28,13 @@ namespace Inventory_Mangement_System.Controllers
             return Ok(result);
         }
 
+        //Dropdown of non-editable records for given Id
+        [HttpGet("GetEditedProduction/{Id}")]
+        public IActionResult GetEditedProductionDetails(int Id)
+        {
+            return Ok(new ProductionRepository().GetEditProductionDetails(Id));
+        }
+
         //Add Production Details
         [HttpPost("addproduction")]
         public async Task<IActionResult> ProductionDetailAdded([FromBody] ProductionModel productionModel)

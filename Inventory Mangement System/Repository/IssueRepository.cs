@@ -21,27 +21,65 @@ namespace Inventory_Mangement_System.Repository
                 {
                     Status = Result.ResultStatus.success,
                     Data = (from obj in context.Issues
+                            where obj.IsEditable==true
                             orderby obj.IssueID descending
                             select new
                             {
                                 IssueID = obj.IssueID,
-                                Date = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.IssueDate),
                                 Product = new { Id = obj.Product.ProductID, Text = obj.Product.ProductName, Unit = obj.Product.ProductUnit.Type },
-                                MainArea = new IntegerNullString() { Id = obj.MainArea.MainAreaID, Text = obj.MainArea.MainAreaName },
-                                SubArea = new IntegerNullString() { Id = obj.SubAreaID==null? 0 : obj.SubArea.SubAreaID, Text = obj.SubAreaID==null ? null : obj.SubArea.SubAreaName },
+                                Area = new IntegerNullString() { Id = obj.AreaDetail.AreaId, Text = obj.AreaDetail.AreaName },
                                 IssueQuantity = obj.PurchaseQuantity,
                                 Remark = obj.Remark,
-                                UserName = (from n in context.LoginDetails
-                                            where n.LoginID == obj.LoginID
-                                            select n.UserName).FirstOrDefault(),
-                                IssueDate = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.IssueDate),
-                                LastUpdated= String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.LastUpdated),
-                                BackupDate= String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.BackupDate),
+                                UserName = obj.LoginDetail.UserName,
+                                IssueDate = obj.IssueDate.ToString("dd-MM-yyyy"),
+                                LastUpdated = obj.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                                IsEditable=obj.IsEditable,
+                                EditedList=(from x in context.Issues
+                                            where x.ParentId==obj.IssueID
+                                            orderby x.IssueID descending
+                                            select new 
+                                            {
+                                                IssueID = x.IssueID,
+                                                Product = new { Id = x.Product.ProductID, Text = x.Product.ProductName, Unit = x.Product.ProductUnit.Type },
+                                                Area = new IntegerNullString() { Id = x.AreaDetail.AreaId, Text = x.AreaDetail.AreaName },
+                                                IssueQuantity = x.PurchaseQuantity,
+                                                Remark = x.Remark,
+                                                UserName = x.LoginDetail.UserName,
+                                                IssueDate = x.IssueDate,
+                                                LastUpdated =x.LastUpdated,
+                                                IsEditable = x.IsEditable,
+
+                                            }).ToList()
                             }).ToList(),
                 };
             }
         }
+        public Result GetEditIssueDetails(int Id) 
+        {
+            using (ProductInventoryDataContext c = new ProductInventoryDataContext())
+            {
 
+                return new Result()
+                {
+                    Status = Result.ResultStatus.success,
+                    Message = "Edited Isuue details get successfully!",
+                    Data =(from obj in c.Issues
+                           where obj.ParentId==Id
+                           select new 
+                           {
+                               IssueID = obj.IssueID,
+                               Product = new { Id = obj.Product.ProductID, Text = obj.Product.ProductName, Unit = obj.Product.ProductUnit.Type },
+                               Area = new IntegerNullString() { Id = obj.AreaDetail.AreaId, Text = obj.AreaDetail.AreaName },
+                               IssueQuantity = obj.PurchaseQuantity,
+                               Remark = obj.Remark,
+                               UserName = obj.LoginDetail.UserName,
+                               IssueDate = obj.IssueDate.ToString("dd-MM-yyyy"),
+                               LastUpdated = obj.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                               IsEditable = obj.IsEditable,
+                           }).ToList()
+                };
+            }
+        }
         //Issue Products
         public Result IssueProduct(IssueModel issueModel, int LoginId)
         {
@@ -56,14 +94,12 @@ namespace Inventory_Mangement_System.Repository
                               select new Issue()
                               {
                                   ProductID = obj.Product.Id,
-                                  MainAreaID = issueModel.MainArea.Id,
-                                  SubAreaID = issueModel.SubArea.Id == 0 ? null : issueModel.SubArea.Id,
+                                  AreaId=issueModel.Area.Id,
                                   Remark = obj.Remark,
                                   LoginID = LoginId,
-                                  IssueDate = issueModel.Date.ToLocalTime(),
+                                  IssueDate = issueModel.IssueDate.ToLocalTime(),
                                   LastUpdated = ISDT,
-                                  BackupDate = ISDT,
-                                  PurchaseQuantity = obj.IssueQuantity
+                                  PurchaseQuantity = (decimal)obj.IssueQuantity
                               }).ToList();
 
                     foreach (var item in qs)
@@ -125,13 +161,12 @@ namespace Inventory_Mangement_System.Repository
                     // backup entry not editable
                     Issue backup = new Issue();
                     backup.ProductID = qs.ProductID;
-                    backup.MainAreaID = qs.MainAreaID;
-                    backup.SubAreaID = qs.SubAreaID;
+                    backup.AreaId = qs.AreaId;
+                    backup.ParentId = qs.IssueID;
                     backup.Remark = qs.Remark;
-                    backup.LoginID = qs.LoginID;
+                    backup.LoginID = LoginId;
                     backup.IssueDate = qs.IssueDate;
-                    backup.LastUpdated = qs.LastUpdated;
-                    backup.BackupDate = qs.BackupDate;
+                    backup.LastUpdated = ISDT;
                     backup.PurchaseQuantity = qs.PurchaseQuantity;
                     backup.IsEditable = false;
                     context.Issues.InsertOnSubmit(backup);
@@ -152,15 +187,91 @@ namespace Inventory_Mangement_System.Repository
                 {
                     throw new ArgumentException($"Please Enter {p.Product.Text} Issue Quantity More Than Zero");
                 }
-                if (qs.PurchaseQuantity < p.IssueQuantity)
+                if (qs.PurchaseQuantity < (decimal)p.IssueQuantity)
                 {
-                    if (pd.TotalProductQuantity+qs.PurchaseQuantity < p.IssueQuantity)
+                    if (pd.TotalProductQuantity+qs.PurchaseQuantity < ((decimal)p.IssueQuantity))
                     {
                         throw new ArgumentException($"Product name :{pd.ProductID} ," +
                             $"Enter quantity{p.IssueQuantity} more than existing quantity{pd.TotalProductQuantity}");
                     }
                 }
-                    if (qs.SubAreaID != null)
+                    if (qs.ProductID == p.Product.Id)
+                    {
+                        var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
+                        RemainQuantity = (float)temp - p.IssueQuantity;
+                        qs.IssueDate = issueModel.IssueDate.ToLocalTime();
+                        qs.LastUpdated = ISDT;
+                        qs.ProductID = p.Product.Id;
+                        qs.AreaId = issueModel.Area.Id;
+                        qs.LoginID = LoginId;
+                        qs.Remark = p.Remark;
+                        qs.PurchaseQuantity = ((decimal)p.IssueQuantity);
+
+                        ps.TotalProductQuantity = ((decimal)RemainQuantity);
+                        context.SubmitChanges();
+
+                        var res = new
+                        {
+                            IssueID = qs.IssueID,
+                            Product = new { Id = p.Product.Id, Text = p.Product.Text },
+                            Area = new IntegerNullString() { Id=issueModel.Area.Id,Text=issueModel.Area.Text},
+                            IssueQuantity = qs.PurchaseQuantity,
+                            Remark = qs.Remark,
+                            UserName = (from n in context.LoginDetails
+                                        where n.LoginID == LoginId
+                                        select n.UserName).FirstOrDefault(),
+                            IssueDate = qs.IssueDate.ToString("dd-MM-yyyy"),
+                            LastUpdated = qs.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                            IsEditable = qs.IsEditable,
+                        };
+
+                        scope.Complete();
+                        return new Result()
+                        {
+                            Status = Result.ResultStatus.success,
+                            Message = "Issue Update Successfully",
+                            Data = res
+                        };
+                    }
+                    else
+                    {
+                        var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
+                        qs.IssueDate = issueModel.IssueDate.ToLocalTime();
+                        qs.LastUpdated = ISDT;
+                        qs.ProductID = p.Product.Id;
+                        qs.AreaId = issueModel.Area.Id;
+                        qs.LoginID = LoginId;
+                        qs.Remark = p.Remark;
+                        qs.PurchaseQuantity = ((decimal)p.IssueQuantity);
+                        RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity;
+                        ps.TotalProductQuantity = ((decimal)RemainQuantity);
+                        pd.TotalProductQuantity = temp;
+                        context.SubmitChanges();
+
+                        var res = new
+                        {
+                            IssueID = qs.IssueID,
+                            Product = new { Id = p.Product.Id, Text = p.Product.Text },
+                            Area = new IntegerNullString() {Id=issueModel.Area.Id,Text=issueModel.Area.Text },
+                            IssueQuantity = qs.PurchaseQuantity,
+                            Remark = qs.Remark,
+                            UserName = (from n in context.LoginDetails
+                                        where n.LoginID == LoginId
+                                        select n.UserName).FirstOrDefault(),
+                            IssueDate = qs.IssueDate.ToString("dd-MM-yyyy"),
+                            LastUpdated = qs.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                            IsEditable = qs.IsEditable,
+                        };
+
+                        scope.Complete();
+                        return new Result()
+                        {
+                            Status = Result.ResultStatus.success,
+                            Message = "Issue Update Successfully",
+                            Data = res,
+                        };
+                    }
+                    /*if (qs.SubAreaID != null)
                     {
 
                         if (qs.SubAreaID == issueModel.SubArea.Id)
@@ -169,24 +280,40 @@ namespace Inventory_Mangement_System.Repository
                             {
                                 var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
                                 RemainQuantity = (float)temp - p.IssueQuantity;
-                                qs.IssueDate = issueModel.Date.ToLocalTime();
+                                qs.IssueDate = issueModel.IssueDate.ToLocalTime();
                                 qs.LastUpdated = ISDT;
                                 qs.ProductID = p.Product.Id;
                                 qs.MainAreaID = issueModel.MainArea.Id;
                                 qs.SubAreaID = issueModel.SubArea.Id;
                                 qs.LoginID = LoginId;
                                 qs.Remark = p.Remark;
-                                qs.PurchaseQuantity = p.IssueQuantity;
+                                qs.PurchaseQuantity = ((decimal)p.IssueQuantity);
 
-                                ps.TotalProductQuantity = RemainQuantity;
+                                ps.TotalProductQuantity = ((decimal)RemainQuantity);
                                 context.SubmitChanges();
 
+                                var res = new
+                                {
+                                    IssueID = qs.IssueID,
+                                    Product = new { Id = p.Product.Id, Text = p.Product.Text },
+                                    MainArea = new IntegerNullString() { Id = issueModel.MainArea.Id, Text = issueModel.MainArea.Text },
+                                    SubArea = new IntegerNullString() { Id = issueModel.SubArea.Id == 0 ? 0 : issueModel.SubArea.Id, Text = issueModel.SubArea.Id == 0 ? null : issueModel.SubArea.Text },
+                                    IssueQuantity = qs.PurchaseQuantity,
+                                    Remark = qs.Remark,
+                                    UserName = (from n in context.LoginDetails
+                                                where n.LoginID == qs.LoginID
+                                                select n.UserName).FirstOrDefault(),
+                                    IssueDate = qs.IssueDate.ToString("dd-MM-yyyy"),
+                                    //LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.LastUpdated),
+                                    //BackupDate = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.BackupDate),
+                                    IsEditable = qs.IsEditable,
+                                };
                                 scope.Complete();
                                 return new Result()
                                 {
                                     Status = Result.ResultStatus.success,
                                     Message = "Issue Update Successfully",
-                                    Data = $"Issue ID : {ID} updated successfully",
+                                    Data = res
                                 };
                             }
                             else
@@ -208,25 +335,41 @@ namespace Inventory_Mangement_System.Repository
                                     }
                                 }
                                 var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
-                                qs.IssueDate = issueModel.Date.ToLocalTime();
+                                qs.IssueDate = issueModel.IssueDate.ToLocalTime();
                                 qs.LastUpdated = ISDT;
                                 qs.ProductID = p.Product.Id;
                                 qs.MainAreaID = issueModel.MainArea.Id;
                                 qs.SubAreaID = issueModel.SubArea.Id;
                                 qs.LoginID = LoginId;
                                 qs.Remark = p.Remark;
-                                qs.PurchaseQuantity = p.IssueQuantity;
+                                qs.PurchaseQuantity = ((decimal)p.IssueQuantity);
                                 RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity;
-                                ps.TotalProductQuantity = RemainQuantity;
+                                ps.TotalProductQuantity = ((decimal)RemainQuantity);
                                 pd.TotalProductQuantity = temp;
                                 context.SubmitChanges();
 
+                                var res = new
+                                {
+                                    IssueID = qs.IssueID,
+                                    Product = new { Id = p.Product.Id, Text = p.Product.Text },
+                                    MainArea = new IntegerNullString() { Id = issueModel.MainArea.Id, Text = issueModel.MainArea.Text },
+                                    SubArea = new IntegerNullString() { Id = issueModel.SubArea.Id == 0 ? 0 : issueModel.SubArea.Id, Text = issueModel.SubArea.Id == 0 ? null : issueModel.SubArea.Text },
+                                    IssueQuantity = qs.PurchaseQuantity,
+                                    Remark = qs.Remark,
+                                    UserName = (from n in context.LoginDetails
+                                                where n.LoginID == qs.LoginID
+                                                select n.UserName).FirstOrDefault(),
+                                    IssueDate = qs.IssueDate.ToString("dd-MM-yyyy"),
+                                    //LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.LastUpdated),
+                                    //BackupDate = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.BackupDate),
+                                    IsEditable = qs.IsEditable,
+                                };
                                 scope.Complete();
                                 return new Result()
                                 {
                                     Status = Result.ResultStatus.success,
                                     Message = "Issue Update Successfully",
-                                    Data = $"Issue ID : {ID} updated successfully",
+                                    Data = res,
                                 };
                             }
                         }
@@ -250,24 +393,40 @@ namespace Inventory_Mangement_System.Repository
                             }
                             var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
                             pd.TotalProductQuantity = temp;
-                            qs.IssueDate = issueModel.Date.ToLocalTime();
+                            qs.IssueDate = issueModel.IssueDate.ToLocalTime();
                             qs.LastUpdated = ISDT;
                             qs.ProductID = p.Product.Id;
                             qs.MainAreaID = issueModel.MainArea.Id;
                             qs.SubAreaID = issueModel.SubArea.Id;
                             qs.LoginID = LoginId;
                             qs.Remark = p.Remark;
-                            qs.PurchaseQuantity = p.IssueQuantity;
+                            qs.PurchaseQuantity = ((decimal)p.IssueQuantity);
                             RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity;
-                            ps.TotalProductQuantity = RemainQuantity;
+                            ps.TotalProductQuantity = ((decimal)RemainQuantity);
                             context.SubmitChanges();
 
+                            var res = new
+                            {
+                                IssueID = qs.IssueID,
+                                Product = new { Id = p.Product.Id, Text = p.Product.Text },
+                                MainArea = new IntegerNullString() { Id = issueModel.MainArea.Id, Text = issueModel.MainArea.Text },
+                                SubArea = new IntegerNullString() { Id = issueModel.SubArea.Id == 0 ? 0 : issueModel.SubArea.Id, Text = issueModel.SubArea.Id == 0 ? null : issueModel.SubArea.Text },
+                                IssueQuantity = qs.PurchaseQuantity,
+                                Remark = qs.Remark,
+                                UserName = (from n in context.LoginDetails
+                                            where n.LoginID == qs.LoginID
+                                            select n.UserName).FirstOrDefault(),
+                                IssueDate = qs.IssueDate.ToString("dd-MM-yyyy"),
+                                //LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.LastUpdated),
+                                //BackupDate = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.BackupDate),
+                                IsEditable = qs.IsEditable,
+                            };
                             scope.Complete();
                             return new Result()
                             {
                                 Status = Result.ResultStatus.success,
                                 Message = "Issue Update Successfully",
-                                Data = $"Issue ID : {ID} updated successfully",
+                                Data = res,
                             };
 
                         }
@@ -280,29 +439,45 @@ namespace Inventory_Mangement_System.Repository
                             {
                                 var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
                                 RemainQuantity = (float)temp - p.IssueQuantity;
-                                qs.IssueDate = issueModel.Date.ToLocalTime();
+                                qs.IssueDate = issueModel.IssueDate.ToLocalTime();
                                 qs.LastUpdated = ISDT;
                                 qs.ProductID = p.Product.Id;
                                 qs.MainAreaID = issueModel.MainArea.Id;
                                 //qs.SubAreaID = issueModel.SubArea.Id;
                                 qs.LoginID = LoginId;
                                 qs.Remark = p.Remark;
-                                qs.PurchaseQuantity = p.IssueQuantity;
+                                qs.PurchaseQuantity = ((decimal)p.IssueQuantity);
 
-                                ps.TotalProductQuantity = RemainQuantity;
+                                ps.TotalProductQuantity = ((decimal)RemainQuantity);
                                 context.SubmitChanges();
 
+                                var res = new
+                                {
+                                    IssueID = qs.IssueID,
+                                    Product = new { Id = p.Product.Id, Text = p.Product.Text },
+                                    MainArea = new IntegerNullString() { Id = issueModel.MainArea.Id, Text = issueModel.MainArea.Text },
+                                    SubArea = new IntegerNullString() { Id = issueModel.SubArea.Id == 0 ? 0 : issueModel.SubArea.Id, Text = issueModel.SubArea.Id == 0 ? null : issueModel.SubArea.Text },
+                                    IssueQuantity = qs.PurchaseQuantity,
+                                    Remark = qs.Remark,
+                                    UserName = (from n in context.LoginDetails
+                                                where n.LoginID == qs.LoginID
+                                                select n.UserName).FirstOrDefault(),
+                                    IssueDate = qs.IssueDate.ToString("dd-MM-yyyy"),
+                                    //LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.LastUpdated),
+                                    //BackupDate = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.BackupDate),
+                                    IsEditable = qs.IsEditable,
+                                };
                                 scope.Complete();
                                 return new Result()
                                 {
                                     Status = Result.ResultStatus.success,
                                     Message = "Issue Update Successfully",
-                                    Data = $"Issue ID : {ID} updated successfully",
+                                    Data = res,
                                 };
                             }
                             else
                             {
-                                var pid = (from obj in context.Issues
+                               *//* var pid = (from obj in context.Issues
                                            where obj.MainAreaID == issueModel.MainArea.Id
                                            select new
                                            {
@@ -317,33 +492,49 @@ namespace Inventory_Mangement_System.Repository
                                             $" area : {issueModel.MainArea.Text}");
 
                                     }
-                                }
+                                }*//*
                                 var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
-                                qs.IssueDate = issueModel.Date.ToLocalTime();
+                                qs.IssueDate = issueModel.IssueDate.ToLocalTime();
                                 qs.LastUpdated = ISDT;
                                 qs.ProductID = p.Product.Id;
                                 qs.MainAreaID = issueModel.MainArea.Id;
-                                // qs.SubAreaID = issueModel.SubArea.Id;
+                              //qs.SubAreaID = issueModel.SubArea.Id;
                                 qs.LoginID = LoginId;
                                 qs.Remark = p.Remark;
-                                qs.PurchaseQuantity = p.IssueQuantity;
+                                qs.PurchaseQuantity = ((decimal)p.IssueQuantity);
                                 RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity;
-                                ps.TotalProductQuantity = RemainQuantity;
+                                ps.TotalProductQuantity = ((decimal)RemainQuantity);
                                 pd.TotalProductQuantity = temp;
                                 context.SubmitChanges();
 
+                                var res = new
+                                {
+                                    IssueID = qs.IssueID,
+                                    Product = new { Id = p.Product.Id, Text = p.Product.Text },
+                                    MainArea = new IntegerNullString() { Id = issueModel.MainArea.Id, Text = issueModel.MainArea.Text },
+                                    SubArea = new IntegerNullString() { Id = issueModel.SubArea.Id == 0 ? 0 : issueModel.SubArea.Id, Text = issueModel.SubArea.Id == 0 ? null : issueModel.SubArea.Text },
+                                    IssueQuantity = qs.PurchaseQuantity,
+                                    Remark = qs.Remark,
+                                    UserName = (from n in context.LoginDetails
+                                                where n.LoginID == qs.LoginID
+                                                select n.UserName).FirstOrDefault(),
+                                    IssueDate = qs.IssueDate.ToString("dd-MM-yyyy"),
+                                    //LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.LastUpdated),
+                                    //BackupDate = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.BackupDate),
+                                    IsEditable = qs.IsEditable,
+                                };
                                 scope.Complete();
                                 return new Result()
                                 {
                                     Status = Result.ResultStatus.success,
                                     Message = "Issue Update Successfully",
-                                    Data = $"Issue ID : {ID} updated successfully",
+                                    Data = res,
                                 };
                             }
                         }
                         else
                         {
-                            var pid = (from obj in context.Issues
+                           *//* var pid = (from obj in context.Issues
                                        where obj.MainAreaID == issueModel.MainArea.Id
                                        select new
                                        {
@@ -358,32 +549,47 @@ namespace Inventory_Mangement_System.Repository
                                         $" area : {issueModel.MainArea.Text}");
 
                                 }
-                            }
+                            }*//*
                             var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
                             pd.TotalProductQuantity = temp;
-                            qs.IssueDate = issueModel.Date.ToLocalTime();
+                            qs.IssueDate = issueModel.IssueDate.ToLocalTime();
                             qs.LastUpdated = ISDT;
                             qs.ProductID = p.Product.Id;
                             qs.MainAreaID = issueModel.MainArea.Id;
                             //qs.SubAreaID = issueModel.SubArea.Id;
                             qs.LoginID = LoginId;
                             qs.Remark = p.Remark;
-                            qs.PurchaseQuantity = p.IssueQuantity;
+                            qs.PurchaseQuantity = ((decimal)p.IssueQuantity);
                             RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity;
-                            ps.TotalProductQuantity = RemainQuantity;
+                            ps.TotalProductQuantity = ((decimal)RemainQuantity);
                             context.SubmitChanges();
-
+                            var res = new
+                            {
+                                IssueID = qs.IssueID,
+                                Product = new { Id = p.Product.Id, Text = p.Product.Text },
+                                MainArea = new IntegerNullString() { Id = issueModel.MainArea.Id, Text = issueModel.MainArea.Text },
+                                SubArea = new IntegerNullString() { Id = issueModel.SubArea.Id == 0 ? 0 : issueModel.SubArea.Id, Text = issueModel.SubArea.Id == 0 ? null : issueModel.SubArea.Text },
+                                IssueQuantity = qs.PurchaseQuantity,
+                                Remark = qs.Remark,
+                                UserName = (from n in context.LoginDetails
+                                            where n.LoginID == qs.LoginID
+                                            select n.UserName).FirstOrDefault(),
+                                IssueDate = qs.IssueDate.ToString("dd-MM-yyyy"),
+                                //LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.LastUpdated),
+                                //BackupDate = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.BackupDate),
+                                IsEditable = qs.IsEditable,
+                            };
                             scope.Complete();
                             return new Result()
                             {
                                 Status = Result.ResultStatus.success,
                                 Message = "Issue Update Successfully",
-                                Data = $"Issue ID : {ID} updated successfully",
+                                Data = res,
                             };
 
                         }
-                    }
-                          
+                    }*/
+
 
                 }
 
@@ -393,21 +599,21 @@ namespace Inventory_Mangement_System.Repository
         }
 
         //Get MainArea Dropdown
-        public async Task<IEnumerable> GetMainArea()
+        public async Task<IEnumerable> GetArea()
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
-                return (from x in context.MainAreas
+                return (from x in context.AreaDetails
                         select new IntegerNullString()
                         {
-                            Text = x.MainAreaName,
-                            Id = x.MainAreaID
+                            Text = x.AreaName,
+                            Id = x.AreaId
                         }).ToList();
             }
         }
 
         //Get SubArea Dropdown
-        public async Task<IEnumerable> GetSubArea(int id)
+    /*    public async Task<IEnumerable> GetSubArea(int id)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
@@ -419,7 +625,7 @@ namespace Inventory_Mangement_System.Repository
                             Id = x.SubAreaID
                         }).ToList();
             }
-        }
+        }*/
 
         //Get Product Dropdown with Unit And Quantity
         public async Task<IEnumerable> GetProduct()

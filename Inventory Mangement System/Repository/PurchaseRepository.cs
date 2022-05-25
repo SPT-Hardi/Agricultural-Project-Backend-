@@ -17,38 +17,99 @@ namespace Inventory_Mangement_System.Repository
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
-                PurchaseDetail purchaseDetail = new PurchaseDetail();
-                return new Result()
+                using (TransactionScope scope = new TransactionScope())
                 {
-                    Status = Result.ResultStatus.success,
-                    Data = (from obj in context.PurchaseDetails
+                    var res = (from obj in context.PurchaseDetails/*
                             join obj2 in context.Products
                             on obj.ProductID equals obj2.ProductID into JoinTablePN
-                            from PN in JoinTablePN.DefaultIfEmpty()
-                            orderby obj.PurchaseID descending 
-                            select new
-                            {
-                                PurchaseID = obj.PurchaseID,
-                                ProductName = new IntegerNullString() { Id = obj.Product.ProductID, Text = obj.Product.ProductName },
-                                TotalQuantity = obj.TotalQuantity,
-                                TotalCost = obj.TotalCost,
-                                Unit = obj.Unit,
-                                Remark = obj.Remark,
-                                VendorName = obj.VendorName,
-                                PurchaseDate = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.PurchaseDate),
-                                UserName = (from n in context.LoginDetails
-                                            where n.LoginID == obj.LoginID
-                                            select n.UserName).FirstOrDefault(),
-                                LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.LastUpdated),
-                                BackupDate= String.Format("{0:dd-MM-yyyy hh:mm tt}", obj.BackupDate),
-                                IsEditable =obj.IsEditable,
-                            }).ToList(),
+                            from PN in JoinTablePN.DefaultIfEmpty()*/
+                               where obj.IsEditable == true
+                               orderby obj.PurchaseID descending
+                               select new
+                               {
+                                   PurchaseID = obj.PurchaseID,
+                                   ProductName = new IntegerNullString() { Id = obj.Product.ProductID, Text = obj.Product.ProductName },
+                                   TotalQuantity = obj.TotalQuantity,
+                                   TotalCost = obj.TotalCost,
+                                   Unit = obj.Unit,
+                                   Remark = obj.Remark,
+                                   VendorName = obj.VendorName,
+                                   PurchaseDate = obj.PurchaseDate.ToString("dd-MM-yyyy"),
+                                   UserName = obj.LoginDetail.UserName,
+                                   LastUpdated = obj.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                                   IsEditable = obj.IsEditable,
+                                   BillNumber = obj.BillNumber,
+                                   PurchaseLocation = obj.PurchaseLocation,
+                                   EditedList = (from x in context.PurchaseDetails
+                                                 where x.ParentId == obj.PurchaseID
+                                                 orderby x.PurchaseID descending
+                                                 select new
+                                                 {
+                                                     PurchaseID = x.PurchaseID,
+                                                     ProductName = new IntegerNullString() { Id = x.Product.ProductID, Text = x.Product.ProductName },
+                                                     TotalQuantity = x.TotalQuantity,
+                                                     TotalCost = x.TotalCost,
+                                                     Unit = x.Unit,
+                                                     Remark = x.Remark,
+                                                     VendorName = x.VendorName,
+                                                     PurchaseDate =x.PurchaseDate,
+                                                     UserName = x.LoginDetail.UserName,
+                                                     LastUpdated = x.LastUpdated,
+                                                     IsEditable = x.IsEditable,
+                                                     BillNumber = x.BillNumber.ToLower(),
+                                                     PurchaseLocation = x.PurchaseLocation,
 
-                };
+
+                                                 }).ToList(),
+                               }).ToList();
+                    scope.Complete();
+                    return new Result()
+                    {
+                        Status = Result.ResultStatus.success,
+                        Data = res
+
+                    };
+                }
             }
 
         }
+        public Result GetPurchaseEditDetails(int Id) 
+        {
+            using (ProductInventoryDataContext c = new ProductInventoryDataContext())
+            {
+                    var res = (from obj in c.PurchaseDetails
+                               where obj.ParentId==Id
+                               select new
+                               {
+                                   PurchaseID = obj.PurchaseID,
+                                   ProductName = new IntegerNullString() { Id = obj.Product.ProductID, Text = obj.Product.ProductName },
+                                   TotalQuantity = obj.TotalQuantity,
+                                   TotalCost = obj.TotalCost,
+                                   Unit = obj.Unit,
+                                   Remark = obj.Remark,
+                                   VendorName = obj.VendorName,
+                                   PurchaseDate = obj.PurchaseDate.ToString("dd-MM-yyyy"),
+                                   UserName = obj.LoginDetail.UserName,
+                                   LastUpdated = obj.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                                   IsEditable = obj.IsEditable,
+                                   BillNumber = obj.BillNumber,
+                                   PurchaseLocation = obj.PurchaseLocation
 
+                               }).ToList();
+                   
+                    return new Result()
+                    {
+                        Status = Result.ResultStatus.success,
+                        Message = "Edited Purchase details get successfully!",
+                        Data = "Good",
+                    };
+                
+            }
+        }
+        public string GetFormatedDate(DateTime date) 
+        {
+            return date.ToString("dd-MM-yyyy");
+        }
         //Add Purchase Details
         public Result AddPurchaseDetails(PurchaseModel purchaseModel,int LoginId)
         {
@@ -69,15 +130,14 @@ namespace Inventory_Mangement_System.Repository
                                                   where u.ProductID == obj.productname.Id
                                                   select u.ProductUnit.Type).SingleOrDefault(),
                                         PurchaseDate = obj.Purchasedate.ToLocalTime(),
-                                        TotalQuantity = obj.totalquantity,
-                                        TotalCost = obj.totalcost,
+                                        TotalQuantity = ((decimal)obj.totalquantity),
+                                        TotalCost = ((decimal)obj.totalcost),
                                         Remark = obj.remarks,
                                         PurchaseLocation=obj.PurchaseLocation,
                                         BillNumber=obj.BillNumber,
-                                        VendorName = (obj.vendorname == null  ? "" : char.ToUpper(obj.vendorname[0]) + obj.vendorname.Substring(1).ToLower()),
+                                        VendorName = (obj.vendorname == null  ? null : char.ToUpper(obj.vendorname[0]) + obj.vendorname.Substring(1).ToLower()),
                                         LoginID = LoginId,
                                         LastUpdated = ISDT,
-                                        BackupDate=ISDT,
                                     }).ToList();
                 foreach (var item in purchaselist)
                 {
@@ -140,7 +200,7 @@ namespace Inventory_Mangement_System.Repository
                                   where obj.ProductID == qs.ProductID
                                   select obj).SingleOrDefault();
                         var updatedQuantity = db.TotalProductQuantity - qs.TotalQuantity;
-                        db.TotalProductQuantity = updatedQuantity + q.totalquantity;
+                        db.TotalProductQuantity = updatedQuantity + ((decimal)q.totalquantity);
                         context.SubmitChanges();
                     }
                     else
@@ -153,22 +213,22 @@ namespace Inventory_Mangement_System.Repository
                                    select obj).SingleOrDefault();
 
                         db.TotalProductQuantity = db.TotalProductQuantity - qs.TotalQuantity;
-                        udb.TotalProductQuantity = udb.TotalProductQuantity + q.totalquantity;
+                        udb.TotalProductQuantity = udb.TotalProductQuantity + ((decimal)q.totalquantity);
                         context.SubmitChanges();
                     }
                     //enter new backup not editable
                     PurchaseDetail backup = new PurchaseDetail();
                     backup.ProductID =qs.ProductID;
+                    backup.ParentId = qs.PurchaseID;
                     backup.TotalCost =qs.TotalCost;
                     backup.TotalQuantity =qs.TotalQuantity;
                     backup.Unit =qs.Unit;
                     backup.PurchaseDate =qs.PurchaseDate;
                     backup.PurchaseLocation =qs.PurchaseLocation;
-                    backup.LastUpdated =qs.LastUpdated;
-                    backup.BackupDate = qs.BackupDate;
+                    backup.LastUpdated =ISDT;
                     backup.BillNumber =qs.BillNumber;
                     backup.Remark =qs.Remark;
-                    backup.LoginID =qs.LoginID;
+                    backup.LoginID =LoginId;
                     backup.VendorName =qs.VendorName;
                     backup.IsEditable = false;
                     context.PurchaseDetails.InsertOnSubmit(backup);
@@ -176,28 +236,48 @@ namespace Inventory_Mangement_System.Repository
 
 
                     //update old entry editable
+                    qs.PurchaseDate = q.Purchasedate.ToLocalTime();
                     qs.ProductID = q.productname.Id;
-                    qs.TotalQuantity = q.totalquantity;
-                    qs.TotalCost = q.totalcost;
+                    qs.TotalQuantity = ((decimal)q.totalquantity);
+                    qs.TotalCost = ((decimal)q.totalcost);
                     qs.Unit = funit;
                     qs.PurchaseLocation = q.PurchaseLocation;
                     qs.BillNumber = q.BillNumber;
                     qs.Remark = q.remarks;
                     qs.LoginID = LoginId;
-                    qs.VendorName = (q.vendorname == null ? "" : char.ToUpper(q.vendorname[0]) + q.vendorname.Substring(1).ToLower());
-                    qs.PurchaseDate = q.Purchasedate.ToLocalTime();
+                    qs.VendorName = (q.vendorname == null ? null : char.ToUpper(q.vendorname[0]) + q.vendorname.Substring(1).ToLower());
                     qs.LastUpdated = ISDT;
                     context.SubmitChanges();
 
+                    var res = new
+                    {
+                        PurchaseID = qs.PurchaseID,
+                        ProductName = new IntegerNullString() { Id = q.productname.Id, Text = q.productname.Text },
+                        TotalQuantity = qs.TotalQuantity,
+                        TotalCost = qs.TotalCost,
+                        Unit = qs.Unit,
+                        Remark = qs.Remark,
+                        VendorName = qs.VendorName,
+                        PurchaseDate = qs.PurchaseDate.ToString("dd-MM-yyyy"),
+                        UserName = (from n in context.LoginDetails
+                                    where n.LoginID ==LoginId
+                                    select n.UserName).FirstOrDefault(),
+                        LastUpdated =  qs.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                        IsEditable = qs.IsEditable,
+                        BillNumber = qs.BillNumber,
+                        PurchaseLocation = qs.PurchaseLocation
+                    };
                     scope.Complete();
-                
-                }
-                return new Result()
-                {
-                    Message = string.Format("Purchase Updated Successfully"),
-                    Status = Result.ResultStatus.success,
+                    return new Result()
+                    {
+                        Message = string.Format("Purchase Updated Successfully"),
+                        Status = Result.ResultStatus.success,
+                        Data = res
 
-                };
+                    };
+                }
+                
+               
             }
         }
         

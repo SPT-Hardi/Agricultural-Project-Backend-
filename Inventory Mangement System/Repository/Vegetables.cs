@@ -21,35 +21,30 @@ namespace Inventory_Mangement_System.Repository
                         throw new ArgumentException("Yor are not authorized!");
                     }
                     ProductInventoryContext.Vegetable v = new Vegetable();
-                    foreach (var item in value.vegetables) 
+                    
+                    var checkexist = (from x in c.Vegetables where x.VegetableName.ToLower() == value.VegetableName.ToLower() select x).FirstOrDefault();
+                    if (checkexist != null) 
                     {
-                        var checkexist = (from x in c.Vegetables where x.VegetableName.ToLower() == item.VegetableName.ToLower() select x).FirstOrDefault();
-                        if (checkexist != null) 
-                        {
-                            throw new ArgumentException($"Vegetable name: {item.VegetableName} already exist!");
-                        }
+                        throw new ArgumentException($"Vegetable name: {value.VegetableName} already exist!");
                     }
-                    var vegetablelist = (from x in value.vegetables
-                                         select new Vegetable()
-                                         {
-                                             VegetableName=x.VegetableName
 
-                                         }).ToList();
-                    c.Vegetables.InsertAllOnSubmit(vegetablelist);
+                    v.VegetableName = value.VegetableName;
+                    
+                    c.Vegetables.InsertOnSubmit(v);
                     c.SubmitChanges();
 
                     scope.Complete();
-                    var res = (from x in vegetablelist
-                               select new IntegerNullString()
-                               {
-                                   Id =x.VegetableId,
-                                   Text =x.VegetableName,
-                               }).ToList();
+                    
                     return new Result()
                     {
                         Status = Result.ResultStatus.success,
                         Message = "Vegetables added successfully!",
-                        Data =res,
+                        Data =new 
+                        {
+                            VegetableId=v.VegetableId,
+                            VegetableName=value.VegetableName,
+
+                        },
                     };
                 }
                 }
@@ -70,7 +65,7 @@ namespace Inventory_Mangement_System.Repository
                 }
             
             }
-        public Result Update(int Id,Model.VegetableList value,object loginid) 
+        public Result Update(int Id,Model.Vegetable value,object loginid) 
         {
             using (TransactionScope scope = new TransactionScope())
             {
@@ -85,8 +80,8 @@ namespace Inventory_Mangement_System.Repository
                     {
                         throw new ArgumentException("Vegetable details not exist for current Id!");
                     }
-                   
-                    if (vegetable.VegetableName.ToLower()==value.VegetableName.ToLower())
+                    var vegetableexist = (from x in c.Vegetables where x.VegetableName.ToLower() == value.VegetableName.ToLower() select x).FirstOrDefault();
+                    if (vegetableexist!=null)
                     {
                         throw new ArgumentException($"Vegetable name: {value.VegetableName} already exist!");
                     }

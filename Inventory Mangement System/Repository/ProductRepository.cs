@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Inventory_Mangement_System.Repository
 {
@@ -85,45 +86,65 @@ namespace Inventory_Mangement_System.Repository
             var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
-                var product = context.Products.SingleOrDefault(id => id.ProductID == productID);
-                if (product == null)
+                using (TransactionScope scope = new TransactionScope())
                 {
-                    throw new Exception("Product Does Not Exist.");
-                }
-                if (product.ProductName != productDetail.ProductName)
-                {
-                    var _product = context.Products.SingleOrDefault(name => name.ProductName == productDetail.ProductName);
-                    if (_product != null)
-                    {
-                        throw new Exception("Product Alredy Exits.");
-                    }
-                }
-                /*if (product.IsEditable == false) 
-                {
-                    throw new ArgumentException("Not editable!");
-                }
-                //backup entry
-                product.IsEditable = false;
-                context.SubmitChanges();*/
 
-                //update
-                //Product p = new Product();
-                product.ProductName = char.ToUpper(productDetail.ProductName[0]) + productDetail.ProductName.Substring(1).ToLower();
-                product.Variety = productDetail.Variety;
-                product.Company = productDetail.Company;
-                product.Description = productDetail.Description;
-                product.CategoryID = (int)productDetail.categoryType.Id;
-                product.LoginID = LoginId;
-                product.DateTime = ISDT;
-                product.UnitID = (int)productDetail.type.Id;
-                //context.Products.InsertOnSubmit(p);
-                context.SubmitChanges();
-                
-                return new Result()
-                {
-                    Message = string.Format($"{productDetail.ProductName} Updated Successfully."),
-                    Status = Result.ResultStatus.success,
-                };
+                    var product = context.Products.SingleOrDefault(id => id.ProductID == productID);
+                    if (product == null)
+                    {
+                        throw new Exception("Product Does Not Exist.");
+                    }
+                    if (product.ProductName != productDetail.ProductName)
+                    {
+                        var _product = context.Products.SingleOrDefault(name => name.ProductName == productDetail.ProductName);
+                        if (_product != null)
+                        {
+                            throw new Exception("Product Alredy Exits.");
+                        }
+                    }
+                    /*if (product.IsEditable == false) 
+                    {
+                        throw new ArgumentException("Not editable!");
+                    }
+                    //backup entry
+                    product.IsEditable = false;
+                    context.SubmitChanges();*/
+
+                    //update
+                    //Product p = new Product();
+                    product.ProductName = char.ToUpper(productDetail.ProductName[0]) + productDetail.ProductName.Substring(1).ToLower();
+                    product.Variety = productDetail.Variety;
+                    product.Company = productDetail.Company;
+                    product.Description = productDetail.Description;
+                    product.CategoryID = (int)productDetail.categoryType.Id;
+                    product.LoginID = LoginId;
+                    product.DateTime = ISDT;
+                    product.UnitID = (int)productDetail.type.Id;
+                    //context.Products.InsertOnSubmit(p);
+                    context.SubmitChanges();
+
+                    var res = new
+                    {
+                        ProductID = product.ProductID,
+                        ProductName = product.ProductName,
+                        Variety = product.Variety,
+                        Company = product.Company,
+                        Description = product.Description,
+                        Type = new Model.Common.IntegerNullString() { Id = productDetail.type.Id, Text = productDetail.type.Text },
+                        CategoryType = new Model.Common.IntegerNullString() { Id = productDetail.categoryType.Id, Text = productDetail.categoryType.Text },
+                        UserName = (from n in context.LoginDetails
+                                    where n.LoginID == product.LoginID
+                                    select n.UserName).FirstOrDefault(),
+                        DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", product.DateTime),
+                    };
+                    scope.Complete();
+                    return new Result()
+                    {
+                        Message = string.Format($"{productDetail.ProductName} Updated Successfully."),
+                        Status = Result.ResultStatus.success,
+                        Data=res
+                    };
+                }
             }
         }
 

@@ -31,9 +31,16 @@ namespace Inventory_Mangement_System
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(option =>
+            services.AddCors(options =>
             {
-                option.AddDefaultPolicy(builder => builder.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
+                options.AddPolicy("MyPolicy",
+                                  builder =>
+                                  {
+                                      builder.SetIsOriginAllowed(host => true)
+                                      .AllowAnyMethod()
+                                      .AllowAnyHeader()
+                                      .AllowCredentials();
+                                  });
             });
 
             /*ProductInventoryContext.ProductInventoryDataContext db 
@@ -88,12 +95,7 @@ namespace Inventory_Mangement_System
         {
             Inventory_Mangement_System.Repository.Developer.Contact.Current.SetHttpContextAccessor(accessor);
 
-            app.UseCors(builder => builder
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .SetIsOriginAllowed((host) => true)
-            .AllowCredentials()
-            );
+            app.UseCors("MyPolicy");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

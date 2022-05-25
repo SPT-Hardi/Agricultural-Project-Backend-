@@ -12,7 +12,7 @@ namespace Inventory_Mangement_System.Repository
         //New Main Area Add
         Result AddMainAreaAsync(AreaModel AreaModel,int LoginId);
         //Edit Main And Sub Area
-        Result EditArea(UpdateAreaModel value, int mid, int sid,int LoginId);
+        Result EditArea(UpdateAreaModel value, int Id,int LoginId);
         
     }
 }

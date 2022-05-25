@@ -43,15 +43,15 @@ namespace Inventory_Mangement_System.Controllers
         }
 
         //Edit Main And Sub Area
-        [HttpPut("EditArea/{mid}/{sid}")]
-        public async Task<IActionResult> EditAreaAsync(UpdateAreaModel value, int mid, int sid)
+        [HttpPut("EditArea/{Id}")]
+        public async Task<IActionResult> EditAreaAsync(UpdateAreaModel value, int Id)
         {
             if ((int)HttpContext.Items["LoginId"] == 0)
             {
                 throw new ArgumentException("JWT Token Not Found.");
             }
             int LoginId = (int)HttpContext.Items["LoginId"];
-            var result = _areaRepository.EditArea(value, mid,sid,LoginId);
+            var result = _areaRepository.EditArea(value, Id,LoginId);
             return Ok(result);
         }
         
