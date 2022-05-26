@@ -57,6 +57,10 @@
       <Generator>DevartLinqToSqlGenerator</Generator>
       <LastGenOutput>DataContext.Designer.cs</LastGenOutput>
     </None>
+    <None Update="DataContext.ProductInventoryDataContextDiagram.view">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DataContext.lqml</DependentUpon>
+    </None>
   </ItemGroup>
 
 </Project>
