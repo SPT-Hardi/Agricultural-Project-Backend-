@@ -188,6 +188,9 @@ namespace Inventory_Mangement_System.Repository
                     pro.LoginID = LoginId;
                     pro.Remark = productionModel.Remark;
                     context.SubmitChanges();
+                    
+
+                    
                     var res = new
                     {
                         ProductionID = pro.ProductionID,
@@ -201,6 +204,22 @@ namespace Inventory_Mangement_System.Repository
                         LastUpdated = pro.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
                         ProductionDate = pro.ProductionDate.ToString("dd-MM-yyyy"),
                         IsEditable = pro.IsEditable,
+                        EditedList = (from x in context.ProductionDetails
+                                      where x.ParentId == pro.ProductionID
+                                      orderby x.ProductionID descending
+                                      select new
+                                      {
+                                          ProductionID = x.ProductionID,
+                                          Area = new Model.Common.IntegerNullString() { Id = x.AreaDetail.AreaId, Text = x.AreaDetail.AreaName },
+                                          Vegetable = new IntegerNullString() { Id = x.Vegetable.VegetableId, Text = x.Vegetable.VegetableName },
+                                          Quantity = x.Quantity,
+                                          Remark = x.Remark,
+                                          UserName = x.LoginDetail.UserName,
+                                          LastUpdated = x.LastUpdated,
+                                          ProductionDate = x.ProductionDate,
+                                          IsEditable = x.IsEditable,
+
+                                      }).ToList()
                     };
                     scope.Complete();
                     return new Result()

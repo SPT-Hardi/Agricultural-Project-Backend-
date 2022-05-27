@@ -265,7 +265,29 @@ namespace Inventory_Mangement_System.Repository
                         LastUpdated =  qs.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
                         IsEditable = qs.IsEditable,
                         BillNumber = qs.BillNumber,
-                        PurchaseLocation = qs.PurchaseLocation
+                        PurchaseLocation = qs.PurchaseLocation,
+                        EditedList = (from x in context.PurchaseDetails
+                                      where x.ParentId == qs.PurchaseID
+                                      orderby x.PurchaseID descending
+                                      select new
+                                      {
+                                          PurchaseID = x.PurchaseID,
+                                          ProductName = new IntegerNullString() { Id = x.Product.ProductID, Text = x.Product.ProductName },
+                                          TotalQuantity = x.TotalQuantity,
+                                          TotalCost = x.TotalCost,
+                                          Unit = x.Unit,
+                                          Remark = x.Remark,
+                                          VendorName = x.VendorName,
+                                          PurchaseDate = x.PurchaseDate,
+                                          UserName = x.LoginDetail.UserName,
+                                          LastUpdated = x.LastUpdated,
+                                          IsEditable = x.IsEditable,
+                                          BillNumber = x.BillNumber.ToLower(),
+                                          PurchaseLocation = x.PurchaseLocation,
+
+
+                                      }).ToList(),
+
                     };
                     scope.Complete();
                     return new Result()

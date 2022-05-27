@@ -223,6 +223,23 @@ namespace Inventory_Mangement_System.Repository
                             IssueDate = qs.IssueDate.ToString("dd-MM-yyyy"),
                             LastUpdated = qs.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
                             IsEditable = qs.IsEditable,
+                            EditedList = (from x in context.Issues
+                                          where x.ParentId == qs.IssueID
+                                          orderby x.IssueID descending
+                                          select new
+                                          {
+                                              IssueID = x.IssueID,
+                                              Product = new { Id = x.Product.ProductID, Text = x.Product.ProductName, Unit = x.Product.ProductUnit.Type },
+                                              Area = new IntegerNullString() { Id = x.AreaDetail.AreaId, Text = x.AreaDetail.AreaName },
+                                              IssueQuantity = x.PurchaseQuantity,
+                                              Remark = x.Remark,
+                                              UserName = x.LoginDetail.UserName,
+                                              IssueDate = x.IssueDate,
+                                              LastUpdated = x.LastUpdated,
+                                              IsEditable = x.IsEditable,
+
+                                          }).ToList()
+
                         };
 
                         scope.Complete();
@@ -261,6 +278,22 @@ namespace Inventory_Mangement_System.Repository
                             IssueDate = qs.IssueDate.ToString("dd-MM-yyyy"),
                             LastUpdated = qs.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
                             IsEditable = qs.IsEditable,
+                            EditedList = (from x in context.Issues
+                                          where x.ParentId == qs.IssueID
+                                          orderby x.IssueID descending
+                                          select new
+                                          {
+                                              IssueID = x.IssueID,
+                                              Product = new { Id = x.Product.ProductID, Text = x.Product.ProductName, Unit = x.Product.ProductUnit.Type },
+                                              Area = new IntegerNullString() { Id = x.AreaDetail.AreaId, Text = x.AreaDetail.AreaName },
+                                              IssueQuantity = x.PurchaseQuantity,
+                                              Remark = x.Remark,
+                                              UserName = x.LoginDetail.UserName,
+                                              IssueDate = x.IssueDate,
+                                              LastUpdated = x.LastUpdated,
+                                              IsEditable = x.IsEditable,
+
+                                          }).ToList()
                         };
 
                         scope.Complete();
