@@ -143,6 +143,7 @@ namespace Inventory_Mangement_System.Repository
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
+
                     /*
                                         var m = (from x in context.MainAreas where x.MainAreaID == mid select x).FirstOrDefault();
 
@@ -219,14 +220,14 @@ namespace Inventory_Mangement_System.Repository
                                             }
                                         };*/
                     var areadetail = (from x in context.AreaDetails where x.AreaId == Id select x).FirstOrDefault();
-                    if (areadetail.AreaName.ToLower() == (value.SubAreaName == null ? value.MainAreaName.ToLower() : $"{value.MainAreaName.ToLower()}-{value.SubAreaName.ToLower()}")) 
-                    { 
+                    if (areadetail.AreaName.ToLower() == (value.SubAreaName == null ? value.MainAreaName.ToLower() : $"{value.MainAreaName.ToLower()}-{value.SubAreaName.ToLower()}"))
+                    {
                         throw new ArgumentException($"AreaName : {(value.SubAreaName == null ? value.MainAreaName : $"{value.MainAreaName}-{value.SubAreaName}")} already exist under MainArea: {value.MainAreaName}!");
                     }
-                    areadetail.MainAreaName =value.MainAreaName;
-                    areadetail.SubAreaName =value.SubAreaName;
+                    areadetail.MainAreaName = value.MainAreaName;
+                    areadetail.SubAreaName = value.SubAreaName;
                     areadetail.AreaName = (value.SubAreaName == null ? value.MainAreaName : $"{value.MainAreaName}-{value.SubAreaName}");
-                    areadetail.LastUpdated =ISDT;
+                    areadetail.LastUpdated = ISDT;
                     areadetail.LoginId = LoginId;
 
                     context.SubmitChanges();
@@ -238,15 +239,15 @@ namespace Inventory_Mangement_System.Repository
                         MainAreaName = areadetail.MainAreaName,
                         SubAreaName = areadetail.SubAreaName,
                         LastUpdated = areadetail.LastUpdated.ToString("dd-MM-yyy hh:mm tt"),
-                        UserName = (from x in context.LoginDetails where x.LoginID==LoginId select x.UserName).FirstOrDefault(),
+                        UserName = (from x in context.LoginDetails where x.LoginID == LoginId select x.UserName).FirstOrDefault(),
                     };
 
                     scope.Complete();
 
                     return new Result()
                     {
-                        Status=Result.ResultStatus.success,
-                        Message="Area details updated successfully!",
+                        Status = Result.ResultStatus.success,
+                        Message = "Area details updated successfully!",
                         Data = res
                     };
                 }
