@@ -43,7 +43,7 @@ namespace Inventory_Mangement_System.Model
         [RegularExpression(@"^.{1,150}$", ErrorMessage = "Maximum 150 charcters are allowed!")]
         public string PurchaseLocation { get; set; }
         [Required(ErrorMessage = "BillNumber is required!")]
-        [RegularExpression(@"^[a-z A-Z 0-9 -'@#.]{1,50}$", ErrorMessage = "Maximum 50 character allowed!")]
+        [RegularExpression(@"^[a-z A-Z 0-9 -]{1,50}$", ErrorMessage = "Maximum 50 character including special char (-) are allowed!")]
         public string BillNumber { get; set; }
         public Model.Common.IntegerNullString productname { get; set; } = new Model.Common.IntegerNullString();
     }

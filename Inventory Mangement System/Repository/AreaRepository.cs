@@ -84,54 +84,54 @@ namespace Inventory_Mangement_System.Repository
                      }*/
                     LoginDetail lgin = new LoginDetail();
 
-                    var mainarealist = (from m in areaModel.arealist
-                                        select m
-                                        ).ToList();
-
-                    foreach (var item in mainarealist)
-                    {
-                        if (item.subarea.Count() == 0)
-                        {
-                            AreaDetail areaDetail = new AreaDetail();
-                            areaDetail.MainAreaName = item.MainAreaName;
-                            areaDetail.SubAreaName = null;
-                            areaDetail.AreaName = item.MainAreaName;
-                            areaDetail.LastUpdated = ISDT;
-                            areaDetail.LoginId = LoginId;
-
-                            context.AreaDetails.InsertOnSubmit(areaDetail);
-                            context.SubmitChanges();
-                        }
-                        else
-                        {
-
-                            var SD1 = (from y in item.subarea
-                                       select new AreaDetail()
-                                       {
-                                           MainAreaName = item.MainAreaName,
-                                           SubAreaName = y.SubAreaName,
-                                           LoginId = LoginId,
-                                           AreaName = (from x in context.AreaDetails
-                                                       where x.AreaName.ToLower() == (y.SubAreaName == null ? item.MainAreaName.ToLower() : $"{item.MainAreaName.ToLower()}-{y.SubAreaName.ToLower()}")
-                                                       //where (x.MainAreaName.ToLower()==item.MainAreaName.ToLower()) && (y.SubAreaName==null ? true : (x.SubAreaName==null ? null : x.SubAreaName.ToLower())==y.SubAreaName.ToLower())
-                                                       select x.AreaName).Count() > 0 ? throw new ArgumentException($"AreaName : {(y.SubAreaName == null ? item.MainAreaName.Trim() : $"{item.MainAreaName.Trim()}-{y.SubAreaName.Trim()}")} already exist under MainArea: {item.MainAreaName}!") : (y.SubAreaName == null ? item.MainAreaName.Trim() : $"{item.MainAreaName.Trim()}-{y.SubAreaName.Trim()}"),
-
-                                           LastUpdated = ISDT,
-                                       }).ToList();
-                            context.AreaDetails.InsertAllOnSubmit(SD1);
-                            context.SubmitChanges();
-                        }
-                    }
-                    
-
-                    scope.Complete();
-                    return new Result()
-                    {
-                        Message = string.Format($"Area Added Successfully."),
-                        Status = Result.ResultStatus.success,
-                        Data = areaModel,
-                    };
-                }
+                   var mainarealist = (from m in areaModel.arealist
+                                       select m
+                                       ).ToList();
+                   
+                   foreach (var item in mainarealist)
+                   {
+                       if (item.subarea.Count() == 0)
+                       {
+                           AreaDetail areaDetail = new AreaDetail();
+                           areaDetail.MainAreaName = item.MainAreaName;
+                           areaDetail.SubAreaName = null;
+                           areaDetail.AreaName = item.MainAreaName;
+                           areaDetail.LastUpdated = ISDT;
+                           areaDetail.LoginId = LoginId;
+                   
+                           context.AreaDetails.InsertOnSubmit(areaDetail);
+                           context.SubmitChanges();
+                       }
+                       else
+                       {
+                   
+                           var SD1 = (from y in item.subarea
+                                      select new AreaDetail()
+                                      {
+                                          MainAreaName = item.MainAreaName,
+                                          SubAreaName = y.SubAreaName,
+                                          LoginId = LoginId,
+                                          AreaName = (from x in context.AreaDetails
+                                                      where x.AreaName.ToLower() == (y.SubAreaName == null ? item.MainAreaName.ToLower() : $"{item.MainAreaName.ToLower()}-{y.SubAreaName.ToLower()}")
+                                                      //where (x.MainAreaName.ToLower()==item.MainAreaName.ToLower()) && (y.SubAreaName==null ? true : (x.SubAreaName==null ? null : x.SubAreaName.ToLower())==y.SubAreaName.ToLower())
+                                                      select x.AreaName).Count() > 0 ? throw new ArgumentException($"AreaName : {(y.SubAreaName == null ? item.MainAreaName.Trim() : $"{item.MainAreaName.Trim()}-{y.SubAreaName.Trim()}")} already exist under MainArea: {item.MainAreaName}!") : (y.SubAreaName == null ? item.MainAreaName.Trim() : $"{item.MainAreaName.Trim()}-{y.SubAreaName.Trim()}"),
+                   
+                                          LastUpdated = ISDT,
+                                      }).ToList();
+                           context.AreaDetails.InsertAllOnSubmit(SD1);
+                           context.SubmitChanges();
+                       }
+                   }
+                   
+                   
+                   scope.Complete();
+                   return new Result()
+                   {
+                       Message = string.Format($"Area Added Successfully."),
+                       Status = Result.ResultStatus.success,
+                       Data = areaModel,
+                   };
+                }  
             }
         }
 

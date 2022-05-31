@@ -27,7 +27,7 @@ namespace Inventory_Mangement_System.serevices
                 issuer: _configuration["JWT:ValidIssuer"],
                 audience: _configuration["Jwt:ValidAudience"],
                 notBefore: DateTime.Now,
-                expires: DateTime.Now.AddDays(1),
+                expires: DateTime.Now.AddMonths(1),
                 claims: claims,
                 signingCredentials: new SigningCredentials(authSignKey, SecurityAlgorithms.HmacSha256)
             );

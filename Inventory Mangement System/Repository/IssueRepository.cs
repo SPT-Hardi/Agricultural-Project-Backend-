@@ -33,7 +33,6 @@ namespace Inventory_Mangement_System.Repository
                                 UserName = obj.LoginDetail.UserName,
                                 IssueDate = obj.IssueDate.ToString("dd-MM-yyyy"),
                                 LastUpdated = obj.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
-                                IsEditable=obj.IsEditable,
                                 EditedList=(from x in context.Issues
                                             where x.ParentId==obj.IssueID
                                             orderby x.IssueID descending
@@ -49,7 +48,9 @@ namespace Inventory_Mangement_System.Repository
                                                 LastUpdated =x.LastUpdated,
                                                 IsEditable = x.IsEditable,
 
-                                            }).ToList()
+                                            }).ToList(),
+                                HaveEditedList= (from x in context.Issues
+                                          where x.ParentId == obj.IssueID select x).ToList().Count()>0 ? true : false,
                             }).ToList(),
                 };
             }
@@ -238,7 +239,11 @@ namespace Inventory_Mangement_System.Repository
                                               LastUpdated = x.LastUpdated,
                                               IsEditable = x.IsEditable,
 
-                                          }).ToList()
+                                          }).ToList(),
+                            HaveEditedList = (from x in context.Issues
+                                              where x.ParentId == qs.IssueID
+                                              select x).ToList().Count() > 0 ? true : false,
+
 
                         };
 
@@ -293,7 +298,11 @@ namespace Inventory_Mangement_System.Repository
                                               LastUpdated = x.LastUpdated,
                                               IsEditable = x.IsEditable,
 
-                                          }).ToList()
+                                          }).ToList(),
+                            HaveEditedList = (from x in context.Issues
+                                              where x.ParentId == qs.IssueID
+                                              select x).ToList().Count() > 0 ? true : false,
+
                         };
 
                         scope.Complete();

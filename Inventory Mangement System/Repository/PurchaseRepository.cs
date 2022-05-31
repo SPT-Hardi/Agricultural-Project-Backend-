@@ -19,14 +19,47 @@ namespace Inventory_Mangement_System.Repository
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
+                    int Id = 0;
                     var res = (from obj in context.PurchaseDetails/*
                             join obj2 in context.Products
                             on obj.ProductID equals obj2.ProductID into JoinTablePN
                             from PN in JoinTablePN.DefaultIfEmpty()*/
                                where obj.IsEditable == true
                                orderby obj.PurchaseID descending
-                               select new
+                               select obj).ToList();
+                    List<ViewPurchaseModel> purchase = new List<ViewPurchaseModel>();
+
+                    foreach (var x in res) 
+                    {
+                        Id += 1;
+                        purchase.Add(new ViewPurchaseModel()
+                        {
+                            Id=Id,
+                            PurchaseDate= x.PurchaseDate.ToString("dd-MM-yyyy hh:mm tt"),
+                            PurchaseID=x.PurchaseID,
+                            BillNumber=x.BillNumber,
+                            EditedList=GetPurchaseEditDetails(x.PurchaseID).Data,
+                            HaveEditedList= (from v in context.PurchaseDetails
+                                             where v.ParentId == x.PurchaseID
+                                             select v).ToList().Count() > 0 ? true : false
+,
+                            IsEditable = x.IsEditable,
+                            LastUpdated=x.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                            ProductName = new IntegerNullString() { Id = x.Product.ProductID, Text = x.Product.ProductName },
+                            PurchaseLocation =x.PurchaseLocation,
+                            Remark=x.Remark,
+                            TotalCost=x.TotalCost,
+                            TotalQuantity=x.TotalQuantity,
+                            Unit=x.Unit,
+                            UserName=x.LoginDetail.UserName,
+                            VendorName=x.VendorName,
+
+                        });
+                    }
+                    
+                              /* select new
                                {
+                                   Id=Id,
                                    PurchaseID = obj.PurchaseID,
                                    ProductName = new IntegerNullString() { Id = obj.Product.ProductID, Text = obj.Product.ProductName },
                                    TotalQuantity = obj.TotalQuantity,
@@ -42,9 +75,10 @@ namespace Inventory_Mangement_System.Repository
                                    PurchaseLocation = obj.PurchaseLocation,
                                    EditedList = (from x in context.PurchaseDetails
                                                  where x.ParentId == obj.PurchaseID
-                                                 orderby x.PurchaseID descending
+                                                 orderby x.PurchaseID descending 
                                                  select new
                                                  {
+                                                     Id = x.,
                                                      PurchaseID = x.PurchaseID,
                                                      ProductName = new IntegerNullString() { Id = x.Product.ProductID, Text = x.Product.ProductName },
                                                      TotalQuantity = x.TotalQuantity,
@@ -56,52 +90,70 @@ namespace Inventory_Mangement_System.Repository
                                                      UserName = x.LoginDetail.UserName,
                                                      LastUpdated = x.LastUpdated,
                                                      IsEditable = x.IsEditable,
-                                                     BillNumber = x.BillNumber.ToLower(),
-                                                     PurchaseLocation = x.PurchaseLocation,
-
-
+                                                     BillNumber = x.BillNumber,
+                                                     PurchaseLocation = x.PurchaseLocation
                                                  }).ToList(),
-                               }).ToList();
+                                   HaveEditedList=(from x in context.PurchaseDetails
+                                                   where x.ParentId == obj.PurchaseID select x).ToList().Count()>0 ? true :false
+
+                               }).ToList();*/
                     scope.Complete();
                     return new Result()
                     {
                         Status = Result.ResultStatus.success,
-                        Data = res
+                        Data = purchase
 
                     };
                 }
             }
 
         }
-        public Result GetPurchaseEditDetails(int Id) 
+        public int NextId(int Id) 
+        {
+            Id += 1;
+            return Id;
+        }
+        public Result GetPurchaseEditDetails(int purchaseId) 
         {
             using (ProductInventoryDataContext c = new ProductInventoryDataContext())
             {
-                    var res = (from obj in c.PurchaseDetails
-                               where obj.ParentId==Id
-                               select new
-                               {
-                                   PurchaseID = obj.PurchaseID,
-                                   ProductName = new IntegerNullString() { Id = obj.Product.ProductID, Text = obj.Product.ProductName },
-                                   TotalQuantity = obj.TotalQuantity,
-                                   TotalCost = obj.TotalCost,
-                                   Unit = obj.Unit,
-                                   Remark = obj.Remark,
-                                   VendorName = obj.VendorName,
-                                   PurchaseDate = obj.PurchaseDate.ToString("dd-MM-yyyy"),
-                                   UserName = obj.LoginDetail.UserName,
-                                   LastUpdated = obj.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
-                                   IsEditable = obj.IsEditable,
-                                   BillNumber = obj.BillNumber,
-                                   PurchaseLocation = obj.PurchaseLocation
+                var res = (from obj in c.PurchaseDetails
+                           where obj.ParentId == purchaseId
+                           orderby obj.PurchaseID descending
+                           select obj).ToList();
+                List<EditedList> editedList = new List<EditedList>();
+                int Id = 0;
+                foreach (var x in res)
+                {
+                    Id += 1;
+                    editedList.Add(new EditedList()
+                    {
 
-                               }).ToList();
+                        Id = Id,
+                        PurchaseDate = x.PurchaseDate.ToString("dd-MM-yyyy hh:mm tt"),
+                        PurchaseID = x.PurchaseID,
+                        BillNumber = x.BillNumber,
+                        IsEditable = x.IsEditable,
+                        LastUpdated =x.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                        ProductName = new IntegerNullString() { Id = x.Product.ProductID, Text = x.Product.ProductName },
+                        PurchaseLocation = x.PurchaseLocation,
+                        Remark = x.Remark,
+                        TotalCost = x.TotalCost,
+                        TotalQuantity = x.TotalQuantity,
+                        Unit = x.Unit,
+                        UserName = x.LoginDetail.UserName,
+                        VendorName = x.VendorName,
+
+                    });
+ 
                    
+                }
+
                     return new Result()
                     {
                         Status = Result.ResultStatus.success,
                         Message = "Edited Purchase details get successfully!",
-                        Data = "Good",
+                        Data = editedList,
                     };
                 
             }
@@ -251,6 +303,7 @@ namespace Inventory_Mangement_System.Repository
 
                     var res = new
                     {
+                        //Id = NextId(1),
                         PurchaseID = qs.PurchaseID,
                         ProductName = new IntegerNullString() { Id = q.productname.Id, Text = q.productname.Text },
                         TotalQuantity = qs.TotalQuantity,
@@ -266,11 +319,14 @@ namespace Inventory_Mangement_System.Repository
                         IsEditable = qs.IsEditable,
                         BillNumber = qs.BillNumber,
                         PurchaseLocation = qs.PurchaseLocation,
-                        EditedList = (from x in context.PurchaseDetails
+                        EditedList = GetPurchaseEditDetails(qs.PurchaseID).Data,
+                        
+                        /*(from x in context.PurchaseDetails
                                       where x.ParentId == qs.PurchaseID
                                       orderby x.PurchaseID descending
                                       select new
                                       {
+                                          Id = NextId(1),
                                           PurchaseID = x.PurchaseID,
                                           ProductName = new IntegerNullString() { Id = x.Product.ProductID, Text = x.Product.ProductName },
                                           TotalQuantity = x.TotalQuantity,
@@ -286,7 +342,10 @@ namespace Inventory_Mangement_System.Repository
                                           PurchaseLocation = x.PurchaseLocation,
 
 
-                                      }).ToList(),
+                                      }).ToList(),*/
+                        HaveEditedList = (from x in context.PurchaseDetails
+                                          where x.ParentId == qs.PurchaseID
+                                          select x).ToList().Count() > 0 ? true : false
 
                     };
                     scope.Complete();

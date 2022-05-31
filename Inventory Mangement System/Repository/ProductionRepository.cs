@@ -50,7 +50,9 @@ namespace Inventory_Mangement_System.Repository
                                                 ProductionDate = x.ProductionDate,
                                                 IsEditable = x.IsEditable,
 
-                                            }).ToList()
+                                            }).ToList(),
+                                            HaveEditedList=(from x in context.ProductionDetails
+                                            where x.ParentId == pd.ProductionID select x).ToList().Count()>0 ? true :false,
                             }).ToList()
                 };
             }
@@ -219,7 +221,10 @@ namespace Inventory_Mangement_System.Repository
                                           ProductionDate = x.ProductionDate,
                                           IsEditable = x.IsEditable,
 
-                                      }).ToList()
+                                      }).ToList(),
+                                      HaveEditedList = (from x in context.ProductionDetails
+                                                        where x.ParentId == pro.ProductionID
+                                                        select x).ToList().Count() > 0 ? true : false,
                     };
                     scope.Complete();
                     return new Result()

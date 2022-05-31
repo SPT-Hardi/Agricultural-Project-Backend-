@@ -8,7 +8,7 @@ using TeamIN.ReckonIN.API.Helpers.Kendo;
 
 namespace Inventory_Mangement_System.Controllers.Developer.Request
 {
-    [Route("Common/[controller]")]
+    [Route("api/Common/[controller]")]
     [ApiController]
     public class ListController : ControllerBase
     {

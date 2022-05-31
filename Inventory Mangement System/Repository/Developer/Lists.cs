@@ -84,7 +84,7 @@ namespace Inventory_Mangement_System.Repository.Developer
                 sqlCon.Open();
                 var dt = new DataTable();
                 var da = new System.Data.SqlClient.SqlDataAdapter(sqlCom);
-                da.Fill(dt);
+                da.Fill(dt);     
                 var records = new List<Dictionary<string, object>>();
                 Dictionary<string, object> row;
                 foreach (DataRow dr in dt.Rows)
@@ -174,16 +174,17 @@ namespace Inventory_Mangement_System.Repository.Developer
                     Mode = Response.ModeTypes.Simple,
                     Options = new Response.RelatedControllers()
                     {
-                        CreateCon = new Developer.Schema.Properties.Property().Value(Con, "CreateController").Trim(),
-                        EditCon = new Developer.Schema.Properties.Property().Value(Con, "EditController").Trim(),
-                       DeleteCon = new Developer.Schema.Properties.Property().Value(Con, "DeleteController").Trim(),
-                        ViewCon = new Developer.Schema.Properties.Property().Value(Con, "ViewController").Trim(),
-                        PrintCon = new Developer.Schema.Properties.Property().Value(Con, "PrintController").Trim()
+                        //CreateCon = new Developer.Schema.Properties.Property().Value(Con, "CreateController").Trim(),
+                        EditCon = new Developer.Schema.Properties.Property().Value(Con, "EditController")?.Trim(),
+                        //DeleteCon = new Developer.Schema.Properties.Property().Value(Con, "DeleteController").Trim(),
+                        // ViewCon = new Developer.Schema.Properties.Property().Value(Con, "ViewController").Trim(),
+                        // PrintCon = new Developer.Schema.Properties.Property().Value(Con, "PrintController").Trim()
                     },
+
                     Schema = new Model.Developer.Schema()
                     {
                         Columns = columns,
-                        Keys = new Developer.Schema.Properties.Property().Value(Con, "SqlCommandKeys").Split(',').ToList(),
+                        Keys = new Developer.Schema.Properties.Property().Value(Con, "SqlCommandKeys")?.Split(',').ToList(),
                         OrderBy = new Developer.Schema.Properties.Property().Value(Con, "SqlCommandOrderBy")
                     }
                 };

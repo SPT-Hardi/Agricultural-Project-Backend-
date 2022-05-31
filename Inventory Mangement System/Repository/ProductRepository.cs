@@ -60,7 +60,8 @@ namespace Inventory_Mangement_System.Repository
                            LoginID=LoginId,
                            TotalProductQuantity=0,
                            DateTime=ISDT,
-                           UnitID = p.type.Id
+                           UnitID = p.type.Id,
+             
                        }).ToList();
             foreach (var item in pro)
             {
@@ -73,6 +74,7 @@ namespace Inventory_Mangement_System.Repository
 
             context.Products.InsertAllOnSubmit(pro);
             context.SubmitChanges();
+
             return new Result()
             {
                 Message = string.Format($"Product Added Successfully."),
