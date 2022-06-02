@@ -13,6 +13,7 @@ namespace Inventory_Mangement_System.Repository
     public class IssueRepository : IIssueRepository
     {
         //View Issue Details
+        //IEnumerable res;
         public Result ViewAllIssue()
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
