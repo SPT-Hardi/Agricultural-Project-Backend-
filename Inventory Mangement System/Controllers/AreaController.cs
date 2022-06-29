@@ -23,9 +23,9 @@ namespace Inventory_Mangement_System.Controllers
 
         //View All Main And Sub Area
         [HttpGet("ViewAllArea")]
-        public async Task<IActionResult> ViewAllAreaAsync()
+        public async Task<IActionResult> ViewAllAreaAsync([FromQuery]int? Id)
         {
-            var result = _areaRepository.ViewAllArea();
+            var result = _areaRepository.ViewAllArea(Id);
             return Ok(result);
         }
 

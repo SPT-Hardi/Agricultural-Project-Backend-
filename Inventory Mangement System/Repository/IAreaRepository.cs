@@ -8,7 +8,7 @@ namespace Inventory_Mangement_System.Repository
     public interface IAreaRepository
     {
         //View All Main And Sub Area
-        Result ViewAllArea();
+        Result ViewAllArea(int? Id);
         //New Main Area Add
         Result AddMainAreaAsync(AreaModel AreaModel,int LoginId);
         //Edit Main And Sub Area

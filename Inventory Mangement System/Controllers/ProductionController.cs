@@ -22,9 +22,9 @@ namespace Inventory_Mangement_System.Controllers
 
         //View All Production Details 
         [HttpGet("viewproductiondetail")]
-        public async Task<IActionResult> ViewProductionDetail()
+        public async Task<IActionResult> ViewProductionDetail([FromQuery]int? Id)
         {
-            var result = _productionRepository.ViewAllProductionDetails();
+            var result = _productionRepository.ViewAllProductionDetails(Id);
             return Ok(result);
         }
 

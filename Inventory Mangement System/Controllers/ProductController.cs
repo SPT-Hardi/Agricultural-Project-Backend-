@@ -25,9 +25,9 @@ namespace Inventory_Mangement_System.Controllers
 
         //View All Product
         [HttpGet("ViewAllProduct")]
-        public async Task<IActionResult> ViewAllProductAsync()
+        public async Task<IActionResult> ViewAllProductAsync([FromQuery]int? Id)
         {
-            var result =  _productRepository.ViewAllProduct();
+            var result =  _productRepository.ViewAllProduct(Id);
             return Ok(result);
         }
 

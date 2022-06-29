@@ -8,7 +8,7 @@ namespace Inventory_Mangement_System.Repository
     public interface IIssueRepository
     {
         //View Issue Details
-        Result ViewAllIssue();
+        Result ViewAllIssue(int? Id);
 
         //Issue Products
         Result IssueProduct(IssueModel issueModel,int LoginId);

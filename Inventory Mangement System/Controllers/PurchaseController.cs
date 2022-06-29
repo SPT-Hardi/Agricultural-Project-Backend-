@@ -22,9 +22,9 @@ namespace Inventory_Mangement_System.Controllers
 
         //View Purchase Details
         [HttpGet("getpurchaseproduct")]
-        public async Task<IActionResult> GetPurchaseDetails()
+        public async Task<IActionResult> GetPurchaseDetails([FromQuery] int? Id)
         {
-            var result = _purchaseRepository.GetPurchaseDetails();
+            var result = _purchaseRepository.GetPurchaseDetails(Id);
 
             return Ok(result);
         }

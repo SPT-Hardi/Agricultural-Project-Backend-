@@ -14,47 +14,97 @@ namespace Inventory_Mangement_System.Repository
     public class ProductionRepository : IProductionRepository
     {
         //View All Production Details 
-        public Result ViewAllProductionDetails()
+        public Result ViewAllProductionDetails(int? Id)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
-                return new Result()
+                if (Id == null)
                 {
-                    Status = Result.ResultStatus.success,
-                    Data = (from pd in context.ProductionDetails
-                            where pd.IsEditable==true
-                            orderby pd.ProductionID descending
-                            select new
-                            {
-                                ProductionID = pd.ProductionID,
-                                Area = new Model.Common.IntegerNullString() {Id=pd.AreaDetail.AreaId,Text=pd.AreaDetail.AreaName },
-                                Vegetable = new IntegerNullString() { Id=pd.Vegetable.VegetableId,Text=pd.Vegetable.VegetableName},
-                                Quantity = pd.Quantity,
-                                Remark = pd.Remark,
-                                UserName = pd.LoginDetail.UserName,
-                                LastUpdated = pd.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
-                                ProductionDate= pd.ProductionDate.ToString("dd-MM-yyyy"),
-                                IsEditable=pd.IsEditable,
-                                EditedList=(from x in context.ProductionDetails
-                                            where x.ParentId==pd.ProductionID
-                                            orderby x.ProductionID descending
-                                            select new 
-                                            {
-                                                ProductionID = x.ProductionID,
-                                                Area = new Model.Common.IntegerNullString() { Id = x.AreaDetail.AreaId, Text = x.AreaDetail.AreaName },
-                                                Vegetable = new IntegerNullString() { Id = x.Vegetable.VegetableId, Text = x.Vegetable.VegetableName },
-                                                Quantity = x.Quantity,
-                                                Remark = x.Remark,
-                                                UserName = x.LoginDetail.UserName,
-                                                LastUpdated = x.LastUpdated,
-                                                ProductionDate = x.ProductionDate,
-                                                IsEditable = x.IsEditable,
 
-                                            }).ToList(),
-                                            HaveEditedList=(from x in context.ProductionDetails
-                                            where x.ParentId == pd.ProductionID select x).ToList().Count()>0 ? true :false,
-                            }).ToList()
-                };
+                    var res = (from pd in context.ProductionDetails
+                               where pd.IsEditable == true
+                               orderby pd.ProductionID descending
+                               select new
+                               {
+                                   ProductionID = pd.ProductionID,
+                                   Area = pd.AreaDetail.AreaName,
+                                   //Area = new Model.Common.IntegerNullString() {Id=pd.AreaDetail.AreaId,Text=pd.AreaDetail.AreaName },
+                                   //Vegetable = new IntegerNullString() { Id=pd.Vegetable.VegetableId,Text=pd.Vegetable.VegetableName},
+                                   Vegetable = pd.Vegetable.VegetableName,
+                                   Quantity = pd.Quantity,
+                                   Remark = pd.Remark,
+                                   CreatedBy = pd.LoginDetail.UserName,
+                                   LastUpdated = pd.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                                   ProductionDate = pd.ProductionDate.ToString("dd-MM-yyyy"),
+                                   IsEditable = pd.IsEditable
+                                   /*EditedList=(from x in context.ProductionDetails
+                                               where x.ParentId==pd.ProductionID
+                                               orderby x.ProductionID descending
+                                               select new 
+                                               {
+                                                   ProductionID = x.ProductionID,
+                                                   Area = new Model.Common.IntegerNullString() { Id = x.AreaDetail.AreaId, Text = x.AreaDetail.AreaName },
+                                                   Vegetable = new IntegerNullString() { Id = x.Vegetable.VegetableId, Text = x.Vegetable.VegetableName },
+                                                   Quantity = x.Quantity,
+                                                   Remark = x.Remark,
+                                                   CreatedBy = x.LoginDetail.UserName,
+                                                   LastUpdated = x.LastUpdated,
+                                                   ProductionDate = x.ProductionDate,
+                                                   IsEditable = x.IsEditable,
+
+                                               }).ToList(),
+                                               HaveEditedList=(from x in context.ProductionDetails
+                                               where x.ParentId == pd.ProductionID select x).ToList().Count()>0 ? true :false,*/
+                               }).ToList();
+                    return new Result()
+                    {
+                        Status = Result.ResultStatus.success,
+                        Data = res,
+                    };
+                }
+                else 
+                {
+                    var res = (from pd in context.ProductionDetails
+                               where pd.IsEditable == true && pd.ProductionID==Id
+                               orderby pd.ProductionID descending
+                               select new
+                               {
+                                   ProductionID = pd.ProductionID,
+                                   //Area = pd.AreaDetail.AreaName,
+                                   Area = new Model.Common.IntegerNullString() {Id=pd.AreaDetail.AreaId,Text=pd.AreaDetail.AreaName },
+                                   Vegetable = new IntegerNullString() { Id=pd.Vegetable.VegetableId,Text=pd.Vegetable.VegetableName},
+                                   //Vegetable = pd.Vegetable.VegetableName,
+                                   Quantity = pd.Quantity,
+                                   Remark = pd.Remark,
+                                   CreatedBy = pd.LoginDetail.UserName,
+                                   LastUpdated = pd.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                                   ProductionDate = pd.ProductionDate.ToString("dd-MM-yyyy"),
+                                   IsEditable = pd.IsEditable
+                                   /*EditedList=(from x in context.ProductionDetails
+                                               where x.ParentId==pd.ProductionID
+                                               orderby x.ProductionID descending
+                                               select new 
+                                               {
+                                                   ProductionID = x.ProductionID,
+                                                   Area = new Model.Common.IntegerNullString() { Id = x.AreaDetail.AreaId, Text = x.AreaDetail.AreaName },
+                                                   Vegetable = new IntegerNullString() { Id = x.Vegetable.VegetableId, Text = x.Vegetable.VegetableName },
+                                                   Quantity = x.Quantity,
+                                                   Remark = x.Remark,
+                                                   CreatedBy = x.LoginDetail.UserName,
+                                                   LastUpdated = x.LastUpdated,
+                                                   ProductionDate = x.ProductionDate,
+                                                   IsEditable = x.IsEditable,
+
+                                               }).ToList(),
+                                               HaveEditedList=(from x in context.ProductionDetails
+                                               where x.ParentId == pd.ProductionID select x).ToList().Count()>0 ? true :false,*/
+                               }).ToList();
+                    return new Result()
+                    {
+                        Status = Result.ResultStatus.success,
+                        Data = res,
+                    };
+                }
             }
         }
         public Result GetEditProductionDetails(int Id) 
@@ -200,7 +250,7 @@ namespace Inventory_Mangement_System.Repository
                         Vegetable = new IntegerNullString() { Id = productionModel.Vegetable.Id, Text = productionModel.Vegetable.Text },
                         Quantity = pro.Quantity,
                         Remark = pro.Remark,
-                        UserName = (from n in context.LoginDetails
+                        CreatedBy = (from n in context.LoginDetails
                                     where n.LoginID == LoginId
                                     select n.UserName).FirstOrDefault(),
                         LastUpdated = pro.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
@@ -216,7 +266,7 @@ namespace Inventory_Mangement_System.Repository
                                           Vegetable = new IntegerNullString() { Id = x.Vegetable.VegetableId, Text = x.Vegetable.VegetableName },
                                           Quantity = x.Quantity,
                                           Remark = x.Remark,
-                                          UserName = x.LoginDetail.UserName,
+                                          CreatedBy = x.LoginDetail.UserName,
                                           LastUpdated = x.LastUpdated,
                                           ProductionDate = x.ProductionDate,
                                           IsEditable = x.IsEditable,

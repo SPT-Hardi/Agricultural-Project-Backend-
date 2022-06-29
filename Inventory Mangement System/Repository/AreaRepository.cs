@@ -14,7 +14,7 @@ namespace Inventory_Mangement_System.Repository
     public class AreaRepository : IAreaRepository
     {
         //View All Main And Sub Area
-        public Result ViewAllArea()
+        public Result ViewAllArea(int? Id)
         {
             using(ProductInventoryDataContext context=new ProductInventoryDataContext())
             {
@@ -38,6 +38,7 @@ namespace Inventory_Mangement_System.Repository
                                   DateTime = string.Format("{0:dd-MM-yyyy hh:mm tt}", s.DateTime),
                               }).ToList(),*/
                     Data = (from x in context.AreaDetails
+                            where (Id==null || x.AreaId==Id)
                             select new
                             {
                                 AreaId=x.AreaId,
@@ -45,7 +46,7 @@ namespace Inventory_Mangement_System.Repository
                                 MainAreaName=x.MainAreaName,
                                 SubAreaName=x.SubAreaName,
                                 LastUpdated=x.LastUpdated.ToString("dd-MM-yyy hh:mm tt"),
-                                UserName=x.LoginDetail.UserName,
+                                CreatedBy=x.LoginDetail.UserName,
                             }).ToList()
                    
                 };
@@ -239,7 +240,7 @@ namespace Inventory_Mangement_System.Repository
                         MainAreaName = areadetail.MainAreaName,
                         SubAreaName = areadetail.SubAreaName,
                         LastUpdated = areadetail.LastUpdated.ToString("dd-MM-yyy hh:mm tt"),
-                        UserName = (from x in context.LoginDetails where x.LoginID == LoginId select x.UserName).FirstOrDefault(),
+                        CreatedBy = (from x in context.LoginDetails where x.LoginID == LoginId select x.UserName).FirstOrDefault(),
                     };
 
                     scope.Complete();

@@ -12,7 +12,7 @@ namespace Inventory_Mangement_System.Repository
     public class CategoryRepository : ICategoryRepository
     {
         //View Category
-        public Result ViewCategory()
+        public Result ViewCategory(int? Id)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
@@ -20,16 +20,17 @@ namespace Inventory_Mangement_System.Repository
                 {
                     Status = Result.ResultStatus.success,
                     Data = (from x in context.Categories
+                            where (Id==null || x.CategoryID==Id)
                             orderby x.CategoryID descending
                             select new
                             {
                                 CategoryID = x.CategoryID,
                                 CategoryName = x.CategoryName,
                                 Description = x.Description,
-                                UserName = (from n in context.LoginDetails
+                                CreatedBy = (from n in context.LoginDetails
                                             where n.LoginID == x.LoginID
                                             select n.UserName).FirstOrDefault(),
-                                DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", x.DateTime),
+                                LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", x.DateTime),
                             }).ToList(),
                 };
             }
@@ -96,10 +97,10 @@ namespace Inventory_Mangement_System.Repository
                                 CategoryID = ck.CategoryID,
                                 CategoryName = ck.CategoryName,
                                 Description = ck.Description,
-                                UserName = (from n in context.LoginDetails
+                                CreatedBy = (from n in context.LoginDetails
                                             where n.LoginID == ck.LoginID
                                             select n.UserName).FirstOrDefault(),
-                                DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", ck.DateTime),
+                                LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", ck.DateTime),
                             },
                 };
             }

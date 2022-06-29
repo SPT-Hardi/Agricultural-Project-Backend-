@@ -9,7 +9,7 @@ namespace Inventory_Mangement_System.Repository
     public interface IProductRepository
     {
         //View All Product
-        Result ViewAllProduct();
+        Result ViewAllProduct(int? Id);
 
         //Add Product
         Result AddProduct(ProductModel productModel,int LoginId);

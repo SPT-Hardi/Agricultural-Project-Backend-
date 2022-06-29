@@ -14,31 +14,64 @@ namespace Inventory_Mangement_System.Repository
     public class ProductRepository : IProductRepository
     {
         //View All Product 
-        public Result ViewAllProduct()
+        public Result ViewAllProduct(int? Id)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
-                return new Result()
+                if (Id == null)
                 {
-                    Status = Result.ResultStatus.success,
-                    Data = (from x in context.Products
-                            orderby x.ProductID descending
-                            select new
-                            {
-                                ProductID = x.ProductID,
-                                ProductName = x.ProductName,
-                                Variety = x.Variety,
-                                Company = x.Company,
-                                Description = x.Description,
-                                Type = new Model.Common.IntegerNullString() { Id=x.ProductUnit.UnitID,Text=x.ProductUnit.Type},
-                                CategoryType = new Model.Common.IntegerNullString() { Id = x.Category.CategoryID, Text = x.Category.CategoryName },
-                                UserName=(from n in context.LoginDetails
-                                          where n.LoginID== x.LoginID
-                                          select n.UserName).FirstOrDefault(),
-                                DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", x.DateTime),
-                                
-                            }).ToList(),
-                };
+                    var res = (from x in context.Products
+                               orderby x.ProductID descending
+                               select new
+                               {
+                                   ProductID = x.ProductID,
+                                   ProductName = x.ProductName,
+                                   Variety = x.Variety,
+                                   Company = x.Company,
+                                   Description = x.Description,
+                                   Unit = x.ProductUnit.Type,
+                                   //Type = new Model.Common.IntegerNullString() { Id = x.ProductUnit.UnitID, Text = x.ProductUnit.Type },
+                                   //CategoryType = new Model.Common.IntegerNullString() { Id = x.Category.CategoryID, Text = x.Category.CategoryName },
+                                   Category = x.Category.CategoryName,
+                                   CreatedBy = (from n in context.LoginDetails
+                                                where n.LoginID == x.LoginID
+                                                select n.UserName).FirstOrDefault(),
+                                   LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", x.DateTime),
+
+                               }).ToList();
+                    return new Result()
+                    {
+                        Status = Result.ResultStatus.success,
+                        Data = res
+                    };
+                }
+                else 
+                {
+                    var res = (from x in context.Products
+                               where x.ProductID==Id
+                               orderby x.ProductID descending
+                               select new
+                               {
+                                   ProductID = x.ProductID,
+                                   ProductName = x.ProductName,
+                                   Variety = x.Variety,
+                                   Company = x.Company,
+                                   Description = x.Description,
+                                   Unit = new Model.Common.IntegerNullString() { Id = x.ProductUnit.UnitID, Text = x.ProductUnit.Type },
+                                   Category = new Model.Common.IntegerNullString() { Id = x.Category.CategoryID, Text = x.Category.CategoryName },
+                                   CreatedBy = (from n in context.LoginDetails
+                                                where n.LoginID == x.LoginID
+                                                select n.UserName).FirstOrDefault(),
+                                   LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", x.DateTime),
+
+                               }).ToList();
+                    return new Result()
+                    {
+                        Status = Result.ResultStatus.success,
+                        Data = res
+                    };
+                }
+               
             }
         }
         
@@ -134,10 +167,10 @@ namespace Inventory_Mangement_System.Repository
                         Description = product.Description,
                         Type = new Model.Common.IntegerNullString() { Id = productDetail.type.Id, Text = productDetail.type.Text },
                         CategoryType = new Model.Common.IntegerNullString() { Id = productDetail.categoryType.Id, Text = productDetail.categoryType.Text },
-                        UserName = (from n in context.LoginDetails
+                        CreatedBy = (from n in context.LoginDetails
                                     where n.LoginID == product.LoginID
                                     select n.UserName).FirstOrDefault(),
-                        DateTime = String.Format("{0:dd-MM-yyyy hh:mm tt}", product.DateTime),
+                        LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", product.DateTime),
                     };
                     scope.Complete();
                     return new Result()

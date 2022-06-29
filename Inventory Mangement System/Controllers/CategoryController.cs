@@ -21,9 +21,9 @@ namespace Inventory_Mangement_System.Controllers
 
         //View Category
         [HttpGet("viewCategory")]
-        public async Task<IActionResult> CategoryView()
+        public async Task<IActionResult> CategoryView([FromQuery]int? Id)
         {
-            var result = _categoryRepository.ViewCategory();
+            var result = _categoryRepository.ViewCategory(Id);
             return Ok(result);
         }
 

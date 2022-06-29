@@ -8,7 +8,7 @@ namespace Inventory_Mangement_System.Repository
     public interface ICategoryRepository
     {
         //View Category
-        Result ViewCategory();
+        Result ViewCategory(int? Id);
 
         //Add New Category
         Result AddCategory(CategoryModel categoryModel,int LoginId);

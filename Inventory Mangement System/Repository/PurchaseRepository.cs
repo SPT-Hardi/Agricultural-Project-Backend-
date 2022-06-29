@@ -13,97 +13,160 @@ namespace Inventory_Mangement_System.Repository
     public class PurchaseRepository : IPurchaseRepository
     {
         //View Purchase Details
-        public Result GetPurchaseDetails()
+        public Result GetPurchaseDetails(int? Id)
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
-                    int Id = 0;
+                    //int Id = 0;
                     var res = (from obj in context.PurchaseDetails/*
                             join obj2 in context.Products
                             on obj.ProductID equals obj2.ProductID into JoinTablePN
                             from PN in JoinTablePN.DefaultIfEmpty()*/
-                               where obj.IsEditable == true
+                               where obj.IsEditable == true && (Id==null || obj.PurchaseID==Id)
                                orderby obj.PurchaseID descending
                                select obj).ToList();
-                    List<ViewPurchaseModel> purchase = new List<ViewPurchaseModel>();
 
-                    foreach (var x in res) 
+                    if (Id == null)
                     {
-                        Id += 1;
-                        purchase.Add(new ViewPurchaseModel()
+                      List<ViewPurchaseModel> purchase = new List<ViewPurchaseModel>();
+
+                        foreach (var x in res)
                         {
-                            Id=Id,
-                            PurchaseDate= x.PurchaseDate.ToString("dd-MM-yyyy hh:mm tt"),
-                            PurchaseID=x.PurchaseID,
-                            BillNumber=x.BillNumber,
-                            EditedList=GetPurchaseEditDetails(x.PurchaseID).Data,
-                            HaveEditedList= (from v in context.PurchaseDetails
-                                             where v.ParentId == x.PurchaseID
-                                             select v).ToList().Count() > 0 ? true : false
-,
-                            IsEditable = x.IsEditable,
-                            LastUpdated=x.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
-                            ProductName = new IntegerNullString() { Id = x.Product.ProductID, Text = x.Product.ProductName },
-                            PurchaseLocation =x.PurchaseLocation,
-                            Remark=x.Remark,
-                            TotalCost=x.TotalCost,
-                            TotalQuantity=x.TotalQuantity,
-                            Unit=x.Unit,
-                            UserName=x.LoginDetail.UserName,
-                            VendorName=x.VendorName,
-
-                        });
+                            //Id += 1;
+                            purchase.Add(new ViewPurchaseModel()
+                            {
+                                PurchaseDate = x.PurchaseDate.ToString("dd-MM-yyyy hh:mm tt"),
+                                PurchaseID = x.PurchaseID,
+                                BillNumber = x.BillNumber,
+                                IsEditable = x.IsEditable,
+                                LastUpdated = x.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                                ProductName = x.Product.ProductName,
+                                PurchaseLocation = x.PurchaseLocation,
+                                Remark = x.Remark,
+                                TotalCost = x.TotalCost,
+                                TotalQuantity = x.TotalQuantity,
+                                Unit = x.Unit,
+                                CreatedBy = x.LoginDetail.UserName,
+                                VendorName = x.VendorName
+                                      //EditedList=GetPurchaseEditDetails(x.PurchaseID).Data,
+                                      //HaveEditedList= (from v in context.PurchaseDetails
+                                      //                 where v.ParentId == x.PurchaseID
+                                      //                 select v).ToList().Count() > 0 ? true : false
+                                      
+                            });
+                        }
+                        scope.Complete();
+                        return new Result()
+                        {
+                            Status = Result.ResultStatus.success,
+                            Data = purchase
+                        };
                     }
-                    
-                              /* select new
-                               {
-                                   Id=Id,
-                                   PurchaseID = obj.PurchaseID,
-                                   ProductName = new IntegerNullString() { Id = obj.Product.ProductID, Text = obj.Product.ProductName },
-                                   TotalQuantity = obj.TotalQuantity,
-                                   TotalCost = obj.TotalCost,
-                                   Unit = obj.Unit,
-                                   Remark = obj.Remark,
-                                   VendorName = obj.VendorName,
-                                   PurchaseDate = obj.PurchaseDate.ToString("dd-MM-yyyy"),
-                                   UserName = obj.LoginDetail.UserName,
-                                   LastUpdated = obj.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
-                                   IsEditable = obj.IsEditable,
-                                   BillNumber = obj.BillNumber,
-                                   PurchaseLocation = obj.PurchaseLocation,
-                                   EditedList = (from x in context.PurchaseDetails
-                                                 where x.ParentId == obj.PurchaseID
-                                                 orderby x.PurchaseID descending 
-                                                 select new
-                                                 {
-                                                     Id = x.,
-                                                     PurchaseID = x.PurchaseID,
-                                                     ProductName = new IntegerNullString() { Id = x.Product.ProductID, Text = x.Product.ProductName },
-                                                     TotalQuantity = x.TotalQuantity,
-                                                     TotalCost = x.TotalCost,
-                                                     Unit = x.Unit,
-                                                     Remark = x.Remark,
-                                                     VendorName = x.VendorName,
-                                                     PurchaseDate =x.PurchaseDate,
-                                                     UserName = x.LoginDetail.UserName,
-                                                     LastUpdated = x.LastUpdated,
-                                                     IsEditable = x.IsEditable,
-                                                     BillNumber = x.BillNumber,
-                                                     PurchaseLocation = x.PurchaseLocation
-                                                 }).ToList(),
-                                   HaveEditedList=(from x in context.PurchaseDetails
-                                                   where x.ParentId == obj.PurchaseID select x).ToList().Count()>0 ? true :false
-
-                               }).ToList();*/
-                    scope.Complete();
-                    return new Result()
+                    else 
                     {
-                        Status = Result.ResultStatus.success,
-                        Data = purchase
+                        List<ViewPurchaseModelNameWithId> purchase = new List<ViewPurchaseModelNameWithId>();
+                        foreach (var x in res)
+                        {
+                            //Id += 1;
+                            purchase.Add(new ViewPurchaseModelNameWithId()
+                            {
+                                PurchaseDate = x.PurchaseDate.ToString("dd-MM-yyyy hh:mm tt"),
+                                PurchaseID = x.PurchaseID,
+                                BillNumber = x.BillNumber,
+                                IsEditable = x.IsEditable,
+                                LastUpdated = x.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                                ProductName = new IntegerNullString() { Id=x.Product.ProductID, Text = x.Product.ProductName },
+                                PurchaseLocation = x.PurchaseLocation,
+                                Remark = x.Remark,
+                                TotalCost = x.TotalCost,
+                                TotalQuantity = x.TotalQuantity,
+                                Unit = x.Unit,
+                                CreatedBy = x.LoginDetail.UserName,
+                                VendorName = x.VendorName
+                                //EditedList=GetPurchaseEditDetails(x.PurchaseID).Data,
+                                //HaveEditedList= (from v in context.PurchaseDetails
+                                //                 where v.ParentId == x.PurchaseID
+                                //                 select v).ToList().Count() > 0 ? true : false
 
-                    };
+                            });
+                        }
+                        scope.Complete();
+                        return new Result()
+                        {
+                            Status = Result.ResultStatus.success,
+                            Data = purchase
+
+                        };
+                    }
+                    /* foreach (var x in res) 
+                     {
+                         //Id += 1;
+                         purchase.Add(new ViewPurchaseModel()
+                         {
+                             PurchaseDate= x.PurchaseDate.ToString("dd-MM-yyyy hh:mm tt"),
+                             PurchaseID=x.PurchaseID,
+                             BillNumber=x.BillNumber,
+                             IsEditable = x.IsEditable,
+                             LastUpdated=x.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                             ProductName = new IntegerNullString() { Id = x.Product.ProductID, Text = x.Product.ProductName },
+                             PurchaseLocation =x.PurchaseLocation,
+                             Remark=x.Remark,
+                             TotalCost=x.TotalCost,
+                             TotalQuantity=x.TotalQuantity,
+                             Unit=x.Unit,
+                             UserName=x.LoginDetail.UserName,
+                             VendorName=x.VendorName
+                             //EditedList=GetPurchaseEditDetails(x.PurchaseID).Data,
+                             //HaveEditedList= (from v in context.PurchaseDetails
+                             //                 where v.ParentId == x.PurchaseID
+                             //                 select v).ToList().Count() > 0 ? true : false
+ ,
+                         });
+                     }*/
+
+                    /* select new
+                     {
+                         Id=Id,
+                         PurchaseID = obj.PurchaseID,
+                         ProductName = new IntegerNullString() { Id = obj.Product.ProductID, Text = obj.Product.ProductName },
+                         TotalQuantity = obj.TotalQuantity,
+                         TotalCost = obj.TotalCost,
+                         Unit = obj.Unit,
+                         Remark = obj.Remark,
+                         VendorName = obj.VendorName,
+                         PurchaseDate = obj.PurchaseDate.ToString("dd-MM-yyyy"),
+                         UserName = obj.LoginDetail.UserName,
+                         LastUpdated = obj.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                         IsEditable = obj.IsEditable,
+                         BillNumber = obj.BillNumber,
+                         PurchaseLocation = obj.PurchaseLocation,
+                         EditedList = (from x in context.PurchaseDetails
+                                       where x.ParentId == obj.PurchaseID
+                                       orderby x.PurchaseID descending 
+                                       select new
+                                       {
+                                           Id = x.,
+                                           PurchaseID = x.PurchaseID,
+                                           ProductName = new IntegerNullString() { Id = x.Product.ProductID, Text = x.Product.ProductName },
+                                           TotalQuantity = x.TotalQuantity,
+                                           TotalCost = x.TotalCost,
+                                           Unit = x.Unit,
+                                           Remark = x.Remark,
+                                           VendorName = x.VendorName,
+                                           PurchaseDate =x.PurchaseDate,
+                                           UserName = x.LoginDetail.UserName,
+                                           LastUpdated = x.LastUpdated,
+                                           IsEditable = x.IsEditable,
+                                           BillNumber = x.BillNumber,
+                                           PurchaseLocation = x.PurchaseLocation
+                                       }).ToList(),
+                         HaveEditedList=(from x in context.PurchaseDetails
+                                         where x.ParentId == obj.PurchaseID select x).ToList().Count()>0 ? true :false
+
+                     }).ToList();*/
+                   
                 }
             }
 

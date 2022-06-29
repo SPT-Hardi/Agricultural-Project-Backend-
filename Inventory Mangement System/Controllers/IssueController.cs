@@ -23,9 +23,9 @@ namespace Inventory_Mangement_System.Controllers
 
         //All Issue Details
         [HttpGet("ViewAllIssue")]
-        public async Task<IActionResult> ViewAllIssueAsync()
+        public async Task<IActionResult> ViewAllIssueAsync([FromQuery]int? Id)
         {
-            var result = _issueRepository.ViewAllIssue();
+            var result = _issueRepository.ViewAllIssue(Id);
             return Ok(result);
         }
 

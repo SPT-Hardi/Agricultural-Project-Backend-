@@ -15,7 +15,7 @@
       </ModelFirstNamingRules>
     </ModelFirst>
     <Diagrams>
-      <Diagram Name="ProductInventoryDataContextDiagram" DefaultDiagram="True" />
+      <Diagram Name="Diagram1" DefaultDiagram="True" />
     </Diagrams>
     <Templates>
       <Template Name="LinqConnect" Description="Use this template to generate a strongly-typed DataContext class and persistence-aware classes." Enabled="True" PredefinedTemplateName="LinqConnect C#">

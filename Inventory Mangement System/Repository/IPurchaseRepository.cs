@@ -14,6 +14,6 @@ namespace Inventory_Mangement_System.Repository
         Result EditPurchaseProduct(PurchaseModel purchaseModel, int ID, int LoginId);
 
         //Edit Purchase Details
-        Result GetPurchaseDetails();
+        Result GetPurchaseDetails(int? Id);
     }
 }
