@@ -18,6 +18,14 @@ namespace Inventory_Mangement_System.Controllers
         {
             return Ok("Working!!");
         }
+
+        [HttpGet]
+        [Route("date")]
+        public IActionResult DateValue()
+        {
+            return Ok(new Repository.ISDT().DateValue());
+        }
+
         [HttpPut]
         [Route("put")]
         public IActionResult TestPut() 

@@ -98,7 +98,7 @@ namespace Inventory_Mangement_System.Repository
                                                }).ToList(),
                                                HaveEditedList=(from x in context.ProductionDetails
                                                where x.ParentId == pd.ProductionID select x).ToList().Count()>0 ? true :false,*/
-                               }).ToList();
+                               }).FirstOrDefault();
                     return new Result()
                     {
                         Status = Result.ResultStatus.success,
@@ -116,33 +116,43 @@ namespace Inventory_Mangement_System.Repository
                 {
                     Status = Result.ResultStatus.success,
                     Message = "Edited Production details get successfully!",
-                    Data = (from pd in c.ProductionDetails
-                            where pd.ParentId == Id
-                            select new 
-                            {
-                                ProductionID = pd.ProductionID,
-                                Area = new Model.Common.IntegerNullString() { Id = pd.AreaDetail.AreaId, Text = pd.AreaDetail.AreaName },
-                                Vegetable = new IntegerNullString() { Id = pd.Vegetable.VegetableId, Text = pd.Vegetable.VegetableName },
-                                Quantity = pd.Quantity,
-                                Remark = pd.Remark,
-                                UserName = pd.LoginDetail.UserName,
-                                LastUpdated = pd.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
-                                ProductionDate = pd.ProductionDate.ToString("dd-MM-yyyy"),
-                                IsEditable = pd.IsEditable,
-                            }).ToList(),
+                    Data = new 
+                    {
+                        ProductionDetails=ViewAllProductionDetails(Id).Data,
+                        EditedList= (from pd in c.ProductionDetails
+                                     where pd.ParentId == Id
+                                     orderby pd.ProductionID descending
+                                     select new
+                                     {
+                                         ProductionID = pd.ProductionID,
+                                         Area = pd.AreaDetail.AreaName,
+                                         //Area = new Model.Common.IntegerNullString() {Id=pd.AreaDetail.AreaId,Text=pd.AreaDetail.AreaName },
+                                         //Vegetable = new IntegerNullString() { Id=pd.Vegetable.VegetableId,Text=pd.Vegetable.VegetableName},
+                                         Vegetable = pd.Vegetable.VegetableName,
+                                         Quantity = pd.Quantity,
+                                         Remark = pd.Remark,
+                                         CreatedBy = pd.LoginDetail.UserName,
+                                         LastUpdated = pd.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                                         ProductionDate = pd.ProductionDate.ToString("dd-MM-yyyy"),
+                                         IsEditable = pd.IsEditable
+                                     }).ToList(),
+                    }
                 };
             }
         }
 
         //Add Production Details
-        public Result AddProductionDetails(ProductionModel productionModel,int LoginId)
+        public Result AddProductionDetails(ProductionModel productionModel,object LoginId)
         {
             var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
-
+                    if (LoginId == null) 
+                    {
+                        throw new ArgumentException("token not found or expired!");
+                    }
                     ProductionDetail productionDetail = new ProductionDetail();
                     /* var v = (from x in context.Vegetables
                               where x.VegetableName.ToLower() == productionModel.Vegetablenm.ToLower()
@@ -165,8 +175,9 @@ namespace Inventory_Mangement_System.Repository
                     productionDetail.Quantity = ((decimal)productionModel.Quantity);
                     productionDetail.LastUpdated = ISDT;
                     productionDetail.ProductionDate = productionModel.ProductionDate.ToLocalTime();
-                    productionDetail.LoginID = LoginId;
+                    productionDetail.LoginID = (int)LoginId;
                     productionDetail.Remark = productionModel.Remark;
+                    productionDetail.IsEditable = true;
 
                     context.ProductionDetails.InsertOnSubmit(productionDetail);
                     context.SubmitChanges();
@@ -182,7 +193,7 @@ namespace Inventory_Mangement_System.Repository
         }
         
         //Edit Production
-        public Result Editproduction(ProductionModel productionModel, int id,int LoginId)
+        public Result Editproduction(ProductionModel productionModel, int id,object LoginId)
         {
             var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             using (TransactionScope scope = new TransactionScope()) 
@@ -190,6 +201,10 @@ namespace Inventory_Mangement_System.Repository
 
                 using (ProductInventoryDataContext context = new ProductInventoryDataContext())
                 {
+                    if (LoginId == null)
+                    {
+                        throw new ArgumentException("token not found or expired!");
+                    }
                     ProductionDetail backup = new ProductionDetail();
                     var pro = context.ProductionDetails.SingleOrDefault(x => x.ProductionID == id);
                     if (pro == null)
@@ -208,7 +223,7 @@ namespace Inventory_Mangement_System.Repository
                     backup.Quantity = pro.Quantity;
                     backup.LastUpdated = ISDT;
                     backup.ProductionDate = pro.ProductionDate;
-                    backup.LoginID = LoginId;
+                    backup.LoginID = (int)LoginId;
                     backup.Remark = pro.Remark;
                     backup.IsEditable = false;
 
@@ -237,7 +252,7 @@ namespace Inventory_Mangement_System.Repository
                     pro.VegetableId = productionModel.Vegetable.Id;
                     pro.Quantity = ((decimal)productionModel.Quantity);
                     pro.LastUpdated= ISDT;
-                    pro.LoginID = LoginId;
+                    pro.LoginID = (int)LoginId;
                     pro.Remark = productionModel.Remark;
                     context.SubmitChanges();
                     
@@ -246,35 +261,46 @@ namespace Inventory_Mangement_System.Repository
                     var res = new
                     {
                         ProductionID = pro.ProductionID,
-                        Area = new Model.Common.IntegerNullString() { Id=productionModel.Area.Id,Text=productionModel.Area.Text},
-                        Vegetable = new IntegerNullString() { Id = productionModel.Vegetable.Id, Text = productionModel.Vegetable.Text },
+                        Area = pro.AreaDetail.AreaName,
+                        //Area = new Model.Common.IntegerNullString() {Id=pd.AreaDetail.AreaId,Text=pd.AreaDetail.AreaName },
+                        //Vegetable = new IntegerNullString() { Id=pd.Vegetable.VegetableId,Text=pd.Vegetable.VegetableName},
+                        Vegetable = pro.Vegetable.VegetableName,
                         Quantity = pro.Quantity,
                         Remark = pro.Remark,
-                        CreatedBy = (from n in context.LoginDetails
-                                    where n.LoginID == LoginId
-                                    select n.UserName).FirstOrDefault(),
+                        CreatedBy = pro.LoginDetail.UserName,
                         LastUpdated = pro.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
                         ProductionDate = pro.ProductionDate.ToString("dd-MM-yyyy"),
-                        IsEditable = pro.IsEditable,
-                        EditedList = (from x in context.ProductionDetails
-                                      where x.ParentId == pro.ProductionID
-                                      orderby x.ProductionID descending
-                                      select new
-                                      {
-                                          ProductionID = x.ProductionID,
-                                          Area = new Model.Common.IntegerNullString() { Id = x.AreaDetail.AreaId, Text = x.AreaDetail.AreaName },
-                                          Vegetable = new IntegerNullString() { Id = x.Vegetable.VegetableId, Text = x.Vegetable.VegetableName },
-                                          Quantity = x.Quantity,
-                                          Remark = x.Remark,
-                                          CreatedBy = x.LoginDetail.UserName,
-                                          LastUpdated = x.LastUpdated,
-                                          ProductionDate = x.ProductionDate,
-                                          IsEditable = x.IsEditable,
+                        IsEditable = pro.IsEditable
+                        /*  ProductionID = pro.ProductionID,
+                          Area = new Model.Common.IntegerNullString() { Id=productionModel.Area.Id,Text=productionModel.Area.Text},
+                          Vegetable = new IntegerNullString() { Id = productionModel.Vegetable.Id, Text = productionModel.Vegetable.Text },
+                          Quantity = pro.Quantity,
+                          Remark = pro.Remark,
+                          CreatedBy = (from n in context.LoginDetails
+                                      where n.LoginID == (int)LoginId
+                                      select n.UserName).FirstOrDefault(),
+                          LastUpdated = pro.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                          ProductionDate = pro.ProductionDate.ToString("dd-MM-yyyy"),
+                          IsEditable = pro.IsEditable,
+                          EditedList = (from x in context.ProductionDetails
+                                        where x.ParentId == pro.ProductionID
+                                        orderby x.ProductionID descending
+                                        select new
+                                        {
+                                            ProductionID = x.ProductionID,
+                                            Area = new Model.Common.IntegerNullString() { Id = x.AreaDetail.AreaId, Text = x.AreaDetail.AreaName },
+                                            Vegetable = new IntegerNullString() { Id = x.Vegetable.VegetableId, Text = x.Vegetable.VegetableName },
+                                            Quantity = x.Quantity,
+                                            Remark = x.Remark,
+                                            CreatedBy = x.LoginDetail.UserName,
+                                            LastUpdated = x.LastUpdated,
+                                            ProductionDate = x.ProductionDate,
+                                            IsEditable = x.IsEditable,
 
-                                      }).ToList(),
-                                      HaveEditedList = (from x in context.ProductionDetails
-                                                        where x.ParentId == pro.ProductionID
-                                                        select x).ToList().Count() > 0 ? true : false,
+                                        }).ToList(),
+                                        HaveEditedList = (from x in context.ProductionDetails
+                                                          where x.ParentId == pro.ProductionID
+                                                          select x).ToList().Count() > 0 ? true : false,*/
                     };
                     scope.Complete();
                     return new Result()

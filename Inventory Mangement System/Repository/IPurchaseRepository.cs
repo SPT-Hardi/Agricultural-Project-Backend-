@@ -8,10 +8,10 @@ namespace Inventory_Mangement_System.Repository
     public interface IPurchaseRepository
     {
         //View Purchase Details
-        Result AddPurchaseDetails(PurchaseModel purchaseModel, int LoginId);
+        Result AddPurchaseDetails(PurchaseModel purchaseModel, object LoginId);
 
         //Add Purchase Details
-        Result EditPurchaseProduct(PurchaseModel purchaseModel, int ID, int LoginId);
+        Result EditPurchaseProduct(PurchaseList purchaseModel, int ID, object LoginId);
 
         //Edit Purchase Details
         Result GetPurchaseDetails(int? Id);

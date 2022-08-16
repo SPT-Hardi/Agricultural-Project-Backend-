@@ -48,7 +48,7 @@ namespace Inventory_Mangement_System.Repository
                 else 
                 {
                     var res = (from x in context.Products
-                               where x.ProductID==Id
+                               where x.ProductID == Id
                                orderby x.ProductID descending
                                select new
                                {
@@ -64,7 +64,7 @@ namespace Inventory_Mangement_System.Repository
                                                 select n.UserName).FirstOrDefault(),
                                    LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", x.DateTime),
 
-                               }).ToList();
+                               }).FirstOrDefault();
                     return new Result()
                     {
                         Status = Result.ResultStatus.success,
@@ -76,8 +76,12 @@ namespace Inventory_Mangement_System.Repository
         }
         
         //Add Product
-        public Result AddProduct(ProductModel productModel,int LoginId)
+        public Result AddProduct(ProductModel productModel,object LoginId)
         {
+            if (LoginId == null) 
+            {
+                throw new ArgumentException("token not found or expired!");
+            }
             var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             Category category = new Category();
@@ -89,11 +93,11 @@ namespace Inventory_Mangement_System.Repository
                            Variety = p.Variety,
                            Company = p.Company,
                            Description = p.Description,
-                           CategoryID = p.categoryType.Id,
-                           LoginID=LoginId,
+                           CategoryID = p.category,
+                           LoginID=(int)LoginId,
                            TotalProductQuantity=0,
                            DateTime=ISDT,
-                           UnitID = p.type.Id,
+                           UnitID = p.unit,
              
                        }).ToList();
             foreach (var item in pro)
@@ -116,14 +120,17 @@ namespace Inventory_Mangement_System.Repository
         }
 
         //Edit Product 
-        public Result EditProduct(ProductDetail productDetail, int productID,int LoginId)
+        public Result EditProduct(ProductDetail productDetail, int productID,object LoginId)
         {
             var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
-
+                    if (LoginId == null) 
+                    {
+                        throw new ArgumentException("token not found or expired!");
+                    }
                     var product = context.Products.SingleOrDefault(id => id.ProductID == productID);
                     if (product == null)
                     {
@@ -151,10 +158,10 @@ namespace Inventory_Mangement_System.Repository
                     product.Variety = productDetail.Variety;
                     product.Company = productDetail.Company;
                     product.Description = productDetail.Description;
-                    product.CategoryID = (int)productDetail.categoryType.Id;
-                    product.LoginID = LoginId;
+                    product.CategoryID = (int)productDetail.category;
+                    product.LoginID = (int)LoginId;
                     product.DateTime = ISDT;
-                    product.UnitID = (int)productDetail.type.Id;
+                    product.UnitID = (int)productDetail.unit;
                     //context.Products.InsertOnSubmit(p);
                     context.SubmitChanges();
 
@@ -165,12 +172,25 @@ namespace Inventory_Mangement_System.Repository
                         Variety = product.Variety,
                         Company = product.Company,
                         Description = product.Description,
+                        Unit = product.ProductUnit.Type,
+                        //Type = new Model.Common.IntegerNullString() { Id = x.ProductUnit.UnitID, Text = x.ProductUnit.Type },
+                        //CategoryType = new Model.Common.IntegerNullString() { Id = x.Category.CategoryID, Text = x.Category.CategoryName },
+                        Category = product.Category.CategoryName,
+                        CreatedBy = (from n in context.LoginDetails
+                                     where n.LoginID == product.LoginID
+                                     select n.UserName).FirstOrDefault(),
+                        LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", product.DateTime),
+                        /*ProductID = product.ProductID,
+                        ProductName = product.ProductName,
+                        Variety = product.Variety,
+                        Company = product.Company,
+                        Description = product.Description,
                         Type = new Model.Common.IntegerNullString() { Id = productDetail.type.Id, Text = productDetail.type.Text },
                         CategoryType = new Model.Common.IntegerNullString() { Id = productDetail.categoryType.Id, Text = productDetail.categoryType.Text },
                         CreatedBy = (from n in context.LoginDetails
                                     where n.LoginID == product.LoginID
                                     select n.UserName).FirstOrDefault(),
-                        LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", product.DateTime),
+                        LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", product.DateTime),*/
                     };
                     scope.Complete();
                     return new Result()

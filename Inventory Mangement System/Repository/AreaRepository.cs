@@ -18,50 +18,63 @@ namespace Inventory_Mangement_System.Repository
         {
             using(ProductInventoryDataContext context=new ProductInventoryDataContext())
             {
-                return new Result()
+                if (Id == null)
                 {
-                    Status = Result.ResultStatus.success,
-                    Message = "Area details get successfully!",
-                    /*  Data = (from s in context.MainAreas
-                              join x in context.SubAreas
-                              on s.MainAreaID equals x.MainAreaID into area
-                              from a in area.DefaultIfEmpty()
-                              select new
-                              {
-                                  MainAreaID = s.MainAreaID,
-                                  MainAreaName = s.MainAreaName,  
-                                  SubAreaID = a.SubAreaID.ToString() == null ? 0 : a.SubAreaID,
-                                  SubAreaName = a.SubAreaName.ToString() == null ? null : a.SubAreaName,
-                                  UserName = (from u in context.LoginDetails
-                                              where u.LoginID == a.LoginID
-                                              select u.UserName).FirstOrDefault(),
-                                  DateTime = string.Format("{0:dd-MM-yyyy hh:mm tt}", s.DateTime),
-                              }).ToList(),*/
-                    Data = (from x in context.AreaDetails
-                            where (Id==null || x.AreaId==Id)
-                            select new
-                            {
-                                AreaId=x.AreaId,
-                                AreaName=x.AreaName,
-                                MainAreaName=x.MainAreaName,
-                                SubAreaName=x.SubAreaName,
-                                LastUpdated=x.LastUpdated.ToString("dd-MM-yyy hh:mm tt"),
-                                CreatedBy=x.LoginDetail.UserName,
-                            }).ToList()
-                   
-                };
+                    var res = (from x in context.AreaDetails
+                                   /* where (Id == null || x.AreaId == Id)*/
+                               orderby x.AreaId descending
+                               select new
+                               {
+                                   AreaId = x.AreaId,
+                                   AreaName = x.AreaName,
+                                   MainAreaName = x.MainAreaName,
+                                   SubAreaName = x.SubAreaName,
+                                   LastUpdated = x.LastUpdated.ToString("dd-MM-yyy hh:mm tt"),
+                                   CreatedBy = x.LoginDetail.UserName,
+                               }).ToList();
+                    return new Result()
+                    {
+                        Status = Result.ResultStatus.success,
+                        Message = "Area details get successfully!",
+                        Data =res,
+                    };
+                }
+                else 
+                {
+                    var res = (from x in context.AreaDetails
+                               where x.AreaId == Id
+                               orderby x.AreaId descending
+                               select new
+                               {
+                                   AreaId = x.AreaId,
+                                   AreaName = x.AreaName,
+                                   MainAreaName = x.MainAreaName,
+                                   SubAreaName = x.SubAreaName,
+                                   LastUpdated = x.LastUpdated.ToString("dd-MM-yyy hh:mm tt"),
+                                   CreatedBy = x.LoginDetail.UserName,
+                               }).FirstOrDefault();
+                    return new Result()
+                    {
+                        Status = Result.ResultStatus.success,
+                        Message = "Area details get successfully!",
+                        Data = res,
+                    };
+                }
             }
         }
 
         //Add New Main And Sub Area
-        public Result AddMainAreaAsync(AreaModel areaModel, int LoginId)
+        public Result AddMainAreaAsync(AreaModel areaModel, object LoginId)
         {
             var ISDT = new ISDT().GetISDT(DateTime.Now);
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
-
+                    if (LoginId == null) 
+                    {
+                        throw new ArgumentException("token not found or expired!");
+                    }
                     // MainArea mainArea = new MainArea();
                     /* var mn1 = (from m in areaModel.arealist
                                 join y in context.AreaDetails
@@ -98,7 +111,7 @@ namespace Inventory_Mangement_System.Repository
                            areaDetail.SubAreaName = null;
                            areaDetail.AreaName = item.MainAreaName;
                            areaDetail.LastUpdated = ISDT;
-                           areaDetail.LoginId = LoginId;
+                           areaDetail.LoginId = (int)LoginId;
                    
                            context.AreaDetails.InsertOnSubmit(areaDetail);
                            context.SubmitChanges();
@@ -111,7 +124,7 @@ namespace Inventory_Mangement_System.Repository
                                       {
                                           MainAreaName = item.MainAreaName,
                                           SubAreaName = y.SubAreaName,
-                                          LoginId = LoginId,
+                                          LoginId = (int)LoginId,
                                           AreaName = (from x in context.AreaDetails
                                                       where x.AreaName.ToLower() == (y.SubAreaName == null ? item.MainAreaName.ToLower() : $"{item.MainAreaName.ToLower()}-{y.SubAreaName.ToLower()}")
                                                       //where (x.MainAreaName.ToLower()==item.MainAreaName.ToLower()) && (y.SubAreaName==null ? true : (x.SubAreaName==null ? null : x.SubAreaName.ToLower())==y.SubAreaName.ToLower())
@@ -137,14 +150,17 @@ namespace Inventory_Mangement_System.Repository
         }
 
         //Edit Main And Sub Area
-        public Result EditArea(UpdateAreaModel value,int Id,int LoginId)
+        public Result EditArea(UpdateAreaModel value,int Id,object LoginId)
        {
             var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
-
+                    if (LoginId == null) 
+                    {
+                        throw new ArgumentException("token not found or expired!");
+                    }
                     /*
                                         var m = (from x in context.MainAreas where x.MainAreaID == mid select x).FirstOrDefault();
 
@@ -229,7 +245,7 @@ namespace Inventory_Mangement_System.Repository
                     areadetail.SubAreaName = value.SubAreaName;
                     areadetail.AreaName = (value.SubAreaName == null ? value.MainAreaName : $"{value.MainAreaName}-{value.SubAreaName}");
                     areadetail.LastUpdated = ISDT;
-                    areadetail.LoginId = LoginId;
+                    areadetail.LoginId = (int)LoginId;
 
                     context.SubmitChanges();
 
@@ -240,7 +256,13 @@ namespace Inventory_Mangement_System.Repository
                         MainAreaName = areadetail.MainAreaName,
                         SubAreaName = areadetail.SubAreaName,
                         LastUpdated = areadetail.LastUpdated.ToString("dd-MM-yyy hh:mm tt"),
-                        CreatedBy = (from x in context.LoginDetails where x.LoginID == LoginId select x.UserName).FirstOrDefault(),
+                        CreatedBy = areadetail.LoginDetail.UserName,
+                        /*AreaId = areadetail.AreaId,
+                        AreaName = areadetail.AreaName,
+                        MainAreaName = areadetail.MainAreaName,
+                        SubAreaName = areadetail.SubAreaName,
+                        LastUpdated = areadetail.LastUpdated.ToString("dd-MM-yyy hh:mm tt"),
+                        CreatedBy = (from x in context.LoginDetails where x.LoginID == (int)LoginId select x.UserName).FirstOrDefault(),*/
                     };
 
                     scope.Complete();

@@ -33,11 +33,7 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPost("addMainArea")]
         public async Task<IActionResult> AddMainArea(AreaModel mainAreaModel)
         {
-            if ((int)HttpContext.Items["LoginId"] == 0)
-            {
-                throw new ArgumentException("JWT Token Not Found.");
-            }
-            int LoginId = (int)HttpContext.Items["LoginId"];
+            var LoginId = HttpContext.Items["LoginId"];
             var result = _areaRepository.AddMainAreaAsync(mainAreaModel,LoginId);
             return Ok(result);
         }
@@ -46,11 +42,7 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPut("EditArea/{Id}")]
         public async Task<IActionResult> EditAreaAsync(UpdateAreaModel value, int Id)
         {
-            if ((int)HttpContext.Items["LoginId"] == 0)
-            {
-                throw new ArgumentException("JWT Token Not Found.");
-            }
-            int LoginId = (int)HttpContext.Items["LoginId"];
+            var LoginId = HttpContext.Items["LoginId"];
             var result = _areaRepository.EditArea(value, Id,LoginId);
             return Ok(result);
         }

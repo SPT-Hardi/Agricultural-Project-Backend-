@@ -70,7 +70,7 @@ namespace Inventory_Mangement_System.Repository
                                {
                                    IssueID = obj.IssueID,
                                    //Product = obj.Product.ProductName,
-                                   Product = new { Id = obj.Product.ProductID, Text = obj.Product.ProductName, Unit = obj.Product.ProductUnit.Type },
+                                   Product = new { Id = obj.Product.ProductID, Text = obj.Product.ProductName, Unit = obj.Product.ProductUnit.Type},
                                    Area = new IntegerNullString() { Id = obj.AreaDetail.AreaId, Text = obj.AreaDetail.AreaName },
                                    //Area = obj.AreaDetail.AreaName,
                                    IssueQuantity = obj.PurchaseQuantity,
@@ -96,7 +96,7 @@ namespace Inventory_Mangement_System.Repository
                                                }).ToList(),
                                    HaveEditedList= (from x in context.Issues
                                              where x.ParentId == obj.IssueID select x).ToList().Count()>0 ? true : false,*/
-                               }).ToList();
+                               }).FirstOrDefault();
                     return new Result()
                     {
                         Status = Result.ResultStatus.success,
@@ -109,47 +109,73 @@ namespace Inventory_Mangement_System.Repository
         {
             using (ProductInventoryDataContext c = new ProductInventoryDataContext())
             {
-
+                var res=(from obj in c.Issues
+                 where obj.ParentId == Id
+                 orderby obj.ParentId descending
+                 select new
+                 {
+                     IssueID = obj.IssueID,
+                     Product = obj.Product.ProductName,
+                     //Product = new { Id = obj.Product.ProductID, Text = obj.Product.ProductName, Unit = obj.Product.ProductUnit.Type },
+                     //Area = new IntegerNullString() { Id = obj.AreaDetail.AreaId, Text = obj.AreaDetail.AreaName },
+                     Area = obj.AreaDetail.AreaName,
+                     IssueQuantity = obj.PurchaseQuantity,
+                     //Remark = obj.Remark,
+                     CreatedBy = obj.LoginDetail.UserName,
+                     IssueDate = obj.IssueDate.ToString("dd-MM-yyyy"),
+                     LastUpdated = obj.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                 }).ToList();
                 return new Result()
                 {
                     Status = Result.ResultStatus.success,
                     Message = "Edited Isuue details get successfully!",
-                    Data =(from obj in c.Issues
-                           where obj.ParentId==Id
-                           select new 
-                           {
-                               IssueID = obj.IssueID,
-                               Product = new { Id = obj.Product.ProductID, Text = obj.Product.ProductName, Unit = obj.Product.ProductUnit.Type },
-                               Area = new IntegerNullString() { Id = obj.AreaDetail.AreaId, Text = obj.AreaDetail.AreaName },
-                               IssueQuantity = obj.PurchaseQuantity,
-                               Remark = obj.Remark,
-                               UserName = obj.LoginDetail.UserName,
-                               IssueDate = obj.IssueDate.ToString("dd-MM-yyyy"),
-                               LastUpdated = obj.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
-                               IsEditable = obj.IsEditable,
-                           }).ToList()
+                    Data = new
+                    {
+                        IssueDetails = ViewAllIssue(Id).Data,
+                        EditedList= (from obj in c.Issues
+                                     where obj.ParentId == Id
+                                     orderby obj.ParentId descending
+                                     select new
+                                     {
+                                         IssueID = obj.IssueID,
+                                         Product = obj.Product.ProductName,
+                                         //Product = new { Id = obj.Product.ProductID, Text = obj.Product.ProductName, Unit = obj.Product.ProductUnit.Type },
+                                         //Area = new IntegerNullString() { Id = obj.AreaDetail.AreaId, Text = obj.AreaDetail.AreaName },
+                                         Area = obj.AreaDetail.AreaName,
+                                         IssueQuantity = obj.PurchaseQuantity,
+                                         //Remark = obj.Remark,
+                                         CreatedBy = obj.LoginDetail.UserName,
+                                         IssueDate = obj.IssueDate.ToString("dd-MM-yyyy"),
+                                         LastUpdated = obj.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                                     }).ToList(),
+                    }
                 };
             }
         }
         //Issue Products
-        public Result IssueProduct(IssueModel issueModel, int LoginId)
+        public Result IssueProduct(IssueModel issueModel, object LoginId)
         {
             var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
+                    if (LoginId == null) 
+                    {
+                        throw new ArgumentException("token not found or expired!");
+                    }
 
                     Issue i = new Issue();
-                    var qs = (from obj in issueModel.issueDetails
+                    var qs = (from obj in issueModel. issueDetails
                               select new Issue()
                               {
                                   ProductID = obj.Product.Id,
                                   AreaId=issueModel.Area.Id,
                                   Remark = obj.Remark,
-                                  LoginID = LoginId,
+                                  LoginID = (int)LoginId,
                                   IssueDate = issueModel.IssueDate.ToLocalTime(),
                                   LastUpdated = ISDT,
+                                  IsEditable=true,
                                   PurchaseQuantity = (decimal)obj.IssueQuantity
                               }).ToList();
 
@@ -192,7 +218,7 @@ namespace Inventory_Mangement_System.Repository
         }
 
         //Edit Issue Details
-        public Result EditIssue(IssueModel issueModel, int ID, int LoginId)
+        public Result EditIssue(UpdateIssue issueModel, int ID, object LoginId)
         {
             var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             float RemainQuantity = 0;
@@ -200,11 +226,14 @@ namespace Inventory_Mangement_System.Repository
             {
                 using (TransactionScope scope = new TransactionScope()) 
                 {
-                    
+                    if (LoginId == null) 
+                    {
+                        throw new ArgumentException("token not found or expired!");
+                    }
                     //var MacAddress = context.LoginDetails.FirstOrDefault(c => c.SystemMac == macObj);
                     var qs = (from obj in context.Issues
                               where obj.IssueID == ID
-                              select obj).SingleOrDefault();
+                              select obj).FirstOrDefault();
                     if (qs.IsEditable == false)
                     {
                         throw new ArgumentException("Not editable!");
@@ -215,28 +244,32 @@ namespace Inventory_Mangement_System.Repository
                     backup.AreaId = qs.AreaId;
                     backup.ParentId = qs.IssueID;
                     backup.Remark = qs.Remark;
-                    backup.LoginID = LoginId;
+                    backup.LoginID = (int)LoginId;
                     backup.IssueDate = qs.IssueDate;
                     backup.LastUpdated = ISDT;
                     backup.PurchaseQuantity = qs.PurchaseQuantity;
                     backup.IsEditable = false;
+
                     context.Issues.InsertOnSubmit(backup);
                     context.SubmitChanges();
 
 
-                var p = (from obj in issueModel.issueDetails
-                         select obj).SingleOrDefault();
+                var p = issueModel;
                 var pd = (from obj in context.Products
                           where obj.ProductID == qs.ProductID
-                          select obj).SingleOrDefault();
+                          select obj).FirstOrDefault();
                 var ps = (from obj in context.Products
-                          where obj.ProductID == p.Product.Id
-                          select obj).SingleOrDefault();
+                          where obj.ProductID==issueModel.Product.Id
+                          select obj).FirstOrDefault();
+                if (ps == null) 
+                {
+                    throw new ArgumentException($"product:{issueModel.Product} not exist!");
+                }
                 
                 
                 if (p.IssueQuantity == 0)
                 {
-                    throw new ArgumentException($"Please Enter {p.Product.Text} Issue Quantity More Than Zero");
+                    throw new ArgumentException($"Please Enter {issueModel.Product} Issue Quantity More Than Zero");
                 }
                 if (qs.PurchaseQuantity < (decimal)p.IssueQuantity)
                 {
@@ -246,7 +279,7 @@ namespace Inventory_Mangement_System.Repository
                             $"Enter quantity{p.IssueQuantity} more than existing quantity{pd.TotalProductQuantity}");
                     }
                 }
-                    if (qs.ProductID == p.Product.Id)
+                    if (qs.ProductID==issueModel.Product.Id)
                     {
                         var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
                         RemainQuantity = (float)temp - p.IssueQuantity;
@@ -254,8 +287,7 @@ namespace Inventory_Mangement_System.Repository
                         qs.LastUpdated = ISDT;
                         qs.ProductID = p.Product.Id;
                         qs.AreaId = issueModel.Area.Id;
-                        qs.LoginID = LoginId;
-                        qs.Remark = p.Remark;
+                        qs.LoginID = (int)LoginId;
                         qs.PurchaseQuantity = ((decimal)p.IssueQuantity);
 
                         ps.TotalProductQuantity = ((decimal)RemainQuantity);
@@ -263,36 +295,46 @@ namespace Inventory_Mangement_System.Repository
 
                         var res = new
                         {
-                            IssueID = qs.IssueID,
+                            /*IssueID = qs.IssueID,
                             Product = new { Id = p.Product.Id, Text = p.Product.Text },
                             Area = new IntegerNullString() { Id=issueModel.Area.Id,Text=issueModel.Area.Text},
                             IssueQuantity = qs.PurchaseQuantity,
                             Remark = qs.Remark,
                             CreatedBy = (from n in context.LoginDetails
-                                        where n.LoginID == LoginId
+                                        where n.LoginID ==(int)LoginId
                                         select n.UserName).FirstOrDefault(),
                             IssueDate = qs.IssueDate.ToString("dd-MM-yyyy"),
                             LastUpdated = qs.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
-                            IsEditable = qs.IsEditable,
-                            EditedList = (from x in context.Issues
-                                          where x.ParentId == qs.IssueID
-                                          orderby x.IssueID descending
-                                          select new
-                                          {
-                                              IssueID = x.IssueID,
-                                              Product = new { Id = x.Product.ProductID, Text = x.Product.ProductName, Unit = x.Product.ProductUnit.Type },
-                                              Area = new IntegerNullString() { Id = x.AreaDetail.AreaId, Text = x.AreaDetail.AreaName },
-                                              IssueQuantity = x.PurchaseQuantity,
-                                              Remark = x.Remark,
-                                              CreatedBy = x.LoginDetail.UserName,
-                                              IssueDate = x.IssueDate,
-                                              LastUpdated = x.LastUpdated,
-                                              IsEditable = x.IsEditable,
+                            IsEditable = qs.IsEditable,*/
+                            IssueID = qs.IssueID,
+                            Product = qs.Product.ProductName,
+                            //Product = new { Id = obj.Product.ProductID, Text = obj.Product.ProductName, Unit = obj.Product.ProductUnit.Type },
+                            //Area = new IntegerNullString() { Id = obj.AreaDetail.AreaId, Text = obj.AreaDetail.AreaName },
+                            Area = qs.AreaDetail.AreaName,
+                            IssueQuantity = qs.PurchaseQuantity,
+                            //Remark = obj.Remark,
+                            CreatedBy = qs.LoginDetail.UserName,
+                            IssueDate =qs.IssueDate.ToString("dd-MM-yyyy"),
+                            LastUpdated = qs.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                            /* EditedList = (from x in context.Issues
+                                           where x.ParentId == qs.IssueID
+                                           orderby x.IssueID descending
+                                           select new
+                                           {
+                                               IssueID = x.IssueID,
+                                               Product = new { Id = x.Product.ProductID, Text = x.Product.ProductName, Unit = x.Product.ProductUnit.Type },
+                                               Area = new IntegerNullString() { Id = x.AreaDetail.AreaId, Text = x.AreaDetail.AreaName },
+                                               IssueQuantity = x.PurchaseQuantity,
+                                               Remark = x.Remark,
+                                               CreatedBy = x.LoginDetail.UserName,
+                                               IssueDate = x.IssueDate,
+                                               LastUpdated = x.LastUpdated,
+                                               IsEditable = x.IsEditable,
 
-                                          }).ToList(),
-                            HaveEditedList = (from x in context.Issues
-                                              where x.ParentId == qs.IssueID
-                                              select x).ToList().Count() > 0 ? true : false,
+                                           }).ToList(),
+                             HaveEditedList = (from x in context.Issues
+                                               where x.ParentId == qs.IssueID
+                                               select x).ToList().Count() > 0 ? true : false,*/
 
 
                         };
@@ -302,20 +344,20 @@ namespace Inventory_Mangement_System.Repository
                         {
                             Status = Result.ResultStatus.success,
                             Message = "Issue Update Successfully",
-                            Data = res
+                            Data = res,
                         };
                     }
                     else
                     {
+                        //var pro = ps.ProductID;
                         var temp = pd.TotalProductQuantity + qs.PurchaseQuantity;
                         qs.IssueDate = issueModel.IssueDate.ToLocalTime();
                         qs.LastUpdated = ISDT;
-                        qs.ProductID = p.Product.Id;
+                        qs.ProductID =p.Product.Id;
                         qs.AreaId = issueModel.Area.Id;
-                        qs.LoginID = LoginId;
-                        qs.Remark = p.Remark;
+                        qs.LoginID = (int)LoginId;
                         qs.PurchaseQuantity = ((decimal)p.IssueQuantity);
-                        RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity;
+                        RemainQuantity = (float)ps.TotalProductQuantity - p.IssueQuantity ;
                         ps.TotalProductQuantity = ((decimal)RemainQuantity);
                         pd.TotalProductQuantity = temp;
                         context.SubmitChanges();
@@ -323,12 +365,22 @@ namespace Inventory_Mangement_System.Repository
                         var res = new
                         {
                             IssueID = qs.IssueID,
+                            Product = qs.Product.ProductName,
+                            //Product = new { Id = obj.Product.ProductID, Text = obj.Product.ProductName, Unit = obj.Product.ProductUnit.Type },
+                            //Area = new IntegerNullString() { Id = obj.AreaDetail.AreaId, Text = obj.AreaDetail.AreaName },
+                            Area = qs.AreaDetail.AreaName,
+                            IssueQuantity = qs.PurchaseQuantity,
+                            //Remark = obj.Remark,
+                            CreatedBy = qs.LoginDetail.UserName,
+                            IssueDate = qs.IssueDate.ToString("dd-MM-yyyy"),
+                            LastUpdated = qs.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
+                            /*IssueID = qs.IssueID,
                             Product = new { Id = p.Product.Id, Text = p.Product.Text },
                             Area = new IntegerNullString() {Id=issueModel.Area.Id,Text=issueModel.Area.Text },
                             IssueQuantity = qs.PurchaseQuantity,
                             Remark = qs.Remark,
                             CreatedBy = (from n in context.LoginDetails
-                                        where n.LoginID == LoginId
+                                        where n.LoginID == (int)LoginId
                                         select n.UserName).FirstOrDefault(),
                             IssueDate = qs.IssueDate.ToString("dd-MM-yyyy"),
                             LastUpdated = qs.LastUpdated.ToString("dd-MM-yyyy hh:mm tt"),
@@ -351,11 +403,11 @@ namespace Inventory_Mangement_System.Repository
                                           }).ToList(),
                             HaveEditedList = (from x in context.Issues
                                               where x.ParentId == qs.IssueID
-                                              select x).ToList().Count() > 0 ? true : false,
+                                              select x).ToList().Count() > 0 ? true : false,*/
 
                         };
 
-                        scope.Complete();
+                        scope.Complete(); 
                         return new Result()
                         {
                             Status = Result.ResultStatus.success,

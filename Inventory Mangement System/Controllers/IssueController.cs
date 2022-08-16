@@ -41,24 +41,16 @@ namespace Inventory_Mangement_System.Controllers
         [Authorize]
         public async Task<IActionResult> IssueProductDetails([FromBody]IssueModel issueModel)
         {
-            if ((int)HttpContext.Items["LoginId"] == 0)
-            {
-                throw new ArgumentException("JWT Token Not Found.");
-            }
-            int LoginId = (int)HttpContext.Items["LoginId"];
+            var LoginId = HttpContext.Items["LoginId"];
             var result = _issueRepository.IssueProduct(issueModel,LoginId);
             return Ok(result);
         }
 
         //Edit Issue Details
         [HttpPut("EditIssue/{ID}")]
-        public async Task<IActionResult> EditIssueAsync([FromBody] IssueModel issueModel,[FromRoute] int ID)
+        public async Task<IActionResult> EditIssueAsync([FromBody] UpdateIssue issueModel,[FromRoute] int ID)
         {
-            if ((int)HttpContext.Items["LoginId"] == 0)
-            {
-                throw new ArgumentException("JWT Token Not Found.");
-            }
-            int LoginId = (int)HttpContext.Items["LoginId"];
+            var LoginId = HttpContext.Items["LoginId"];
             var result = _issueRepository.EditIssue(issueModel,ID,LoginId);
             return Ok(result);
         }

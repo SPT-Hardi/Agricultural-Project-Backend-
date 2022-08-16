@@ -11,10 +11,10 @@ namespace Inventory_Mangement_System.Repository
         Result ViewAllIssue(int? Id);
 
         //Issue Products
-        Result IssueProduct(IssueModel issueModel,int LoginId);
+        Result IssueProduct(IssueModel issueModel,object LoginId);
 
         //Edit Issue Details
-        Result EditIssue(IssueModel issueModel, int ID,int LoginId);
+        Result EditIssue(UpdateIssue issueModel, int ID,object LoginId);
 
         //Get MainArea Dropdown
         Task<IEnumerable> GetArea();

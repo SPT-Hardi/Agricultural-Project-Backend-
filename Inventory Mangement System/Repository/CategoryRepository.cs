@@ -16,30 +16,59 @@ namespace Inventory_Mangement_System.Repository
         {
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
-                return new Result()
+                if (Id == null)
                 {
-                    Status = Result.ResultStatus.success,
-                    Data = (from x in context.Categories
-                            where (Id==null || x.CategoryID==Id)
-                            orderby x.CategoryID descending
-                            select new
-                            {
-                                CategoryID = x.CategoryID,
-                                CategoryName = x.CategoryName,
-                                Description = x.Description,
-                                CreatedBy = (from n in context.LoginDetails
-                                            where n.LoginID == x.LoginID
-                                            select n.UserName).FirstOrDefault(),
-                                LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", x.DateTime),
-                            }).ToList(),
-                };
+                    var res = (from x in context.Categories/*
+                               where (Id == null || x.CategoryID == Id)*/
+                               orderby x.CategoryID descending
+                               select new
+                               {
+                                   CategoryID = x.CategoryID,
+                                   CategoryName = x.CategoryName,
+                                   Description = x.Description,
+                                   CreatedBy = (from n in context.LoginDetails
+                                                where n.LoginID == x.LoginID
+                                                select n.UserName).FirstOrDefault(),
+                                   LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", x.DateTime),
+                               }).ToList();
+                    return new Result()
+                    {
+                        Status = Result.ResultStatus.success,
+                        Data =res,
+                    };
+                }
+                else 
+                {
+                    var res = (from x in context.Categories
+                               where x.CategoryID == Id
+                               orderby x.CategoryID descending
+                               select new
+                               {
+                                   CategoryID = x.CategoryID,
+                                   CategoryName = x.CategoryName,
+                                   Description = x.Description,
+                                   CreatedBy = (from n in context.LoginDetails
+                                                where n.LoginID == x.LoginID
+                                                select n.UserName).FirstOrDefault(),
+                                   LastUpdated = String.Format("{0:dd-MM-yyyy hh:mm tt}", x.DateTime),
+                               }).FirstOrDefault();
+                    return new Result()
+                    {
+                        Status = Result.ResultStatus.success,
+                        Data = res,
+                    };
+                }
+                }
             }
-        }
 
         //Add New Category
-        public Result AddCategory(CategoryModel categoryModel, int LoginId)
+        public Result AddCategory(CategoryModel categoryModel, object LoginId)
         {
             var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
+            if (LoginId == null) 
+            {
+                throw new ArgumentException("token not found or expired!");
+            }
             ProductInventoryDataContext context = new ProductInventoryDataContext();
             Category category = new Category();
             var res = context.Categories.FirstOrDefault(x => x.CategoryName == categoryModel.CategoryName);
@@ -51,8 +80,9 @@ namespace Inventory_Mangement_System.Repository
             {
                 category.CategoryName = char.ToUpper(categoryModel.CategoryName[0]) + categoryModel.CategoryName.Substring(1).ToLower(); 
                 category.Description = categoryModel.Description;
-                category.LoginID = LoginId;
+                category.LoginID = (int)LoginId;
                 category.DateTime = ISDT;
+
                 context.Categories.InsertOnSubmit(category);
                 context.SubmitChanges();
                 return new Result()
@@ -65,11 +95,15 @@ namespace Inventory_Mangement_System.Repository
         }
         
         //Edit Category
-        public Result EditCategory(CategoryModel categoryModel, int id, int LoginId)
+        public Result EditCategory(CategoryModel categoryModel, int id, object LoginId)
         {
             var ISDT = new Repository.ISDT().GetISDT(DateTime.Now);
             using (ProductInventoryDataContext context = new ProductInventoryDataContext())
             {
+                if (LoginId == null) 
+                {
+                    throw new ArgumentException("token not found or expired!");
+                }
                 var ck = context.Categories.SingleOrDefault(x => x.CategoryID == id);
                 if (ck == null)
                 {
@@ -86,7 +120,7 @@ namespace Inventory_Mangement_System.Repository
                 ck.CategoryName = char.ToUpper(categoryModel.CategoryName[0]) + categoryModel.CategoryName.Substring(1).ToLower();
                 ck.Description = categoryModel.Description;
                 ck.DateTime = ISDT;
-                ck.LoginID = LoginId;
+                ck.LoginID = (int)LoginId;
                 context.SubmitChanges();
                 return new Result()
                 {

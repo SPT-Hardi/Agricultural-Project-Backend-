@@ -12,10 +12,10 @@ namespace Inventory_Mangement_System.Repository
         Result ViewAllProduct(int? Id);
 
         //Add Product
-        Result AddProduct(ProductModel productModel,int LoginId);
+        Result AddProduct(ProductModel productModel,object LoginId);
 
         //Edit Product 
-        Result EditProduct(ProductDetail productDetail, int productID,int LoginId);
+        Result EditProduct(ProductDetail productDetail, int productID,object LoginId);
         
         //Get Unit
         Task<IEnumerable> GetUnit();

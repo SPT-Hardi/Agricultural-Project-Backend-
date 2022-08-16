@@ -33,24 +33,16 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPost("purchaseproduct")]
         public async Task<IActionResult> PurchaseDetailsAdded(PurchaseModel purchaseModel)
         {
-            if ((int)HttpContext.Items["LoginId"] == 0)
-            {
-                throw new ArgumentException("JWT Token Not Found.");
-            }
-            int LoginId = (int)HttpContext.Items["LoginId"];
+            var LoginId = HttpContext.Items["LoginId"];
             var result = _purchaseRepository.AddPurchaseDetails(purchaseModel, LoginId);
             return Ok(result);
         }
 
         //Edit Purchase Details
         [HttpPut("EditPurchaseProduct/{ID}")]
-        public async Task<IActionResult> EditPurchaseProduct(PurchaseModel purchaseModel, int ID)
+        public async Task<IActionResult> EditPurchaseProduct(PurchaseList purchaseModel, int ID)
         {
-            if ((int)HttpContext.Items["LoginId"] == 0)
-            {
-                throw new ArgumentException("JWT Token Not Found.");
-            }
-            int LoginId = (int)HttpContext.Items["LoginId"];
+            var LoginId = HttpContext.Items["LoginId"];
             var result = _purchaseRepository.EditPurchaseProduct(purchaseModel, ID, LoginId);
 
             return Ok(result);

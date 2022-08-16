@@ -8,7 +8,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAXN5FTsK0HEqgjNQnSA8bWgAAAAACAAAAAAAQZgAAAAEAACAAAAAO+THTpLyhd21M3IxIr/qVV+67IJ+MMMJJztrf8xfmSwAAAAAOgAAAAAIAACAAAAB2aNPrKAZj5BVioUbnEwnbOYgNSC1RtKWREAHO4jkcfiAAAABD6z2d45Ou2APerVPs37DMg9GCZLojHL7z9NIyWA0ENEAAAAD+ha4ZJQoaSnF5CsDAhKjJ/0WdmInIT+k2XHPVe3waaeMewuGvx+LXHLcoZ6Fw9xxIIJPrHt6MU0R05JAWdkxa</EncryptedPassword>
     <_PublishTargetUrl>ftp://20.219.49.104/smartfarm</_PublishTargetUrl>
-    <History>True|2022-05-25T12:25:25.9705776Z;</History>
+    <History>True|2022-08-16T05:32:40.3958155Z;True|2022-07-09T16:47:48.8516217+05:30;True|2022-07-09T16:15:37.1176729+05:30;True|2022-07-09T14:27:42.3613685+05:30;True|2022-07-09T14:04:23.9953120+05:30;False|2022-07-09T14:03:31.2645767+05:30;True|2022-07-07T11:30:56.4074897+05:30;True|2022-07-05T16:53:09.0923775+05:30;True|2022-07-04T12:09:26.4953571+05:30;True|2022-07-01T13:55:46.5459618+05:30;True|2022-07-01T13:14:44.3349856+05:30;True|2022-06-29T16:49:21.9694459+05:30;True|2022-06-29T16:07:42.7036494+05:30;True|2022-05-25T17:55:25.9705776+05:30;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
@@ -36,19 +36,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/25/2022 06:59:10</publishTime>
     </File>
     <File Include="InventorySystem.deps.json">
-      <publishTime>05/25/2022 17:54:54</publishTime>
+      <publishTime>08/16/2022 11:01:34</publishTime>
     </File>
     <File Include="InventorySystem.dll">
-      <publishTime>05/25/2022 17:54:53</publishTime>
+      <publishTime>08/16/2022 11:01:31</publishTime>
     </File>
     <File Include="InventorySystem.exe">
-      <publishTime>05/25/2022 17:54:53</publishTime>
+      <publishTime>08/16/2022 11:01:31</publishTime>
     </File>
     <File Include="InventorySystem.pdb">
-      <publishTime>05/25/2022 17:54:53</publishTime>
+      <publishTime>08/16/2022 11:01:31</publishTime>
     </File>
     <File Include="InventorySystem.runtimeconfig.json">
-      <publishTime>05/25/2022 17:54:54</publishTime>
+      <publishTime>07/06/2022 12:27:08</publishTime>
     </File>
     <File Include="Kendo.Mvc.dll">
       <publishTime>01/19/2022 05:07:20</publishTime>
@@ -201,7 +201,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/15/2019 14:07:42</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>05/25/2022 17:54:55</publishTime>
+      <publishTime>08/16/2022 11:01:34</publishTime>
     </File>
   </ItemGroup>
 </Project>

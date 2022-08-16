@@ -37,7 +37,7 @@ namespace Inventory_Mangement_System.Model
         public string Company { get; set; }
         [RegularExpression(@"^.{1,300}$", ErrorMessage = "Max 300 character")]
         public string Description { get; set; }
-        public Model.Common.IntegerNullString categoryType { get; set; } = new Model.Common.IntegerNullString();
-        public Model.Common.IntegerNullString type { get; set; } = new Model.Common.IntegerNullString();
+        public int category { get; set; } 
+        public int unit { get; set; }
     }
 }

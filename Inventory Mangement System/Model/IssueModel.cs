@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inventory_Mangement_System.Model.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -26,6 +27,20 @@ namespace Inventory_Mangement_System.Model
        
         public Model.Common.IntegerNullString Product { get; set; } = new Model.Common.IntegerNullString();
        
+    }
+    public class UpdateIssue 
+    {
+
+        [Required(ErrorMessage = "IssueDate is Required.")]
+        public DateTime IssueDate { get; set; }
+
+        public Model.Common.IntegerNullString Area { get; set; } = new Common.IntegerNullString();
+
+        [RegularExpression(@"^[0-9.]{1,9}$", ErrorMessage = "Please Enter only float value having max 2 digit after decimal.")]
+        [Required(ErrorMessage = "Issue Quantity Required.")]
+        public float IssueQuantity { get; set; }
+
+        public IntegerNullString Product { get; set; } = new IntegerNullString();
     }
     
 }

@@ -39,11 +39,7 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPost("addproduction")]
         public async Task<IActionResult> ProductionDetailAdded([FromBody] ProductionModel productionModel)
         {
-            if ((int)HttpContext.Items["LoginId"] == 0)
-            {
-                throw new ArgumentException("JWT Token Not Found.");
-            }
-            int LoginId = (int)HttpContext.Items["LoginId"];
+            var LoginId = HttpContext.Items["LoginId"];
             var result = _productionRepository.AddProductionDetails(productionModel,LoginId);
             return Ok(result);
 
@@ -53,11 +49,7 @@ namespace Inventory_Mangement_System.Controllers
         [HttpPut("Editproduction/{id}")]
         public async Task<IActionResult> EditProduction(ProductionModel productionModel, int id)
         {
-            if ((int)HttpContext.Items["LoginId"] == 0)
-            {
-                throw new ArgumentException("JWT Token Not Found.");
-            }
-            int LoginId = (int)HttpContext.Items["LoginId"];
+            var LoginId = HttpContext.Items["LoginId"];
             var result = _productionRepository.Editproduction(productionModel, id,LoginId);
             return Ok(result);
         }

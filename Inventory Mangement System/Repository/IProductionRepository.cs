@@ -11,9 +11,9 @@ namespace Inventory_Mangement_System.Repository
         Result ViewAllProductionDetails(int? Id);
 
         //Add Production Details
-        Result AddProductionDetails(ProductionModel value,int LoginId);
+        Result AddProductionDetails(ProductionModel value,object LoginId);
 
         //Edit Production
-        Result Editproduction(ProductionModel productionModel, int id,int LoginId);
+        Result Editproduction(ProductionModel productionModel, int id,object LoginId);
     }
 }
